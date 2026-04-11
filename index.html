@@ -5,689 +5,726 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MCP Tool Browser</title>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
 <style>
 /* ── RESET ──────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.5}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:14px;line-height:1.55;
+  background:var(--bg);color:var(--text);
+  transition:background .25s,color .25s;
+}
 
-/* ── THEME TOKENS ───────────────────────────────────────────── */
+/* ── THEME ──────────────────────────────────────────────────── */
 :root{
-  --bg:#07071a;--surface:#0d0d24;--card:#12122c;--card-hover:#161638;
-  --border:rgba(255,255,255,.07);--border-strong:rgba(255,255,255,.13);
-  --text:#e2e2f0;--text-dim:#7878a0;--text-faint:#4a4a6a;
-  --radius:10px;--header-h:58px;--sidebar-w:270px;
-  --shadow:0 4px 24px rgba(0,0,0,.5);
+  --bg:#07071a;
+  --surface:#0c0c22;
+  --card:#111128;
+  --card-hover:#161640;
+  --border:rgba(255,255,255,.06);
+  --border-md:rgba(255,255,255,.1);
+  --border-strong:rgba(255,255,255,.16);
+  --text:#ddddf0;
+  --text-dim:#6e6e96;
+  --text-faint:#3e3e60;
+  --header-h:56px;
+  --sidebar-w:260px;
+  --shadow:0 6px 30px rgba(0,0,0,.55);
+  --radius:10px;
 }
 [data-theme="light"]{
-  --bg:#f0f0f8;--surface:#e6e6f2;--card:#ffffff;--card-hover:#f8f8ff;
-  --border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.15);
-  --text:#18182a;--text-dim:#5a5a80;--text-faint:#9898b8;
-  --shadow:0 2px 16px rgba(0,0,0,.12);
+  --bg:#f0f0f8;--surface:#e6e6f2;--card:#ffffff;--card-hover:#f5f5ff;
+  --border:rgba(0,0,0,.07);--border-md:rgba(0,0,0,.11);--border-strong:rgba(0,0,0,.17);
+  --text:#18182a;--text-dim:#54547a;--text-faint:#9898b8;
+  --shadow:0 3px 18px rgba(0,0,0,.1);
 }
-body{background:var(--bg);color:var(--text);transition:background .25s,color .25s}
 
 /* ── SCROLLBAR ──────────────────────────────────────────────── */
-::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
+::-webkit-scrollbar-thumb{background:var(--border-md);border-radius:3px}
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 .layout{display:flex;min-height:calc(100vh - var(--header-h));padding-top:var(--header-h)}
 
 /* ── HEADER ─────────────────────────────────────────────────── */
 .header{
-  position:fixed;top:0;left:0;right:0;z-index:200;height:var(--header-h);
-  display:flex;align-items:center;gap:16px;padding:0 20px;
-  background:rgba(7,7,26,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--header-h);display:flex;align-items:center;gap:14px;padding:0 18px;
+  background:rgba(7,7,26,.9);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
   border-bottom:1px solid var(--border);
 }
-[data-theme="light"] .header{background:rgba(240,240,248,.92)}
-.logo{display:flex;align-items:center;gap:9px;flex-shrink:0;text-decoration:none}
-.logo-mark{
-  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#7c3aed,#3b82f6);border-radius:8px;
-  font-size:16px;color:#fff;font-weight:700;letter-spacing:-1px;
-}
-.logo-text{font-size:15px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
-.logo-sub{font-size:11px;color:var(--text-dim);margin-left:2px;font-weight:400}
+[data-theme="light"] .header{background:rgba(240,240,248,.93)}
 
-.search-wrap{flex:1;max-width:560px;position:relative;display:flex;align-items:center}
-.search-icon{position:absolute;left:11px;color:var(--text-faint);font-size:15px;pointer-events:none}
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0;text-decoration:none}
+.logo-mark{
+  width:28px;height:28px;border-radius:7px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#3b82f6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#fff;letter-spacing:-.5px;
+}
+.logo-text{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.logo-sep{width:1px;height:16px;background:var(--border-md);margin:0 2px}
+.logo-sub{font-size:11px;color:var(--text-dim)}
+
+.search-wrap{flex:1;max-width:520px;position:relative;display:flex;align-items:center}
+.search-icon{position:absolute;left:10px;color:var(--text-faint);font-size:14px;pointer-events:none}
 #searchInput{
-  width:100%;padding:8px 70px 8px 33px;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:8px;color:var(--text);font-size:13px;outline:none;
+  width:100%;padding:7px 68px 7px 30px;
+  background:var(--surface);border:1px solid var(--border-md);
+  border-radius:8px;color:var(--text);font-size:12.5px;outline:none;
   transition:border .2s,box-shadow .2s;
 }
-#searchInput:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+#searchInput:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.14)}
 #searchInput::placeholder{color:var(--text-faint)}
-.search-count{position:absolute;right:32px;font-size:11px;color:var(--text-dim);pointer-events:none}
+.search-count{position:absolute;right:30px;font-size:11px;color:var(--text-dim);pointer-events:none}
 .clear-btn{
-  position:absolute;right:8px;width:20px;height:20px;background:none;border:none;
-  cursor:pointer;color:var(--text-faint);font-size:18px;line-height:1;padding:0;
-  display:none;align-items:center;justify-content:center;border-radius:4px;
+  position:absolute;right:7px;width:19px;height:19px;background:none;border:none;
+  cursor:pointer;color:var(--text-faint);font-size:17px;line-height:1;
+  display:none;align-items:center;justify-content:center;border-radius:3px;
 }
-.clear-btn:hover{color:var(--text);background:var(--border)}
+.clear-btn:hover{color:var(--text)}
 .clear-btn.visible{display:flex}
 
-.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
-.icon-btn{
-  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
-  background:var(--surface);border:1px solid var(--border);border-radius:8px;
-  cursor:pointer;color:var(--text-dim);font-size:16px;transition:all .15s;
-}
-.icon-btn:hover{background:var(--card-hover);color:var(--text)}
-.total-badge{
-  padding:4px 11px;border-radius:20px;background:var(--surface);border:1px solid var(--border);
+.header-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.hdr-badge{
+  padding:3px 10px;border-radius:20px;
+  background:var(--surface);border:1px solid var(--border-md);
   font-size:11px;color:var(--text-dim);white-space:nowrap;
 }
+.icon-btn{
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border-md);
+  border-radius:7px;cursor:pointer;color:var(--text-dim);font-size:15px;
+  transition:all .15s;
+}
+.icon-btn:hover{background:var(--card-hover);color:var(--text)}
 
 /* ── SIDEBAR ─────────────────────────────────────────────────── */
 .sidebar{
   position:fixed;left:0;top:var(--header-h);bottom:0;width:var(--sidebar-w);
   background:var(--surface);border-right:1px solid var(--border);
-  overflow-y:auto;padding:16px 12px;z-index:100;
+  overflow-y:auto;padding:14px 10px;z-index:100;
 }
 .sidebar-label{
-  font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-faint);
-  text-transform:uppercase;padding:0 4px;margin-bottom:10px;display:block;
+  font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--text-faint);
+  text-transform:uppercase;padding:0 4px;margin-bottom:8px;display:block;
 }
-.sidebar-all-btn{
-  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;
-  cursor:pointer;font-size:13px;color:var(--text-dim);border:none;background:none;width:100%;
+.sb-all{
+  display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:7px;
+  cursor:pointer;font-size:12.5px;color:var(--text-dim);border:none;background:none;width:100%;
   transition:background .15s,color .15s;
 }
-.sidebar-all-btn:hover,.sidebar-all-btn.active-filter{background:var(--card);color:var(--text)}
-.sidebar-divider{height:1px;background:var(--border);margin:12px 4px}
+.sb-all:hover,.sb-all.active{background:var(--card);color:var(--text)}
+.sb-divider{height:1px;background:var(--border);margin:10px 4px}
 
-.server-nav-item{
-  display:flex;flex-direction:column;gap:4px;padding:10px;border-radius:8px;margin-bottom:4px;
-  cursor:pointer;text-decoration:none;border:1px solid transparent;transition:background .15s,border .15s;
+.sni{
+  display:flex;flex-direction:column;gap:3px;padding:9px 8px;border-radius:7px;
+  margin-bottom:3px;cursor:pointer;text-decoration:none;
+  border:1px solid transparent;transition:background .15s,border .15s;
 }
-.server-nav-item:hover{background:var(--card)}
-.server-nav-item.active-filter{background:var(--card);border-color:var(--border)}
-.sni-top{display:flex;align-items:center;gap:8px}
-.sni-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.sni-name{font-size:13px;font-weight:600;color:var(--text);flex:1}
-.sni-count{font-size:11px;font-weight:600;color:var(--text-dim)}
-.sni-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-left:16px}
-.sni-bar-fill{height:100%;border-radius:2px;transition:width .4s}
-.sni-stats{font-size:10px;color:var(--text-faint);margin-left:16px}
+.sni:hover{background:var(--card)}
+.sni.active{background:var(--card);border-color:var(--border-md)}
+.sni-row{display:flex;align-items:center;gap:7px}
+.sni-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sni-name{font-size:12.5px;font-weight:600;color:var(--text);flex:1}
+.sni-count{font-size:11px;color:var(--text-dim)}
+.sni-bar-wrap{height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin-left:14px}
+.sni-bar-fill{height:100%;border-radius:1px;transition:width .4s}
+.sni-sub{font-size:10px;color:var(--text-faint);margin-left:14px}
 
 /* ── MAIN ────────────────────────────────────────────────────── */
-.main{margin-left:var(--sidebar-w);flex:1;padding:28px 32px;min-width:0}
+.main{margin-left:var(--sidebar-w);flex:1;padding:26px 30px;min-width:0}
 
-/* ── FILTER BAR ─────────────────────────────────────────────── */
-.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;align-items:center}
-.filter-pill{
-  padding:5px 14px;border-radius:20px;border:1px solid var(--border);
-  background:var(--surface);color:var(--text-dim);font-size:12px;font-weight:500;
+/* ── FILTER PILLS ────────────────────────────────────────────── */
+.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+.pill{
+  padding:4px 13px;border-radius:20px;
+  border:1px solid var(--border-md);background:var(--surface);
+  color:var(--text-dim);font-size:11.5px;font-weight:500;
   cursor:pointer;transition:all .15s;white-space:nowrap;
 }
-.filter-pill:hover{border-color:var(--border-strong);color:var(--text)}
-.filter-pill.active{color:#fff;border-color:transparent}
+.pill:hover{border-color:var(--border-strong);color:var(--text)}
+.pill.active{color:#fff;border-color:transparent}
 
 /* ── SERVER SECTION ─────────────────────────────────────────── */
-.server-section{margin-bottom:52px;scroll-margin-top:calc(var(--header-h)+16px)}
+.server-section{margin-bottom:56px;scroll-margin-top:calc(var(--header-h)+14px)}
 
-.server-header-row{
-  display:flex;align-items:center;gap:12px;
-  padding-bottom:16px;margin-bottom:0;
-  border-bottom:1px solid var(--border);
+/* ── SERVER HEADER ───────────────────────────────────────────── */
+.srv-hdr{
+  display:flex;align-items:center;gap:11px;
+  padding-bottom:14px;border-bottom:1px solid var(--border);
+  margin-bottom:18px;
 }
-.srv-dot{
-  width:11px;height:11px;border-radius:50%;flex-shrink:0;
-}
-.srv-name{font-size:19px;font-weight:700;letter-spacing:-.4px}
-.srv-active-badge{
-  margin-left:auto;padding:3px 11px;border-radius:20px;
+.srv-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.srv-name{font-size:18px;font-weight:700;letter-spacing:-.4px}
+.srv-count{
+  margin-left:auto;padding:3px 10px;border-radius:20px;
   font-size:11px;font-weight:600;
 }
 
-/* ── SERVER INTRO PANEL ─────────────────────────────────────── */
-.srv-intro-panel{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-  border:1px solid var(--border);border-radius:12px;overflow:hidden;
-  margin:16px 0 24px;
+/* ── SERVER INTRO ────────────────────────────────────────────── */
+.srv-intro{
+  margin-bottom:22px;
+  border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;
 }
-.srv-intro-main{
-  padding:20px 24px;border-right:1px solid var(--border);
+
+/* Description strip — full width, top */
+.srv-intro-desc{
+  padding:16px 22px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--text-dim);line-height:1.75;
 }
-.srv-intro-main p{
-  font-size:13px;color:var(--text-dim);line-height:1.75;margin-bottom:0;
+.srv-intro-desc p{margin:0}
+.srv-intro-desc p+p{margin-top:8px}
+
+/* Sections row below */
+.srv-intro-sections{
+  display:grid;gap:0;
+  background:var(--surface);
 }
-.srv-intro-main p + p{margin-top:10px}
-.srv-intro-sidebar{
-  padding:20px 24px;background:var(--surface);
-  display:flex;flex-direction:column;gap:16px;
+/* 2-col by default, 3-col if 3 sections */
+.srv-intro-sections.cols-1{grid-template-columns:1fr}
+.srv-intro-sections.cols-2{grid-template-columns:1fr 1fr}
+.srv-intro-sections.cols-3{grid-template-columns:1fr 1fr 1fr}
+.srv-intro-sections.cols-4{grid-template-columns:1fr 1fr}
+
+.srv-intro-sec{
+  padding:14px 20px;
+  border-right:1px solid var(--border);
 }
-.srv-intro-section{}
-.srv-intro-section-title{
-  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  color:var(--text-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+.srv-intro-sec:last-child{border-right:none}
+/* wrap to next row — add top border on wrapped items */
+.srv-intro-sections.cols-4 .srv-intro-sec:nth-child(n+3){
+  border-top:1px solid var(--border);
 }
-.srv-intro-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.srv-intro-section ul{list-style:none;display:flex;flex-direction:column;gap:4px}
-.srv-intro-section ul li{
-  font-size:12px;color:var(--text-dim);padding-left:12px;position:relative;line-height:1.6;
+
+.sec-title{
+  font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:9px;
 }
-.srv-intro-section ul li::before{content:'·';position:absolute;left:0;color:var(--text-faint)}
-.srv-intro-section p{font-size:12px;color:var(--text-dim);line-height:1.65}
-.srv-intro-section strong{color:var(--text);font-weight:600}
-.srv-intro-section code{
-  font-family:monospace;font-size:11px;
-  background:var(--border);padding:1px 5px;border-radius:3px;
-  color:var(--text-dim);
+.sec-body{font-size:12px;color:var(--text-dim);line-height:1.7}
+.sec-body ul{list-style:none;display:flex;flex-direction:column;gap:3px}
+.sec-body li{padding-left:12px;position:relative}
+.sec-body li::before{content:'·';position:absolute;left:0;color:var(--text-faint)}
+.sec-body strong{color:var(--text);font-weight:600}
+.sec-body code{
+  font-family:monospace;font-size:10.5px;
+  background:var(--border-md);padding:1px 4px;border-radius:3px;color:var(--text-dim);
 }
-/* markdown rendered elements */
-.srv-intro-main h3{font-size:12px;font-weight:700;color:var(--text);margin:14px 0 6px;letter-spacing:.2px}
-.srv-intro-main h3:first-child{margin-top:0}
-.srv-intro-main ul{list-style:none;display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
-.srv-intro-main ul li{font-size:12.5px;color:var(--text-dim);padding-left:14px;position:relative;line-height:1.65}
-.srv-intro-main ul li::before{content:'›';position:absolute;left:0;color:var(--text-faint)}
-.srv-intro-main strong{color:var(--text);font-weight:600}
-.srv-intro-main code{font-family:monospace;font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px}
-[data-theme="light"] .srv-intro-main code{background:rgba(0,0,0,.06)}
-.srv-intro-main em{color:var(--text-dim);font-style:italic}
+.sec-body em{font-style:italic}
+.sec-body p{margin:0}
+.sec-body p+p{margin-top:6px}
 
 /* ── TOOLS GRID ─────────────────────────────────────────────── */
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:8px;
+}
 
 /* ── TOOL CARD ──────────────────────────────────────────────── */
 .tool-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
   display:flex;flex-direction:column;
+  transition:box-shadow .2s,border-color .2s,transform .15s;
 }
-.tool-card:hover{box-shadow:var(--shadow);transform:translateY(-1px);border-color:var(--border-strong)}
+.tool-card:hover{
+  box-shadow:var(--shadow);transform:translateY(-1px);
+  border-color:var(--border-md);
+}
 .tool-card.hidden{display:none}
 
-.tc-header{
+/* card header */
+.tc-hdr{
   display:flex;align-items:flex-start;gap:10px;
-  padding:12px 14px;cursor:pointer;user-select:none;
+  padding:13px 14px;cursor:pointer;user-select:none;
 }
-.tc-accent{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:34px}
+.tc-bar{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:36px}
 .tc-info{flex:1;min-width:0}
-.tc-name{font-size:12.5px;font-weight:700;letter-spacing:-.2px;margin-bottom:3px;word-break:break-word}
-.tc-desc{font-size:11.5px;color:var(--text-dim);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.tc-meta{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
-.tc-param-count{font-size:10px;color:var(--text-faint)}
+.tc-name{
+  font-size:12.5px;font-weight:700;letter-spacing:-.2px;
+  margin-bottom:4px;word-break:break-word;line-height:1.4;
+}
+.tc-desc{
+  font-size:11.5px;color:var(--text-dim);line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.tc-foot{
+  display:flex;align-items:center;gap:7px;margin-top:7px;
+}
+.tc-counts{font-size:10.5px;color:var(--text-faint)}
 
-.tc-controls{display:flex;align-items:flex-start;gap:8px;flex-shrink:0;padding-top:2px}
+.tc-side{
+  display:flex;flex-direction:column;align-items:center;
+  gap:9px;flex-shrink:0;padding-top:2px;
+}
 
 /* ── STATUS LIGHT ───────────────────────────────────────────── */
-.status-light{
-  width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:3px;
-  position:relative;
+.status-dot{
+  width:9px;height:9px;border-radius:50%;flex-shrink:0;
 }
-.status-light.green{
-  background:#22c55e;
-  box-shadow:0 0 6px 1px rgba(34,197,94,.55);
-}
-.status-light.yellow{
-  background:#f59e0b;
-  box-shadow:0 0 6px 1px rgba(245,158,11,.55);
-}
-.status-light.red{
-  background:#ef4444;
-  box-shadow:0 0 6px 1px rgba(239,68,68,.45);
-}
-/* subtle pulse on green */
-@keyframes pulse-green{0%,100%{box-shadow:0 0 5px 1px rgba(34,197,94,.5)}50%{box-shadow:0 0 9px 2px rgba(34,197,94,.8)}}
-.status-light.green{animation:pulse-green 2.5s ease-in-out infinite}
+.status-dot.green{background:#22c55e;box-shadow:0 0 7px 1px rgba(34,197,94,.6)}
+.status-dot.yellow{background:#f59e0b;box-shadow:0 0 7px 1px rgba(245,158,11,.55)}
+.status-dot.red{background:#ef4444;box-shadow:0 0 6px 1px rgba(239,68,68,.5)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.status-dot.green{animation:pulse 2.8s ease-in-out infinite}
 
-.expand-btn{
-  width:22px;height:22px;border-radius:5px;border:1px solid var(--border);
-  background:none;cursor:pointer;color:var(--text-faint);font-size:12px;
+/* expand button */
+.xbtn{
+  width:20px;height:20px;border-radius:4px;border:1px solid var(--border);
+  background:none;cursor:pointer;color:var(--text-faint);font-size:11px;
   display:flex;align-items:center;justify-content:center;
-  transition:background .15s,color .15s,transform .2s;flex-shrink:0;
+  transition:background .15s,color .15s,transform .25s;flex-shrink:0;
 }
-.expand-btn:hover{background:var(--border);color:var(--text)}
-.tool-card.expanded .expand-btn{transform:rotate(180deg)}
+.xbtn:hover{background:var(--border);color:var(--text)}
+.tool-card.open .xbtn{transform:rotate(180deg)}
 
-/* ── TOOL BODY ──────────────────────────────────────────────── */
+/* ── CARD BODY ──────────────────────────────────────────────── */
 .tc-body{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
-.tool-card.expanded .tc-body{max-height:4000px}
-.tc-body-inner{padding:0 14px 14px;border-top:1px solid var(--border)}
-.tc-purpose{padding:12px 0 14px;font-size:13px;color:var(--text-dim);line-height:1.75;white-space:pre-line}
+.tool-card.open .tc-body{max-height:5000px}
+.tc-body-inner{padding:0 14px 16px;border-top:1px solid var(--border)}
 
-/* ── SECTION LABEL ──────────────────────────────────────────── */
-.section-label{
-  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-  color:var(--text-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+.tc-purpose{
+  padding:13px 0 15px;
+  font-size:12.5px;color:var(--text-dim);line-height:1.75;
+  white-space:pre-line;
 }
-.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ── PARAMETER TABLE ────────────────────────────────────────── */
-.param-table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:12px}
-.param-table th{
-  text-align:left;padding:6px 8px;font-size:10px;font-weight:700;
+/* ── INNER SECTION LABEL ─────────────────────────────────────── */
+.s-label{
+  font-size:9.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:9px;
+  display:flex;align-items:center;gap:6px;
+}
+.s-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── PARAM TABLE ─────────────────────────────────────────────── */
+.ptable{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:16px}
+.ptable th{
+  text-align:left;padding:5px 8px;font-size:9.5px;font-weight:700;
   letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);
   border-bottom:1px solid var(--border);
 }
-.param-table td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top}
-.param-table tr:last-child td{border-bottom:none}
-.param-table tr:hover td{background:var(--surface)}
+.ptable td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.ptable tr:last-child td{border-bottom:none}
+.ptable tr:hover td{background:rgba(255,255,255,.02)}
+[data-theme="light"] .ptable tr:hover td{background:rgba(0,0,0,.02)}
 .p-num{color:var(--text-faint);font-size:10px;font-family:monospace}
-.p-name{font-weight:600;font-family:monospace;font-size:12px}
-.p-req{
-  display:inline-block;padding:1px 6px;border-radius:3px;
-  font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+.p-name{font-family:monospace;font-weight:600;font-size:11.5px}
+.badge{
+  display:inline-block;padding:1px 5px;border-radius:3px;
+  font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
 }
-.req{background:rgba(239,68,68,.15);color:#f87171}
-.opt{background:rgba(99,102,241,.12);color:#818cf8}
-.p-default{font-family:monospace;font-size:11px;color:var(--text-dim)}
-.p-desc{color:var(--text-dim);font-size:12px}
-.no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:6px 0;margin-bottom:14px}
+.req{background:rgba(239,68,68,.13);color:#f87171}
+.opt{background:rgba(99,102,241,.11);color:#818cf8}
+.p-def{font-family:monospace;font-size:11px;color:var(--text-dim)}
+.p-desc{color:var(--text-dim);font-size:11.5px}
+.no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:4px 0 14px}
 
-/* ── JSON EXAMPLES ──────────────────────────────────────────── */
-.examples-list{display:flex;flex-direction:column;gap:10px}
-.example-block{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
-.example-intent{
-  padding:8px 12px;font-size:11.5px;color:var(--text-dim);
-  background:var(--surface);border-bottom:1px solid var(--border);font-style:italic;
+/* ── EXAMPLES ────────────────────────────────────────────────── */
+.examples{display:flex;flex-direction:column;gap:8px}
+.ex-block{border-radius:7px;overflow:hidden;border:1px solid var(--border)}
+.ex-intent{
+  padding:7px 11px;font-size:11px;color:var(--text-dim);
+  background:var(--surface);border-bottom:1px solid var(--border);
+  font-style:italic;line-height:1.5;
 }
-.example-params{
-  padding:10px 12px;font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
-  font-size:11.5px;line-height:1.6;background:var(--card);overflow-x:auto;white-space:pre;
+.ex-json{
+  padding:10px 12px;
+  font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
+  font-size:11px;line-height:1.65;background:var(--card);
+  overflow-x:auto;white-space:pre;
 }
-.json-key{color:#7dd3fc}
-.json-str{color:#86efac}
-.json-num{color:#fbbf24}
-.json-kw{color:#f9a8d4}
-.json-brace{color:var(--text-dim)}
-.no-examples{font-size:12px;color:var(--text-faint);font-style:italic;padding:6px 0}
+.jk{color:#7dd3fc}.js{color:#86efac}.jn{color:#fbbf24}.jw{color:#f9a8d4}.jb{color:var(--text-dim)}
+.no-ex{font-size:11.5px;color:var(--text-faint);font-style:italic;padding:4px 0}
 
-/* ── EMPTY STATE ─────────────────────────────────────────────── */
-.empty-state{display:flex;flex-direction:column;align-items:center;padding:80px 24px;text-align:center}
-.empty-icon{font-size:48px;margin-bottom:16px;opacity:.3}
-.empty-title{font-size:18px;font-weight:600;margin-bottom:8px}
-.empty-text{font-size:14px;color:var(--text-dim)}
+/* ── EMPTY ───────────────────────────────────────────────────── */
+.empty{
+  display:flex;flex-direction:column;align-items:center;
+  padding:90px 24px;text-align:center;
+}
+.empty-icon{font-size:46px;opacity:.25;margin-bottom:16px}
+.empty-title{font-size:17px;font-weight:600;margin-bottom:6px}
+.empty-text{font-size:13px;color:var(--text-dim)}
 
-/* ── ANIMATION ───────────────────────────────────────────────── */
-@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.server-section{animation:fadeIn .3s ease both}
-.tool-card{animation:fadeIn .2s ease both}
+/* ── ANIM ────────────────────────────────────────────────────── */
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.server-section{animation:fi .3s ease both}
+.tool-card{animation:fi .18s ease both}
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media(max-width:1100px){.srv-intro-panel{grid-template-columns:1fr}}
-@media(max-width:1100px){.srv-intro-main{border-right:none;border-bottom:1px solid var(--border)}}
-@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;padding:16px}.tools-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.header{padding:0 12px}.logo-sub,.total-badge{display:none}}
+@media(max-width:920px){.sidebar{display:none}.main{margin-left:0;padding:14px}}
+@media(max-width:700px){.tools-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.logo-sep,.logo-sub,.hdr-badge{display:none}.header{padding:0 12px}}
 </style>
 </head>
 <body>
 
-<!-- ─── HEADER ──────────────────────────────────────────────── -->
+<!-- HEADER -->
 <header class="header">
   <a class="logo" href="#">
     <div class="logo-mark">M</div>
     <span class="logo-text">MCP Tool Browser</span>
+    <div class="logo-sep"></div>
     <span class="logo-sub">Horus · Advanced Data Browser</span>
   </a>
+
   <div class="search-wrap">
     <span class="search-icon">⌕</span>
     <input id="searchInput" type="search" placeholder="Search tools, parameters, descriptions… (⌘K)" autocomplete="off" spellcheck="false">
     <span id="searchCount" class="search-count"></span>
     <button id="clearSearch" class="clear-btn" title="Clear">×</button>
   </div>
-  <div class="header-actions">
-    <div id="totalBadge" class="total-badge"></div>
+
+  <div class="header-right">
+    <div id="totalBadge" class="hdr-badge"></div>
     <button id="themeToggle" class="icon-btn" title="Toggle theme">◑</button>
   </div>
 </header>
 
 <div class="layout">
-  <!-- ─── SIDEBAR ─────────────────────────────────────────── -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <span class="sidebar-label">Servers</span>
-    <button class="sidebar-all-btn active-filter" id="sidebarAll" onclick="setFilter(null)">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--text-faint);display:inline-block;flex-shrink:0"></span>
+    <button class="sb-all active" id="sidebarAll" onclick="setFilter(null)">
+      <span style="width:7px;height:7px;border-radius:50%;background:var(--text-faint);display:inline-block"></span>
       All Servers
     </button>
-    <div class="sidebar-divider"></div>
+    <div class="sb-divider"></div>
     <nav id="serverNav"></nav>
   </aside>
 
-  <!-- ─── MAIN ─────────────────────────────────────────────── -->
+  <!-- MAIN -->
   <main class="main">
     <div id="filterBar" class="filter-bar"></div>
     <div id="content"></div>
-    <div id="emptyState" class="empty-state" style="display:none">
+    <div id="emptyState" class="empty" style="display:none">
       <div class="empty-icon">⌕</div>
       <div class="empty-title">No tools found</div>
-      <div class="empty-text">Try a different search term or clear the filters.</div>
+      <div class="empty-text">Try a different search term or remove the active filter.</div>
     </div>
   </main>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   SERVER CONFIG
-═══════════════════════════════════════════════════════════════ */
-const SERVER_CFG = {
-  'TwelveData':         { color:'#8b5cf6', light:'#a78bfa', bg:'rgba(139,92,246,.1)'  },
-  'alpaca':             { color:'#f59e0b', light:'#fbbf24', bg:'rgba(245,158,11,.1)'  },
-  'financial-datasets': { color:'#10b981', light:'#34d399', bg:'rgba(16,185,129,.1)'  },
+/* ── SERVER COLOUR CONFIG ─────────────────────────────────── */
+const SRV = {
+  'TwelveData':         {color:'#8b5cf6',light:'#a78bfa',bg:'rgba(139,92,246,.1)'},
+  'alpaca':             {color:'#f59e0b',light:'#fbbf24',bg:'rgba(245,158,11,.09)'},
+  'financial-datasets': {color:'#10b981',light:'#34d399',bg:'rgba(16,185,129,.09)'},
 };
-function cfg(name){ return SERVER_CFG[name] || {color:'#6366f1',light:'#818cf8',bg:'rgba(99,102,241,.1)'}; }
+function sc(n){return SRV[n]||{color:'#6366f1',light:'#818cf8',bg:'rgba(99,102,241,.1)'}}
 
-/* ═══════════════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════════════ */
-const state = { data:null, search:'', filter:null, expanded:new Set() };
+/* ── STATE ────────────────────────────────────────────────── */
+const S = {data:null,status:{},search:'',filter:null,expanded:new Set()};
 
-/* ═══════════════════════════════════════════════════════════════
-   FUSE SEARCH
-═══════════════════════════════════════════════════════════════ */
-let fuse, fuseIndex = [];
+function getStatus(sname,tname){
+  const s = (S.status[sname]?.[tname]) || 'active';
+  if(s==='active')     return {cls:'green',  label:'Active'};
+  if(s==='restricted') return {cls:'yellow', label:'Restricted'};
+  return                      {cls:'red',    label:'Inactive'};
+}
+
+/* ── FUSE ─────────────────────────────────────────────────── */
+let fuse, fidx=[];
 function initFuse(){
-  fuseIndex = [];
-  for(const s of state.data.servers)
-    for(const t of s.tools)
-      fuseIndex.push({
-        serverName:s.name, name:t.name, purpose:t.purpose,
-        paramNames:t.parameters.map(p=>p.name).join(' '),
-        paramDescs:t.parameters.map(p=>p.description).join(' '),
-      });
-  fuse = new Fuse(fuseIndex,{
-    keys:[{name:'name',weight:.45},{name:'purpose',weight:.3},{name:'serverName',weight:.05},{name:'paramNames',weight:.12},{name:'paramDescs',weight:.08}],
+  fidx=[];
+  for(const srv of S.data.servers)
+    for(const t of srv.tools)
+      fidx.push({s:srv.name,n:t.name,p:t.purpose,
+        pn:t.parameters.map(x=>x.name).join(' '),
+        pd:t.parameters.map(x=>x.description).join(' ')});
+  fuse=new Fuse(fidx,{
+    keys:[{name:'n',weight:.45},{name:'p',weight:.3},{name:'s',weight:.05},
+          {name:'pn',weight:.12},{name:'pd',weight:.08}],
     threshold:.38,includeMatches:true,minMatchCharLength:2,ignoreLocation:true,
   });
 }
 
 function getVisible(){
-  let matchSet = null;
-  if(state.search.trim().length >= 2){
-    const res = fuse.search(state.search.trim());
-    matchSet = new Set(res.map(r=>`${r.item.serverName}::${r.item.name}`));
+  let ms=null;
+  if(S.search.trim().length>=2){
+    ms=new Set(fuse.search(S.search.trim()).map(r=>`${r.item.s}::${r.item.n}`));
   }
-  const out = {};
-  for(const s of state.data.servers){
-    if(state.filter && s.name !== state.filter) continue;
-    out[s.name] = s.tools.map(t=>t.name).filter(n=>!matchSet||matchSet.has(`${s.name}::${n}`));
+  const out={};
+  for(const srv of S.data.servers){
+    if(S.filter&&srv.name!==S.filter) continue;
+    out[srv.name]=srv.tools.map(t=>t.name).filter(n=>!ms||ms.has(`${srv.name}::${n}`));
   }
   return out;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   HELPERS
-═══════════════════════════════════════════════════════════════ */
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+/* ── UTILS ────────────────────────────────────────────────── */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-function highlightJson(obj){
+function hJson(obj){
   return JSON.stringify(obj,null,2)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/("(?:[^"\\]|\\.)*")(\s*:)/g,'<span class="json-key">$1</span>$2')
-    .replace(/:\s*("(?:[^"\\]|\\.)*")/g,(m,s)=>m.replace(s,`<span class="json-str">${s}</span>`))
-    .replace(/:\s*(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,(m,n)=>m.replace(n,`<span class="json-num">${n}</span>`))
-    .replace(/:\s*(true|false|null)/g,(m,k)=>m.replace(k,`<span class="json-kw">${k}</span>`))
-    .replace(/[{}[\]]/g,c=>`<span class="json-brace">${c}</span>`);
+    .replace(/("(?:[^"\\]|\\.)*")(\s*:)/g,'<span class="jk">$1</span>$2')
+    .replace(/:\s*("(?:[^"\\]|\\.)*")/g,(m,v)=>m.replace(v,`<span class="js">${v}</span>`))
+    .replace(/:\s*(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,(m,v)=>m.replace(v,`<span class="jn">${v}</span>`))
+    .replace(/:\s*(true|false|null)/g,(m,v)=>m.replace(v,`<span class="jw">${v}</span>`))
+    .replace(/[{}[\]]/g,c=>`<span class="jb">${c}</span>`);
 }
 
-/* Status: tools are active by default (green). Support yellow/red via data */
-function statusLight(tool){
-  const s = tool.status || (tool.active !== false ? 'active' : 'inactive');
-  if(s === 'active')   return {cls:'green', label:'Active'};
-  if(s === 'degraded') return {cls:'yellow', label:'Degraded'};
-  return {cls:'red', label:'Inactive'};
+/* ── INTRO PANEL ──────────────────────────────────────────── */
+function parseIntro(md){
+  if(!md||!md.trim()) return null;
+  const lines=md.split('\n');
+  let desc=''; const sections=[];
+  let cur=null;
+  for(const l of lines){
+    const h=l.match(/^###\s+(.+)/);
+    if(h){if(cur)sections.push(cur);cur={title:h[1].trim(),lines:[]}}
+    else if(cur) cur.lines.push(l);
+    else desc+=l+'\n';
+  }
+  if(cur)sections.push(cur);
+  return {desc:desc.trim(),sections};
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   SERVER INTRO PANEL
-═══════════════════════════════════════════════════════════════ */
-function renderIntroPanel(server){
-  if(!server.intro || !server.intro.trim()) return '';
-  const c = cfg(server.name);
-  const md = server.intro;
-
-  // Split into sections by ### headings
-  const sections = [];
-  let intro = '';
-  const lines = md.split('\n');
-  let cur = null;
-  for(const line of lines){
-    const h3 = line.match(/^###\s+(.+)/);
-    if(h3){
-      if(cur) sections.push(cur);
-      cur = {title:h3[1].trim(), lines:[]};
-    } else if(cur){
-      cur.lines.push(line);
+function mdToHtml(text){
+  // minimal markdown: bold, code, lists, paragraphs
+  const lines=text.split('\n');
+  let out='';let inList=false;
+  for(const raw of lines){
+    const l=raw.trim();
+    if(!l){if(inList){out+='</ul>';inList=false}out+='';continue}
+    if(l.startsWith('- ')){
+      if(!inList){out+='<ul>';inList=true}
+      out+=`<li>${inline(l.slice(2))}</li>`;
     } else {
-      intro += line + '\n';
+      if(inList){out+='</ul>';inList=false}
+      out+=`<p>${inline(l)}</p>`;
     }
   }
-  if(cur) sections.push(cur);
+  if(inList) out+='</ul>';
+  return out;
+}
+function inline(s){
+  return s
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>');
+}
 
-  // Render intro paragraph(s) via marked
-  const introParsed = marked.parse(intro.trim() || '');
+function renderIntroPanel(srv){
+  const parsed=parseIntro(srv.intro);
+  if(!parsed) return '';
+  const {desc,sections}=parsed;
 
-  // Render sections as structured lists
-  const sectionsHtml = sections.map(s=>{
-    const body = marked.parse(s.lines.join('\n').trim());
-    return `<div class="srv-intro-section">
-      <div class="srv-intro-section-title">${esc(s.title)}</div>
-      <div>${body}</div>
-    </div>`;
-  }).join('');
+  const descHtml = desc ? `<div class="srv-intro-desc"><div class="sec-body">${mdToHtml(desc)}</div></div>` : '';
 
-  // Decide split: if no sections, full width
   if(!sections.length){
-    return `<div class="srv-intro-panel" style="grid-template-columns:1fr">
-      <div class="srv-intro-main">${introParsed}</div>
-    </div>`;
+    return `<div class="srv-intro">${descHtml}</div>`;
   }
 
-  return `<div class="srv-intro-panel">
-    <div class="srv-intro-main">${introParsed}</div>
-    <div class="srv-intro-sidebar">${sectionsHtml}</div>
+  const n=sections.length;
+  const cls = n<=4 ? `cols-${n}` : 'cols-3';
+
+  const secsHtml=sections.map(sec=>`
+    <div class="srv-intro-sec">
+      <div class="sec-title">${esc(sec.title)}</div>
+      <div class="sec-body">${mdToHtml(sec.lines.join('\n'))}</div>
+    </div>`).join('');
+
+  return `<div class="srv-intro">
+    ${descHtml}
+    <div class="srv-intro-sections ${cls}">${secsHtml}</div>
   </div>`;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   TOOL CARD
-═══════════════════════════════════════════════════════════════ */
-function renderParamTable(params){
+/* ── PARAM TABLE ──────────────────────────────────────────── */
+function renderParams(params){
   if(!params.length) return `<p class="no-params">This tool takes no parameters.</p>`;
-  return `<table class="param-table">
-    <thead><tr><th>#</th><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-    <tbody>${params.map(p=>`<tr>
-      <td class="p-num">${p.number}</td>
-      <td class="p-name">${esc(p.name)}</td>
-      <td><span class="p-req ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span></td>
-      <td class="p-default">${esc(p.default)}</td>
-      <td class="p-desc">${esc(p.description)}</td>
-    </tr>`).join('')}</tbody>
+  const rows=params.map(p=>`<tr>
+    <td class="p-num">${p.number}</td>
+    <td class="p-name">${esc(p.name)}</td>
+    <td><span class="badge ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span></td>
+    <td class="p-def">${esc(p.default)}</td>
+    <td class="p-desc">${esc(p.description)}</td>
+  </tr>`).join('');
+  return `<table class="ptable">
+    <thead><tr><th>#</th><th>Parameter</th><th></th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>${rows}</tbody>
   </table>`;
 }
 
-function renderExamples(examples){
-  if(!examples.length) return `<p class="no-examples">No examples available.</p>`;
-  return `<div class="examples-list">${examples.map(ex=>`
-    <div class="example-block">
-      ${ex.intent ? `<div class="example-intent">${esc(ex.intent)}</div>` : ''}
-      <pre class="example-params">${highlightJson(ex.params ?? ex)}</pre>
-    </div>`).join('')}</div>`;
+/* ── EXAMPLES ─────────────────────────────────────────────── */
+function renderExamples(exs, paramsWrapped){
+  if(!exs.length) return `<p class="no-ex">No examples available.</p>`;
+  return `<div class="examples">${exs.map(ex=>{
+    // paramsWrapped: tool expects {"params":{...}} — show the wrapper
+    // otherwise: show just the inner params object (flat call)
+    const payload = paramsWrapped
+      ? (ex.params!=null ? {params: ex.params} : ex)
+      : (ex.params??ex);
+    return `<div class="ex-block">
+      ${ex.intent?`<div class="ex-intent">${esc(ex.intent)}</div>`:''}
+      <pre class="ex-json">${hJson(payload)}</pre>
+    </div>`;
+  }).join('')}</div>`;
 }
 
-function renderToolCard(server, tool){
-  const c = cfg(server.name);
-  const sl = statusLight(tool);
-  const expanded = state.expanded.has(`${server.name}::${tool.name}`);
-  const shortDesc = tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,120);
+/* ── TOOL CARD ────────────────────────────────────────────── */
+function renderCard(srv,tool){
+  const c=sc(srv.name);
+  const st=getStatus(srv.name,tool.name);
+  const open=S.expanded.has(`${srv.name}::${tool.name}`);
+  const desc=tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,110);
+  const np=tool.parameters.length, ne=tool.examples.length;
 
-  return `<div class="tool-card${expanded?' expanded':''}"
-       data-server="${esc(server.name)}" data-tool="${esc(tool.name)}"
-       id="tc-${esc(server.name)}-${esc(tool.name)}">
-    <div class="tc-header" onclick="toggleExpand('${esc(server.name)}','${esc(tool.name)}')">
-      <div class="tc-accent" style="background:${c.color}"></div>
+  return `<div class="tool-card${open?' open':''}"
+      id="tc-${esc(srv.name)}-${esc(tool.name)}"
+      data-s="${esc(srv.name)}" data-t="${esc(tool.name)}">
+    <div class="tc-hdr" onclick="expand('${esc(srv.name)}','${esc(tool.name)}')">
+      <div class="tc-bar" style="background:${c.color}"></div>
       <div class="tc-info">
         <div class="tc-name">${esc(tool.name)}</div>
-        <div class="tc-desc">${esc(shortDesc)}</div>
-        <div class="tc-meta">
-          <span class="tc-param-count">${tool.parameters.length} param${tool.parameters.length!==1?'s':''}</span>
-          ${tool.examples.length?`<span class="tc-param-count">· ${tool.examples.length} example${tool.examples.length!==1?'s':''}</span>`:''}
+        <div class="tc-desc">${esc(desc)}</div>
+        <div class="tc-foot">
+          <span class="tc-counts">${np} param${np!==1?'s':''} · ${ne} example${ne!==1?'s':''}</span>
         </div>
       </div>
-      <div class="tc-controls" onclick="event.stopPropagation()">
-        <div class="status-light ${sl.cls}" title="${sl.label}"></div>
-        <button class="expand-btn" onclick="toggleExpand('${esc(server.name)}','${esc(tool.name)}')" title="${expanded?'Collapse':'Expand'}">▾</button>
+      <div class="tc-side" onclick="event.stopPropagation()">
+        <div class="status-dot ${st.cls}" title="${st.label}"></div>
+        <button class="xbtn" onclick="expand('${esc(srv.name)}','${esc(tool.name)}')" title="${open?'Collapse':'Expand'}">▾</button>
       </div>
     </div>
     <div class="tc-body">
       <div class="tc-body-inner">
         <div class="tc-purpose">${esc(tool.purpose)}</div>
-        <div class="section-label">Parameters</div>
-        ${renderParamTable(tool.parameters)}
-        <div class="section-label">Examples</div>
-        ${renderExamples(tool.examples)}
+        <div class="s-label">Parameters</div>
+        ${renderParams(tool.parameters)}
+        <div class="s-label">Examples</div>
+        ${renderExamples(tool.examples, srv.paramsWrapped)}
       </div>
     </div>
   </div>`;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   SERVER SECTION
-═══════════════════════════════════════════════════════════════ */
-function renderServerSection(server, visibleTools){
-  if(!visibleTools.length) return '';
-  const c = cfg(server.name);
-  const activeCount = server.tools.filter(t=>statusLight(t).cls==='green').length;
+/* ── SERVER SECTION ───────────────────────────────────────── */
+function renderServer(srv,vis){
+  if(!vis.length) return '';
+  const c=sc(srv.name);
+  const total=srv.tools.length;
+  const nActive=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
 
-  const cards = server.tools.map(t=>{
-    const vis = visibleTools.includes(t.name);
-    const html = renderToolCard(server, t);
-    return vis ? html : html.replace('class="tool-card','class="tool-card hidden');
+  const cards=srv.tools.map(t=>{
+    const html=renderCard(srv,t);
+    return vis.includes(t.name)?html:html.replace('class="tool-card','class="tool-card hidden');
   }).join('');
 
-  return `<section class="server-section" id="section-${esc(server.name)}">
-    <div class="server-header-row">
-      <div class="srv-dot" style="background:${c.color};box-shadow:0 0 8px ${c.color}99"></div>
-      <span class="srv-name" style="color:${c.color}">${esc(server.name)}</span>
-      <div class="srv-active-badge" style="background:${c.bg};color:${c.light}">
-        ${activeCount} / ${server.tools.length} active
-      </div>
+  return `<section class="server-section" id="section-${esc(srv.name)}">
+    <div class="srv-hdr">
+      <div class="srv-dot" style="background:${c.color};box-shadow:0 0 8px ${c.color}aa"></div>
+      <span class="srv-name" style="color:${c.color}">${esc(srv.name)}</span>
+      <div class="srv-count" style="background:${c.bg};color:${c.light}">${nActive} / ${total} active</div>
     </div>
-    ${renderIntroPanel(server)}
+    ${renderIntroPanel(srv)}
     <div class="tools-grid">${cards}</div>
   </section>`;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════════════════════════════ */
-function renderSidebar(visible){
-  document.getElementById('serverNav').innerHTML = state.data.servers.map(s=>{
-    const c = cfg(s.name);
-    const total = s.tools.length;
-    const activeCount = s.tools.filter(t=>statusLight(t).cls==='green').length;
-    const pct = total ? Math.round((activeCount/total)*100) : 0;
-    const visCount = visible[s.name]?.length ?? 0;
-    return `<a class="server-nav-item${state.filter===s.name?' active-filter':''}"
-        href="#section-${esc(s.name)}" onclick="setFilter('${esc(s.name)}',event)">
-      <div class="sni-top">
+/* ── SIDEBAR ──────────────────────────────────────────────── */
+function renderSidebar(vis){
+  document.getElementById('serverNav').innerHTML=S.data.servers.map(srv=>{
+    const c=sc(srv.name);
+    const total=srv.tools.length;
+    const nA=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
+    const pct=total?Math.round((nA/total)*100):0;
+    const vc=vis[srv.name]?.length??0;
+    return `<a class="sni${S.filter===srv.name?' active':''}"
+        href="#section-${esc(srv.name)}" onclick="setFilter('${esc(srv.name)}',event)">
+      <div class="sni-row">
         <span class="sni-dot" style="background:${c.color}"></span>
-        <span class="sni-name">${esc(s.name)}</span>
-        <span class="sni-count">${state.search?`${visCount}/`:''}${total}</span>
+        <span class="sni-name">${esc(srv.name)}</span>
+        <span class="sni-count">${S.search?`${vc}/`:''}${total}</span>
       </div>
-      <div class="sni-bar"><div class="sni-bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
-      <div class="sni-stats">${activeCount} / ${total} active</div>
+      <div class="sni-bar-wrap"><div class="sni-bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
+      <div class="sni-sub">${nA} / ${total} active</div>
     </a>`;
   }).join('');
-  document.getElementById('sidebarAll').className = 'sidebar-all-btn'+(state.filter?'':' active-filter');
+  document.getElementById('sidebarAll').className='sb-all'+(S.filter?'':' active');
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   FILTER BAR
-═══════════════════════════════════════════════════════════════ */
+/* ── FILTER BAR ───────────────────────────────────────────── */
 function renderFilterBar(){
-  document.getElementById('filterBar').innerHTML =
-    [`<span class="filter-pill${!state.filter?' active':''}" style="${!state.filter?'background:#6366f1;color:#fff':''}" onclick="setFilter(null)">All</span>`]
-    .concat(state.data.servers.map(s=>{
-      const c = cfg(s.name);
-      const a = state.filter===s.name;
-      return `<span class="filter-pill${a?' active':''}" style="${a?`background:${c.color};color:#fff`:''}" onclick="setFilter('${esc(s.name)}')">${esc(s.name)}</span>`;
+  document.getElementById('filterBar').innerHTML=
+    [`<span class="pill${!S.filter?' active':''}" style="${!S.filter?'background:#6366f1;color:#fff':''}" onclick="setFilter(null)">All</span>`]
+    .concat(S.data.servers.map(srv=>{
+      const c=sc(srv.name),a=S.filter===srv.name;
+      return `<span class="pill${a?' active':''}" style="${a?`background:${c.color};color:#fff`:''}" onclick="setFilter('${esc(srv.name)}')">${esc(srv.name)}</span>`;
     })).join('');
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   MAIN RENDER
-═══════════════════════════════════════════════════════════════ */
+/* ── RENDER ───────────────────────────────────────────────── */
 function render(){
-  const visible = getVisible();
-  const content = document.getElementById('content');
-  const empty   = document.getElementById('emptyState');
-  let html = ''; let totalVisible = 0;
-  for(const s of state.data.servers){
-    const vt = visible[s.name]||[];
-    totalVisible += vt.length;
-    html += renderServerSection(s, vt);
+  const vis=getVisible();
+  const cnt=document.getElementById('content');
+  const em=document.getElementById('emptyState');
+  let html='',total=0;
+  for(const srv of S.data.servers){
+    const v=vis[srv.name]||[];
+    total+=v.length;
+    html+=renderServer(srv,v);
   }
-  content.innerHTML = html;
-  if(state.search && totalVisible===0){
-    content.style.display='none'; empty.style.display='flex';
-  } else {
-    content.style.display=''; empty.style.display='none';
-  }
-  const sc = document.getElementById('searchCount');
-  if(state.search.trim().length>=2){
-    sc.textContent=`${totalVisible} result${totalVisible!==1?'s':''}`;
+  cnt.innerHTML=html;
+
+  if(S.search&&total===0){cnt.style.display='none';em.style.display='flex';}
+  else{cnt.style.display='';em.style.display='none';}
+
+  const sc2=document.getElementById('searchCount');
+  if(S.search.trim().length>=2){
+    sc2.textContent=`${total} result${total!==1?'s':''}`;
     document.getElementById('clearSearch').classList.add('visible');
   } else {
-    sc.textContent='';
+    sc2.textContent='';
     document.getElementById('clearSearch').classList.remove('visible');
   }
-  const allCount = state.data.servers.reduce((a,s)=>a+s.tools.length,0);
-  document.getElementById('totalBadge').textContent=`${allCount} tools`;
-  renderSidebar(visible);
+  const all=S.data.servers.reduce((a,s)=>a+s.tools.length,0);
+  document.getElementById('totalBadge').textContent=`${all} tools`;
+  renderSidebar(vis);
   renderFilterBar();
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   INTERACTIONS
-═══════════════════════════════════════════════════════════════ */
-function toggleExpand(sname, tname){
-  const key=`${sname}::${tname}`;
-  const card=document.getElementById(`tc-${sname}-${tname}`);
-  if(!card) return;
-  if(state.expanded.has(key)){ state.expanded.delete(key); card.classList.remove('expanded'); }
-  else { state.expanded.add(key); card.classList.add('expanded'); }
+/* ── INTERACTIONS ─────────────────────────────────────────── */
+function expand(sname,tname){
+  const k=`${sname}::${tname}`;
+  const el=document.getElementById(`tc-${sname}-${tname}`);
+  if(!el)return;
+  if(S.expanded.has(k)){S.expanded.delete(k);el.classList.remove('open');}
+  else{S.expanded.add(k);el.classList.add('open');}
 }
 
-function setFilter(name, event){
-  if(event) event.preventDefault();
-  state.filter = (state.filter===name) ? null : name;
+function setFilter(name,e){
+  if(e)e.preventDefault();
+  S.filter=(S.filter===name)?null:name;
   render();
-  if(name && event){
-    setTimeout(()=>{
-      const el=document.getElementById(`section-${name}`);
-      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-    },50);
-  }
+  if(name&&e) setTimeout(()=>{
+    const el=document.getElementById(`section-${name}`);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  },50);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   SEARCH
-═══════════════════════════════════════════════════════════════ */
-let searchTimer;
+/* ── SEARCH ───────────────────────────────────────────────── */
+let st;
 document.getElementById('searchInput').addEventListener('input',e=>{
-  clearTimeout(searchTimer);
-  state.search=e.target.value;
-  searchTimer=setTimeout(render,140);
+  clearTimeout(st);S.search=e.target.value;st=setTimeout(render,140);
 });
 document.getElementById('clearSearch').addEventListener('click',()=>{
-  state.search=''; document.getElementById('searchInput').value=''; render();
+  S.search='';document.getElementById('searchInput').value='';render();
 });
 document.addEventListener('keydown',e=>{
-  if((e.metaKey||e.ctrlKey)&&e.key==='k'){ e.preventDefault(); document.getElementById('searchInput').focus(); }
-  if(e.key==='Escape') document.getElementById('searchInput').blur();
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();document.getElementById('searchInput').focus();}
+  if(e.key==='Escape')document.getElementById('searchInput').blur();
 });
 
-/* ═══════════════════════════════════════════════════════════════
-   THEME
-═══════════════════════════════════════════════════════════════ */
+/* ── THEME ────────────────────────────────────────────────── */
 function applyTheme(t){
   document.documentElement.dataset.theme=t;
   document.getElementById('themeToggle').textContent=t==='dark'?'◑':'●';
@@ -696,34 +733,27 @@ function applyTheme(t){
 document.getElementById('themeToggle').addEventListener('click',()=>{
   applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
 });
-try{ const t=localStorage.getItem('mcp-theme'); if(t) applyTheme(t); }catch(e){}
+try{const t=localStorage.getItem('mcp-theme');if(t)applyTheme(t);}catch(e){}
 
-/* ═══════════════════════════════════════════════════════════════
-   DATA LOADING
-═══════════════════════════════════════════════════════════════ */
-async function loadData(){
-  try{
-    const r=await fetch('tools-data.json');
-    if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    return await r.json();
-  }catch(e){
-    document.getElementById('content').innerHTML=`<div class="empty-state" style="display:flex">
-      <div class="empty-icon">⚠</div>
-      <div class="empty-title">Could not load tools-data.json</div>
-      <div class="empty-text">Serve locally with: <code>python -m http.server 8080</code></div>
-    </div>`;
-    return null;
-  }
+/* ── INIT ─────────────────────────────────────────────────── */
+async function load(url){
+  const r=await fetch(url);
+  if(!r.ok)throw new Error(`${url} → HTTP ${r.status}`);
+  return r.json();
 }
 
 (async()=>{
-  // Configure marked
-  marked.setOptions({breaks:true,gfm:true});
-  const data=await loadData();
-  if(!data) return;
-  state.data=data;
-  initFuse();
-  render();
+  try{
+    const [data,status]=await Promise.all([load('tools-data.json'),load('tools-status.json')]);
+    S.data=data; S.status=status;
+    initFuse(); render();
+  }catch(e){
+    document.getElementById('content').innerHTML=`<div class="empty" style="display:flex">
+      <div class="empty-icon">⚠</div>
+      <div class="empty-title">Could not load data files</div>
+      <div class="empty-text">${esc(e.message)}<br>Serve locally: <code>python -m http.server 8080</code></div>
+    </div>`;
+  }
 })();
 </script>
 </body>

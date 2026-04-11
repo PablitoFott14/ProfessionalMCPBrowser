@@ -8,6 +8,9 @@ import os, json, re, sys
 SERVERS_DIR = os.path.join(os.path.dirname(__file__), 'Servers')
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), 'tools-data.json')
 
+# Servers whose tools expect parameters nested inside a "params" object
+PARAMS_WRAPPED_SERVERS = {'TwelveData'}
+
 
 def extract_json_objects(text):
     objects = []; depth = 0; start = None
@@ -74,6 +77,29 @@ def parse_intro(filepath):
     return c.strip()
 
 
+STATUS_FILE = os.path.join(os.path.dirname(__file__), 'tools-status.json')
+
+
+def update_status(data):
+    """Merge new tools into tools-status.json without overwriting existing entries."""
+    existing = {}
+    if os.path.exists(STATUS_FILE):
+        try:
+            with open(STATUS_FILE, encoding='utf-8') as f:
+                existing = json.load(f)
+        except Exception:
+            pass
+    for s in data['servers']:
+        if s['name'] not in existing:
+            existing[s['name']] = {}
+        for t in s['tools']:
+            if t['name'] not in existing[s['name']]:
+                existing[s['name']][t['name']] = 'active'
+    with open(STATUS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(existing, f, indent=2, ensure_ascii=False)
+    print(f"Updated tools-status.json")
+
+
 def generate():
     data = {'servers': []}
     for sname in sorted(os.listdir(SERVERS_DIR)):
@@ -89,10 +115,12 @@ def generate():
         data['servers'].append({
             'name': sname,
             'intro': parse_intro(os.path.join(sp, 'intro.md')),
+            'paramsWrapped': sname in PARAMS_WRAPPED_SERVERS,
             'tools': tools,
         })
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+    update_status(data)
     total = sum(len(s['tools']) for s in data['servers'])
     print(f"Generated tools-data.json — {len(data['servers'])} servers, {total} tools")
     for s in data['servers']:
