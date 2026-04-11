@@ -2,7 +2,7 @@
   "servers": [
     {
       "name": "TwelveData",
-      "intro": "The TwelveData server does not follow the typical flat parameter–value structure used by many other tools. Instead, all inputs must be passed within a dedicated `params` dictionary.\n\n### How it works\n- Every tool call must include a `params` object.\n- The required inputs for the request are provided as properties inside this dictionary.\n- Each property comes with a default value, meaning not all parameters need to be explicitly set.\n\n### Best practices\n- **Only include parameters that directly impact the user’s intent.**  \n  Avoid passing unnecessary fields that rely on defaults, as this can introduce noise and rubric redundancy.\n\n- **Be intentional with overrides.**  \n  Since defaults are already defined, only override a parameter when it meaningfully changes the outcome.  \n  _Examples:_ defining timeframes, using different intervals than the defaults, or changing the series type.",
+      "intro": "The TwelveData server does not follow the typical flat parameter–value structure used by many other tools. Instead, all inputs must be passed within a dedicated `params` dictionary.\n\n### How it works\n- Every tool call must include a `params` object.\n- The required inputs for the request are provided as properties inside this dictionary.\n- Each property comes with a default value, meaning not all parameters need to be explicitly set.\n\n### Potential resolution paths\n- **Analyze a symbol's price trend with technical confirmation:** Fetch `GetTimeSeries` for the price history, then layer in `GetRSI` or `GetMACD` over the same interval to identify momentum or divergence.\n- **Get a full market snapshot before acting:** Use `GetQuote` or `GetPrice` for the current state, then pull `GetTimeSeries` with a short lookback to understand recent context without making multiple separate calls.\n- **Build an intraday chart with indicators:** Call `GetTimeSeries` with a minute or hourly interval, then request `GetBollingerBands` or `GetSTOCH` over the same range to overlay signals on the price series.\n\n### Best practices\n- **Only include parameters that directly impact the user's intent.**\n  Avoid passing unnecessary fields that rely on defaults, as this can introduce noise and rubric redundancy.\n- **Be intentional with overrides.**\n  Since defaults are already defined, only override a parameter when it meaningfully changes the outcome.",
       "paramsWrapped": true,
       "tools": [
         {
@@ -57,6 +57,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -120,6 +121,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -184,6 +186,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -262,6 +265,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -309,6 +313,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -398,6 +403,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -513,6 +519,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -606,6 +613,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -743,6 +751,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -858,6 +867,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -971,6 +981,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1051,6 +1062,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1137,6 +1149,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1208,6 +1221,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1314,6 +1328,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1386,6 +1401,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1450,6 +1466,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1507,6 +1524,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1628,6 +1646,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1714,6 +1733,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1802,6 +1822,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1908,6 +1929,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -1994,6 +2016,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2116,6 +2139,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2167,6 +2191,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2200,6 +2225,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2334,6 +2360,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2530,6 +2557,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2726,6 +2754,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -2860,6 +2889,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3023,6 +3053,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3142,6 +3173,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3275,6 +3307,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3478,6 +3511,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3682,13 +3716,14 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         }
       ]
     },
     {
       "name": "alpaca",
-      "intro": "The alpaca server provides full brokerage access through the Alpaca API, covering account management, market data, order execution, and portfolio operations across equities, cryptocurrencies, and options.\n\n### How it works\n- Parameters are passed as flat key-value pairs — no nested wrapper object is required.\n- Most tools return formatted strings ready for direct display or further processing.\n- Tools that affect account state (orders, positions) operate on the live account by default.\n\n### Tool categories\n\n**Account & portfolio**\n- Account info, open positions, and full portfolio history with configurable resolution and time window.\n\n**Market data — Stocks**\n- Historical bars, quotes, and trades with flexible lookback (days/hours/minutes or ISO date ranges).\n- Latest bar, quote, trade, and full snapshot for one or multiple symbols.\n\n**Market data — Crypto**\n- Historical and latest bars, quotes, trades, orderbook, and snapshots for crypto pairs (e.g., BTC/USD).\n\n**Market data — Options**\n- Latest quotes, snapshots (with Greeks and IV), and full option chains with filtering by strike, expiration, and type.\n\n**Order execution**\n- Stock orders: market, limit, stop, stop_limit, trailing_stop — with bracket, OCO, and OTO support.\n- Crypto orders: market, limit, and stop_limit with GTC/IOC time in force.\n- Options orders: single-leg and multi-leg market orders (up to 4 legs, atomic execution).\n- Cancel individual orders or all open orders at once.\n\n**Position management**\n- Close individual positions fully or partially (by quantity or percentage).\n- Close all positions at once, with optional pre-cancellation of open orders.\n- Exercise held option contracts.\n\n**Watchlists**\n- Create, update, retrieve, and delete watchlists. Add or remove individual symbols.\n\n**Corporate actions & calendar**\n- Corporate action announcements filtered by type, symbol, or date.\n- Market calendar and real-time market clock.\n\n**Assets**\n- Browse all available assets with filtering by status, class, and exchange.\n- Retrieve detailed trading properties for a specific asset.\n\n### Best practices\n- Use `get_clock` to verify market status before placing orders.\n- Use `get_option_contracts` or `get_option_chain` to discover contract symbols before querying option quotes or snapshots.\n- For crypto orders, only `gtc` and `ioc` are valid time_in_force values.\n- For options orders, only `day` is a valid time_in_force value.\n- Prefer `get_stock_snapshot` or `get_crypto_snapshot` over multiple individual calls when a full market picture is needed.",
+      "intro": "The alpaca server provides full brokerage access through the Alpaca API, covering account management, market data, order execution, and portfolio operations across equities, cryptocurrencies, and options. Parameters are passed as flat key-value pairs — no nested wrapper object is required.\n\n### How it works\n- Most tools return formatted strings ready for direct display or further processing.\n- Tools that affect account state — orders, positions, watchlists — operate on the live account by default.\n- Asset class constraints apply: crypto orders only accept `gtc` or `ioc` for `time_in_force`; options orders only accept `day`.\n\n### Potential resolution paths\n- **Place an order safely:** Call `get_clock` to confirm market status, then `get_asset` to verify the symbol is tradable, before submitting any order.\n- **Build an options position:** Use `get_option_contracts` or `get_option_chain` to discover contract symbols and review Greeks, then place the order with `submit_options_order`.\n- **Monitor and manage a position:** Fetch `get_open_positions` for current exposure, `get_portfolio_history` for performance context, then close or adjust with `close_position` as needed.\n- **Track a new symbol:** Create a watchlist with `create_watchlist`, add symbols via `add_symbol_to_watchlist`, and pull snapshots with `get_stock_snapshot` or `get_crypto_snapshot` for a live market picture.\n\n### Best practices\n- Use `get_clock` to verify market status before placing orders.\n- Use `get_option_contracts` or `get_option_chain` to discover contract symbols before querying option quotes or snapshots.\n- Prefer `get_stock_snapshot` or `get_crypto_snapshot` over multiple individual calls when a full market picture is needed.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -3719,6 +3754,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3731,6 +3767,7 @@
               "params": {}
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3753,6 +3790,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3779,6 +3817,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3822,6 +3861,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3869,6 +3909,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3891,6 +3932,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3913,6 +3955,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3925,6 +3968,7 @@
               "params": {}
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3977,6 +4021,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -3989,6 +4034,7 @@
               "params": {}
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4011,6 +4057,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4048,6 +4095,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4060,6 +4108,7 @@
               "params": {}
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4148,6 +4197,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4243,6 +4293,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4281,6 +4332,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4319,6 +4371,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4357,6 +4410,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4396,6 +4450,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4484,6 +4539,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4522,6 +4578,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4617,6 +4674,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4639,6 +4697,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4735,6 +4794,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4840,6 +4900,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4879,6 +4940,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -4918,6 +4980,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5001,6 +5064,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5089,6 +5153,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5210,6 +5275,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5257,6 +5323,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5304,6 +5371,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5351,6 +5419,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5463,6 +5532,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5511,6 +5581,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5624,6 +5695,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5646,6 +5718,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5658,6 +5731,7 @@
               "params": {}
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5749,6 +5823,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5824,6 +5899,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5938,6 +6014,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -5968,6 +6045,7 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         },
         {
@@ -6016,13 +6094,14 @@
               }
             }
           ],
+          "paths": "",
           "active": true
         }
       ]
     },
     {
       "name": "financial-datasets",
-      "intro": "The financial-datasets server provides access to fundamental and market data for equities and cryptocurrencies. It covers price history, real-time quotes, financial statements, SEC filings, and company news.\n\n### How it works\n- Parameters are passed directly as flat key-value pairs — no nested `params` object is required.\n- Most tools only need a ticker symbol to return useful data, with optional parameters to refine scope or volume of results.\n\n### Tool categories\n\n**Price data**\n- Current and historical stock prices, with configurable interval and multiplier.\n- Historical and current crypto prices, with a discovery tool to list available tickers.\n\n**Fundamental data**\n- Income statements, balance sheets, and cash flow statements — all supporting annual, quarterly, and TTM periods.\n\n**Corporate data**\n- SEC filings filtered by type (10-K, 10-Q, 8-K, etc.).\n- Company news for tracking recent developments and market-moving events.\n\n### Best practices\n- Use `get_available_crypto_tickers` before querying crypto prices to confirm ticker availability.\n- For financial statements, omit `period` and `limit` when the defaults (annual, 4 periods) match the user's intent.\n- Prefer `get_current_stock_price` for point-in-time queries and `get_historical_stock_prices` when trend or range analysis is needed.",
+      "intro": "The financial-datasets server provides fundamental and market data for public equities and cryptocurrencies. Parameters are passed as flat key-value pairs — no wrapping object is required.\n\n### How it works\n- Most tools require only a ticker symbol. Optional parameters refine the period, granularity, or volume of results.\n- Financial statement tools default to annual reporting and 4 periods when those parameters are omitted.\n- Crypto price tools require a date range. The list of supported tickers can be retrieved before querying.\n\n### Potential resolution paths\n- **Full fundamental analysis:** Retrieve `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` together to cover profitability, leverage, and cash generation in one pass.\n- **Research before investing:** Start with `get_company_news` to surface recent events, then pull `get_sec_filings` for the relevant filing type, and follow up with the financial statements that the filing references.\n- **Crypto exploration:** Call `get_available_crypto_tickers` to confirm the symbol, then use `get_historical_crypto_prices` or `get_crypto_prices` for the target date range and granularity.\n- **Price reaction to earnings:** Combine `get_historical_stock_prices` with `get_income_statements` over matching periods to evaluate how the market responded to reported results.\n\n### Best practices\n- Use `get_available_crypto_tickers` to confirm a ticker is supported before querying crypto price data.\n- Prefer `get_current_stock_price` for a real-time snapshot and `get_historical_stock_prices` when trend or range context is needed.\n- For financial statements, only specify `period` and `limit` when the defaults do not match the user's intent.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -6035,6 +6114,7 @@
               "params": {}
             }
           ],
+          "paths": "**\"I want to check price history for a crypto asset but I'm not sure of the ticker format.\"**\nCall `get_available_crypto_tickers` first to confirm the exact symbol, then pass it to `get_crypto_prices` or `get_historical_crypto_prices` with the desired date range.\n\n**\"Show me what crypto assets are available and then pull price data for a few of them.\"**\nUse `get_available_crypto_tickers` to present the full list, then call `get_historical_crypto_prices` once per selected ticker to retrieve OHLC data for comparison.",
           "active": true
         },
         {
@@ -6079,6 +6159,7 @@
               }
             }
           ],
+          "paths": "**\"Is this company financially healthy?\"**\nCombine `get_balance_sheets` with `get_income_statements` and `get_cash_flow_statements` to assess leverage, profitability, and cash generation together. No single statement gives the full picture.\n\n**\"Has the company taken on significantly more debt recently?\"**\nCall `get_balance_sheets` with `period` set to quarterly and a higher `limit` to trace debt levels across multiple reporting periods.\n\n**\"I want to review the annual report and then validate the balance sheet numbers.\"**\nFetch `get_sec_filings` filtered to `10-K` first for the qualitative context, then call `get_balance_sheets` to confirm the reported figures.",
           "active": true
         },
         {
@@ -6123,6 +6204,7 @@
               }
             }
           ],
+          "paths": "**\"Does this company generate real cash or is profitability just on paper?\"**\nCall `get_cash_flow_statements` alongside `get_income_statements` to compare operating cash flow to net income. A persistent gap between the two often signals accounting-driven earnings.\n\n**\"Is cash burn accelerating quarter over quarter?\"**\nRequest `get_cash_flow_statements` with `period` set to quarterly and a higher `limit` to trace operating and free cash flow trends over time.\n\n**\"I need a complete view of capital allocation before making an investment decision.\"**\nUse `get_cash_flow_statements` together with `get_balance_sheets` to see how cash generated is being deployed — into debt repayment, capex, or shareholder returns.",
           "active": true
         },
         {
@@ -6145,6 +6227,7 @@
               }
             }
           ],
+          "paths": "**\"What's behind this stock's recent price move?\"**\nFetch `get_company_news` to surface recent events, then call `get_historical_stock_prices` over a matching date range to correlate price action with specific headlines.\n\n**\"Are there any developments I should be aware of before analyzing the financials?\"**\nRun `get_company_news` first to identify material events, then decide which financial statements are most relevant — for example, an acquisition announcement would prompt a closer look at `get_balance_sheets` and `get_cash_flow_statements`.\n\n**\"Did any news come out around the time of the company's last SEC filing?\"**\nCall `get_sec_filings` to find recent filing dates, then use `get_company_news` to check for related coverage around those same periods.",
           "active": true
         },
         {
@@ -6207,6 +6290,7 @@
               }
             }
           ],
+          "paths": "**\"I want to analyze a crypto asset's price history but I'm not sure the ticker is supported.\"**\nUse `get_available_crypto_tickers` first to confirm the symbol exists, then call `get_crypto_prices` with the appropriate date range.\n\n**\"Compare the price behavior of two cryptocurrencies over the same period.\"**\nCall `get_crypto_prices` once per asset using identical `start_date` and `end_date` values, then compare the OHLC series side by side.\n\n**\"Analyze price volatility at a finer granularity than daily.\"**\nUse `get_crypto_prices` with `interval` set to `hour` or `minute` and adjust `interval_multiplier` to set the bar size — for example, 4-hour bars with `interval=hour, interval_multiplier=4`.",
           "active": true
         },
         {
@@ -6229,6 +6313,7 @@
               }
             }
           ],
+          "paths": "**\"Is the stock moving on news today?\"**\nCall `get_current_stock_price` for the latest price, then `get_company_news` to check for recent headlines that could explain the move.\n\n**\"How does today's price compare to the company's fundamentals?\"**\nUse `get_current_stock_price` alongside `get_income_statements` to contextualize valuation — for example, comparing price to trailing earnings.\n\n**\"Quick price check before deciding whether to look deeper into the company.\"**\n`get_current_stock_price` alone is sufficient for a point-in-time snapshot. If the price warrants further investigation, follow up with `get_historical_stock_prices` for trend context or `get_balance_sheets` for financial health.",
           "active": true
         },
         {
@@ -6290,6 +6375,7 @@
               }
             }
           ],
+          "paths": "**\"I want to analyze Bitcoin's price history but I'm not certain the ticker is available.\"**\nCall `get_available_crypto_tickers` first to confirm the symbol, then proceed with `get_historical_crypto_prices` for the target date range.\n\n**\"Compare how two crypto assets performed over the same period.\"**\nCall `get_historical_crypto_prices` once per asset with identical `start_date` and `end_date`. Use consistent `interval` values to ensure the series are directly comparable.\n\n**\"Analyze price at a finer resolution to identify intraday patterns.\"**\nSet `interval` to `hour` or `minute` and adjust `interval_multiplier` to control bar size. For example, `interval=hour, interval_multiplier=4` produces 4-hour bars.",
           "active": true
         },
         {
@@ -6352,6 +6438,7 @@
               }
             }
           ],
+          "paths": "**\"Did the stock react to an earnings release or major announcement?\"**\nUse `get_historical_stock_prices` over the period surrounding the event, and pair it with `get_income_statements` or `get_sec_filings` to identify the announcement dates and correlate price movement.\n\n**\"Show the price trend alongside recent news.\"**\nCall `get_historical_stock_prices` for the relevant date range, then `get_company_news` to overlay significant headlines on the price series.\n\n**\"Build a complete picture of a company before making a decision.\"**\nCombine `get_historical_stock_prices` with `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to assess both market behavior and fundamental performance over the same time horizon.",
           "active": true
         },
         {
@@ -6396,6 +6483,7 @@
               }
             }
           ],
+          "paths": "**\"Has this company been growing revenue and improving margins?\"**\nCall `get_income_statements` with enough periods to observe a trend — quarterly with a higher `limit` works well for recent cadence, annual for a longer view.\n\n**\"Did the stock price follow earnings growth?\"**\nPair `get_income_statements` with `get_historical_stock_prices` over matching periods to compare reported performance with market reaction.\n\n**\"I need a full fundamental assessment of this company.\"**\nUse `get_income_statements` together with `get_balance_sheets` and `get_cash_flow_statements` to evaluate profitability, financial position, and cash generation as a set. These three statements cover complementary dimensions of financial health.",
           "active": true
         },
         {
@@ -6440,6 +6528,7 @@
               }
             }
           ],
+          "paths": "**\"I want to review the annual report before pulling the financial statements.\"**\nUse `get_sec_filings` filtered to `10-K` to retrieve the most recent annual report, then call `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to verify and explore the reported figures in detail.\n\n**\"Were there any material events that could explain a recent price move?\"**\nFetch `get_sec_filings` filtered to `8-K` to surface material event filings, then cross-reference with `get_company_news` and `get_historical_stock_prices` over the same period.\n\n**\"What has the company disclosed in the most recent quarter?\"**\nCall `get_sec_filings` filtered to `10-Q` for the latest quarterly filing, then use `get_income_statements` with `period` set to quarterly to review the underlying financial data in parallel.",
           "active": true
         }
       ]

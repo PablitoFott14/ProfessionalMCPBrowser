@@ -54,3 +54,14 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
   }
 }
 ```
+
+### Potential resolution paths
+
+**"Did the stock react to an earnings release or major announcement?"**
+Use `get_historical_stock_prices` over the period surrounding the event, and pair it with `get_income_statements` or `get_sec_filings` to identify the announcement dates and correlate price movement.
+
+**"Show the price trend alongside recent news."**
+Call `get_historical_stock_prices` for the relevant date range, then `get_company_news` to overlay significant headlines on the price series.
+
+**"Build a complete picture of a company before making a decision."**
+Combine `get_historical_stock_prices` with `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to assess both market behavior and fundamental performance over the same time horizon.

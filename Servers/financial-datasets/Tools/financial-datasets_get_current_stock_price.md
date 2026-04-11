@@ -23,3 +23,14 @@ Ticker symbol of the company (e.g., AAPL, GOOGL).
   }
 }
 ```
+
+### Potential resolution paths
+
+**"Is the stock moving on news today?"**
+Call `get_current_stock_price` for the latest price, then `get_company_news` to check for recent headlines that could explain the move.
+
+**"How does today's price compare to the company's fundamentals?"**
+Use `get_current_stock_price` alongside `get_income_statements` to contextualize valuation — for example, comparing price to trailing earnings.
+
+**"Quick price check before deciding whether to look deeper into the company."**
+`get_current_stock_price` alone is sufficient for a point-in-time snapshot. If the price warrants further investigation, follow up with `get_historical_stock_prices` for trend context or `get_balance_sheets` for financial health.

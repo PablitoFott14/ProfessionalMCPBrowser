@@ -167,47 +167,45 @@ body{
 /* ── SERVER INTRO ────────────────────────────────────────────── */
 .srv-intro{
   margin-bottom:22px;
-  border:1px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:8px;
 }
+/* single card (no sections) */
+.srv-intro.solo{grid-template-columns:1fr;grid-template-rows:auto}
 
-/* Description strip — full width, top */
-.srv-intro-desc{
-  padding:16px 22px;
-  border-bottom:1px solid var(--border);
-  font-size:13px;color:var(--text-dim);line-height:1.75;
-}
-.srv-intro-desc p{margin:0}
-.srv-intro-desc p+p{margin-top:8px}
-
-/* Sections row below */
-.srv-intro-sections{
-  display:grid;gap:0;
+/* individual info card */
+.intro-card{
+  border:1px solid var(--border);
+  border-top:2.5px solid var(--ic-accent,var(--border));
+  border-radius:8px;
+  padding:15px 18px;
   background:var(--surface);
+  min-width:0;
 }
-/* 2-col by default, 3-col if 3 sections */
-.srv-intro-sections.cols-1{grid-template-columns:1fr}
-.srv-intro-sections.cols-2{grid-template-columns:1fr 1fr}
-.srv-intro-sections.cols-3{grid-template-columns:1fr 1fr 1fr}
-.srv-intro-sections.cols-4{grid-template-columns:1fr 1fr}
+.intro-card.ic-desc    {--ic-accent:#7dd3fc}
+.intro-card.ic-how     {--ic-accent:#a78bfa}
+.intro-card.ic-paths   {--ic-accent:#34d399}
+.intro-card.ic-practice{--ic-accent:#fbbf24}
 
-.srv-intro-sec{
-  padding:14px 20px;
-  border-right:1px solid var(--border);
-}
-.srv-intro-sec:last-child{border-right:none}
-/* wrap to next row — add top border on wrapped items */
-.srv-intro-sections.cols-4 .srv-intro-sec:nth-child(n+3){
-  border-top:1px solid var(--border);
+.ic-label{
+  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--ic-accent,var(--text-faint));margin-bottom:9px;
 }
 
-.sec-title{
-  font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
-  color:var(--text-faint);margin-bottom:9px;
-}
+/* desc card: prose style */
+.intro-card.ic-desc .sec-body{font-size:12.5px;line-height:1.8;color:var(--text)}
+/* how-it-works: compact list */
+.intro-card.ic-how .sec-body{font-size:11.5px}
+/* paths: slightly indented intents */
+.intro-card.ic-paths .sec-body{font-size:11.5px}
+/* practices: tight */
+.intro-card.ic-practice .sec-body{font-size:11.5px}
+
 .sec-body{font-size:12px;color:var(--text-dim);line-height:1.7}
-.sec-body ul{list-style:none;display:flex;flex-direction:column;gap:3px}
-.sec-body li{padding-left:12px;position:relative}
+.sec-body ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.sec-body li{padding-left:13px;position:relative}
 .sec-body li::before{content:'·';position:absolute;left:0;color:var(--text-faint)}
 .sec-body strong{color:var(--text);font-weight:600}
 .sec-body code{
@@ -220,13 +218,14 @@ body{
 
 /* ── TOOLS GRID ─────────────────────────────────────────────── */
 .tools-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
   gap:8px;
 }
-
 /* ── TOOL CARD ──────────────────────────────────────────────── */
 .tool-card{
+  flex:1 1 320px;
   background:var(--card);border:1px solid var(--border);
   border-radius:var(--radius);overflow:hidden;
   display:flex;flex-direction:column;
@@ -341,6 +340,15 @@ body{
 }
 .jk{color:#7dd3fc}.js{color:#86efac}.jn{color:#fbbf24}.jw{color:#f9a8d4}.jb{color:var(--text-dim)}
 .no-ex{font-size:11.5px;color:var(--text-faint);font-style:italic;padding:4px 0}
+
+/* ── RESOLUTION PATHS ────────────────────────────────────────── */
+.paths{display:flex;flex-direction:column;gap:10px}
+.path-item{}
+.path-item p{margin:0;font-size:12px;line-height:1.6;color:var(--text-dim)}
+.path-item p strong{color:var(--text-main);display:block;margin-bottom:3px;font-size:12px}
+.path-item code{font-family:'JetBrains Mono',Consolas,'Courier New',monospace;font-size:11px;
+  background:rgba(99,102,241,.1);color:#818cf8;padding:1px 5px;border-radius:3px}
+.no-paths{font-size:11.5px;color:var(--text-faint);font-style:italic;padding:4px 0}
 
 /* ── EMPTY ───────────────────────────────────────────────────── */
 .empty{
@@ -472,6 +480,13 @@ function hJson(obj){
 }
 
 /* ── INTRO PANEL ──────────────────────────────────────────── */
+// Maps normalised section titles → card CSS class + display label
+const CARD_TYPES = {
+  'how it works':               {cls:'ic-how',     label:'How it works'},
+  'potential resolution paths': {cls:'ic-paths',   label:'Potential resolution paths'},
+  'best practices':             {cls:'ic-practice',label:'Best practices'},
+};
+
 function parseIntro(md){
   if(!md||!md.trim()) return null;
   const lines=md.split('\n');
@@ -485,6 +500,34 @@ function parseIntro(md){
   }
   if(cur)sections.push(cur);
   return {desc:desc.trim(),sections};
+}
+
+function renderIntroPanel(srv){
+  const parsed=parseIntro(srv.intro);
+  if(!parsed) return '';
+  const {desc,sections}=parsed;
+  if(!desc&&!sections.length) return '';
+
+  const cards=[];
+
+  if(desc){
+    cards.push(`<div class="intro-card ic-desc">
+      <div class="ic-label">Description</div>
+      <div class="sec-body">${mdToHtml(desc)}</div>
+    </div>`);
+  }
+
+  for(const sec of sections){
+    const key=sec.title.toLowerCase().trim();
+    const ct=CARD_TYPES[key]||{cls:'ic-how',label:sec.title};
+    cards.push(`<div class="intro-card ${ct.cls}">
+      <div class="ic-label">${esc(ct.label)}</div>
+      <div class="sec-body">${mdToHtml(sec.lines.join('\n'))}</div>
+    </div>`);
+  }
+
+  const solo=cards.length===1?' solo':'';
+  return `<div class="srv-intro${solo}">${cards.join('')}</div>`;
 }
 
 function mdToHtml(text){
@@ -510,32 +553,6 @@ function inline(s){
     .replace(/`([^`]+)`/g,'<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g,'<em>$1</em>');
-}
-
-function renderIntroPanel(srv){
-  const parsed=parseIntro(srv.intro);
-  if(!parsed) return '';
-  const {desc,sections}=parsed;
-
-  const descHtml = desc ? `<div class="srv-intro-desc"><div class="sec-body">${mdToHtml(desc)}</div></div>` : '';
-
-  if(!sections.length){
-    return `<div class="srv-intro">${descHtml}</div>`;
-  }
-
-  const n=sections.length;
-  const cls = n<=4 ? `cols-${n}` : 'cols-3';
-
-  const secsHtml=sections.map(sec=>`
-    <div class="srv-intro-sec">
-      <div class="sec-title">${esc(sec.title)}</div>
-      <div class="sec-body">${mdToHtml(sec.lines.join('\n'))}</div>
-    </div>`).join('');
-
-  return `<div class="srv-intro">
-    ${descHtml}
-    <div class="srv-intro-sections ${cls}">${secsHtml}</div>
-  </div>`;
 }
 
 /* ── PARAM TABLE ──────────────────────────────────────────── */
@@ -570,6 +587,15 @@ function renderExamples(exs, paramsWrapped){
   }).join('')}</div>`;
 }
 
+/* ── RESOLUTION PATHS ────────────────────────────────────── */
+function renderPaths(md){
+  if(!md) return `<p class="no-paths">No resolution paths documented.</p>`;
+  // Split on bold lines that start a new path entry (**"..."**)
+  // Each entry: bold title + following paragraph(s)
+  const html = mdToHtml(md);
+  return `<div class="paths">${html}</div>`;
+}
+
 /* ── TOOL CARD ────────────────────────────────────────────── */
 function renderCard(srv,tool){
   const c=sc(srv.name);
@@ -602,6 +628,8 @@ function renderCard(srv,tool){
         ${renderParams(tool.parameters)}
         <div class="s-label">Examples</div>
         ${renderExamples(tool.examples, srv.paramsWrapped)}
+        ${tool.paths!=null?`<div class="s-label">Potential resolution paths</div>
+        ${renderPaths(tool.paths)}`:''}
       </div>
     </div>
   </div>`;

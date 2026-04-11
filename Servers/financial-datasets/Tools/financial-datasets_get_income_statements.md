@@ -42,3 +42,14 @@ Number of income statements to return.
   }
 }
 ```
+
+### Potential resolution paths
+
+**"Has this company been growing revenue and improving margins?"**
+Call `get_income_statements` with enough periods to observe a trend — quarterly with a higher `limit` works well for recent cadence, annual for a longer view.
+
+**"Did the stock price follow earnings growth?"**
+Pair `get_income_statements` with `get_historical_stock_prices` over matching periods to compare reported performance with market reaction.
+
+**"I need a full fundamental assessment of this company."**
+Use `get_income_statements` together with `get_balance_sheets` and `get_cash_flow_statements` to evaluate profitability, financial position, and cash generation as a set. These three statements cover complementary dimensions of financial health.

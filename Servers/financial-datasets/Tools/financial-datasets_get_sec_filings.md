@@ -42,3 +42,14 @@ Filters results to a specific filing type (e.g., 10-K for annual reports, 10-Q f
   }
 }
 ```
+
+### Potential resolution paths
+
+**"I want to review the annual report before pulling the financial statements."**
+Use `get_sec_filings` filtered to `10-K` to retrieve the most recent annual report, then call `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to verify and explore the reported figures in detail.
+
+**"Were there any material events that could explain a recent price move?"**
+Fetch `get_sec_filings` filtered to `8-K` to surface material event filings, then cross-reference with `get_company_news` and `get_historical_stock_prices` over the same period.
+
+**"What has the company disclosed in the most recent quarter?"**
+Call `get_sec_filings` filtered to `10-Q` for the latest quarterly filing, then use `get_income_statements` with `period` set to quarterly to review the underlying financial data in parallel.

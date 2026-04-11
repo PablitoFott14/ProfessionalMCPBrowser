@@ -63,6 +63,9 @@ def parse_tool(filepath):
     for block in re.findall(r'```json[ \t]*\n(.*?)(?:```|\Z)', content, re.DOTALL):
         tool['examples'].extend(extract_json_objects(block))
 
+    m = re.search(r'### Potential resolution paths\s*\n(.*?)(?=\n---|\n### |\Z)', content, re.DOTALL)
+    tool['paths'] = m.group(1).strip() if m else ''
+
     tool['active'] = True
     return tool
 
