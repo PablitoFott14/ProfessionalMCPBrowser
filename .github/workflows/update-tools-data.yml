@@ -1,0 +1,32 @@
+name: Regenerate tools-data.json
+
+on:
+  push:
+    paths:
+      - 'Servers/**/*.md'
+      - 'generate-data.py'
+  workflow_dispatch:   # allow manual trigger from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate tools-data.json
+        run: python generate-data.py
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto: regenerate tools-data.json [skip ci]"
+          file_pattern: tools-data.json

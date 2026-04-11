@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Tool Browser</title>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<style>
+/* ── RESET ─────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.5;transition:background .25s,color .25s}
+
+/* ── THEME TOKENS ───────────────────────────────────────────── */
+:root{
+  --bg:#07071a;--surface:#0d0d24;--card:#12122c;--card-hover:#161638;
+  --border:rgba(255,255,255,.07);--border-strong:rgba(255,255,255,.13);
+  --text:#e2e2f0;--text-dim:#7878a0;--text-faint:#4a4a6a;
+  --radius:10px;--radius-sm:6px;
+  --header-h:58px;--sidebar-w:270px;
+  --shadow:0 4px 24px rgba(0,0,0,.5);
+  --glow:0 0 0 2px;
+}
+[data-theme="light"]{
+  --bg:#f4f4fb;--surface:#eaeaf5;--card:#ffffff;--card-hover:#f8f8ff;
+  --border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.15);
+  --text:#18182a;--text-dim:#5a5a80;--text-faint:#9898b8;
+  --shadow:0 2px 16px rgba(0,0,0,.12);
+}
+
+/* ── SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-faint)}
+
+/* ── LAYOUT ─────────────────────────────────────────────────── */
+body{background:var(--bg);color:var(--text)}
+.layout{display:flex;min-height:calc(100vh - var(--header-h));padding-top:var(--header-h)}
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--header-h);
+  display:flex;align-items:center;gap:16px;padding:0 20px;
+  background:rgba(7,7,26,.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+[data-theme="light"] .header{background:rgba(244,244,251,.9)}
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0;text-decoration:none}
+.logo-hex{
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#7c3aed,#3b82f6);
+  border-radius:7px;font-size:15px;
+}
+.logo-text{font-size:15px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
+.logo-sub{font-size:11px;color:var(--text-dim);margin-left:4px;font-weight:400}
+
+.search-wrap{
+  flex:1;max-width:560px;position:relative;display:flex;align-items:center;
+}
+.search-icon{position:absolute;left:11px;color:var(--text-faint);font-size:16px;pointer-events:none}
+#searchInput{
+  width:100%;padding:8px 36px 8px 34px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-size:13px;
+  transition:border .2s,box-shadow .2s;outline:none;
+}
+#searchInput:focus{border-color:var(--accent,#7c3aed);box-shadow:var(--glow) color-mix(in srgb,var(--accent,#7c3aed) 30%,transparent)}
+#searchInput::placeholder{color:var(--text-faint)}
+.search-count{position:absolute;right:34px;font-size:11px;color:var(--text-dim);pointer-events:none}
+.clear-btn{
+  position:absolute;right:8px;width:20px;height:20px;
+  background:none;border:none;cursor:pointer;
+  color:var(--text-faint);font-size:18px;line-height:1;padding:0;
+  display:none;align-items:center;justify-content:center;border-radius:4px;
+}
+.clear-btn:hover{color:var(--text);background:var(--border)}
+.clear-btn.visible{display:flex}
+
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.icon-btn{
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;cursor:pointer;color:var(--text-dim);font-size:16px;
+  transition:background .15s,color .15s,border .15s;
+}
+.icon-btn:hover{background:var(--card-hover);color:var(--text)}
+.total-badge{
+  padding:3px 10px;border-radius:20px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:11px;color:var(--text-dim);white-space:nowrap;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────── */
+.sidebar{
+  position:fixed;left:0;top:var(--header-h);bottom:0;width:var(--sidebar-w);
+  background:var(--surface);border-right:1px solid var(--border);
+  overflow-y:auto;padding:16px 12px;z-index:100;
+}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text-faint);text-transform:uppercase;padding:0 4px;margin-bottom:10px;display:block}
+
+.server-nav-item{
+  display:flex;flex-direction:column;gap:4px;
+  padding:10px 10px;border-radius:8px;margin-bottom:4px;
+  cursor:pointer;text-decoration:none;
+  border:1px solid transparent;
+  transition:background .15s,border .15s;
+}
+.server-nav-item:hover{background:var(--card)}
+.server-nav-item.active-filter{background:var(--card);border-color:var(--border)}
+.sni-top{display:flex;align-items:center;gap:8px}
+.sni-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sni-name{font-size:13px;font-weight:600;color:var(--text);flex:1}
+.sni-count{font-size:11px;font-weight:600;color:var(--text-dim)}
+.sni-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-left:16px}
+.sni-bar-fill{height:100%;border-radius:2px;transition:width .4s}
+.sni-stats{font-size:10px;color:var(--text-faint);margin-left:16px}
+
+.sidebar-divider{height:1px;background:var(--border);margin:12px 4px}
+.sidebar-all-btn{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;
+  border-radius:8px;cursor:pointer;
+  font-size:13px;color:var(--text-dim);border:none;background:none;width:100%;
+  transition:background .15s,color .15s;
+}
+.sidebar-all-btn:hover,.sidebar-all-btn.active-filter{background:var(--card);color:var(--text)}
+
+/* ── MAIN ────────────────────────────────────────────────────── */
+.main{margin-left:var(--sidebar-w);flex:1;padding:28px 32px;min-width:0}
+
+/* ── FILTER BAR ─────────────────────────────────────────────── */
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;align-items:center}
+.filter-pill{
+  padding:5px 14px;border-radius:20px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-dim);font-size:12px;font-weight:500;
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.filter-pill:hover{border-color:var(--border-strong);color:var(--text)}
+.filter-pill.active{color:#fff;border-color:transparent}
+
+/* ── SERVER SECTION ─────────────────────────────────────────── */
+.server-section{margin-bottom:48px;scroll-margin-top:calc(var(--header-h) + 16px)}
+.server-header{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:14px;margin-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+.srv-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.srv-name{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.srv-badge{
+  padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;
+  margin-left:auto;
+}
+.srv-intro{
+  margin-bottom:20px;padding:14px 16px;
+  background:var(--surface);border-radius:8px;border:1px solid var(--border);
+  font-size:13px;color:var(--text-dim);line-height:1.7;
+  display:none;
+}
+.srv-intro.visible{display:block}
+.srv-intro-toggle{
+  font-size:11px;color:var(--text-faint);cursor:pointer;margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:4px;
+  transition:color .15s;
+}
+.srv-intro-toggle:hover{color:var(--text-dim)}
+
+/* ── TOOLS GRID ─────────────────────────────────────────────── */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+
+/* ── TOOL CARD ──────────────────────────────────────────────── */
+.tool-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;
+}
+.tool-card:hover{box-shadow:var(--shadow);transform:translateY(-1px);border-color:var(--border-strong)}
+.tool-card.inactive{opacity:.45}
+.tool-card.hidden{display:none}
+
+.tc-header{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 14px;cursor:pointer;user-select:none;
+}
+.tc-accent{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:32px}
+.tc-info{flex:1;min-width:0}
+.tc-name{font-size:12.5px;font-weight:700;letter-spacing:-.2px;margin-bottom:3px;word-break:break-word}
+.tc-name mark{background:rgba(250,200,50,.25);color:inherit;border-radius:2px;padding:0 1px}
+.tc-desc{font-size:11.5px;color:var(--text-dim);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tc-desc mark{background:rgba(250,200,50,.25);color:inherit;border-radius:2px;padding:0 1px}
+.tc-meta{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.tc-tag{
+  padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;
+  letter-spacing:.3px;text-transform:uppercase;
+}
+.tc-param-count{font-size:10px;color:var(--text-faint)}
+
+.tc-controls{display:flex;align-items:flex-start;gap:8px;flex-shrink:0;padding-top:1px}
+.expand-btn{
+  width:22px;height:22px;border-radius:5px;border:1px solid var(--border);
+  background:none;cursor:pointer;color:var(--text-faint);font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s,transform .2s;flex-shrink:0;
+}
+.expand-btn:hover{background:var(--border);color:var(--text)}
+.tool-card.expanded .expand-btn{transform:rotate(180deg)}
+
+/* Active toggle */
+.toggle{
+  width:36px;height:20px;border-radius:10px;
+  background:#333;position:relative;cursor:pointer;
+  flex-shrink:0;border:none;transition:background .2s;
+}
+.toggle.on{background:#22c55e}
+.toggle::after{
+  content:'';position:absolute;width:16px;height:16px;background:#fff;
+  border-radius:50%;top:2px;left:2px;
+  transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.3);
+}
+.toggle.on::after{left:18px}
+
+/* ── TOOL BODY ──────────────────────────────────────────────── */
+.tc-body{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.tool-card.expanded .tc-body{max-height:4000px}
+.tc-body-inner{padding:0 14px 14px;border-top:1px solid var(--border)}
+
+.tc-purpose{
+  padding:12px 0 14px;font-size:13px;color:var(--text-dim);line-height:1.7;
+}
+
+/* ── SECTION LABEL ──────────────────────────────────────────── */
+.section-label{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── PARAMETER TABLE ────────────────────────────────────────── */
+.param-table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:12px}
+.param-table th{
+  text-align:left;padding:6px 8px;font-size:10px;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);
+  border-bottom:1px solid var(--border);
+}
+.param-table td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.param-table tr:last-child td{border-bottom:none}
+.param-table tr:hover td{background:var(--surface)}
+.p-num{color:var(--text-faint);font-size:10px;font-family:monospace}
+.p-name{font-weight:600;font-family:monospace;font-size:12px}
+.p-req{
+  display:inline-block;padding:1px 6px;border-radius:3px;
+  font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+}
+.req{background:rgba(239,68,68,.15);color:#f87171}
+.opt{background:rgba(99,102,241,.12);color:#818cf8}
+.p-default{font-family:monospace;font-size:11px;color:var(--text-dim)}
+.p-desc{color:var(--text-dim);font-size:12px}
+.no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:6px 0;margin-bottom:14px}
+
+/* ── JSON EXAMPLES ──────────────────────────────────────────── */
+.examples-list{display:flex;flex-direction:column;gap:10px}
+.example-block{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.example-intent{
+  padding:8px 12px;font-size:11.5px;color:var(--text-dim);
+  background:var(--surface);border-bottom:1px solid var(--border);
+  font-style:italic;
+}
+.example-params{
+  padding:10px 12px;font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
+  font-size:11.5px;line-height:1.6;background:var(--card);
+  overflow-x:auto;white-space:pre;
+}
+.json-key{color:#7dd3fc}
+.json-str{color:#86efac}
+.json-num{color:#fbbf24}
+.json-kw{color:#f9a8d4}
+.json-brace{color:var(--text-dim)}
+.no-examples{font-size:12px;color:var(--text-faint);font-style:italic;padding:6px 0}
+
+/* ── EMPTY STATE ─────────────────────────────────────────────── */
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;
+  padding:80px 24px;text-align:center;
+}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.3}
+.empty-title{font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.empty-text{font-size:14px;color:var(--text-dim)}
+
+/* ── SKELETON LOADER ─────────────────────────────────────────── */
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skeleton{
+  background:linear-gradient(90deg,var(--surface) 25%,var(--card-hover) 50%,var(--surface) 75%);
+  background-size:800px 100%;animation:shimmer 1.5s infinite;
+  border-radius:4px;
+}
+
+/* ── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.server-section{animation:fadeIn .3s ease both}
+.tool-card{animation:fadeIn .2s ease both}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media(max-width:900px){
+  .sidebar{display:none}
+  .main{margin-left:0;padding:16px}
+  .tools-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .header{padding:0 12px}
+  .logo-sub,.total-badge{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────────── -->
+<header class="header">
+  <a class="logo" href="#">
+    <div class="logo-hex">⬡</div>
+    <span class="logo-text">MCP Tool Browser</span>
+    <span class="logo-sub">Advanced Data Browser</span>
+  </a>
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input id="searchInput" type="search" placeholder="Search tools, parameters, descriptions… (⌘K)" autocomplete="off" spellcheck="false">
+    <span id="searchCount" class="search-count"></span>
+    <button id="clearSearch" class="clear-btn" title="Clear search">×</button>
+  </div>
+  <div class="header-actions">
+    <div id="totalBadge" class="total-badge"></div>
+    <button id="themeToggle" class="icon-btn" title="Toggle theme">◑</button>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- ─── SIDEBAR ──────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <span class="sidebar-label">Servers</span>
+    <button class="sidebar-all-btn active-filter" id="sidebarAll" onclick="setFilter(null)">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--text-faint);display:inline-block;flex-shrink:0"></span>
+      All Servers
+    </button>
+    <div class="sidebar-divider"></div>
+    <nav id="serverNav"></nav>
+  </aside>
+
+  <!-- ─── MAIN ─────────────────────────────────────────────── -->
+  <main class="main">
+    <div id="filterBar" class="filter-bar"></div>
+    <div id="content"></div>
+    <div id="emptyState" class="empty-state" style="display:none">
+      <div class="empty-icon">⌕</div>
+      <div class="empty-title">No tools found</div>
+      <div class="empty-text">Try a different search term or clear the filters.</div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CONSTANTS
+═══════════════════════════════════════════════════════════════ */
+const SERVER_CONFIG = {
+  'TwelveData':        { color:'#8b5cf6', light:'#a78bfa', bg:'rgba(139,92,246,.1)'  },
+  'alpaca':            { color:'#f59e0b', light:'#fbbf24', bg:'rgba(245,158,11,.1)'  },
+  'financial-datasets':{ color:'#10b981', light:'#34d399', bg:'rgba(16,185,129,.1)'  },
+};
+function serverCfg(name){
+  return SERVER_CONFIG[name] || { color:'#6366f1', light:'#818cf8', bg:'rgba(99,102,241,.1)' };
+}
+
+/* Method tag by name pattern */
+function toolTag(name){
+  const n = name.toLowerCase();
+  if(/place_|create_|add_/.test(n)) return {label:'POST',cls:'post'};
+  if(/cancel_|delete_|remove_|close_/.test(n)) return {label:'DEL',cls:'del'};
+  if(/update_/.test(n)) return {label:'PUT',cls:'put'};
+  return {label:'GET',cls:'get'};
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════ */
+const state = {
+  data: null,
+  search: '',
+  filter: null,         // server name or null = all
+  expanded: new Set(),
+  active: {},           // { serverName: { toolName: bool } }
+};
+
+function isActive(sname, tname){
+  return (state.active[sname]?.[tname]) !== false; // default true
+}
+function setActive(sname, tname, val){
+  if(!state.active[sname]) state.active[sname] = {};
+  state.active[sname][tname] = val;
+  saveActive();
+}
+function loadActive(){
+  try{ const s = localStorage.getItem('mcp-active'); if(s) state.active = JSON.parse(s); }
+  catch(e){}
+}
+function saveActive(){
+  try{ localStorage.setItem('mcp-active', JSON.stringify(state.active)); }
+  catch(e){}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH (Fuse.js)
+═══════════════════════════════════════════════════════════════ */
+let fuse, fuseIndex = [];
+
+function initFuse(){
+  fuseIndex = [];
+  for(const s of state.data.servers){
+    for(const t of s.tools){
+      fuseIndex.push({
+        serverName: s.name,
+        name: t.name,
+        purpose: t.purpose,
+        paramNames: t.parameters.map(p=>p.name).join(' '),
+        paramDescs: t.parameters.map(p=>p.description).join(' '),
+      });
+    }
+  }
+  fuse = new Fuse(fuseIndex, {
+    keys:[
+      {name:'name',weight:.45},
+      {name:'purpose',weight:.3},
+      {name:'serverName',weight:.05},
+      {name:'paramNames',weight:.12},
+      {name:'paramDescs',weight:.08},
+    ],
+    threshold:.38, includeMatches:true, minMatchCharLength:2,
+    ignoreLocation:true,
+  });
+}
+
+function getVisible(){
+  // Returns Set of "serverName::toolName" that should be visible
+  let matchSet = null;
+  if(state.search.trim().length >= 2){
+    const results = fuse.search(state.search.trim());
+    matchSet = new Set(results.map(r=>`${r.item.serverName}::${r.item.name}`));
+  }
+  const out = {};
+  for(const s of state.data.servers){
+    if(state.filter && s.name !== state.filter) continue;
+    out[s.name] = [];
+    for(const t of s.tools){
+      const key = `${s.name}::${t.name}`;
+      if(!matchSet || matchSet.has(key)) out[s.name].push(t.name);
+    }
+  }
+  return out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   JSON HIGHLIGHT
+═══════════════════════════════════════════════════════════════ */
+function highlightJson(obj){
+  const str = JSON.stringify(obj, null, 2);
+  return str
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/("(?:[^"\\]|\\.)*")(\s*:)/g,'<span class="json-key">$1</span>$2')
+    .replace(/:\s*("(?:[^"\\]|\\.)*")/g,(m,s)=>m.replace(s,`<span class="json-str">${s}</span>`))
+    .replace(/:\s*(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,(m,n)=>m.replace(n,`<span class="json-num">${n}</span>`))
+    .replace(/:\s*(true|false|null)/g,(m,k)=>m.replace(k,`<span class="json-kw">${k}</span>`))
+    .replace(/[{}[\]]/g,c=>`<span class="json-brace">${c}</span>`);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER HELPERS
+═══════════════════════════════════════════════════════════════ */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderParamTable(params){
+  if(!params.length) return `<p class="no-params">This tool takes no parameters.</p>`;
+  const rows = params.map(p=>`
+    <tr>
+      <td class="p-num">${p.number}</td>
+      <td class="p-name">${esc(p.name)}</td>
+      <td><span class="p-req ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span></td>
+      <td class="p-default">${esc(p.default)}</td>
+      <td class="p-desc">${esc(p.description)}</td>
+    </tr>`).join('');
+  return `<table class="param-table">
+    <thead><tr>
+      <th>#</th><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function renderExamples(examples){
+  if(!examples.length) return `<p class="no-examples">No examples available.</p>`;
+  return `<div class="examples-list">${examples.map(ex=>{
+    const intent = ex.intent || '';
+    const params = ex.params || ex;
+    return `<div class="example-block">
+      ${intent ? `<div class="example-intent">${esc(intent)}</div>` : ''}
+      <pre class="example-params">${highlightJson(params)}</pre>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderToolCard(server, tool){
+  const cfg = serverCfg(server.name);
+  const tag = toolTag(tool.name);
+  const active = isActive(server.name, tool.name);
+  const expanded = state.expanded.has(`${server.name}::${tool.name}`);
+  const shortDesc = tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,120);
+  const tagStyle = {
+    get:`background:rgba(139,92,246,.15);color:#a78bfa`,
+    post:`background:rgba(34,197,94,.15);color:#4ade80`,
+    del:`background:rgba(239,68,68,.15);color:#f87171`,
+    put:`background:rgba(245,158,11,.15);color:#fbbf24`,
+  }[tag.cls];
+  return `
+  <div class="tool-card${active?'':' inactive'}${expanded?' expanded':''}"
+       data-server="${esc(server.name)}" data-tool="${esc(tool.name)}" id="tc-${esc(server.name)}-${esc(tool.name)}">
+    <div class="tc-header" onclick="toggleExpand('${esc(server.name)}','${esc(tool.name)}')">
+      <div class="tc-accent" style="background:${cfg.color}"></div>
+      <div class="tc-info">
+        <div class="tc-name">${esc(tool.name)}</div>
+        <div class="tc-desc">${esc(shortDesc)}</div>
+        <div class="tc-meta">
+          <span class="tc-tag" style="${tagStyle}">${tag.label}</span>
+          <span class="tc-param-count">${tool.parameters.length} param${tool.parameters.length!==1?'s':''}</span>
+          ${tool.examples.length ? `<span class="tc-param-count">${tool.examples.length} example${tool.examples.length!==1?'s':''}</span>` : ''}
+        </div>
+      </div>
+      <div class="tc-controls" onclick="event.stopPropagation()">
+        <button class="toggle${active?' on':''}"
+          title="${active?'Active — click to deactivate':'Inactive — click to activate'}"
+          onclick="toggleActive('${esc(server.name)}','${esc(tool.name)}',this)"></button>
+        <button class="expand-btn" onclick="toggleExpand('${esc(server.name)}','${esc(tool.name)}')" title="${expanded?'Collapse':'Expand'}">▾</button>
+      </div>
+    </div>
+    <div class="tc-body">
+      <div class="tc-body-inner">
+        <div class="tc-purpose">${esc(tool.purpose)}</div>
+        <div class="section-label">Parameters</div>
+        ${renderParamTable(tool.parameters)}
+        <div class="section-label">Examples</div>
+        ${renderExamples(tool.examples)}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER SERVER SECTION
+═══════════════════════════════════════════════════════════════ */
+function renderServerSection(server, visibleTools){
+  if(!visibleTools.length) return '';
+  const cfg = serverCfg(server.name);
+  const allTools = server.tools;
+  const activeCount = allTools.filter(t=>isActive(server.name,t.name)).length;
+  const cards = server.tools
+    .map(t => ({ t, visible: visibleTools.includes(t.name) }))
+    .map(({t, visible}) => {
+      const html = renderToolCard(server, t);
+      return visible ? html : html.replace('class="tool-card','class="tool-card hidden');
+    }).join('');
+
+  const hasIntro = server.intro && server.intro.trim().length > 0;
+  return `
+  <section class="server-section" id="section-${esc(server.name)}">
+    <div class="server-header">
+      <div class="srv-dot" style="background:${cfg.color};box-shadow:0 0 8px ${cfg.color}88"></div>
+      <span class="srv-name" style="color:${cfg.color}">${esc(server.name)}</span>
+      ${hasIntro ? `<span class="srv-intro-toggle" onclick="toggleIntro('${esc(server.name)}')">ℹ about this server ▾</span>` : ''}
+      <div class="srv-badge" style="background:${cfg.bg};color:${cfg.light}" id="badge-${esc(server.name)}">
+        ${activeCount} / ${allTools.length} active
+      </div>
+    </div>
+    ${hasIntro ? `<div class="srv-intro" id="intro-${esc(server.name)}">${esc(server.intro)}</div>` : ''}
+    <div class="tools-grid">${cards}</div>
+  </section>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER SIDEBAR
+═══════════════════════════════════════════════════════════════ */
+function renderSidebar(visible){
+  const nav = document.getElementById('serverNav');
+  nav.innerHTML = state.data.servers.map(s=>{
+    const cfg = serverCfg(s.name);
+    const total = s.tools.length;
+    const activeCount = s.tools.filter(t=>isActive(s.name,t.name)).length;
+    const pct = total ? Math.round((activeCount/total)*100) : 0;
+    const visCount = visible[s.name]?.length ?? 0;
+    const isFiltered = state.filter === s.name;
+    return `<a class="server-nav-item${isFiltered?' active-filter':''}" href="#section-${esc(s.name)}"
+        onclick="setFilter('${esc(s.name)}',event)">
+      <div class="sni-top">
+        <span class="sni-dot" style="background:${cfg.color}"></span>
+        <span class="sni-name">${esc(s.name)}</span>
+        <span class="sni-count">${state.search ? `${visCount}/` : ''}${total}</span>
+      </div>
+      <div class="sni-bar"><div class="sni-bar-fill" style="width:${pct}%;background:${cfg.color}"></div></div>
+      <div class="sni-stats">${activeCount} / ${total} active</div>
+    </a>`;
+  }).join('');
+  document.getElementById('sidebarAll').className = 'sidebar-all-btn' + (state.filter ? '' : ' active-filter');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER FILTER PILLS
+═══════════════════════════════════════════════════════════════ */
+function renderFilterBar(){
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = [`<span class="filter-pill${!state.filter?' active':''}" style="${!state.filter?'background:#6366f1;color:#fff':''}" onclick="setFilter(null)">All</span>`]
+    .concat(state.data.servers.map(s=>{
+      const cfg = serverCfg(s.name);
+      const active = state.filter === s.name;
+      return `<span class="filter-pill${active?' active':''}"
+        style="${active?`background:${cfg.color};color:#fff`:''}"
+        onclick="setFilter('${esc(s.name)}')">${esc(s.name)}</span>`;
+    })).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN RENDER
+═══════════════════════════════════════════════════════════════ */
+function render(){
+  const visible = getVisible();
+  const content = document.getElementById('content');
+  const empty   = document.getElementById('emptyState');
+
+  let html = '';
+  let totalVisible = 0;
+  for(const s of state.data.servers){
+    const vt = visible[s.name] || [];
+    totalVisible += vt.length;
+    html += renderServerSection(s, vt);
+  }
+  content.innerHTML = html;
+
+  // Show/hide empty state
+  if(state.search && totalVisible === 0){
+    content.style.display = 'none';
+    empty.style.display   = 'flex';
+  } else {
+    content.style.display = '';
+    empty.style.display   = 'none';
+  }
+
+  // Search count
+  const sc = document.getElementById('searchCount');
+  if(state.search.trim().length >= 2){
+    sc.textContent = `${totalVisible} result${totalVisible!==1?'s':''}`;
+    document.getElementById('clearSearch').classList.add('visible');
+  } else {
+    sc.textContent = '';
+    document.getElementById('clearSearch').classList.remove('visible');
+  }
+
+  // Total badge
+  const allCount = state.data.servers.reduce((a,s)=>a+s.tools.length,0);
+  document.getElementById('totalBadge').textContent = `${allCount} tools`;
+
+  renderSidebar(visible);
+  renderFilterBar();
+}
+
+/* Partial updates */
+function updateServerBadge(sname){
+  const s = state.data.servers.find(x=>x.name===sname);
+  if(!s) return;
+  const cfg = serverCfg(sname);
+  const ac = s.tools.filter(t=>isActive(sname,t.name)).length;
+  const el = document.getElementById(`badge-${sname}`);
+  if(el) el.textContent = `${ac} / ${s.tools.length} active`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INTERACTIONS
+═══════════════════════════════════════════════════════════════ */
+function toggleExpand(sname, tname){
+  const key = `${sname}::${tname}`;
+  const card = document.getElementById(`tc-${sname}-${tname}`);
+  if(!card) return;
+  if(state.expanded.has(key)){
+    state.expanded.delete(key);
+    card.classList.remove('expanded');
+  } else {
+    state.expanded.add(key);
+    card.classList.add('expanded');
+  }
+}
+
+function toggleActive(sname, tname, btn){
+  const current = isActive(sname, tname);
+  const next = !current;
+  setActive(sname, tname, next);
+  btn.classList.toggle('on', next);
+  const card = document.getElementById(`tc-${sname}-${tname}`);
+  if(card) card.classList.toggle('inactive', !next);
+  updateServerBadge(sname);
+  renderSidebar(getVisible());
+}
+
+function toggleIntro(sname){
+  const el = document.getElementById(`intro-${sname}`);
+  if(!el) return;
+  el.classList.toggle('visible');
+  const toggle = el.previousElementSibling;
+  if(toggle && toggle.classList.contains('srv-intro-toggle')){
+    toggle.textContent = el.classList.contains('visible')
+      ? 'ℹ about this server ▴' : 'ℹ about this server ▾';
+  }
+}
+
+function setFilter(name, event){
+  if(event){ event.preventDefault(); }
+  state.filter = (state.filter === name) ? null : name;
+  render();
+  if(name && event){
+    setTimeout(()=>{
+      const el = document.getElementById(`section-${name}`);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }, 50);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════════════════════════ */
+let searchTimer;
+document.getElementById('searchInput').addEventListener('input', e=>{
+  clearTimeout(searchTimer);
+  state.search = e.target.value;
+  searchTimer = setTimeout(render, 140);
+});
+document.getElementById('clearSearch').addEventListener('click', ()=>{
+  state.search = '';
+  document.getElementById('searchInput').value = '';
+  render();
+});
+
+/* Cmd/Ctrl+K focus */
+document.addEventListener('keydown', e=>{
+  if((e.metaKey || e.ctrlKey) && e.key === 'k'){
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+    document.getElementById('searchInput').select();
+  }
+  if(e.key === 'Escape'){
+    document.getElementById('searchInput').blur();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME
+═══════════════════════════════════════════════════════════════ */
+function applyTheme(t){
+  document.documentElement.dataset.theme = t;
+  document.getElementById('themeToggle').textContent = t==='dark' ? '◑' : '●';
+  try{ localStorage.setItem('mcp-theme', t); } catch(e){}
+}
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  applyTheme(document.documentElement.dataset.theme==='dark' ? 'light' : 'dark');
+});
+try{
+  const saved = localStorage.getItem('mcp-theme');
+  if(saved) applyTheme(saved);
+}catch(e){}
+
+/* ═══════════════════════════════════════════════════════════════
+   DATA LOADING
+═══════════════════════════════════════════════════════════════ */
+async function loadData(){
+  try {
+    const r = await fetch('tools-data.json');
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.json();
+  } catch(e){
+    console.error('Failed to load tools-data.json:', e);
+    document.getElementById('content').innerHTML = `
+      <div class="empty-state" style="display:flex">
+        <div class="empty-icon">⚠</div>
+        <div class="empty-title">Could not load tools-data.json</div>
+        <div class="empty-text">Make sure the file is in the same directory and you're serving from a web server.<br>
+        Try: <code>python -m http.server 8080</code></div>
+      </div>`;
+    return null;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+(async ()=>{
+  const data = await loadData();
+  if(!data) return;
+  state.data = data;
+  loadActive();
+  initFuse();
+  render();
+})();
+</script>
+</body>
+</html>
