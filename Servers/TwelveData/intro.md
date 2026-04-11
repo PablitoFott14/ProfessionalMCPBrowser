@@ -13,4 +13,3 @@ The TwelveData server does not follow the typical flat parameter–value structu
 
 - **Be intentional with overrides.**  
   Since defaults are already defined, only override a parameter when it meaningfully changes the outcome.  
-  _Examples:_ defining timeframes, using different intervals than the defaults, or changing the series type.
