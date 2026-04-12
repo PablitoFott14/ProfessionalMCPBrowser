@@ -241,14 +241,10 @@ body{
 .tc-info{flex:1;min-width:0}
 .tc-name{
   font-size:12.5px;font-weight:700;letter-spacing:-.2px;
-  margin-bottom:4px;word-break:break-word;line-height:1.4;
-}
-.tc-desc{
-  font-size:11.5px;color:var(--text-dim);line-height:1.55;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  word-break:break-word;line-height:1.4;
 }
 .tc-foot{
-  display:flex;align-items:center;gap:7px;margin-top:7px;flex-wrap:wrap;
+  display:flex;align-items:center;gap:7px;margin-top:6px;flex-wrap:wrap;
 }
 .tc-counts{font-size:10.5px;color:var(--text-faint)}
 .domain-pill{
@@ -648,7 +644,6 @@ function renderCard(srv,tool){
   const c=sc(srv.name);
   const st=getStatus(srv.name,tool.name);
   const open=S.expanded.has(`${srv.name}::${tool.name}`);
-  const desc=tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,110);
   const np=tool.parameters.length, ne=tool.examples.length;
 
   return `<div class="tool-card${open?' open':''}"
@@ -658,7 +653,6 @@ function renderCard(srv,tool){
       <div class="tc-bar" style="background:${c.color}"></div>
       <div class="tc-info">
         <div class="tc-name">${esc(tool.name)}</div>
-        <div class="tc-desc">${esc(desc)}</div>
         <div class="tc-foot">
           <span class="tc-counts">${np} param${np!==1?'s':''} · ${ne} example${ne!==1?'s':''}</span>
         </div>
