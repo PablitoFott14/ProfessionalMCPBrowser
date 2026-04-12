@@ -326,14 +326,14 @@ body{
 }
 .req{background:rgba(239,68,68,.13);color:#f87171}
 .opt{background:rgba(99,102,241,.11);color:#818cf8}
-.p-def{font-family:monospace;font-size:11px;color:var(--text-dim)}
+.p-def{font-family:monospace;font-size:11px;color:var(--text-dim);white-space:nowrap}
 .p-desc{color:var(--text-dim);font-size:11.5px}
-.p-allowed{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
-.p-allowed-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);display:block;margin-top:6px;margin-bottom:3px}
+.p-name{min-width:0}
+.p-allowed{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
 .p-enum{
   font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
-  font-size:10px;padding:1px 6px;border-radius:3px;
-  background:var(--border);color:var(--text-dim);white-space:nowrap;
+  font-size:9.5px;padding:1px 5px;border-radius:3px;
+  background:var(--border);color:var(--text-faint);white-space:nowrap;
 }
 .no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:4px 0 14px}
 
@@ -609,12 +609,19 @@ function renderParams(params){
   if(!params.length) return `<p class="no-params">This tool takes no parameters.</p>`;
   const rows=params.map(p=>`<tr>
     <td class="p-num">${p.number}</td>
-    <td class="p-name">${esc(p.name)}</td>
+    <td class="p-name">${esc(p.name)}${p.allowed&&p.allowed.length?`<div class="p-allowed">${p.allowed.map(v=>`<span class="p-enum">${esc(v)}</span>`).join('')}</div>`:''}</td>
     <td><span class="badge ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span></td>
-    <td class="p-def">${esc(p.default)}${p.allowed&&p.allowed.length?`<span class="p-allowed-label">Allowed</span><div class="p-allowed">${p.allowed.map(v=>`<span class="p-enum">${esc(v)}</span>`).join('')}</div>`:''}</td>
+    <td class="p-def">${esc(p.default)}</td>
     <td class="p-desc">${esc(p.description)}</td>
   </tr>`).join('');
   return `<table class="ptable">
+    <colgroup>
+      <col style="width:28px">
+      <col style="width:30%">
+      <col style="width:38px">
+      <col style="width:18%">
+      <col>
+    </colgroup>
     <thead><tr><th>#</th><th>Parameter</th><th></th><th>Default</th><th>Description</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
