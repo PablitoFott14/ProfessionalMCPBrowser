@@ -3723,12 +3723,12 @@
     },
     {
       "name": "akshare-one-mcp",
-      "intro": "The akshare-one-mcp server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.\n\n### How it works\n- The server centers on stock symbols and supports both point-in-time checks and broader historical review.\n- It combines market-facing tools such as real-time and historical data with company-facing tools such as news, insider trading, financial statements, and summary metrics.\n- Most tools take a `symbol`, with optional filters such as date range, source, interval, or recent record count depending on the endpoint.\n\n### Potential resolution paths\n- **Check a stock quickly, then expand into context:** Start with `get_realtime_data` for the latest market snapshot, use `get_time_info` to anchor the timing, then pull `get_news_data` if the user needs recent developments behind the move.\n- **Move from price action into deeper analysis:** Use `get_hist_data` to review the trend over time, optionally add indicators for a more technical read, then compare that behavior with `get_news_data` or `get_inner_trade_data` to add event and insider context.\n- **Run a focused financial review:** Pull `get_financial_metrics` for a compact overview, then drill into `get_balance_sheet`, `get_income_statement`, and `get_cash_flow` when the user needs the underlying detail behind solvency, profitability, or cash generation.",
+      "intro": "The akshare-one-mcp server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.\n\n### How it works\n- The server centers on stock symbols and supports both point-in-time checks and broader historical review.\n- It combines market-facing tools such as real-time and historical data with company-facing tools such as news, insider trading, financial statements, and summary metrics.\n- Most tools take a `symbol`, with optional filters such as date range, source, interval, or recent record count depending on the endpoint.\n\n### Potential resolution paths\n- **Check a stock quickly, then expand into context:** Start with `get_realtime_data` for the latest market snapshot, use `get_time_info` to anchor the timing, then pull `get_news_data` if the user needs recent developments behind the move.\n- **Move from price action into deeper analysis:** Use `get_hist_data` to review the trend over time, optionally add indicators for a more technical read, then compare that behavior with `get_news_data` or `get_inner_trade_data` to add event and insider context.\n- **Run a focused financial review:** Pull `get_financial_metrics` for a compact overview, then drill into `get_balance_sheet`, `get_income_statement`, and `get_cash_flow` when the user needs the underlying detail behind solvency, profitability, or cash generation.\n\n### Best practices\n- **Start with the narrowest tool that matches the question:** Use `get_realtime_data` or `get_time_info` for quick checks, and only expand into history, news, or statements when the user needs more context.\n- **Use summary before detail when doing financial review:** `get_financial_metrics` is a good first pass, then the individual statement tools can be used when the user needs the supporting detail behind the headline numbers.",
       "paramsWrapped": false,
       "tools": [
         {
           "name": "akshare-one-mcp_get_balance_sheet",
-          "purpose": "akshare-one-mcp_get_balance_sheet retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.\n\nIn practice, it helps answer questions about leverage, liquidity, and balance sheet strength for a given company.",
+          "purpose": "akshare-one-mcp_get_balance_sheet retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.",
           "parameters": [
             {
               "number": 1,
@@ -3765,7 +3765,7 @@
         },
         {
           "name": "akshare-one-mcp_get_cash_flow",
-          "purpose": "akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.\n\nIn practice, it helps answer questions about cash generation quality, capital spending, and whether reported earnings are being supported by actual cash flow.",
+          "purpose": "akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.",
           "parameters": [
             {
               "number": 1,
@@ -3809,7 +3809,7 @@
         },
         {
           "name": "akshare-one-mcp_get_financial_metrics",
-          "purpose": "akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.\n\nIn practice, it works well for quickly screening a company’s financial condition before deciding whether deeper statement-level analysis is needed.",
+          "purpose": "akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.",
           "parameters": [
             {
               "number": 1,
@@ -3943,7 +3943,7 @@
         },
         {
           "name": "akshare-one-mcp_get_income_statement",
-          "purpose": "akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.\n\nIn practice, it helps answer questions about earnings trends, margin behavior, and whether the company is improving or weakening operationally.",
+          "purpose": "akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.",
           "parameters": [
             {
               "number": 1,
@@ -3980,7 +3980,7 @@
         },
         {
           "name": "akshare-one-mcp_get_inner_trade_data",
-          "purpose": "akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.\n\nIn practice, it can help add behavioral context around management or insider transactions before looking deeper into price action or fundamentals.",
+          "purpose": "akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.",
           "parameters": [
             {
               "number": 1,
@@ -4003,7 +4003,7 @@
         },
         {
           "name": "akshare-one-mcp_get_news_data",
-          "purpose": "akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.\n\nIn practice, it works well as a context tool before checking price action or reviewing recent market activity for the same stock.",
+          "purpose": "akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.",
           "parameters": [
             {
               "number": 1,
@@ -4077,7 +4077,7 @@
         },
         {
           "name": "akshare-one-mcp_get_time_info",
-          "purpose": "akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.\n\nIn practice, it helps anchor requests that depend on current timing or recent trading-session context.",
+          "purpose": "akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.",
           "parameters": [],
           "examples": [
             {
@@ -6470,12 +6470,12 @@
     },
     {
       "name": "alphavantage",
-      "intro": "The alphavantage server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.\n\n### How it works\n- The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.\n- It does not expose domain-specific endpoints directly in this layer; instead, it provides a controlled way to navigate and call the underlying Alpha Vantage tool set.\n- Requests stay generic at the wrapper level, using `tool_name` to identify the target tool and `arguments` to pass the tool-specific inputs.\n\n### Potential resolution paths\n- **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.\n- **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.\n- **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.",
+      "intro": "The alphavantage server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.\n\n### How it works\n- The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.\n- It does not expose domain-specific endpoints directly in this layer; instead, it provides a controlled way to navigate and call the underlying Alpha Vantage tool set.\n- Requests stay generic at the wrapper level, using `tool_name` to identify the target tool and `arguments` to pass the tool-specific inputs.\n\n### Potential resolution paths\n- **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.\n- **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.\n- **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.\n\n### Best practices\n- **Do not skip the schema step when the target tool is unfamiliar:** `TOOL_GET` reduces avoidable mistakes by confirming the exact input shape before execution.\n- **Use discovery progressively:** Start broad with `TOOL_LIST`, narrow with `TOOL_GET`, and only then move into `TOOL_CALL` once the correct Alpha Vantage endpoint is clear.",
       "paramsWrapped": false,
       "tools": [
         {
           "name": "alphavantage_TOOL_CALL",
-          "purpose": "alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.\n\nIn practice, it is the execution step that turns discovery and schema inspection into a live request.",
+          "purpose": "alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.",
           "parameters": [
             {
               "number": 1,
@@ -6518,7 +6518,7 @@
         },
         {
           "name": "alphavantage_TOOL_GET",
-          "purpose": "alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.\n\nIn practice, it helps narrow discovery into execution by exposing the full parameter shape of candidate tools.",
+          "purpose": "alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.",
           "parameters": [
             {
               "number": 1,
@@ -6550,7 +6550,7 @@
         },
         {
           "name": "alphavantage_TOOL_LIST",
-          "purpose": "alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.\n\nIn practice, it should be used first to understand the available capability surface, then followed by `TOOL_GET` to retrieve the full schema for a chosen tool.",
+          "purpose": "alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.",
           "parameters": [],
           "examples": [
             {

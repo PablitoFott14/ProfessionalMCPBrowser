@@ -3,8 +3,6 @@
 ### What this tool is for
 akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.
 
-In practice, it can help add behavioral context around management or insider transactions before looking deeper into price action or fundamentals.
-
 ---
 
 ### Used parameters

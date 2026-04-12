@@ -3,8 +3,6 @@
 ### What this tool is for
 akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.
 
-In practice, it helps answer questions about cash generation quality, capital spending, and whether reported earnings are being supported by actual cash flow.
-
 ---
 
 ### Used parameters

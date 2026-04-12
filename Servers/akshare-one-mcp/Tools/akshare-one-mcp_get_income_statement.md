@@ -3,8 +3,6 @@
 ### What this tool is for
 akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.
 
-In practice, it helps answer questions about earnings trends, margin behavior, and whether the company is improving or weakening operationally.
-
 ---
 
 ### Used parameters

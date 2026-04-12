@@ -244,9 +244,24 @@ body{
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .tc-foot{
-  display:flex;align-items:center;gap:7px;margin-top:7px;
+  display:flex;align-items:center;gap:7px;margin-top:7px;flex-wrap:wrap;
 }
 .tc-counts{font-size:10.5px;color:var(--text-faint)}
+.domain-pill{
+  display:inline-flex;align-items:center;
+  padding:2px 8px;border-radius:999px;
+  border:1px solid var(--border-md);
+  background:var(--surface);
+  color:var(--text-dim);
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.domain-pill.inline{font-size:9.5px;padding:2px 7px}
+.tc-meta{
+  display:flex;align-items:center;gap:8px;
+  padding-top:13px;
+}
 
 .tc-side{
   display:flex;flex-direction:column;align-items:center;
@@ -284,7 +299,7 @@ body{
 .tool-card.open .tc-body-inner{opacity:1}
 
 .tc-purpose{
-  padding:13px 0 15px;
+  padding:11px 0 15px;
   font-size:12.5px;color:var(--text-dim);line-height:1.75;
   white-space:pre-line;
 }
@@ -418,21 +433,43 @@ body{
 
 <script>
 /* ── SERVER COLOUR CONFIG ─────────────────────────────────── */
-const SRV = {
-  'TwelveData':         {color:'#8b5cf6',light:'#a78bfa',bg:'rgba(139,92,246,.1)'},
-  'alpaca':             {color:'#f59e0b',light:'#fbbf24',bg:'rgba(245,158,11,.09)'},
-  'financial-datasets': {color:'#10b981',light:'#34d399',bg:'rgba(16,185,129,.09)'},
-};
-function sc(n){return SRV[n]||{color:'#6366f1',light:'#818cf8',bg:'rgba(99,102,241,.1)'}}
+const DEFAULT_SERVER_COLORS = ['#8b5cf6','#f59e0b','#10b981','#ef4444','#06b6d4','#ec4899','#f97316','#84cc16','#14b8a6','#3b82f6'];
+function hashName(s){
+  let h = 0;
+  for(const ch of String(s)) h = ((h << 5) - h) + ch.charCodeAt(0);
+  return Math.abs(h);
+}
+function fallbackServerColor(name){
+  return DEFAULT_SERVER_COLORS[hashName(name) % DEFAULT_SERVER_COLORS.length];
+}
+function hexToRgb(hex){
+  const clean = String(hex).replace('#','').trim();
+  if(clean.length !== 6) return null;
+  const n = Number.parseInt(clean, 16);
+  if(Number.isNaN(n)) return null;
+  return {r:(n >> 16) & 255, g:(n >> 8) & 255, b:n & 255};
+}
+function rgba(hex, alpha){
+  const rgb = hexToRgb(hex);
+  return rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})` : `rgba(99,102,241,${alpha})`;
+}
+function sc(n){
+  const color = S.meta?.servers?.[n]?.color || fallbackServerColor(n);
+  return {color, light:color, bg:rgba(color,.12)};
+}
 
 /* ── STATE ────────────────────────────────────────────────── */
-const S = {data:null,status:{},search:'',filter:null,expanded:new Set()};
+const S = {data:null,status:{},meta:{servers:{},tools:{}},search:'',filter:null,expanded:new Set()};
 
 function getStatus(sname,tname){
   const s = (S.status[sname]?.[tname]) || 'active';
   if(s==='active')     return {cls:'green',  label:'Active'};
   if(s==='restricted') return {cls:'yellow', label:'Restricted'};
   return                      {cls:'red',    label:'Inactive'};
+}
+
+function getToolDomain(sname,tname){
+  return S.meta?.tools?.[tname]?.domain || S.meta?.servers?.[sname]?.domain || 'Unassigned';
 }
 
 /* ── FUSE ─────────────────────────────────────────────────── */
@@ -602,6 +639,7 @@ function renderPaths(md){
 function renderCard(srv,tool){
   const c=sc(srv.name);
   const st=getStatus(srv.name,tool.name);
+  const domain=getToolDomain(srv.name,tool.name);
   const open=S.expanded.has(`${srv.name}::${tool.name}`);
   const desc=tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,110);
   const np=tool.parameters.length, ne=tool.examples.length;
@@ -615,6 +653,7 @@ function renderCard(srv,tool){
         <div class="tc-name">${esc(tool.name)}</div>
         <div class="tc-desc">${esc(desc)}</div>
         <div class="tc-foot">
+          <span class="domain-pill inline">${esc(domain)}</span>
           <span class="tc-counts">${np} param${np!==1?'s':''} · ${ne} example${ne!==1?'s':''}</span>
         </div>
       </div>
@@ -625,6 +664,9 @@ function renderCard(srv,tool){
     </div>
     <div class="tc-body">
       <div class="tc-body-inner">
+        <div class="tc-meta">
+          <span class="domain-pill">${esc(domain)}</span>
+        </div>
         <div class="tc-purpose">${esc(tool.purpose)}</div>
         <div class="s-label">Parameters</div>
         ${renderParams(tool.parameters)}
@@ -793,8 +835,8 @@ async function load(url){
 
 (async()=>{
   try{
-    const [data,status]=await Promise.all([load('tools-data.json'),load('tools-status.json')]);
-    S.data=data; S.status=status;
+    const [data,status,meta]=await Promise.all([load('tools-data.json'),load('tools-status.json'),load('tools-metadata.json')]);
+    S.data=data; S.status=status; S.meta=meta;
     initFuse(); render();
   }catch(e){
     document.getElementById('content').innerHTML=`<div class="empty" style="display:flex">

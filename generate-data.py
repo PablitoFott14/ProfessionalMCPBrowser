@@ -7,6 +7,7 @@ import os, json, re, sys
 
 SERVERS_DIR = os.path.join(os.path.dirname(__file__), 'Servers')
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), 'tools-data.json')
+METADATA_FILE = os.path.join(os.path.dirname(__file__), 'tools-metadata.json')
 
 # Servers whose tools expect parameters nested inside a "params" object
 PARAMS_WRAPPED_SERVERS = {'TwelveData'}
@@ -81,6 +82,11 @@ def parse_intro(filepath):
 
 
 STATUS_FILE = os.path.join(os.path.dirname(__file__), 'tools-status.json')
+SERVER_COLOR_PALETTE = [
+    '#8b5cf6', '#f59e0b', '#10b981', '#ef4444', '#06b6d4',
+    '#ec4899', '#f97316', '#84cc16', '#14b8a6', '#3b82f6',
+    '#eab308', '#22c55e', '#a855f7', '#f43f5e', '#0ea5e9',
+]
 
 
 def update_status(data):
@@ -101,6 +107,60 @@ def update_status(data):
     with open(STATUS_FILE, 'w', encoding='utf-8') as f:
         json.dump(existing, f, indent=2, ensure_ascii=False)
     print(f"Updated tools-status.json")
+
+
+def next_server_color(used_colors, server_count):
+    for color in SERVER_COLOR_PALETTE:
+        if color not in used_colors:
+            used_colors.add(color)
+            return color
+    color = SERVER_COLOR_PALETTE[server_count % len(SERVER_COLOR_PALETTE)]
+    used_colors.add(color)
+    return color
+
+
+def update_metadata(data):
+    """Merge new servers/tools into tools-metadata.json without overwriting existing labels."""
+    existing = {'servers': {}, 'tools': {}}
+    if os.path.exists(METADATA_FILE):
+        try:
+            with open(METADATA_FILE, encoding='utf-8') as f:
+                loaded = json.load(f)
+                if isinstance(loaded, dict):
+                    existing['servers'] = loaded.get('servers', {}) or {}
+                    existing['tools'] = loaded.get('tools', {}) or {}
+        except Exception:
+            pass
+
+    used_colors = {
+        meta.get('color')
+        for meta in existing['servers'].values()
+        if isinstance(meta, dict) and meta.get('color')
+    }
+
+    for idx, s in enumerate(data['servers']):
+        if s['name'] not in existing['servers']:
+            existing['servers'][s['name']] = {
+                'color': next_server_color(used_colors, idx),
+                'domain': 'General',
+            }
+        else:
+            meta = existing['servers'][s['name']]
+            if not meta.get('color'):
+                meta['color'] = next_server_color(used_colors, idx)
+            if not meta.get('domain'):
+                meta['domain'] = 'General'
+
+        server_domain = existing['servers'][s['name']].get('domain', 'General')
+        for t in s['tools']:
+            if t['name'] not in existing['tools']:
+                existing['tools'][t['name']] = {'domain': server_domain}
+            elif not existing['tools'][t['name']].get('domain'):
+                existing['tools'][t['name']]['domain'] = server_domain
+
+    with open(METADATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(existing, f, indent=2, ensure_ascii=False)
+    print("Updated tools-metadata.json")
 
 
 def generate():
@@ -124,6 +184,7 @@ def generate():
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     update_status(data)
+    update_metadata(data)
     total = sum(len(s['tools']) for s in data['servers'])
     print(f"Generated tools-data.json — {len(data['servers'])} servers, {total} tools")
     for s in data['servers']:

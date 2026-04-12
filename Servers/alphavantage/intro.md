@@ -11,3 +11,7 @@ The alphavantage server is a schema-driven gateway for discovering, inspecting, 
 - **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.
 - **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.
 - **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.
+
+### Best practices
+- **Do not skip the schema step when the target tool is unfamiliar:** `TOOL_GET` reduces avoidable mistakes by confirming the exact input shape before execution.
+- **Use discovery progressively:** Start broad with `TOOL_LIST`, narrow with `TOOL_GET`, and only then move into `TOOL_CALL` once the correct Alpha Vantage endpoint is clear.

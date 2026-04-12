@@ -3,8 +3,6 @@
 ### What this tool is for
 alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.
 
-In practice, it is the execution step that turns discovery and schema inspection into a live request.
-
 ---
 
 ### Used parameters
