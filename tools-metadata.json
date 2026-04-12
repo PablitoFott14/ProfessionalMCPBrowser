@@ -43,6 +43,10 @@
     "octagon-mcp": {
       "color": "#eab308",
       "domain": "Finance"
+    },
+    "irs-taxpayer-mcp": {
+      "color": "#f43f5e",
+      "domain": "Legal"
     }
   }
 }

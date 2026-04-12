@@ -7278,6 +7278,3561 @@
       ]
     },
     {
+      "name": "irs-taxpayer-mcp",
+      "intro": "",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "irs-taxpayer-mcp_analyze_education_tax_benefits",
+          "purpose": "Compares education-related tax benefits such as the AOTC, Lifetime Learning Credit, student loan interest deduction, and 529 plan advantages. Use this when the user needs to evaluate which education tax benefits may be most favorable for their situation.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used in the analysis."
+            },
+            {
+              "number": 33,
+              "name": "agi",
+              "required": true,
+              "default": "No default",
+              "description": "Adjusted Gross Income used in the analysis."
+            },
+            {
+              "number": 78,
+              "name": "tuitionPaid",
+              "required": true,
+              "default": "No default",
+              "description": "Tuition and qualified education expenses paid."
+            },
+            {
+              "number": 79,
+              "name": "isUndergrad",
+              "required": true,
+              "default": "No default",
+              "description": "Flag indicating whether the student is in the first four years of undergraduate study."
+            },
+            {
+              "number": 80,
+              "name": "yearsAOTCClaimed",
+              "required": false,
+              "default": "No default",
+              "description": "Number of years the AOTC has already been claimed."
+            },
+            {
+              "number": 81,
+              "name": "studentLoanInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Student loan interest paid during the year."
+            },
+            {
+              "number": 82,
+              "name": "has529Plan",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is contributing to or using a 529 plan."
+            },
+            {
+              "number": 83,
+              "name": "contribution529",
+              "required": false,
+              "default": "No default",
+              "description": "Amount contributed to a 529 plan during the year."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare education tax benefits for an undergraduate student with tuition expenses",
+              "params": {
+                "filingStatus": "single",
+                "agi": 68000,
+                "tuitionPaid": 14000,
+                "isUndergrad": true,
+                "yearsAOTCClaimed": 1
+              }
+            },
+            {
+              "intent": "Compare education tax benefits for a graduate student with student loan interest and a 529 plan",
+              "params": {
+                "filingStatus": "married_filing_jointly",
+                "agi": 125000,
+                "tuitionPaid": 18000,
+                "isUndergrad": false,
+                "studentLoanInterest": 2200,
+                "has529Plan": true,
+                "contribution529": 5000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
+          "purpose": "Analyzes the tax benefit of mortgage interest and property taxes by comparing itemizing against the standard deduction. Use this when the user wants to understand whether homeownership-related deductions are providing a tax advantage.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the analysis."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the analysis."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Gross income used in the analysis."
+            },
+            {
+              "number": 30,
+              "name": "mortgageInterest",
+              "required": true,
+              "default": "No default",
+              "description": "Annual mortgage interest paid."
+            },
+            {
+              "number": 74,
+              "name": "propertyTaxes",
+              "required": true,
+              "default": "No default",
+              "description": "Annual property taxes paid."
+            },
+            {
+              "number": 75,
+              "name": "stateIncomeTaxes",
+              "required": false,
+              "default": "No default",
+              "description": "State or local income taxes paid."
+            },
+            {
+              "number": 32,
+              "name": "otherItemized",
+              "required": false,
+              "default": "No default",
+              "description": "Other itemized deductions included in the analysis."
+            },
+            {
+              "number": 76,
+              "name": "mortgageBalance",
+              "required": false,
+              "default": "No default",
+              "description": "Current mortgage balance."
+            },
+            {
+              "number": 77,
+              "name": "interestRate",
+              "required": false,
+              "default": "No default",
+              "description": "Mortgage interest rate."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze the tax benefit of itemizing for a single homeowner",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "grossIncome": 135000,
+                "mortgageInterest": 14000,
+                "propertyTaxes": 7000
+              }
+            },
+            {
+              "intent": "Analyze the tax benefit of a larger mortgage for a joint filer with additional itemized deductions",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 260000,
+                "mortgageInterest": 22000,
+                "propertyTaxes": 11000,
+                "stateIncomeTaxes": 9000,
+                "otherItemized": 4000,
+                "mortgageBalance": 420000,
+                "interestRate": 0.065
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_analyze_paycheck",
+          "purpose": "Analyzes a paycheck to assess withholding accuracy using pay stub figures. Use this when the user wants to check whether current federal and state withholding looks aligned with the pay period details.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the analysis."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the analysis."
+            },
+            {
+              "number": 22,
+              "name": "payFrequency",
+              "required": true,
+              "default": "No default",
+              "description": "Pay frequency for the paycheck being analyzed."
+            },
+            {
+              "number": 115,
+              "name": "grossPay",
+              "required": true,
+              "default": "No default",
+              "description": "Gross pay for the current pay period."
+            },
+            {
+              "number": 103,
+              "name": "federalWithheld",
+              "required": true,
+              "default": "No default",
+              "description": "Federal tax withheld for the current pay period."
+            },
+            {
+              "number": 104,
+              "name": "stateWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "State tax withheld for the current pay period."
+            },
+            {
+              "number": 116,
+              "name": "socialSecurityWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "Social Security tax withheld for the current pay period."
+            },
+            {
+              "number": 117,
+              "name": "medicareWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "Medicare tax withheld for the current pay period."
+            },
+            {
+              "number": 118,
+              "name": "retirement401k",
+              "required": false,
+              "default": "No default",
+              "description": "401(k) or 403(b) pre-tax contribution for the current pay period."
+            },
+            {
+              "number": 119,
+              "name": "hsaContribution",
+              "required": false,
+              "default": "No default",
+              "description": "HSA contribution for the current pay period."
+            },
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": false,
+              "default": "No default",
+              "description": "Two-letter state code for state withholding context."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze withholding for a biweekly paycheck",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "payFrequency": "biweekly",
+                "grossPay": 4200,
+                "federalWithheld": 540,
+                "socialSecurityWithheld": 260.4,
+                "medicareWithheld": 60.9
+              }
+            },
+            {
+              "intent": "Analyze a paycheck including state withholding and pre-tax contributions",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "payFrequency": "semimonthly",
+                "grossPay": 6800,
+                "federalWithheld": 710,
+                "stateWithheld": 260,
+                "socialSecurityWithheld": 421.6,
+                "medicareWithheld": 98.6,
+                "retirement401k": 400,
+                "hsaContribution": 150,
+                "stateCode": "CA"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_analyze_relocation_taxes",
+          "purpose": "Compares the tax impact of relocating from one state to another. Use this when the user wants a deeper state-to-state comparison that includes projected savings rather than a single-state estimate.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the relocation analysis."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the relocation analysis."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Annual gross income."
+            },
+            {
+              "number": 177,
+              "name": "fromState",
+              "required": true,
+              "default": "No default",
+              "description": "Current state code."
+            },
+            {
+              "number": 178,
+              "name": "toState",
+              "required": true,
+              "default": "No default",
+              "description": "Target state code."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income included in the comparison."
+            },
+            {
+              "number": 6,
+              "name": "capitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Capital gains included in the comparison."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of dependents included in the comparison."
+            },
+            {
+              "number": 179,
+              "name": "yearsToProject",
+              "required": false,
+              "default": "No default",
+              "description": "Number of years used to project savings."
+            },
+            {
+              "number": 180,
+              "name": "incomeGrowthRate",
+              "required": false,
+              "default": "No default",
+              "description": "Annual income growth rate used in the projection."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare relocating from California to Texas for a wage earner",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "grossIncome": 180000,
+                "fromState": "CA",
+                "toState": "TX",
+                "yearsToProject": 5,
+                "incomeGrowthRate": 0.03
+              }
+            },
+            {
+              "intent": "Compare relocating from New York to Florida for a joint filer with business income and dependents",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 260000,
+                "fromState": "NY",
+                "toState": "FL",
+                "selfEmploymentIncome": 90000,
+                "capitalGains": 20000,
+                "dependents": 2,
+                "yearsToProject": 7,
+                "incomeGrowthRate": 0.04
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_assess_audit_risk",
+          "purpose": "Evaluates an IRS audit-risk profile based on a taxpayer's return characteristics. Use this when the user wants to identify potential audit red flags, gauge relative risk, and review factors that may increase scrutiny.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used in the audit-risk profile."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Total gross income."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income."
+            },
+            {
+              "number": 133,
+              "name": "cashBusiness",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the business is cash-intensive."
+            },
+            {
+              "number": 134,
+              "name": "homeOfficeDeduction",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether a home office deduction is being claimed."
+            },
+            {
+              "number": 31,
+              "name": "charitableDonations",
+              "required": false,
+              "default": "No default",
+              "description": "Total charitable donations."
+            },
+            {
+              "number": 135,
+              "name": "charitableNonCash",
+              "required": false,
+              "default": "No default",
+              "description": "Non-cash charitable donations."
+            },
+            {
+              "number": 136,
+              "name": "businessMeals",
+              "required": false,
+              "default": "No default",
+              "description": "Business meal deductions."
+            },
+            {
+              "number": 137,
+              "name": "vehicleDeduction",
+              "required": false,
+              "default": "No default",
+              "description": "Vehicle or mileage deduction."
+            },
+            {
+              "number": 138,
+              "name": "rentalLosses",
+              "required": false,
+              "default": "No default",
+              "description": "Rental property losses claimed."
+            },
+            {
+              "number": 139,
+              "name": "cryptoTransactions",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer had cryptocurrency transactions."
+            },
+            {
+              "number": 140,
+              "name": "foreignAccounts",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has foreign bank accounts or assets."
+            },
+            {
+              "number": 141,
+              "name": "largeRefund",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer expects a very large refund."
+            },
+            {
+              "number": 142,
+              "name": "eitcClaimed",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is claiming EITC."
+            },
+            {
+              "number": 143,
+              "name": "roundNumbers",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether most deductions are reported as round numbers."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Assess audit risk for a self-employed taxpayer with several common review triggers",
+              "params": {
+                "filingStatus": "single",
+                "grossIncome": 145000,
+                "selfEmploymentIncome": 98000,
+                "cashBusiness": true,
+                "homeOfficeDeduction": true,
+                "businessMeals": 6200,
+                "vehicleDeduction": 8400,
+                "cryptoTransactions": true
+              }
+            },
+            {
+              "intent": "Assess audit risk for a joint filer with charitable deductions, rental losses, and foreign-account exposure",
+              "params": {
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 260000,
+                "charitableDonations": 18000,
+                "charitableNonCash": 6500,
+                "rentalLosses": 12000,
+                "foreignAccounts": true,
+                "largeRefund": true,
+                "roundNumbers": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_calculate_eitc",
+          "purpose": "Calculates the exact Earned Income Tax Credit amount. Use this when the user needs a specific EITC result rather than a broader credit eligibility screen.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the EITC calculation."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the EITC calculation."
+            },
+            {
+              "number": 51,
+              "name": "earnedIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Earned income used for the EITC calculation."
+            },
+            {
+              "number": 33,
+              "name": "agi",
+              "required": true,
+              "default": "No default",
+              "description": "Adjusted Gross Income used for the EITC calculation."
+            },
+            {
+              "number": 52,
+              "name": "qualifyingChildren",
+              "required": true,
+              "default": "No default",
+              "description": "Number of qualifying children used for the EITC calculation."
+            },
+            {
+              "number": 53,
+              "name": "investmentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Investment income used in EITC eligibility and amount calculation."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Calculate EITC for a single filer with no qualifying children",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "earnedIncome": 18000,
+                "agi": 18000,
+                "qualifyingChildren": 0
+              }
+            },
+            {
+              "intent": "Calculate EITC for a head of household filer with two qualifying children",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "head_of_household",
+                "earnedIncome": 32000,
+                "agi": 31500,
+                "qualifyingChildren": 2,
+                "investmentIncome": 500
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_calculate_federal_tax",
+          "purpose": "Calculates federal income tax for an individual taxpayer for TY2024 or TY2025. Use this when the user needs a local tax calculation that can incorporate filing status, income mix, deductions, credits, self-employment tax, capital gains, and related tax components.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the calculation."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the calculation."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Total gross income in USD."
+            },
+            {
+              "number": 4,
+              "name": "w2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 wage income."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income."
+            },
+            {
+              "number": 6,
+              "name": "capitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Long-term capital gains or losses."
+            },
+            {
+              "number": 7,
+              "name": "capitalGainsLongTerm",
+              "required": false,
+              "default": "true",
+              "description": "Flag indicating whether capital gains should be treated as long-term."
+            },
+            {
+              "number": 8,
+              "name": "shortTermCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Short-term capital gains taxed as ordinary income."
+            },
+            {
+              "number": 9,
+              "name": "qualifiedBusinessIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Qualified Business Income used for the Section 199A deduction."
+            },
+            {
+              "number": 10,
+              "name": "aboveTheLineDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Above-the-line deductions."
+            },
+            {
+              "number": 11,
+              "name": "itemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Itemized deductions used if greater than the standard deduction."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying child dependents."
+            },
+            {
+              "number": 13,
+              "name": "age65OrOlder",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is age 65 or older."
+            },
+            {
+              "number": 14,
+              "name": "blind",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is blind."
+            },
+            {
+              "number": 15,
+              "name": "isoExerciseSpread",
+              "required": false,
+              "default": "No default",
+              "description": "ISO exercise spread used for AMT calculation."
+            },
+            {
+              "number": 16,
+              "name": "stateTaxDeducted",
+              "required": false,
+              "default": "No default",
+              "description": "State or local taxes included in itemized deductions for AMT-related calculation."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Calculate federal tax for a single W-2 taxpayer in 2024",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "grossIncome": 95000,
+                "w2Income": 95000
+              }
+            },
+            {
+              "intent": "Calculate federal tax for a married joint filer with self-employment income, qualified business income, and capital gains in 2025",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 260000,
+                "selfEmploymentIncome": 180000,
+                "capitalGains": 20000,
+                "qualifiedBusinessIncome": 180000,
+                "aboveTheLineDeductions": 6000,
+                "dependents": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_calculate_obbb_deductions",
+          "purpose": "Calculates OBBB deductions for TY2025 and later, including tips income, overtime pay, senior bonus, and auto loan interest deductions. Use this when the user needs to see which of the new OBBB deductions may apply and how much tax savings they may generate.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the calculation."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the calculation."
+            },
+            {
+              "number": 33,
+              "name": "agi",
+              "required": true,
+              "default": "No default",
+              "description": "Adjusted Gross Income used to evaluate OBBB deduction eligibility."
+            },
+            {
+              "number": 90,
+              "name": "age",
+              "required": false,
+              "default": "No default",
+              "description": "Taxpayer age used for senior bonus analysis."
+            },
+            {
+              "number": 91,
+              "name": "spouseAge",
+              "required": false,
+              "default": "No default",
+              "description": "Spouse age used for senior bonus analysis when filing jointly."
+            },
+            {
+              "number": 92,
+              "name": "tipIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Annual tip income from a qualifying occupation."
+            },
+            {
+              "number": 93,
+              "name": "overtimePay",
+              "required": false,
+              "default": "No default",
+              "description": "Annual overtime premium pay."
+            },
+            {
+              "number": 94,
+              "name": "autoLoanInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Interest paid on a qualifying auto loan."
+            },
+            {
+              "number": 95,
+              "name": "marginalRate",
+              "required": false,
+              "default": "No default",
+              "description": "Marginal tax rate used for tax savings estimates."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check which OBBB deductions may apply for a single taxpayer with tip income",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "agi": 72000,
+                "age": 34,
+                "tipIncome": 18000,
+                "marginalRate": 0.22
+              }
+            },
+            {
+              "intent": "Estimate OBBB deductions for a joint filer with senior bonus, overtime pay, and auto loan interest",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "agi": 145000,
+                "age": 67,
+                "spouseAge": 65,
+                "overtimePay": 9000,
+                "autoLoanInterest": 2400,
+                "marginalRate": 0.24
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_calculate_total_tax",
+          "purpose": "Calculates combined federal and state tax liability in one call. Use this when the user needs a more complete tax picture that includes both the federal breakdown and the tax impact of a specific state.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the calculation."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the calculation."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Total gross income in USD."
+            },
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": true,
+              "default": "No default",
+              "description": "Two-letter state code used for the state tax calculation."
+            },
+            {
+              "number": 4,
+              "name": "w2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 wage income."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income."
+            },
+            {
+              "number": 6,
+              "name": "capitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Long-term capital gains."
+            },
+            {
+              "number": 7,
+              "name": "capitalGainsLongTerm",
+              "required": false,
+              "default": "true",
+              "description": "Flag indicating whether capital gains should be treated as long-term."
+            },
+            {
+              "number": 9,
+              "name": "qualifiedBusinessIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Qualified Business Income used for the Section 199A deduction."
+            },
+            {
+              "number": 10,
+              "name": "aboveTheLineDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Above-the-line deductions."
+            },
+            {
+              "number": 11,
+              "name": "itemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Total itemized deductions."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying child dependents."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Calculate combined federal and California tax for a single wage earner",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "grossIncome": 110000,
+                "stateCode": "CA",
+                "w2Income": 110000
+              }
+            },
+            {
+              "intent": "Calculate combined federal and New York tax for a joint filer with business income and dependents",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 240000,
+                "stateCode": "NY",
+                "selfEmploymentIncome": 150000,
+                "qualifiedBusinessIncome": 150000,
+                "aboveTheLineDeductions": 5000,
+                "dependents": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_calculate_w4_withholding",
+          "purpose": "Calculates recommended W-4 withholding settings and estimates per-paycheck federal withholding. Use this when the user wants guidance on paycheck withholding configuration rather than an annual tax liability result alone.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the withholding estimate."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the withholding estimate."
+            },
+            {
+              "number": 21,
+              "name": "annualSalary",
+              "required": true,
+              "default": "No default",
+              "description": "Annual salary from the job used for the withholding estimate."
+            },
+            {
+              "number": 22,
+              "name": "payFrequency",
+              "required": true,
+              "default": "No default",
+              "description": "Pay frequency used to estimate per-paycheck withholding."
+            },
+            {
+              "number": 23,
+              "name": "otherIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Other annual income included in the estimate."
+            },
+            {
+              "number": 24,
+              "name": "deductions",
+              "required": false,
+              "default": "No default",
+              "description": "Expected deductions used in the estimate if greater than the standard deduction."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying child dependents."
+            },
+            {
+              "number": 25,
+              "name": "spouseWorks",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer's spouse also works."
+            },
+            {
+              "number": 26,
+              "name": "multipleJobs",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer holds multiple jobs simultaneously."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Estimate W-4 withholding for a single salaried employee paid biweekly",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "annualSalary": 90000,
+                "payFrequency": "biweekly"
+              }
+            },
+            {
+              "intent": "Estimate W-4 settings for a joint filer with dependents, other income, and a working spouse",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "annualSalary": 130000,
+                "payFrequency": "semimonthly",
+                "otherIncome": 12000,
+                "dependents": 2,
+                "spouseWorks": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_check_credit_eligibility",
+          "purpose": "Checks which federal tax credits a taxpayer may be eligible for based on their situation. Use this when the user needs an eligibility screen across possible credits before looking at a specific credit in detail.",
+          "parameters": [
+            {
+              "number": 33,
+              "name": "agi",
+              "required": true,
+              "default": "No default",
+              "description": "Adjusted Gross Income used in the eligibility screening."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used in the eligibility screening."
+            },
+            {
+              "number": 37,
+              "name": "hasChildren",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has qualifying children under 17."
+            },
+            {
+              "number": 38,
+              "name": "numChildren",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying children used in the screening."
+            },
+            {
+              "number": 39,
+              "name": "hasChildcare",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer pays for childcare to work."
+            },
+            {
+              "number": 40,
+              "name": "isStudent",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is enrolled in post-secondary education."
+            },
+            {
+              "number": 41,
+              "name": "hasStudentLoans",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer pays student loan interest."
+            },
+            {
+              "number": 42,
+              "name": "boughtEV",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer bought an electric vehicle this year."
+            },
+            {
+              "number": 43,
+              "name": "madeHomeImprovements",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer made energy-efficient home improvements."
+            },
+            {
+              "number": 44,
+              "name": "installedSolar",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer installed solar or renewable energy."
+            },
+            {
+              "number": 45,
+              "name": "hasRetirementContributions",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer made retirement contributions."
+            },
+            {
+              "number": 46,
+              "name": "hasMarketplaceInsurance",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer bought insurance through the ACA marketplace."
+            },
+            {
+              "number": 47,
+              "name": "hasEarnedIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has earned income from work."
+            },
+            {
+              "number": 48,
+              "name": "paidForeignTax",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer paid income tax to a foreign country."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check likely credit eligibility for a single parent with children and childcare costs",
+              "params": {
+                "agi": 52000,
+                "filingStatus": "head_of_household",
+                "hasChildren": true,
+                "numChildren": 2,
+                "hasChildcare": true,
+                "hasEarnedIncome": true
+              }
+            },
+            {
+              "intent": "Check likely credit eligibility for a taxpayer with education, EV, and retirement-related factors",
+              "params": {
+                "agi": 78000,
+                "filingStatus": "single",
+                "isStudent": true,
+                "hasStudentLoans": true,
+                "boughtEV": true,
+                "hasRetirementContributions": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_check_refund_status",
+          "purpose": "Provides instructions for checking IRS refund status, including the official path and required information. Use this when the user needs guidance on how to check refund status rather than account access or direct refund data.",
+          "parameters": [
+            {
+              "number": 34,
+              "name": "filedElectronically",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the return was e-filed."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get refund status instructions for an electronically filed return",
+              "params": {
+                "filedElectronically": true
+              }
+            },
+            {
+              "intent": "Get general IRS refund status instructions",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_compare_filing_statuses",
+          "purpose": "Compares federal tax liability across filing statuses for the same income profile. Use this when the user wants to see how tax outcomes differ by filing status without manually recalculating each case.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the comparison."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Total gross income used across the compared filing statuses."
+            },
+            {
+              "number": 11,
+              "name": "itemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Itemized deductions applied in the comparison if applicable."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying dependents used in the comparison."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare filing statuses for a taxpayer with moderate income",
+              "params": {
+                "taxYear": 2024,
+                "grossIncome": 85000
+              }
+            },
+            {
+              "intent": "Compare filing statuses for a taxpayer with itemized deductions and dependents",
+              "params": {
+                "taxYear": 2025,
+                "grossIncome": 140000,
+                "itemizedDeductions": 18000,
+                "dependents": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
+          "purpose": "Compares Married Filing Jointly against Married Filing Separately and highlights the tax difference along with MFS restrictions that may matter. Use this when the user needs a filing-status decision specifically for married taxpayers.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the comparison."
+            },
+            {
+              "number": 84,
+              "name": "spouse1Income",
+              "required": true,
+              "default": "No default",
+              "description": "Gross income for spouse 1."
+            },
+            {
+              "number": 85,
+              "name": "spouse2Income",
+              "required": true,
+              "default": "No default",
+              "description": "Gross income for spouse 2."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying children used in the comparison."
+            },
+            {
+              "number": 11,
+              "name": "itemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Total itemized deductions used in the comparison."
+            },
+            {
+              "number": 86,
+              "name": "studentLoanInterestFlag",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether either spouse is paying student loan interest."
+            },
+            {
+              "number": 87,
+              "name": "hasEducationCredits",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether either spouse is claiming education credits."
+            },
+            {
+              "number": 88,
+              "name": "hasEITC",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether either spouse would qualify for the EITC."
+            },
+            {
+              "number": 89,
+              "name": "hasIRAContributions",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether either spouse is contributing to an IRA."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare MFJ and MFS for a married couple with straightforward income",
+              "params": {
+                "taxYear": 2024,
+                "spouse1Income": 90000,
+                "spouse2Income": 55000
+              }
+            },
+            {
+              "intent": "Compare MFJ and MFS for a married couple with children, itemized deductions, and education-related restrictions",
+              "params": {
+                "taxYear": 2025,
+                "spouse1Income": 140000,
+                "spouse2Income": 60000,
+                "dependents": 2,
+                "itemizedDeductions": 22000,
+                "studentLoanInterest": true,
+                "hasEducationCredits": true,
+                "hasIRAContributions": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_compare_state_taxes",
+          "purpose": "Compares state income tax across multiple states for the same taxable income. Use this when the user needs a location-based comparison rather than a single-state estimate.",
+          "parameters": [
+            {
+              "number": 55,
+              "name": "states",
+              "required": true,
+              "default": "No default",
+              "description": "List of state codes used in the comparison."
+            },
+            {
+              "number": 54,
+              "name": "taxableIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Taxable income used across the state comparison."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare state taxes across several common relocation states",
+              "params": {
+                "states": [
+                  "CA",
+                  "TX",
+                  "WA",
+                  "NY"
+                ],
+                "taxableIncome": 120000
+              }
+            },
+            {
+              "intent": "Compare state taxes across northeastern states for the same income",
+              "params": {
+                "states": [
+                  "NY",
+                  "NJ",
+                  "MA",
+                  "CT"
+                ],
+                "taxableIncome": 185000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_compare_tax_years",
+          "purpose": "Compares tax liability across tax years for the same income profile. Use this when the user wants to see how bracket changes and inflation adjustments affect tax outcomes over time.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used across the year comparison."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Gross income used across the compared tax years."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income included in the comparison."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying dependents used in the comparison."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare tax years for a single filer with wage income only",
+              "params": {
+                "filingStatus": "single",
+                "grossIncome": 95000
+              }
+            },
+            {
+              "intent": "Compare tax years for a head of household filer with self-employment income and dependents",
+              "params": {
+                "filingStatus": "head_of_household",
+                "grossIncome": 130000,
+                "selfEmploymentIncome": 40000,
+                "dependents": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_estimate_quarterly_tax",
+          "purpose": "Estimates quarterly federal tax payments for taxpayers who need to make estimated payments. Use this when the user needs a projected quarterly payment schedule based on expected annual income, self-employment income, withholding, and credits.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the estimate."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the estimate."
+            },
+            {
+              "number": 17,
+              "name": "expectedAnnualIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Expected total annual income used for the estimate."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Expected self-employment income included in the estimate."
+            },
+            {
+              "number": 18,
+              "name": "w2Withholding",
+              "required": false,
+              "default": "No default",
+              "description": "Expected W-2 withholding for the year."
+            },
+            {
+              "number": 19,
+              "name": "otherCredits",
+              "required": false,
+              "default": "No default",
+              "description": "Expected other tax credits used in the estimate."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Estimate quarterly taxes for a self-employed single filer",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "expectedAnnualIncome": 120000,
+                "selfEmploymentIncome": 120000
+              }
+            },
+            {
+              "intent": "Estimate quarterly taxes for a joint filer with withholding and credits",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "expectedAnnualIncome": 210000,
+                "selfEmploymentIncome": 90000,
+                "w2Withholding": 18000,
+                "otherCredits": 2000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_estimate_self_employment_tax",
+          "purpose": "Provides a detailed self-employment tax estimate, including Schedule C profit, self-employment tax, QBI deduction, and recommended quarterly payments. Use this when the user needs a business-income-focused estimate rather than a general tax calculation.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the estimate."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the estimate."
+            },
+            {
+              "number": 69,
+              "name": "grossRevenue",
+              "required": true,
+              "default": "No default",
+              "description": "Total business revenue used for the estimate."
+            },
+            {
+              "number": 70,
+              "name": "businessExpenses",
+              "required": true,
+              "default": "No default",
+              "description": "Total business expenses used for the estimate."
+            },
+            {
+              "number": 71,
+              "name": "otherW2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 income from other jobs."
+            },
+            {
+              "number": 72,
+              "name": "retirementContributions",
+              "required": false,
+              "default": "No default",
+              "description": "SEP IRA or Solo 401(k) contributions included in the estimate."
+            },
+            {
+              "number": 73,
+              "name": "healthInsurancePremiums",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employed health insurance premiums included in the estimate."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of qualifying dependents used in the estimate."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Estimate self-employment tax for a single filer with Schedule C income only",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "grossRevenue": 140000,
+                "businessExpenses": 35000
+              }
+            },
+            {
+              "intent": "Estimate self-employment tax for a joint filer with business income, W-2 income, and retirement contributions",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossRevenue": 220000,
+                "businessExpenses": 70000,
+                "otherW2Income": 45000,
+                "retirementContributions": 18000,
+                "healthInsurancePremiums": 9000,
+                "dependents": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_estimate_state_tax",
+          "purpose": "Estimates state income tax for a given state and taxable income using simplified state brackets. Use this when the user needs a state-only estimate rather than combined federal and state tax results.",
+          "parameters": [
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": true,
+              "default": "No default",
+              "description": "Two-letter state code used for the estimate."
+            },
+            {
+              "number": 54,
+              "name": "taxableIncome",
+              "required": true,
+              "default": "No default",
+              "description": "State taxable income used for the estimate."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": false,
+              "default": "single",
+              "description": "Filing status used for the state tax estimate."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Estimate California state income tax for a single filer",
+              "params": {
+                "stateCode": "CA",
+                "taxableIncome": 85000
+              }
+            },
+            {
+              "intent": "Estimate New York state income tax for a married filer",
+              "params": {
+                "stateCode": "NY",
+                "taxableIncome": 145000,
+                "filingStatus": "married"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_generate_full_tax_report",
+          "purpose": "Generates a full tax estimate report that combines federal tax, state tax, FICA, credits, deductions, withholding, and payment information into one summary. Use this when the user wants a broad end-to-end estimate rather than a focused calculation on a single tax area.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the report."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the report."
+            },
+            {
+              "number": 4,
+              "name": "w2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 wages."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment net profit."
+            },
+            {
+              "number": 98,
+              "name": "interestIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Interest income."
+            },
+            {
+              "number": 99,
+              "name": "dividendIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Ordinary dividend income."
+            },
+            {
+              "number": 100,
+              "name": "qualifiedDividends",
+              "required": false,
+              "default": "No default",
+              "description": "Qualified dividends."
+            },
+            {
+              "number": 101,
+              "name": "longTermCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Long-term capital gains or losses."
+            },
+            {
+              "number": 8,
+              "name": "shortTermCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Short-term capital gains or losses."
+            },
+            {
+              "number": 23,
+              "name": "otherIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Other income."
+            },
+            {
+              "number": 10,
+              "name": "aboveTheLineDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Above-the-line deductions."
+            },
+            {
+              "number": 30,
+              "name": "mortgageInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Mortgage interest."
+            },
+            {
+              "number": 102,
+              "name": "stateLocalTaxesPaid",
+              "required": false,
+              "default": "No default",
+              "description": "State, local, or property taxes paid."
+            },
+            {
+              "number": 31,
+              "name": "charitableDonations",
+              "required": false,
+              "default": "No default",
+              "description": "Charitable contributions."
+            },
+            {
+              "number": 28,
+              "name": "medicalExpenses",
+              "required": false,
+              "default": "No default",
+              "description": "Unreimbursed medical expenses."
+            },
+            {
+              "number": 32,
+              "name": "otherItemized",
+              "required": false,
+              "default": "No default",
+              "description": "Other itemized deductions."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Qualifying children under 17."
+            },
+            {
+              "number": 9,
+              "name": "qualifiedBusinessIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Qualified Business Income used for the Section 199A deduction."
+            },
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": false,
+              "default": "No default",
+              "description": "State code used for the state tax estimate."
+            },
+            {
+              "number": 103,
+              "name": "federalWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "Federal tax already withheld year to date."
+            },
+            {
+              "number": 104,
+              "name": "stateWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "State tax already withheld year to date."
+            },
+            {
+              "number": 105,
+              "name": "estimatedPaymentsMade",
+              "required": false,
+              "default": "No default",
+              "description": "Estimated tax payments already made."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Generate a full tax estimate report for a single wage earner with investment income",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "w2Income": 125000,
+                "interestIncome": 1200,
+                "dividendIncome": 1800,
+                "qualifiedDividends": 1200,
+                "stateCode": "CA",
+                "federalWithheld": 22000,
+                "stateWithheld": 6500
+              }
+            },
+            {
+              "intent": "Generate a full tax estimate report for a joint filer with business income, deductions, and estimated payments",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "w2Income": 90000,
+                "selfEmploymentIncome": 70000,
+                "longTermCapitalGains": 15000,
+                "aboveTheLineDeductions": 7000,
+                "mortgageInterest": 16000,
+                "stateLocalTaxesPaid": 12000,
+                "charitableDonations": 3000,
+                "dependents": 2,
+                "qualifiedBusinessIncome": 70000,
+                "stateCode": "NY",
+                "federalWithheld": 18000,
+                "stateWithheld": 5000,
+                "estimatedPaymentsMade": 6000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_form_filing_guide",
+          "purpose": "Provides a step-by-step guide for completing a specific IRS form or schedule. Use this when the user needs form-by-form filing guidance rather than a short form summary.",
+          "parameters": [
+            {
+              "number": 35,
+              "name": "formNumber",
+              "required": true,
+              "default": "No default",
+              "description": "IRS form or schedule to explain."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get a filing guide for Form 1040",
+              "params": {
+                "formNumber": "1040"
+              }
+            },
+            {
+              "intent": "Get a filing guide for Schedule C",
+              "params": {
+                "formNumber": "Schedule C"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_irs_form_info",
+          "purpose": "Returns information about common IRS tax forms, including what they are, who typically needs them, and where to find them. Use this when the user needs form guidance rather than a tax calculation.",
+          "parameters": [
+            {
+              "number": 35,
+              "name": "formNumber",
+              "required": true,
+              "default": "No default",
+              "description": "IRS form number used to look up the form information."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get information about Form 1040",
+              "params": {
+                "formNumber": "1040"
+              }
+            },
+            {
+              "intent": "Get information about Schedule C",
+              "params": {
+                "formNumber": "Schedule C"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_personalized_tax_calendar",
+          "purpose": "Generates a personalized tax calendar based on the taxpayer's situation. Use this when the user needs a tailored schedule of deadlines, estimated payments, extensions, and other tax-related actions.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the calendar."
+            },
+            {
+              "number": 67,
+              "name": "isSelfEmployed",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has self-employment income."
+            },
+            {
+              "number": 111,
+              "name": "filedExtension",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer filed an extension."
+            },
+            {
+              "number": 112,
+              "name": "hasEmployer",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has W-2 employment."
+            },
+            {
+              "number": 113,
+              "name": "hasInvestments",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has investment accounts."
+            },
+            {
+              "number": 114,
+              "name": "hasRentalIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has rental property income."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Generate a basic personalized tax calendar for a wage earner",
+              "params": {
+                "taxYear": 2025,
+                "hasEmployer": true
+              }
+            },
+            {
+              "intent": "Generate a personalized tax calendar for a self-employed taxpayer with investments and a filed extension",
+              "params": {
+                "taxYear": 2025,
+                "isSelfEmployed": true,
+                "filedExtension": true,
+                "hasInvestments": true,
+                "hasRentalIncome": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_retirement_accounts",
+          "purpose": "Returns details on retirement account types, including contribution limits, tax treatment, income limits, and related guidance. Use this when the user needs account-type reference information rather than a tax calculation.",
+          "parameters": [
+            {
+              "number": 49,
+              "name": "accountType",
+              "required": false,
+              "default": "No default",
+              "description": "Specific retirement account type used to narrow the returned information."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List retirement account details across available account types",
+              "params": {}
+            },
+            {
+              "intent": "Get details for a Roth IRA",
+              "params": {
+                "accountType": "roth_ira"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_retirement_strategy",
+          "purpose": "Returns detailed information on tax-advantaged retirement strategies. Use this when the user needs strategy-level guidance rather than account-type reference information or a direct tax calculation.",
+          "parameters": [
+            {
+              "number": 50,
+              "name": "strategyId",
+              "required": false,
+              "default": "No default",
+              "description": "Specific retirement strategy identifier used to narrow the returned information."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List available tax-advantaged retirement strategies",
+              "params": {}
+            },
+            {
+              "intent": "Get details for the Backdoor Roth strategy",
+              "params": {
+                "strategyId": "backdoor_roth"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_state_tax_info",
+          "purpose": "Returns state income tax information, including rates, brackets, and key details for a given US state. Use this when the user needs state tax reference information rather than a combined tax calculation.",
+          "parameters": [
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": true,
+              "default": "No default",
+              "description": "Two-letter state code used to retrieve the state tax information."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get state income tax information for California",
+              "params": {
+                "stateCode": "CA"
+              }
+            },
+            {
+              "intent": "Get state income tax information for Texas",
+              "params": {
+                "stateCode": "TX"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_tax_brackets",
+          "purpose": "Returns federal income tax brackets and the standard deduction for a given tax year and filing status. Use this when the user needs the baseline tax schedule inputs without running a full tax calculation.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used to retrieve the bracket schedule."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used to retrieve the bracket schedule."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve 2024 tax brackets for a single filer",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single"
+              }
+            },
+            {
+              "intent": "Retrieve 2025 tax brackets for a head of household filer",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "head_of_household"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_tax_deadlines",
+          "purpose": "Returns important IRS tax deadlines and due dates for a given tax year. Use this when the user needs a deadline reference rather than a tax calculation or deduction analysis.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": false,
+              "default": "2025",
+              "description": "Tax year used to retrieve the relevant IRS deadlines."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get IRS tax deadlines for the default tax year",
+              "params": {}
+            },
+            {
+              "intent": "Get IRS tax deadlines for 2024",
+              "params": {
+                "taxYear": 2024
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_tax_document_checklist",
+          "purpose": "Generates a personalized checklist of tax documents to gather before filing. Use this when the user wants a filing-prep checklist based on income sources, deductions, credits, and major life events.",
+          "parameters": [
+            {
+              "number": 144,
+              "name": "hasW2",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has W-2 employment."
+            },
+            {
+              "number": 145,
+              "name": "hasSelfEmployment",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has self-employment or freelance income."
+            },
+            {
+              "number": 113,
+              "name": "hasInvestments",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has investment accounts."
+            },
+            {
+              "number": 146,
+              "name": "hasRentalProperty",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer owns rental property."
+            },
+            {
+              "number": 62,
+              "name": "hasMortgage",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has a mortgage."
+            },
+            {
+              "number": 41,
+              "name": "hasStudentLoans",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer pays student loan interest."
+            },
+            {
+              "number": 37,
+              "name": "hasChildren",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has dependent children."
+            },
+            {
+              "number": 39,
+              "name": "hasChildcare",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer pays for childcare."
+            },
+            {
+              "number": 147,
+              "name": "hasEducationExpenses",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has tuition or other education expenses."
+            },
+            {
+              "number": 148,
+              "name": "hasHealthInsurance",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has health insurance relevant to tax filing."
+            },
+            {
+              "number": 60,
+              "name": "hasHSA",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has an HSA-eligible account or plan context."
+            },
+            {
+              "number": 45,
+              "name": "hasRetirementContributions",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer made retirement contributions."
+            },
+            {
+              "number": 149,
+              "name": "hasCharitableDonations",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer made charitable donations."
+            },
+            {
+              "number": 150,
+              "name": "hasForeignAccounts",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has foreign bank accounts or foreign income."
+            },
+            {
+              "number": 151,
+              "name": "soldHome",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer sold a home during the year."
+            },
+            {
+              "number": 152,
+              "name": "gotMarried",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer got married during the year."
+            },
+            {
+              "number": 153,
+              "name": "gotDivorced",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer got divorced during the year."
+            },
+            {
+              "number": 154,
+              "name": "hadBaby",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer had a baby during the year."
+            },
+            {
+              "number": 42,
+              "name": "boughtEV",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer bought an electric vehicle."
+            },
+            {
+              "number": 44,
+              "name": "installedSolar",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer installed solar or renewable energy."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Generate a checklist for a salaried filer with investments, mortgage, and children",
+              "params": {
+                "hasW2": true,
+                "hasInvestments": true,
+                "hasMortgage": true,
+                "hasChildren": true,
+                "hasChildcare": true,
+                "hasHealthInsurance": true,
+                "hasRetirementContributions": true
+              }
+            },
+            {
+              "intent": "Generate a checklist for a freelancer with rental property, student loans, and recent life events",
+              "params": {
+                "hasSelfEmployment": true,
+                "hasRentalProperty": true,
+                "hasStudentLoans": true,
+                "hasEducationExpenses": true,
+                "hasCharitableDonations": true,
+                "gotMarried": true,
+                "boughtEV": true,
+                "installedSolar": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_get_tax_planning_tips",
+          "purpose": "Provides year-end tax optimization strategies based on the taxpayer's income, withholding, deductions, and overall situation. Use this when the user wants planning ideas to reduce tax liability before year-end rather than a static calculation alone.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the planning recommendations."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the planning recommendations."
+            },
+            {
+              "number": 56,
+              "name": "estimatedIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Expected total income for the year."
+            },
+            {
+              "number": 57,
+              "name": "currentWithholding",
+              "required": false,
+              "default": "No default",
+              "description": "Total tax already withheld or paid year to date."
+            },
+            {
+              "number": 58,
+              "name": "hasRetirementPlan",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has access to a workplace retirement plan."
+            },
+            {
+              "number": 59,
+              "name": "currentRetirementContributions",
+              "required": false,
+              "default": "No default",
+              "description": "Year-to-date retirement contributions."
+            },
+            {
+              "number": 60,
+              "name": "hasHSA",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has an HSA-eligible plan."
+            },
+            {
+              "number": 61,
+              "name": "currentHSAContributions",
+              "required": false,
+              "default": "No default",
+              "description": "Year-to-date HSA contributions."
+            },
+            {
+              "number": 62,
+              "name": "hasMortgage",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has a mortgage."
+            },
+            {
+              "number": 63,
+              "name": "estimatedItemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Estimated total itemized deductions."
+            },
+            {
+              "number": 64,
+              "name": "hasCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer expects capital gains."
+            },
+            {
+              "number": 65,
+              "name": "estimatedCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Estimated capital gains."
+            },
+            {
+              "number": 66,
+              "name": "hasCapitalLosses",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer expects capital losses."
+            },
+            {
+              "number": 67,
+              "name": "isSelfEmployed",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is self-employed."
+            },
+            {
+              "number": 68,
+              "name": "charitableGiving",
+              "required": false,
+              "default": "No default",
+              "description": "Year-to-date charitable donations."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get year-end tax planning ideas for a salaried single filer",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "estimatedIncome": 125000,
+                "currentWithholding": 18000,
+                "hasRetirementPlan": true,
+                "currentRetirementContributions": 12000,
+                "hasHSA": true,
+                "currentHSAContributions": 2500
+              }
+            },
+            {
+              "intent": "Get year-end tax planning ideas for a self-employed joint filer with gains and charitable giving",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "estimatedIncome": 260000,
+                "isSelfEmployed": true,
+                "hasCapitalGains": true,
+                "estimatedCapitalGains": 18000,
+                "charitableGiving": 6000,
+                "estimatedItemizedDeductions": 24000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_list_deductions",
+          "purpose": "Lists available tax deductions along with eligibility rules and limits. Use this when the user needs to review deduction options rather than calculate a specific tax result.",
+          "parameters": [
+            {
+              "number": 27,
+              "name": "category",
+              "required": false,
+              "default": "all",
+              "description": "Deduction category used to filter the listed deductions."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List all available tax deductions",
+              "params": {}
+            },
+            {
+              "intent": "List charitable deductions",
+              "params": {
+                "category": "charity"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_list_no_income_tax_states",
+          "purpose": "Lists US states with no state income tax. Use this when the user needs a quick reference for state tax environments rather than a calculation or state-by-state comparison.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "List states with no state income tax",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_list_tax_credits",
+          "purpose": "Lists available federal tax credits along with eligibility, amounts, and phase-out rules. Use this when the user needs to review credit options rather than calculate a specific tax result.",
+          "parameters": [
+            {
+              "number": 27,
+              "name": "category",
+              "required": false,
+              "default": "all",
+              "description": "Category used to filter the listed tax credits."
+            },
+            {
+              "number": 36,
+              "name": "refundableOnly",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether only refundable credits should be shown."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List all available federal tax credits",
+              "params": {}
+            },
+            {
+              "intent": "List refundable family-related tax credits",
+              "params": {
+                "category": "family",
+                "refundableOnly": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_lookup_tax_rule",
+          "purpose": "Looks up IRS tax rules, definitions, and common tax questions by topic. Use this when the user needs a topic-level explanation or rule lookup rather than a numeric tax calculation.",
+          "parameters": [
+            {
+              "number": 183,
+              "name": "topic",
+              "required": true,
+              "default": "No default",
+              "description": "Tax topic to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Look up the wash sale rule",
+              "params": {
+                "topic": "wash sale rule"
+              }
+            },
+            {
+              "intent": "Look up stock-option and credit-related tax rules",
+              "params": {
+                "topic": "ISO vs NSO and AMT"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_optimize_capital_gains",
+          "purpose": "Analyzes investment lots and suggests which positions to sell to reduce tax impact. Use this when the user wants to compare lot-level sale choices around long-term versus short-term treatment, gain realization, or loss harvesting.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the optimization analysis."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the optimization analysis."
+            },
+            {
+              "number": 155,
+              "name": "ordinaryIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Ordinary income before investment sales."
+            },
+            {
+              "number": 156,
+              "name": "lots",
+              "required": true,
+              "default": "No default",
+              "description": "Array of investment lots to analyze."
+            },
+            {
+              "number": 157,
+              "name": "name",
+              "required": true,
+              "default": "No default",
+              "description": "Investment name within a lot entry."
+            },
+            {
+              "number": 158,
+              "name": "shares",
+              "required": true,
+              "default": "No default",
+              "description": "Number of shares within a lot entry."
+            },
+            {
+              "number": 159,
+              "name": "costBasis",
+              "required": true,
+              "default": "No default",
+              "description": "Total cost basis within a lot entry."
+            },
+            {
+              "number": 160,
+              "name": "currentValue",
+              "required": true,
+              "default": "No default",
+              "description": "Current market value within a lot entry."
+            },
+            {
+              "number": 161,
+              "name": "holdingMonths",
+              "required": true,
+              "default": "No default",
+              "description": "Number of months the lot has been held."
+            },
+            {
+              "number": 162,
+              "name": "targetGainOrLoss",
+              "required": false,
+              "default": "No default",
+              "description": "Target net gain or loss to realize."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Identify which lots to sell to realize losses for tax-loss harvesting",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "ordinaryIncome": 98000,
+                "targetGainOrLoss": -5000,
+                "lots": [
+                  {
+                    "name": "AAPL",
+                    "shares": 40,
+                    "costBasis": 9800,
+                    "currentValue": 8400,
+                    "holdingMonths": 18
+                  },
+                  {
+                    "name": "ARKK",
+                    "shares": 25,
+                    "costBasis": 3200,
+                    "currentValue": 2100,
+                    "holdingMonths": 9
+                  }
+                ]
+              }
+            },
+            {
+              "intent": "Review lots for a joint filer trying to realize gains efficiently",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "ordinaryIncome": 110000,
+                "targetGainOrLoss": 12000,
+                "lots": [
+                  {
+                    "name": "VTI",
+                    "shares": 120,
+                    "costBasis": 24000,
+                    "currentValue": 33600,
+                    "holdingMonths": 36
+                  },
+                  {
+                    "name": "NVDA",
+                    "shares": 15,
+                    "costBasis": 6200,
+                    "currentValue": 9100,
+                    "holdingMonths": 7
+                  }
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_plan_multi_year_taxes",
+          "purpose": "Creates a multi-year tax projection across a three- to five-year planning horizon. Use this when the user wants to compare bracket management, Roth conversions, retirement contributions, and income changes over multiple tax years rather than evaluating a single year in isolation.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used throughout the projection."
+            },
+            {
+              "number": 170,
+              "name": "currentAge",
+              "required": true,
+              "default": "No default",
+              "description": "Current age used as the starting point for the projection."
+            },
+            {
+              "number": 171,
+              "name": "years",
+              "required": true,
+              "default": "No default",
+              "description": "Array of year-by-year projection entries."
+            },
+            {
+              "number": 172,
+              "name": "year",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year within a projection entry."
+            },
+            {
+              "number": 173,
+              "name": "expectedIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Expected gross income within a projection entry."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income within a projection entry."
+            },
+            {
+              "number": 174,
+              "name": "plannedRothConversion",
+              "required": false,
+              "default": "No default",
+              "description": "Planned Roth conversion amount within a projection entry."
+            },
+            {
+              "number": 175,
+              "name": "planned401k",
+              "required": false,
+              "default": "No default",
+              "description": "Planned 401(k) contribution within a projection entry."
+            },
+            {
+              "number": 176,
+              "name": "plannedIRA",
+              "required": false,
+              "default": "No default",
+              "description": "Planned IRA contribution within a projection entry."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of dependents within a projection entry."
+            },
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": false,
+              "default": "No default",
+              "description": "State code within a projection entry."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Project taxes over the next three years with rising income and steady retirement contributions",
+              "params": {
+                "filingStatus": "single",
+                "currentAge": 41,
+                "years": [
+                  {
+                    "year": 2025,
+                    "expectedIncome": 135000,
+                    "planned401k": 23000,
+                    "plannedIRA": 7000,
+                    "stateCode": "CA"
+                  },
+                  {
+                    "year": 2026,
+                    "expectedIncome": 148000,
+                    "planned401k": 23000,
+                    "plannedIRA": 7000,
+                    "stateCode": "CA"
+                  },
+                  {
+                    "year": 2027,
+                    "expectedIncome": 160000,
+                    "planned401k": 23000,
+                    "plannedIRA": 7000,
+                    "stateCode": "CA"
+                  }
+                ]
+              }
+            },
+            {
+              "intent": "Project a joint filer's taxes across several years with Roth conversions and state changes",
+              "params": {
+                "filingStatus": "married_filing_jointly",
+                "currentAge": 59,
+                "years": [
+                  {
+                    "year": 2025,
+                    "expectedIncome": 180000,
+                    "plannedRothConversion": 25000,
+                    "planned401k": 30000,
+                    "dependents": 1,
+                    "stateCode": "NY"
+                  },
+                  {
+                    "year": 2026,
+                    "expectedIncome": 145000,
+                    "plannedRothConversion": 40000,
+                    "plannedIRA": 16000,
+                    "stateCode": "FL"
+                  },
+                  {
+                    "year": 2027,
+                    "expectedIncome": 132000,
+                    "selfEmploymentIncome": 18000,
+                    "plannedRothConversion": 30000,
+                    "stateCode": "FL"
+                  }
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_plan_retirement_withdrawals",
+          "purpose": "Plans tax-efficient retirement withdrawals across traditional, Roth, and taxable accounts. Use this when the user wants to compare withdrawal order, spending coverage, and whether Roth conversions may fit the plan.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the withdrawal plan."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the withdrawal plan."
+            },
+            {
+              "number": 90,
+              "name": "age",
+              "required": true,
+              "default": "No default",
+              "description": "Current age used in the withdrawal plan."
+            },
+            {
+              "number": 163,
+              "name": "traditionalBalance",
+              "required": true,
+              "default": "No default",
+              "description": "Traditional IRA or 401(k) balance."
+            },
+            {
+              "number": 164,
+              "name": "rothBalance",
+              "required": true,
+              "default": "No default",
+              "description": "Roth IRA or Roth 401(k) balance."
+            },
+            {
+              "number": 165,
+              "name": "taxableBalance",
+              "required": true,
+              "default": "No default",
+              "description": "Taxable brokerage account balance."
+            },
+            {
+              "number": 166,
+              "name": "socialSecurityIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Annual Social Security income."
+            },
+            {
+              "number": 167,
+              "name": "pensionIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Annual pension income."
+            },
+            {
+              "number": 168,
+              "name": "annualSpending",
+              "required": true,
+              "default": "No default",
+              "description": "Annual pre-tax spending need."
+            },
+            {
+              "number": 169,
+              "name": "rothConversionInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether Roth conversion strategy should be considered."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Plan withdrawals for a retiree balancing taxable and traditional accounts",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "age": 68,
+                "traditionalBalance": 620000,
+                "rothBalance": 140000,
+                "taxableBalance": 210000,
+                "socialSecurityIncome": 28000,
+                "annualSpending": 72000
+              }
+            },
+            {
+              "intent": "Plan joint retirement withdrawals and evaluate whether Roth conversions may help",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "age": 63,
+                "traditionalBalance": 980000,
+                "rothBalance": 260000,
+                "taxableBalance": 180000,
+                "pensionIncome": 22000,
+                "annualSpending": 95000,
+                "rothConversionInterest": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_process_1099_income",
+          "purpose": "Processes multiple 1099 forms and estimates the tax impact of each income type. Use this when the user needs a consolidated view of mixed 1099 income rather than handling each form type separately.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the analysis."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the analysis."
+            },
+            {
+              "number": 4,
+              "name": "w2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 income included for context."
+            },
+            {
+              "number": 106,
+              "name": "forms",
+              "required": true,
+              "default": "No default",
+              "description": "Array of 1099 form entries used in the analysis."
+            },
+            {
+              "number": 107,
+              "name": "payer",
+              "required": false,
+              "default": "No default",
+              "description": "Payer name within a form entry."
+            },
+            {
+              "number": 108,
+              "name": "amount",
+              "required": true,
+              "default": "No default",
+              "description": "Total amount within a form entry."
+            },
+            {
+              "number": 109,
+              "name": "qualifiedDividendsForm",
+              "required": false,
+              "default": "No default",
+              "description": "Qualified dividends amount within a 1099-DIV entry."
+            },
+            {
+              "number": 110,
+              "name": "longTerm",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether a 1099-B gain is long-term."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Process freelance and interest income reported on 1099 forms",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "forms": [
+                  {
+                    "type": "1099-NEC",
+                    "payer": "Acme Consulting",
+                    "amount": 28000
+                  },
+                  {
+                    "type": "1099-INT",
+                    "payer": "First Bank",
+                    "amount": 650
+                  }
+                ]
+              }
+            },
+            {
+              "intent": "Process mixed 1099 income with W-2 context and investment income details",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "w2Income": 90000,
+                "forms": [
+                  {
+                    "type": "1099-DIV",
+                    "payer": "Brokerage A",
+                    "amount": 3200,
+                    "qualifiedDividends": 2400
+                  },
+                  {
+                    "type": "1099-B",
+                    "payer": "Brokerage B",
+                    "amount": 7500,
+                    "longTerm": true
+                  },
+                  {
+                    "type": "1099-MISC",
+                    "payer": "Marketplace Platform",
+                    "amount": 1800
+                  }
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_run_tax_health_check",
+          "purpose": "Runs a broad tax health check across income, withholding, deductions, credits, retirement savings, and common risk areas. Use this when the user wants a single high-level diagnostic rather than running several separate tax tools.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the health check."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the health check."
+            },
+            {
+              "number": 90,
+              "name": "age",
+              "required": false,
+              "default": "No default",
+              "description": "Age used in the health check."
+            },
+            {
+              "number": 3,
+              "name": "grossIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Gross income used in the health check."
+            },
+            {
+              "number": 4,
+              "name": "w2Income",
+              "required": false,
+              "default": "No default",
+              "description": "W-2 income."
+            },
+            {
+              "number": 5,
+              "name": "selfEmploymentIncome",
+              "required": false,
+              "default": "No default",
+              "description": "Self-employment income."
+            },
+            {
+              "number": 6,
+              "name": "capitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Capital gains."
+            },
+            {
+              "number": 20,
+              "name": "stateCode",
+              "required": false,
+              "default": "No default",
+              "description": "State code used for the health check."
+            },
+            {
+              "number": 12,
+              "name": "dependents",
+              "required": false,
+              "default": "No default",
+              "description": "Number of dependents."
+            },
+            {
+              "number": 30,
+              "name": "mortgageInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Mortgage interest."
+            },
+            {
+              "number": 29,
+              "name": "stateLocalTaxes",
+              "required": false,
+              "default": "No default",
+              "description": "State and local taxes."
+            },
+            {
+              "number": 31,
+              "name": "charitableDonations",
+              "required": false,
+              "default": "No default",
+              "description": "Charitable donations."
+            },
+            {
+              "number": 118,
+              "name": "retirement401k",
+              "required": false,
+              "default": "No default",
+              "description": "401(k) or 403(b) contribution amount."
+            },
+            {
+              "number": 181,
+              "name": "retirementIRA",
+              "required": false,
+              "default": "No default",
+              "description": "IRA contribution amount."
+            },
+            {
+              "number": 182,
+              "name": "hsaContributions",
+              "required": false,
+              "default": "No default",
+              "description": "HSA contribution amount."
+            },
+            {
+              "number": 103,
+              "name": "federalWithheld",
+              "required": false,
+              "default": "No default",
+              "description": "Federal tax withheld."
+            },
+            {
+              "number": 148,
+              "name": "hasHealthInsurance",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer has health insurance relevant to filing."
+            },
+            {
+              "number": 40,
+              "name": "isStudent",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is currently enrolled in post-secondary education."
+            },
+            {
+              "number": 42,
+              "name": "boughtEV",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer bought an electric vehicle."
+            },
+            {
+              "number": 44,
+              "name": "installedSolar",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer installed solar or renewable energy."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Run a health check for a salaried filer with a mortgage, retirement savings, and withholding",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "age": 36,
+                "grossIncome": 132000,
+                "w2Income": 132000,
+                "stateCode": "CA",
+                "mortgageInterest": 14000,
+                "stateLocalTaxes": 9000,
+                "charitableDonations": 1800,
+                "retirement401k": 18500,
+                "federalWithheld": 21000,
+                "hasHealthInsurance": true
+              }
+            },
+            {
+              "intent": "Run a health check for a joint filer with business income, dependents, and tax-saving opportunities",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "grossIncome": 245000,
+                "w2Income": 110000,
+                "selfEmploymentIncome": 90000,
+                "capitalGains": 12000,
+                "stateCode": "NY",
+                "dependents": 2,
+                "retirement401k": 23000,
+                "retirementIRA": 14000,
+                "hsaContributions": 6000,
+                "federalWithheld": 26000,
+                "boughtEV": true,
+                "installedSolar": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_simulate_tax_scenario",
+          "purpose": "Simulates a what-if tax scenario by comparing a current baseline against a hypothetical change. Use this when the user wants to see the tax impact of changes such as income shifts, relocation, Roth conversions, filing-status changes, or deduction changes.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the scenario comparison."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Current filing status used as the baseline."
+            },
+            {
+              "number": 120,
+              "name": "currentIncome",
+              "required": true,
+              "default": "No default",
+              "description": "Current gross income used as the baseline."
+            },
+            {
+              "number": 121,
+              "name": "currentState",
+              "required": false,
+              "default": "No default",
+              "description": "Current state code used as the baseline location."
+            },
+            {
+              "number": 122,
+              "name": "currentSelfEmployment",
+              "required": false,
+              "default": "No default",
+              "description": "Current self-employment income used as the baseline."
+            },
+            {
+              "number": 123,
+              "name": "currentCapitalGains",
+              "required": false,
+              "default": "No default",
+              "description": "Current capital gains used as the baseline."
+            },
+            {
+              "number": 124,
+              "name": "currentItemizedDeductions",
+              "required": false,
+              "default": "No default",
+              "description": "Current itemized deductions used as the baseline."
+            },
+            {
+              "number": 125,
+              "name": "currentDependents",
+              "required": false,
+              "default": "No default",
+              "description": "Current number of dependents used as the baseline."
+            },
+            {
+              "number": 126,
+              "name": "whatIfIncomeChange",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical change in income."
+            },
+            {
+              "number": 127,
+              "name": "whatIfNewState",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical new state code."
+            },
+            {
+              "number": 128,
+              "name": "whatIfFilingStatus",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical new filing status."
+            },
+            {
+              "number": 129,
+              "name": "whatIfRothConversion",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical Roth conversion amount."
+            },
+            {
+              "number": 130,
+              "name": "whatIfAdditional401k",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical additional 401(k) contribution."
+            },
+            {
+              "number": 131,
+              "name": "whatIfNewDependents",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical new number of dependents."
+            },
+            {
+              "number": 132,
+              "name": "whatIfItemizedChange",
+              "required": false,
+              "default": "No default",
+              "description": "Hypothetical change in itemized deductions."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Estimate the tax impact of relocating from California to Texas",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "single",
+                "currentIncome": 140000,
+                "currentState": "CA",
+                "whatIfNewState": "TX"
+              }
+            },
+            {
+              "intent": "Estimate the tax impact of a raise, Roth conversion, and extra 401k contributions",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "married_filing_jointly",
+                "currentIncome": 220000,
+                "currentState": "NY",
+                "currentDependents": 2,
+                "whatIfIncomeChange": 25000,
+                "whatIfRothConversion": 30000,
+                "whatIfAdditional401k": 6000
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_standard_vs_itemized",
+          "purpose": "Compares the standard deduction against itemized deductions to determine which is more beneficial. Use this when the user needs to evaluate whether itemizing deductions is likely to produce a better tax outcome.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "taxYear",
+              "required": true,
+              "default": "No default",
+              "description": "Tax year used for the comparison."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": true,
+              "default": "No default",
+              "description": "Filing status used for the comparison."
+            },
+            {
+              "number": 28,
+              "name": "medicalExpenses",
+              "required": false,
+              "default": "No default",
+              "description": "Unreimbursed medical expenses included in the itemized total."
+            },
+            {
+              "number": 29,
+              "name": "stateLocalTaxes",
+              "required": false,
+              "default": "No default",
+              "description": "State and local taxes included in the itemized total."
+            },
+            {
+              "number": 30,
+              "name": "mortgageInterest",
+              "required": false,
+              "default": "No default",
+              "description": "Mortgage interest included in the itemized total."
+            },
+            {
+              "number": 31,
+              "name": "charitableDonations",
+              "required": false,
+              "default": "No default",
+              "description": "Charitable contributions included in the itemized total."
+            },
+            {
+              "number": 32,
+              "name": "otherItemized",
+              "required": false,
+              "default": "No default",
+              "description": "Other itemized deductions included in the comparison."
+            },
+            {
+              "number": 33,
+              "name": "agi",
+              "required": true,
+              "default": "No default",
+              "description": "Adjusted Gross Income used for the medical expense threshold."
+            },
+            {
+              "number": 13,
+              "name": "age65OrOlder",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is age 65 or older."
+            },
+            {
+              "number": 14,
+              "name": "blind",
+              "required": false,
+              "default": "No default",
+              "description": "Flag indicating whether the taxpayer is blind."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare standard and itemized deductions for a single filer with mortgage interest and charitable giving",
+              "params": {
+                "taxYear": 2024,
+                "filingStatus": "single",
+                "agi": 95000,
+                "mortgageInterest": 11000,
+                "charitableDonations": 2500
+              }
+            },
+            {
+              "intent": "Compare standard and itemized deductions for a head of household filer with medical expenses and state taxes",
+              "params": {
+                "taxYear": 2025,
+                "filingStatus": "head_of_household",
+                "agi": 120000,
+                "medicalExpenses": 14000,
+                "stateLocalTaxes": 9000,
+                "otherItemized": 1200,
+                "age65OrOlder": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "irs-taxpayer-mcp_what_changed_between_tax_years",
+          "purpose": "Shows what changed between two tax years, including bracket shifts, deduction and credit changes, and new provisions. Use this when the user wants a rule-change comparison rather than a taxpayer-specific liability comparison.",
+          "parameters": [
+            {
+              "number": 96,
+              "name": "fromYear",
+              "required": true,
+              "default": "No default",
+              "description": "Earlier tax year used in the comparison."
+            },
+            {
+              "number": 97,
+              "name": "toYear",
+              "required": true,
+              "default": "No default",
+              "description": "Later tax year used in the comparison."
+            },
+            {
+              "number": 2,
+              "name": "filingStatus",
+              "required": false,
+              "default": "single",
+              "description": "Filing status used for filing-status-specific comparisons."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare what changed between 2024 and 2025 for a single filer",
+              "params": {
+                "fromYear": 2024,
+                "toYear": 2025
+              }
+            },
+            {
+              "intent": "Compare tax law changes between 2024 and 2025 for a head of household filer",
+              "params": {
+                "fromYear": 2024,
+                "toYear": 2025,
+                "filingStatus": "head_of_household"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "massive-mcp",
       "intro": "The massive-mcp server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.\n\n### How it works\n- The server is organized as a stepwise workflow: `search_endpoints` is used to discover relevant endpoints or local functions, `get_endpoint_docs` is used to inspect endpoint parameters, `call_api` is used to fetch market data, and `query_data` is used to analyze stored results.\n- Common inputs include `query` and `scope` for discovery, `url` for documentation lookup, `method`, `path`, `params`, `store_as`, and `api_key` for API calls, and `sql` for querying stored tables.\n- The server also supports optional post-processing through `apply`, both when data is fetched and when query results are analyzed.\n\n### Potential resolution paths\n- **Discover an endpoint, then execute it:** Start with `search_endpoints` to find the right market data endpoint, use `get_endpoint_docs` to inspect the endpoint pattern and query parameters, then call `call_api` with the selected path and needed request parameters.\n- **Turn raw API results into queryable tables:** Use `call_api` with `store_as` when the user wants to keep the returned data available for later analysis, then use `query_data` to inspect, filter, aggregate, or compare the stored results with SQL.\n- **Move from data retrieval into post-processing:** Use `search_endpoints` with function scope when the user needs available local functions, then apply those functions either during `call_api` or after a SQL result with `query_data`.\n\n### Best practices\n- **Follow the workflow in order when the endpoint is not already known:** `search_endpoints` and `get_endpoint_docs` are the right starting points before building a `call_api` request.\n- **Store results when the user will need follow-up analysis:** `store_as` makes later SQL analysis through `query_data` much more efficient than repeatedly calling the same endpoint.",
       "paramsWrapped": false,
