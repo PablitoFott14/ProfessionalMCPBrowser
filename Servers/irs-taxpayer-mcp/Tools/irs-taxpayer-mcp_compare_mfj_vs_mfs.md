@@ -9,39 +9,39 @@ Compares Married Filing Jointly against Married Filing Separately and highlights
 
 **(1) taxYear - Required**  
 Default: No default  
-Tax year used for the comparison.
+Tax year (2024 or 2025).
 
 **(84) spouse1Income - Required**  
 Default: No default  
-Gross income for spouse 1.
+Spouse 1 gross income.
 
 **(85) spouse2Income - Required**  
 Default: No default  
-Gross income for spouse 2.
+Spouse 2 gross income.
 
 **(12) dependents - Optional**  
 Default: No default  
-Number of qualifying children used in the comparison.
+Number of qualifying children.
 
 **(11) itemizedDeductions - Optional**  
 Default: No default  
-Total itemized deductions used in the comparison.
+Total itemized deductions (combined for MFJ, split for MFS).
 
-**(86) studentLoanInterestFlag - Optional**  
+**(86) studentLoanInterest - Optional**  
 Default: No default  
-Flag indicating whether either spouse is paying student loan interest.
+Either spouse paying student loan interest.
 
 **(87) hasEducationCredits - Optional**  
 Default: No default  
-Flag indicating whether either spouse is claiming education credits.
+Either spouse claiming AOTC or LLC.
 
 **(88) hasEITC - Optional**  
 Default: No default  
-Flag indicating whether either spouse would qualify for the EITC.
+Either spouse would qualify for the EITC.
 
 **(89) hasIRAContributions - Optional**  
 Default: No default  
-Flag indicating whether either spouse is contributing to an IRA.
+Either spouse contributing to an IRA.
 
 ---
 

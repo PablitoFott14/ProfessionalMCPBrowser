@@ -13,7 +13,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -24,7 +24,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -94,7 +94,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -105,7 +105,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -185,7 +185,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -318,7 +318,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -329,7 +329,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -337,7 +337,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -642,7 +642,7 @@
               "number": 5,
               "name": "interval",
               "required": false,
-              "default": "null",
+              "default": "1day",
               "allowed": [],
               "description": "Interval between data points."
             },
@@ -666,7 +666,7 @@
               "number": 11,
               "name": "timezone",
               "required": false,
-              "default": "null",
+              "default": "Exchange",
               "allowed": [],
               "description": "Timezone used for the returned datetime."
             },
@@ -1062,7 +1062,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -1073,7 +1073,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -1081,7 +1081,7 @@
               "number": 41,
               "name": "show_plan",
               "required": false,
-              "default": "null",
+              "default": "false",
               "allowed": [],
               "description": "Includes plan availability information."
             },
@@ -1089,7 +1089,7 @@
               "number": 52,
               "name": "include_delisted",
               "required": false,
-              "default": "null",
+              "default": "false",
               "allowed": [],
               "description": "Includes delisted ETF identifiers in the results."
             },
@@ -1097,7 +1097,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -1465,7 +1465,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -1476,7 +1476,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -1484,7 +1484,7 @@
               "number": 41,
               "name": "show_plan",
               "required": false,
-              "default": "null",
+              "default": "false",
               "allowed": [],
               "description": "Includes plan availability information."
             },
@@ -1492,7 +1492,7 @@
               "number": 54,
               "name": "page",
               "required": false,
-              "default": "null",
+              "default": "1",
               "allowed": [],
               "description": "Page number of the results to fetch."
             },
@@ -1500,7 +1500,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -1581,7 +1581,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -1825,7 +1825,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -1836,7 +1836,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -2159,9 +2159,9 @@
               "number": 48,
               "name": "range",
               "required": false,
-              "default": "null",
+              "default": "last",
               "allowed": [],
-              "description": "Range of data to be returned."
+              "description": "Range of data to be returned (e.g., last, 1y, 5y, full)."
             },
             {
               "number": 12,
@@ -2183,7 +2183,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -2754,7 +2754,7 @@
               "number": 5,
               "name": "interval",
               "required": false,
-              "default": "null",
+              "default": "1day",
               "allowed": [],
               "description": "Interval between data points."
             },
@@ -2762,7 +2762,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10 (or max with date filters)",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -2802,7 +2802,7 @@
               "number": 11,
               "name": "timezone",
               "required": false,
-              "default": "null",
+              "default": "Exchange",
               "allowed": [],
               "description": "Timezone used for the returned datetime."
             },
@@ -2834,7 +2834,7 @@
               "number": 15,
               "name": "order",
               "required": false,
-              "default": "null",
+              "default": "desc",
               "allowed": [
                 "asc",
                 "desc"
@@ -2853,7 +2853,7 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
+              "default": "JSON",
               "allowed": [
                 "JSON",
                 "CSV"
@@ -2864,7 +2864,7 @@
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -2900,7 +2900,7 @@
               "number": 31,
               "name": "time_period",
               "required": false,
-              "default": "null",
+              "default": "14",
               "allowed": [],
               "description": "Number of periods used to calculate ADX."
             },
@@ -3415,7 +3415,7 @@
               "number": 5,
               "name": "interval",
               "required": false,
-              "default": "null",
+              "default": "1day",
               "allowed": [],
               "description": "Interval between data points."
             },
@@ -3423,7 +3423,7 @@
               "number": 6,
               "name": "outputsize",
               "required": false,
-              "default": "null",
+              "default": "10 (or max with date filters)",
               "allowed": [],
               "description": "Number of data points to retrieve."
             },
@@ -3431,15 +3431,18 @@
               "number": 17,
               "name": "format",
               "required": false,
-              "default": "null",
-              "allowed": [],
+              "default": "JSON",
+              "allowed": [
+                "JSON",
+                "CSV"
+              ],
               "description": "Response format."
             },
             {
               "number": 18,
               "name": "delimiter",
               "required": false,
-              "default": "null",
+              "default": ";",
               "allowed": [],
               "description": "Separator used for CSV output."
             },
@@ -3491,7 +3494,7 @@
               "number": 11,
               "name": "timezone",
               "required": false,
-              "default": "null",
+              "default": "Exchange",
               "allowed": [],
               "description": "Timezone used for the returned datetime."
             },
@@ -5369,7 +5372,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             },
             {
@@ -5421,7 +5426,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             }
           ],
@@ -5464,7 +5471,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             }
           ],
@@ -5507,7 +5516,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             }
           ],
@@ -5550,7 +5561,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             }
           ],
@@ -5642,7 +5655,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             },
             {
@@ -5694,7 +5709,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             }
           ],
@@ -5796,7 +5813,9 @@
               "name": "feed",
               "required": false,
               "default": "us",
-              "allowed": [],
+              "allowed": [
+                "us"
+              ],
               "description": "Crypto data feed to retrieve from. Currently only \"us\" is supported."
             },
             {
@@ -10020,7 +10039,7 @@
               "required": true,
               "default": "No default",
               "allowed": [],
-              "description": "Tax year used for the comparison."
+              "description": "Tax year (2024 or 2025)."
             },
             {
               "number": 84,
@@ -10028,7 +10047,7 @@
               "required": true,
               "default": "No default",
               "allowed": [],
-              "description": "Gross income for spouse 1."
+              "description": "Spouse 1 gross income."
             },
             {
               "number": 85,
@@ -10036,7 +10055,7 @@
               "required": true,
               "default": "No default",
               "allowed": [],
-              "description": "Gross income for spouse 2."
+              "description": "Spouse 2 gross income."
             },
             {
               "number": 12,
@@ -10044,7 +10063,7 @@
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Number of qualifying children used in the comparison."
+              "description": "Number of qualifying children."
             },
             {
               "number": 11,
@@ -10052,15 +10071,15 @@
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Total itemized deductions used in the comparison."
+              "description": "Total itemized deductions (combined for MFJ, split for MFS)."
             },
             {
               "number": 86,
-              "name": "studentLoanInterestFlag",
+              "name": "studentLoanInterest",
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Flag indicating whether either spouse is paying student loan interest."
+              "description": "Either spouse paying student loan interest."
             },
             {
               "number": 87,
@@ -10068,7 +10087,7 @@
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Flag indicating whether either spouse is claiming education credits."
+              "description": "Either spouse claiming AOTC or LLC."
             },
             {
               "number": 88,
@@ -10076,7 +10095,7 @@
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Flag indicating whether either spouse would qualify for the EITC."
+              "description": "Either spouse would qualify for the EITC."
             },
             {
               "number": 89,
@@ -10084,7 +10103,7 @@
               "required": false,
               "default": "No default",
               "allowed": [],
-              "description": "Flag indicating whether either spouse is contributing to an IRA."
+              "description": "Either spouse contributing to an IRA."
             }
           ],
           "examples": [

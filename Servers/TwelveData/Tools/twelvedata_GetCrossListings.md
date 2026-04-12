@@ -24,7 +24,7 @@ Default: null
 Country of the exchange.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10  
 Number of data points to retrieve.
 
 **(27) apikey — Optional**  

@@ -24,7 +24,7 @@ Default: null
 CUSIP identifier for the instrument.
 
 **(5) interval — Optional**  
-Default: null  
+Default: 1day  
 Interval between data points.
 
 **(37) exchange — Optional**  
@@ -36,7 +36,7 @@ Default: null
 Market Identifier Code under ISO 10383.
 
 **(11) timezone — Optional**  
-Default: null  
+Default: Exchange  
 Timezone used for the returned datetime.
 
 **(6) outputsize — Optional**  

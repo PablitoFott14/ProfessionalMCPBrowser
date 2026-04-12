@@ -32,24 +32,24 @@ Default: null
 Country where the fund is located.
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(41) show_plan — Optional**  
-Default: null  
+Default: false  
 Includes plan availability information.
 
 **(54) page — Optional**  
-Default: null  
+Default: 1  
 Page number of the results to fetch.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10  
 Number of data points to retrieve.
 
 **(27) apikey — Optional**  

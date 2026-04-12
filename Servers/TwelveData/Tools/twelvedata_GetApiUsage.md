@@ -8,12 +8,12 @@ GetApiUsage returns real-time information about API usage, including current req
 ### Used parameters
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Output format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(11) timezone — Optional**  

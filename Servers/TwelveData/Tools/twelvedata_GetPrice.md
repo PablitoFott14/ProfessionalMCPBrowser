@@ -40,12 +40,12 @@ Default: null
 Asset class of the instrument.
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Output format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(43) prepost — Optional**  

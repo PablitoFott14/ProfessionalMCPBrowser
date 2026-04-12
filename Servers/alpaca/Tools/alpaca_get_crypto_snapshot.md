@@ -13,6 +13,7 @@ Crypto symbol or list of symbols (e.g., BTC/USD or ["BTC/USD", "ETH/USD"]).
 
 **(28) feed — Optional**
 Default: us
+Allowed: us
 Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ---

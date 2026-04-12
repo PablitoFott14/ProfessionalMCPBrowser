@@ -41,6 +41,7 @@ End time in ISO format (e.g., 2023-01-01 or 2023-01-01T16:00:00).
 
 **(28) feed — Optional**
 Default: us
+Allowed: us
 Crypto data feed to retrieve from. Currently only "us" is supported.
 
 **(31) tz — Optional**

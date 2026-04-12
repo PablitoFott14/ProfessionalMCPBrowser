@@ -36,8 +36,8 @@ Default: null
 Country where the instrument is traded.
 
 **(48) range — Optional**  
-Default: null  
-Range of data to be returned.
+Default: last  
+Range of data to be returned (e.g., last, 1y, 5y, full).
 
 **(12) start_date — Optional**  
 Default: null  
@@ -48,7 +48,7 @@ Default: null
 The ending date for data selection.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10  
 Number of data points to retrieve.
 
 **(27) apikey — Optional**  

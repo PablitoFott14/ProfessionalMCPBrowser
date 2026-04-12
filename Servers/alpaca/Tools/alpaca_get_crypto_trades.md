@@ -42,6 +42,7 @@ Chronological order of response.
 
 **(28) feed — Optional**
 Default: us
+Allowed: us
 Crypto data feed to retrieve from. Currently only "us" is supported.
 
 **(31) tz — Optional**

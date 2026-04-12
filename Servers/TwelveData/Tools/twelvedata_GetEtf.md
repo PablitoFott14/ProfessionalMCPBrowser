@@ -36,24 +36,24 @@ Default: null
 Country where the ETF is located.
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(41) show_plan — Optional**  
-Default: null  
+Default: false  
 Includes plan availability information.
 
 **(52) include_delisted — Optional**  
-Default: null  
+Default: false  
 Includes delisted ETF identifiers in the results.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10  
 Number of data points to retrieve.
 
 **(27) apikey — Optional**  

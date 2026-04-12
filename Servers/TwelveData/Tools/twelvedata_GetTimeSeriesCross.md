@@ -40,19 +40,20 @@ Default: null
 MIC code of the quote instrument.
 
 **(5) interval — Optional**  
-Default: null  
+Default: 1day  
 Interval between data points.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10 (or max with date filters)  
 Number of data points to retrieve.
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(43) prepost — Optional**  
@@ -77,7 +78,7 @@ Default: null
 Decimal precision for numeric values.
 
 **(11) timezone — Optional**  
-Default: null  
+Default: Exchange  
 Timezone used for the returned datetime.
 
 **(27) apikey — Optional**  

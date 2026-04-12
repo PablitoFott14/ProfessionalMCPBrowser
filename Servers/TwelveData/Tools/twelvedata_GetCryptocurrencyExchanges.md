@@ -8,16 +8,16 @@ GetCryptocurrencyExchanges returns the list of supported cryptocurrency exchange
 ### Used parameters
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10  
 Number of data points to retrieve.
 
 **(27) apikey — Optional**  

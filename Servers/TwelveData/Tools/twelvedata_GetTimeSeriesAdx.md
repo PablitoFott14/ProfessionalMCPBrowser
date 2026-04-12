@@ -24,11 +24,11 @@ Default: null
 CUSIP identifier for the instrument.
 
 **(5) interval — Optional**  
-Default: null  
+Default: 1day  
 Interval between data points.
 
 **(6) outputsize — Optional**  
-Default: null  
+Default: 10 (or max with date filters)  
 Number of data points to retrieve.
 
 **(37) exchange — Optional**  
@@ -48,7 +48,7 @@ Default: null
 Asset class of the instrument.
 
 **(11) timezone — Optional**  
-Default: null  
+Default: Exchange  
 Timezone used for the returned datetime.
 
 **(12) start_date — Optional**  
@@ -64,7 +64,7 @@ Default: null
 Specific date to retrieve data for.
 
 **(15) order — Optional**  
-Default: null  
+Default: desc  
 Allowed: asc, desc  
 Sorting order of the output.
 
@@ -73,12 +73,12 @@ Default: null
 Includes pre and post market data.
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(19) dp — Optional**  
@@ -95,7 +95,7 @@ Allowed: splits, dividends, all
 Specifies whether data should be adjusted.
 
 **(31) time_period — Optional**  
-Default: null  
+Default: 14  
 Number of periods used to calculate ADX.
 
 **(26) include_ohlc — Optional**  

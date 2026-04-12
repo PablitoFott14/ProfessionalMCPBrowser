@@ -16,12 +16,12 @@ Default: null
 Filters commodities by category (e.g., Precious Metal, Energy).
 
 **(17) format — Optional**  
-Default: null  
+Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
-Default: null  
+Default: ;  
 Separator used for CSV output.
 
 **(6) outputsize — Optional**  
