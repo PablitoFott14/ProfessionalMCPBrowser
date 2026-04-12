@@ -13,6 +13,7 @@ Stock ticker symbol to retrieve earnings data for.
 
 **(6) period — Optional**  
 Default: annual  
+Allowed: annual, quarterly  
 Earnings period to retrieve.
 
 **(9) date — Optional**  

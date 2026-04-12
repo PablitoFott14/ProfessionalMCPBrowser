@@ -48,15 +48,17 @@ def parse_tool(filepath):
             for pm in re.finditer(
                 r'\*\*\((\d+)\)\s+(.+?)\s*(?:—|-)\s*(Required|Optional)\*\*[ \t]*\n'
                 r'Default:\s*([^\n]+?)[ \t]*\n'
+                r'(?:Allowed:\s*([^\n]+?)[ \t]*\n)?'
                 r'(.*?)(?=\n\*\*\(|\Z)',
                 pt, re.DOTALL
             ):
-                num, name, req, default, desc = pm.groups()
+                num, name, req, default, allowed, desc = pm.groups()
                 tool['parameters'].append({
                     'number': int(num),
                     'name': name.strip(),
                     'required': req == 'Required',
                     'default': default.strip(),
+                    'allowed': [v.strip() for v in allowed.split(',')] if allowed else [],
                     'description': re.sub(r'\s+', ' ', desc.strip()),
                 })
 

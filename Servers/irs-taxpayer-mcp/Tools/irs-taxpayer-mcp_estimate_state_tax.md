@@ -17,6 +17,7 @@ State taxable income used for the estimate.
 
 **(2) filingStatus - Optional**  
 Default: single  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the state tax estimate.
 
 ---

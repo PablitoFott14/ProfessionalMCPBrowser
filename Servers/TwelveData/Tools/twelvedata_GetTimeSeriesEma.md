@@ -33,10 +33,12 @@ End of the analysis window.
 
 **(15) order — Optional**  
 Default: desc  
+Allowed: asc, desc  
 Sorting order of results.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Response format.
 
 **(19) dp — Optional**  
@@ -45,6 +47,7 @@ Decimal precision for numeric values.
 
 **(22) series_type — Optional**  
 Default: close  
+Allowed: close, open, high, low  
 Price field used for calculation.
 
 **(31) time_period — Optional**  

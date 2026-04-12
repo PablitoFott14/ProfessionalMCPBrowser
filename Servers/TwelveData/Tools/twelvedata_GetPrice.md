@@ -41,6 +41,7 @@ Asset class of the instrument.
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Output format.
 
 **(18) delimiter — Optional**  

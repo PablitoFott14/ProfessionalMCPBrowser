@@ -13,10 +13,12 @@ Tax year used for the analysis.
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the analysis.
 
 **(22) payFrequency - Required**  
 Default: No default  
+Allowed: weekly, biweekly, semimonthly, monthly  
 Pay frequency for the paycheck being analyzed.
 
 **(115) grossPay - Required**  

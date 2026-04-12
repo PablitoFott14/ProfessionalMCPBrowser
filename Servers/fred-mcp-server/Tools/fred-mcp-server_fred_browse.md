@@ -33,6 +33,7 @@ Field used to order the results.
 
 **(8) sort_order - Optional**  
 Default: No default  
+Allowed: asc, desc  
 Sort direction used for ordered results.
 
 ---

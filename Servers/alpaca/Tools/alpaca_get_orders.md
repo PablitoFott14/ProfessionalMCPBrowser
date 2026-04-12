@@ -9,7 +9,8 @@ Retrieves a filtered list of orders from the Alpaca account, including status, f
 
 **(2) status — Optional**
 Default: all
-Filters orders by status (open, closed, or all).
+Allowed: open, closed, all
+Filters orders by status.
 
 **(12) limit — Optional**
 Default: 10
@@ -25,7 +26,8 @@ Returns orders submitted up until this timestamp (ISO format).
 
 **(56) direction — Optional**
 Default: null
-Sort direction of results (asc or desc).
+Allowed: asc, desc
+Sort direction of results.
 
 **(57) nested — Optional**
 Default: null
@@ -33,7 +35,8 @@ Whether to roll up multi-leg orders under a legs field.
 
 **(44) side — Optional**
 Default: null
-Filters orders by side (buy or sell).
+Allowed: buy, sell
+Filters orders by side.
 
 **(9) symbols — Optional**
 Default: null

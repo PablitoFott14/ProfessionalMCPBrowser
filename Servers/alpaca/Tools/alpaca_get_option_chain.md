@@ -13,11 +13,13 @@ Single underlying asset symbol to retrieve the option chain for (e.g., AAPL, SPY
 
 **(42) feed (options) — Optional**
 Default: null (opra if subscribed, indicative otherwise)
-Options data feed source (opra or indicative). OPRA requires a subscription.
+Allowed: opra, indicative
+Options data feed source. OPRA requires a subscription.
 
 **(40) contract_type — Optional**
 Default: null
-Filters by contract type (call, put, or null for both).
+Allowed: call, put
+Filters by contract type (null for both).
 
 **(38) strike_price_gte — Optional**
 Default: null

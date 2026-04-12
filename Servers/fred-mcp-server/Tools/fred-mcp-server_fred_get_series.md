@@ -29,22 +29,27 @@ Number of observations to skip.
 
 **(8) sort_order - Optional**  
 Default: No default  
+Allowed: asc, desc  
 Sort order of observations by date.
 
 **(14) units - Optional**  
 Default: No default  
+Allowed: lin, chg, ch1, pch, pc1, pca, cch, cca, log  
 Data transformation applied to the returned values.
 
 **(15) frequency - Optional**  
 Default: No default  
+Allowed: d, w, bw, m, q, sa, a  
 Frequency aggregation applied to the returned observations.
 
 **(16) aggregation_method - Optional**  
 Default: No default  
+Allowed: avg, sum, eop  
 Aggregation method used when changing the observation frequency.
 
 **(17) output_type - Optional**  
 Default: No default  
+Allowed: 1, 2, 3, 4  
 Output format used for the returned observations.
 
 **(18) vintage_dates - Optional**  

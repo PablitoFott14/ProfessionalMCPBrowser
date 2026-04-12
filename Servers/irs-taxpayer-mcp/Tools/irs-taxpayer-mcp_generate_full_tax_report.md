@@ -13,6 +13,7 @@ Tax year used for the report.
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the report.
 
 **(4) w2Income - Optional**  

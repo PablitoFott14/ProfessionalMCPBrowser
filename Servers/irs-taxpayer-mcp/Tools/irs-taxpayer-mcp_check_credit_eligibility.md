@@ -13,6 +13,7 @@ Adjusted Gross Income used in the eligibility screening.
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used in the eligibility screening.
 
 **(37) hasChildren - Optional**  

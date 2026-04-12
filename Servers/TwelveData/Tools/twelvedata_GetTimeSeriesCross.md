@@ -69,6 +69,7 @@ End date for the time series.
 
 **(45) adjust — Optional**  
 Default: null  
+Allowed: splits, dividends, all  
 Specifies whether data should be adjusted.
 
 **(19) dp — Optional**  

@@ -17,6 +17,7 @@ Retrieves the exchange rate at a specific date or time.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

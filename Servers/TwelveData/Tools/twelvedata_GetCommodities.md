@@ -17,6 +17,7 @@ Filters commodities by category (e.g., Precious Metal, Energy).
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

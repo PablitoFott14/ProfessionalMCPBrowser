@@ -9,7 +9,8 @@ Fetches financial market data from a selected API endpoint path and optionally s
 
 **(4) method - Required**  
 Default: No default  
-HTTP method used for the request. Only `GET` is supported.
+Allowed: GET  
+HTTP method used for the request.
 
 **(5) path - Required**  
 Default: No default  

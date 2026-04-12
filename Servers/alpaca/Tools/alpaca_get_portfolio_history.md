@@ -29,7 +29,8 @@ Alternative end date for the range, as ISO date or datetime.
 
 **(17) intraday_reporting — Optional**
 Default: null
-Controls which hours are included in intraday data (market_hours, extended_hours, continuous).
+Allowed: market_hours, extended_hours, continuous
+Controls which hours are included in intraday data.
 
 **(18) pnl_reset — Optional**
 Default: null

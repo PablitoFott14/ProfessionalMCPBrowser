@@ -41,11 +41,13 @@ End time in ISO format (e.g., 2023-01-01 or 2023-01-01T16:00:00).
 
 **(13) sort — Optional**
 Default: asc
-Chronological order of response (asc or desc).
+Allowed: asc, desc
+Chronological order of response.
 
 **(28) feed — Optional**
 Default: null
-Market data feed to retrieve from (iex, sip, delayed_sip, otc).
+Allowed: iex, sip, delayed_sip, otc
+Market data feed to retrieve from.
 
 **(29) currency — Optional**
 Default: null (USD)

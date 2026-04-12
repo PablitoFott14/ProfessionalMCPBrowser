@@ -21,6 +21,7 @@ Retrieves conversion using a specific historical date or time.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

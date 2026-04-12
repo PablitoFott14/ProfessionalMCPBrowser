@@ -15,6 +15,7 @@ Stock symbol or ticker to retrieve history for.
 
 **(2) interval — Optional**  
 Default: day  
+Allowed: minute, hour, day, week, month  
 Sets the time resolution of the returned series.
 
 **(3) interval_multiplier — Optional**  
@@ -31,6 +32,7 @@ Defines the end of the requested date range.
 
 **(6) adjust — Optional**  
 Default: none  
+Allowed: none, qfq, hfq  
 Controls whether the series uses adjusted prices.
 
 **(7) source — Optional**  

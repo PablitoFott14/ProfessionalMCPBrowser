@@ -18,15 +18,18 @@ Crypto symbol to trade (e.g., BTC/USD, ETH/USD).
 
 **(44) side — Required**
 Default: No default
-Order side (buy or sell).
+Allowed: buy, sell
+Order side.
 
 **(58) order_type — Optional**
 Default: market
-Order type: market, limit, or stop_limit.
+Allowed: market, limit, stop_limit
+Order type.
 
 **(47) time_in_force — Optional**
 Default: gtc
-How long the order remains active. Only gtc and ioc are supported for crypto orders.
+Allowed: gtc, ioc
+How long the order remains active.
 
 **(59) qty — Optional**
 Default: null

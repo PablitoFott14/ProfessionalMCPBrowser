@@ -37,7 +37,8 @@ End time in ISO format (e.g., 2023-01-01T16:00:00).
 
 **(13) sort — Optional**
 Default: null
-Chronological order of response (asc or desc).
+Allowed: asc, desc
+Chronological order of response.
 
 **(28) feed — Optional**
 Default: us

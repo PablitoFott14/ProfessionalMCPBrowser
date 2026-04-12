@@ -9,6 +9,7 @@ GetApiUsage returns real-time information about API usage, including current req
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Output format.
 
 **(18) delimiter — Optional**  

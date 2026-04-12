@@ -13,6 +13,7 @@ Tax year used for the withholding estimate.
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the withholding estimate.
 
 **(21) annualSalary - Required**  
@@ -21,6 +22,7 @@ Annual salary from the job used for the withholding estimate.
 
 **(22) payFrequency - Required**  
 Default: No default  
+Allowed: weekly, biweekly, semimonthly, monthly  
 Pay frequency used to estimate per-paycheck withholding.
 
 **(23) otherIncome - Optional**  

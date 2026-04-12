@@ -9,6 +9,7 @@ Evaluates an IRS audit-risk profile based on a taxpayer's return characteristics
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used in the audit-risk profile.
 
 **(3) grossIncome - Required**  

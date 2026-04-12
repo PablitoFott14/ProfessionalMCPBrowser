@@ -43,6 +43,7 @@ Asset class of the instrument (e.g., Common Stock, ETF, REIT).
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

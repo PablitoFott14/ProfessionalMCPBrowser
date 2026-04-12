@@ -35,10 +35,12 @@ Defines the end of the analysis window.
 
 **(15) order — Optional**  
 Default: desc  
+Allowed: asc, desc  
 Controls sorting of results.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Defines response format.
 
 **(19) dp — Optional**  
@@ -47,6 +49,7 @@ Controls decimal precision.
 
 **(22) series_type — Optional**  
 Default: close  
+Allowed: close, open, high, low  
 Defines which price field is used for MACD calculation.
 
 **(23) fast_period — Optional**  

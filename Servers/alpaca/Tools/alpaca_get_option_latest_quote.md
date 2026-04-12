@@ -15,7 +15,8 @@ Option contract symbol or list of symbols (e.g., AAPL230616C00150000 or ["AAPL23
 
 **(42) feed (options) — Optional**
 Default: null (opra if subscribed, indicative otherwise)
-Options data feed source (opra or indicative). OPRA requires a subscription.
+Allowed: opra, indicative
+Options data feed source. OPRA requires a subscription.
 
 ---
 

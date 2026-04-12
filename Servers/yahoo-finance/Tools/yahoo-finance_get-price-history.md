@@ -13,10 +13,12 @@ Stock ticker symbol to retrieve price history for.
 
 **(6) period — Optional**  
 Default: 1y  
+Allowed: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max  
 Period of historical price data to fetch.
 
 **(7) interval — Optional**  
 Default: 1d  
+Allowed: 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo  
 Data interval used for the historical price series.
 
 ---

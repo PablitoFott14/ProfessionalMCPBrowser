@@ -9,7 +9,8 @@ Retrieves corporate action announcements from Alpaca, such as splits, dividends,
 
 **(6) ca_types — Optional**
 Default: null (all types)
-List of corporate action types to filter by. Available values: reverse_split, forward_split, unit_split, cash_dividend, stock_dividend, spin_off, cash_merger, stock_merger, stock_and_cash_merger, redemption, name_change, worthless_removal, rights_distribution.
+Allowed: reverse_split, forward_split, unit_split, cash_dividend, stock_dividend, spin_off, cash_merger, stock_merger, stock_and_cash_merger, redemption, name_change, worthless_removal, rights_distribution
+List of corporate action types to filter by.
 
 **(7) start — Optional**
 Default: null (current day)
@@ -37,7 +38,8 @@ Maximum number of results to return.
 
 **(13) sort — Optional**
 Default: asc
-Sort order of the results (asc or desc).
+Allowed: asc, desc
+Sort order of the results.
 
 ---
 

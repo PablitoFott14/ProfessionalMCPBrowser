@@ -13,7 +13,8 @@ Stock ticker symbol to trade (e.g., AAPL, MSFT).
 
 **(44) side — Required**
 Default: No default
-Order side (buy or sell).
+Allowed: buy, sell
+Order side.
 
 **(45) quantity — Required**
 Default: No default
@@ -21,15 +22,18 @@ Number of shares to trade.
 
 **(46) type — Optional**
 Default: market
-Order type: market, limit, stop, stop_limit, or trailing_stop.
+Allowed: market, limit, stop, stop_limit, trailing_stop
+Order type.
 
 **(47) time_in_force — Optional**
 Default: day
-How long the order remains active: day, gtc, opg, cls, ioc, or fok.
+Allowed: day, gtc, opg, cls, ioc, fok
+How long the order remains active.
 
 **(48) order_class — Optional**
 Default: null
-Order class for advanced strategies: simple, bracket, oco, or oto.
+Allowed: simple, bracket, oco, oto
+Order class for advanced strategies.
 
 **(49) limit_price — Optional**
 Default: null

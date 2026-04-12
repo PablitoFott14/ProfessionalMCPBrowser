@@ -13,7 +13,8 @@ Ticker symbol of the company (e.g., AAPL, GOOGL).
 
 **(8) period — Optional**
 Default: annual
-Reporting period for the statements (annual, quarterly, ttm).
+Allowed: annual, quarterly, ttm
+Reporting period for the statements.
 
 **(2) limit — Optional**
 Default: 4

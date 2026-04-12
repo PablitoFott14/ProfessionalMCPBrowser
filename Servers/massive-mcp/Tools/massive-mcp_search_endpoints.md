@@ -13,7 +13,8 @@ Natural language search query used to find relevant endpoints or functions.
 
 **(2) scope - Optional**  
 Default: null  
-Search scope used to limit results to endpoints, functions, or both.
+Allowed: endpoints, functions  
+Search scope used to limit results to endpoints or functions (null for both).
 
 ---
 

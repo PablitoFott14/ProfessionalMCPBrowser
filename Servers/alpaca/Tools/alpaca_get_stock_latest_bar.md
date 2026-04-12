@@ -13,7 +13,8 @@ Single ticker symbol or list of symbols (e.g., AAPL or ["AAPL", "MSFT"]).
 
 **(28) feed — Optional**
 Default: null
-Market data feed to retrieve from (iex, sip, delayed_sip, otc).
+Allowed: iex, sip, delayed_sip, otc
+Market data feed to retrieve from.
 
 **(29) currency — Optional**
 Default: null (USD)

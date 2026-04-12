@@ -9,6 +9,7 @@ Compares education-related tax benefits such as the AOTC, Lifetime Learning Cred
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used in the analysis.
 
 **(33) agi - Required**  

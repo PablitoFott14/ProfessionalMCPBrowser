@@ -9,6 +9,7 @@ Creates a multi-year tax projection across a three- to five-year planning horizo
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used throughout the projection.
 
 **(170) currentAge - Required**  

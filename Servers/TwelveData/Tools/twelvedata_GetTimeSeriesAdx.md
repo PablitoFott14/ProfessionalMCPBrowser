@@ -65,6 +65,7 @@ Specific date to retrieve data for.
 
 **(15) order — Optional**  
 Default: null  
+Allowed: asc, desc  
 Sorting order of the output.
 
 **(43) prepost — Optional**  
@@ -73,6 +74,7 @@ Includes pre and post market data.
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  
@@ -89,6 +91,7 @@ Includes previous closing price in the response.
 
 **(45) adjust — Optional**  
 Default: null  
+Allowed: splits, dividends, all  
 Specifies whether data should be adjusted.
 
 **(31) time_period — Optional**  

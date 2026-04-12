@@ -37,6 +37,7 @@ Country where the ETF is located.
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

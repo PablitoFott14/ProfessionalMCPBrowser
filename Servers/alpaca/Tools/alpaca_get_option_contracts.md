@@ -37,11 +37,13 @@ Maximum strike price to include in results.
 
 **(40) contract_type — Optional**
 Default: null
-Filters by contract type (call or put).
+Allowed: call, put
+Filters by contract type.
 
 **(2) status — Optional**
 Default: null
-Filters by asset status (active or inactive).
+Allowed: active, inactive
+Filters by asset status.
 
 **(41) root_symbol — Optional**
 Default: null

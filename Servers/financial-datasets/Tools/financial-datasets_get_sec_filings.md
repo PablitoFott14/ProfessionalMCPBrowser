@@ -17,7 +17,8 @@ Controls how many filings are returned.
 
 **(3) filing_type — Optional**
 Default: null
-Filters results to a specific filing type (e.g., 10-K for annual reports, 10-Q for quarterly reports, 8-K for material events).
+Allowed: 10-K, 10-Q, 8-K, 4, DEF 14A, S-1
+Filters results to a specific filing type.
 
 ---
 

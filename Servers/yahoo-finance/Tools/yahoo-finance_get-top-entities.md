@@ -9,6 +9,7 @@ Gets top entities in a sector, including ETFs, mutual funds, companies, growth c
 
 **(4) entity_type — Required**  
 Default: No default  
+Allowed: etfs, mutual_funds, companies, growth_companies, performing_companies  
 Type of entities to retrieve.
 
 **(5) sector — Optional**  

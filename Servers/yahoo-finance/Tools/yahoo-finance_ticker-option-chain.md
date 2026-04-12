@@ -13,6 +13,7 @@ Stock ticker symbol to retrieve option chain data for.
 
 **(8) option_type — Optional**  
 Default: both  
+Allowed: call, put, both  
 Type of options to retrieve.
 
 **(9) date — Optional**  

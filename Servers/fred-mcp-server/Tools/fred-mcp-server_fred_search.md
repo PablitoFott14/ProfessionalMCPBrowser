@@ -37,6 +37,7 @@ Field used to order the results.
 
 **(8) sort_order - Optional**  
 Default: null  
+Allowed: asc, desc  
 Sort direction used for ordered results.
 
 **(9) filter_variable - Optional**  

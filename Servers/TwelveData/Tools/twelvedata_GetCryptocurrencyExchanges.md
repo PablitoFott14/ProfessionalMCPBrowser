@@ -9,6 +9,7 @@ GetCryptocurrencyExchanges returns the list of supported cryptocurrency exchange
 
 **(17) format — Optional**  
 Default: null  
+Allowed: JSON, CSV  
 Response format.
 
 **(18) delimiter — Optional**  

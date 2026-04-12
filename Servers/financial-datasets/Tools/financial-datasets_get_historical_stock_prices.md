@@ -21,7 +21,8 @@ End date of the price data range (e.g., 2020-12-31).
 
 **(6) interval — Optional**
 Default: day
-Granularity of each data point (minute, hour, day, week, month).
+Allowed: minute, hour, day, week, month
+Granularity of each data point.
 
 **(7) interval_multiplier — Optional**
 Default: 1

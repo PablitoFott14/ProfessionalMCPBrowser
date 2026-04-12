@@ -29,6 +29,7 @@ Controls how output datetime is displayed.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Sets the response format.
 
 **(19) dp — Optional**  

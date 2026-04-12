@@ -9,6 +9,7 @@ Compares tax liability across tax years for the same income profile. Use this wh
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used across the year comparison.
 
 **(3) grossIncome - Required**  

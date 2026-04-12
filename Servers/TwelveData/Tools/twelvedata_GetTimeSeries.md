@@ -43,6 +43,7 @@ Used to retrieve data for a specific date.
 
 **(15) order — Optional**  
 Default: desc  
+Allowed: asc, desc  
 Controls sorting of the time series.
 
 **(16) prepost — Optional**  
@@ -51,6 +52,7 @@ Includes pre market and post market data when applicable.
 
 **(17) format — Optional**  
 Default: JSON  
+Allowed: JSON, CSV  
 Defines response format.
 
 **(19) dp — Optional**  
@@ -63,7 +65,8 @@ Adds previous close value to each data point.
 
 **(21) adjust — Optional**  
 Default: splits  
-Controls how prices are adjusted (e.g., splits, dividends).
+Allowed: splits, dividends, all  
+Controls how prices are adjusted.
 
 **(27) apikey — Optional**  
 Default: demo  

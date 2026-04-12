@@ -13,6 +13,7 @@ Tax year used for the scenario comparison.
 
 **(2) filingStatus - Required**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Current filing status used as the baseline.
 
 **(120) currentIncome - Required**  
@@ -49,6 +50,7 @@ Hypothetical new state code.
 
 **(128) whatIfFilingStatus - Optional**  
 Default: No default  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Hypothetical new filing status.
 
 **(129) whatIfRothConversion - Optional**  

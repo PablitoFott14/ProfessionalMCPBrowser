@@ -22,7 +22,8 @@ List of option legs. Each leg is a dictionary with:
 
 **(48) order_class — Optional**
 Default: null (simple for single-leg, mleg for multi-leg)
-Order class: simple or mleg.
+Allowed: simple, mleg
+Order class.
 
 **(45) quantity — Optional**
 Default: 1
@@ -30,6 +31,7 @@ Base quantity multiplied by each leg's ratio_qty.
 
 **(47) time_in_force — Optional**
 Default: day
+Allowed: day
 Time in force. Only day is supported for options orders.
 
 **(19) extended_hours — Optional**

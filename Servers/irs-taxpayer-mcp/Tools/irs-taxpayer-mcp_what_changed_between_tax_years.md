@@ -17,6 +17,7 @@ Later tax year used in the comparison.
 
 **(2) filingStatus - Optional**  
 Default: single  
+Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for filing-status-specific comparisons.
 
 ---
