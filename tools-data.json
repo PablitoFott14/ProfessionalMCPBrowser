@@ -6998,6 +6998,653 @@
       ]
     },
     {
+      "name": "fred-mcp-server",
+      "intro": "The fred-mcp-server is an economic data research server centered on FRED series discovery, catalog browsing, and direct series retrieval. It is useful when the user needs to find relevant economic indicators, explore the structure of the FRED catalog, or pull observations for a known series.\n\n### How it works\n- The server supports three main workflows: keyword and filter-based series search, catalog browsing through categories, releases, or sources, and direct retrieval of series observations by `series_id`.\n- Common inputs include search fields such as `search_text`, `tag_names`, and search filters, browse controls such as `browse_type`, `category_id`, and `release_id`, and retrieval controls such as `observation_start`, `observation_end`, `units`, `frequency`, and `aggregation_method`.\n- It can be used either for discovery, when the user does not yet know the series ID, or for direct data retrieval once the target series has already been identified.\n\n### Potential resolution paths\n- **Search for an indicator, then retrieve its data:** Start with `fred_search` to locate relevant series by keyword or filter, then move into `fred_get_series` once the correct `series_id` is known.\n- **Browse the catalog before narrowing to a series:** Use `fred_browse` to explore categories, releases, sources, or series collections, then pick a series from those results for direct retrieval with `fred_get_series`.\n- **Move from raw observations into transformed views:** Pull a known series with `fred_get_series`, then use options such as `units`, `frequency`, or `aggregation_method` when the user needs a transformed or resampled version of the same series.\n\n### Best practices\n- **Use search or browse before direct retrieval when the series ID is uncertain:** `fred_search` and `fred_browse` are better starting points than guessing a `series_id`.\n- **Match retrieval settings to the question being asked:** Use date filters for time-bounded requests, `units` for transformed values, and `frequency` plus `aggregation_method` when the user needs data at a different cadence.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "fred-mcp-server_fred_browse",
+          "purpose": "Browses the FRED catalog through categories, releases, sources, or series collections. Use this when the user needs to explore the overall FRED structure rather than search directly by keywords or series ID.",
+          "parameters": [
+            {
+              "number": 19,
+              "name": "browse_type",
+              "required": true,
+              "default": "No default",
+              "description": "Browse mode used to determine what part of the FRED catalog to explore."
+            },
+            {
+              "number": 20,
+              "name": "category_id",
+              "required": false,
+              "default": "No default",
+              "description": "Category identifier used for category-based browsing."
+            },
+            {
+              "number": 21,
+              "name": "release_id",
+              "required": false,
+              "default": "No default",
+              "description": "Release identifier used for release-based browsing."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "50",
+              "description": "Maximum number of results to return."
+            },
+            {
+              "number": 6,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "description": "Number of results to skip."
+            },
+            {
+              "number": 7,
+              "name": "order_by",
+              "required": false,
+              "default": "No default",
+              "description": "Field used to order the results."
+            },
+            {
+              "number": 8,
+              "name": "sort_order",
+              "required": false,
+              "default": "No default",
+              "description": "Sort direction used for ordered results."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Browse the top-level FRED categories",
+              "params": {
+                "browse_type": "categories"
+              }
+            },
+            {
+              "intent": "Retrieve series in a specific FRED category",
+              "params": {
+                "browse_type": "category_series",
+                "category_id": 125,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "fred-mcp-server_fred_get_series",
+          "purpose": "Retrieves data for a specific FRED series by its ID, with optional date ranges, transformations, frequency changes, and output settings. Use this when the user already knows the series ID and needs the actual observations.",
+          "parameters": [
+            {
+              "number": 11,
+              "name": "series_id",
+              "required": true,
+              "default": "No default",
+              "description": "FRED series identifier used to retrieve the data."
+            },
+            {
+              "number": 12,
+              "name": "observation_start",
+              "required": false,
+              "default": "No default",
+              "description": "Start date used to limit returned observations."
+            },
+            {
+              "number": 13,
+              "name": "observation_end",
+              "required": false,
+              "default": "No default",
+              "description": "End date used to limit returned observations."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "No default",
+              "description": "Maximum number of observations to return."
+            },
+            {
+              "number": 6,
+              "name": "offset",
+              "required": false,
+              "default": "No default",
+              "description": "Number of observations to skip."
+            },
+            {
+              "number": 8,
+              "name": "sort_order",
+              "required": false,
+              "default": "No default",
+              "description": "Sort order of observations by date."
+            },
+            {
+              "number": 14,
+              "name": "units",
+              "required": false,
+              "default": "No default",
+              "description": "Data transformation applied to the returned values."
+            },
+            {
+              "number": 15,
+              "name": "frequency",
+              "required": false,
+              "default": "No default",
+              "description": "Frequency aggregation applied to the returned observations."
+            },
+            {
+              "number": 16,
+              "name": "aggregation_method",
+              "required": false,
+              "default": "No default",
+              "description": "Aggregation method used when changing the observation frequency."
+            },
+            {
+              "number": 17,
+              "name": "output_type",
+              "required": false,
+              "default": "No default",
+              "description": "Output format used for the returned observations."
+            },
+            {
+              "number": 18,
+              "name": "vintage_dates",
+              "required": false,
+              "default": "No default",
+              "description": "Vintage date or dates used for vintage-aware retrieval."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve GDP observations from 2015 onward",
+              "params": {
+                "series_id": "GDP",
+                "observation_start": "2015-01-01"
+              }
+            },
+            {
+              "intent": "Retrieve recent CPI percent changes in descending date order",
+              "params": {
+                "series_id": "CPIAUCSL",
+                "units": "pch",
+                "sort_order": "desc",
+                "limit": 24
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "fred-mcp-server_fred_search",
+          "purpose": "Searches for FRED economic data series by keywords, tags, identifiers, or filters. Use this when the user needs to locate relevant economic series before requesting observations or working with a specific series ID.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "search_text",
+              "required": false,
+              "default": "null",
+              "description": "Text used to search for matching series."
+            },
+            {
+              "number": 2,
+              "name": "search_type",
+              "required": false,
+              "default": "null",
+              "description": "Search mode used to search by full text or series ID."
+            },
+            {
+              "number": 3,
+              "name": "tag_names",
+              "required": false,
+              "default": "null",
+              "description": "Comma-separated list of tag names used to filter results."
+            },
+            {
+              "number": 4,
+              "name": "exclude_tag_names",
+              "required": false,
+              "default": "null",
+              "description": "Comma-separated list of tag names used to exclude results."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "description": "Maximum number of results to return."
+            },
+            {
+              "number": 6,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "description": "Number of results to skip for pagination."
+            },
+            {
+              "number": 7,
+              "name": "order_by",
+              "required": false,
+              "default": "null",
+              "description": "Field used to order the results."
+            },
+            {
+              "number": 8,
+              "name": "sort_order",
+              "required": false,
+              "default": "null",
+              "description": "Sort direction used for ordered results."
+            },
+            {
+              "number": 9,
+              "name": "filter_variable",
+              "required": false,
+              "default": "null",
+              "description": "Variable used to filter the results."
+            },
+            {
+              "number": 10,
+              "name": "filter_value",
+              "required": false,
+              "default": "null",
+              "description": "Value used for the selected filter variable."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search FRED for unemployment-related series",
+              "params": {
+                "search_text": "unemployment"
+              }
+            },
+            {
+              "intent": "Search FRED for monthly CPI series ordered by popularity",
+              "params": {
+                "search_text": "CPI",
+                "filter_variable": "frequency",
+                "filter_value": "Monthly",
+                "order_by": "popularity",
+                "sort_order": "desc",
+                "limit": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "massive-mcp",
+      "intro": "The massive-mcp server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.\n\n### How it works\n- The server is organized as a stepwise workflow: `search_endpoints` is used to discover relevant endpoints or local functions, `get_endpoint_docs` is used to inspect endpoint parameters, `call_api` is used to fetch market data, and `query_data` is used to analyze stored results.\n- Common inputs include `query` and `scope` for discovery, `url` for documentation lookup, `method`, `path`, `params`, `store_as`, and `api_key` for API calls, and `sql` for querying stored tables.\n- The server also supports optional post-processing through `apply`, both when data is fetched and when query results are analyzed.\n\n### Potential resolution paths\n- **Discover an endpoint, then execute it:** Start with `search_endpoints` to find the right market data endpoint, use `get_endpoint_docs` to inspect the endpoint pattern and query parameters, then call `call_api` with the selected path and needed request parameters.\n- **Turn raw API results into queryable tables:** Use `call_api` with `store_as` when the user wants to keep the returned data available for later analysis, then use `query_data` to inspect, filter, aggregate, or compare the stored results with SQL.\n- **Move from data retrieval into post-processing:** Use `search_endpoints` with function scope when the user needs available local functions, then apply those functions either during `call_api` or after a SQL result with `query_data`.\n\n### Best practices\n- **Follow the workflow in order when the endpoint is not already known:** `search_endpoints` and `get_endpoint_docs` are the right starting points before building a `call_api` request.\n- **Store results when the user will need follow-up analysis:** `store_as` makes later SQL analysis through `query_data` much more efficient than repeatedly calling the same endpoint.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "massive-mcp_call_api",
+          "purpose": "Fetches financial market data from a selected API endpoint path and optionally stores or post-processes the results. Use this after discovering an endpoint and reviewing its documentation, when the user is ready to make the actual data request.",
+          "parameters": [
+            {
+              "number": 4,
+              "name": "method",
+              "required": true,
+              "default": "No default",
+              "description": "HTTP method used for the request. Only `GET` is supported."
+            },
+            {
+              "number": 5,
+              "name": "path",
+              "required": true,
+              "default": "No default",
+              "description": "API endpoint path used to request data."
+            },
+            {
+              "number": 6,
+              "name": "params",
+              "required": false,
+              "default": "null",
+              "description": "Query parameters passed with the API request."
+            },
+            {
+              "number": 7,
+              "name": "store_as",
+              "required": false,
+              "default": "null",
+              "description": "Table name used to store the results for later querying."
+            },
+            {
+              "number": 8,
+              "name": "apply",
+              "required": false,
+              "default": "null",
+              "description": "List of post-processing function steps to apply to the returned results."
+            },
+            {
+              "number": 9,
+              "name": "api_key",
+              "required": false,
+              "default": "null",
+              "description": "API key override used for this request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch daily aggregate data for AAPL over January 2024",
+              "params": {
+                "method": "GET",
+                "path": "/v2/aggs/ticker/AAPL/range/1/day/2024-01-01/2024-01-31"
+              }
+            },
+            {
+              "intent": "Fetch aggregate data, store it for later querying, and apply a post-processing function",
+              "params": {
+                "method": "GET",
+                "path": "/v2/aggs/ticker/AAPL/range/1/day/2024-01-01/2024-01-31",
+                "params": {
+                  "adjusted": true
+                },
+                "store_as": "prices",
+                "apply": [
+                  {
+                    "function": "returns",
+                    "inputs": {
+                      "price": "close"
+                    },
+                    "output": "daily_return"
+                  }
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "massive-mcp_get_endpoint_docs",
+          "purpose": "Retrieves parameter documentation for a financial data API endpoint from its documentation URL. Use this after endpoint discovery, when the user needs the endpoint pattern and available query parameters before making a request.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "url",
+              "required": true,
+              "default": "No default",
+              "description": "Documentation URL used to retrieve endpoint details."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve documentation for a discovered aggregates endpoint",
+              "params": {
+                "url": "https://example.com/docs/aggs"
+              }
+            },
+            {
+              "intent": "Retrieve documentation for a discovered options endpoint",
+              "params": {
+                "url": "https://example.com/docs/options"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "massive-mcp_query_data",
+          "purpose": "Queries stored financial data tables using SQL and can optionally post-process the query results. Use this after data has been stored through `call_api`, when the user needs analysis, filtering, aggregation, or table inspection.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "sql",
+              "required": true,
+              "default": "No default",
+              "description": "SQL query or special command used to analyze stored tables."
+            },
+            {
+              "number": 8,
+              "name": "apply",
+              "required": false,
+              "default": "null",
+              "description": "List of post-processing function steps to apply to the query results."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List all stored data tables",
+              "params": {
+                "sql": "SHOW TABLES"
+              }
+            },
+            {
+              "intent": "Calculate the average close price from a stored prices table and post-process the result",
+              "params": {
+                "sql": "SELECT AVG(close) AS avg_close FROM prices",
+                "apply": [
+                  {
+                    "function": "returns",
+                    "inputs": {
+                      "price": "avg_close"
+                    },
+                    "output": "avg_return"
+                  }
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "massive-mcp_search_endpoints",
+          "purpose": "Searches for financial market data API endpoints and local finance functions by natural language query. Use this as the starting point when the user needs to discover where to get specific market data or which finance functions are available for a given task.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Natural language search query used to find relevant endpoints or functions."
+            },
+            {
+              "number": 2,
+              "name": "scope",
+              "required": false,
+              "default": "null",
+              "description": "Search scope used to limit results to endpoints, functions, or both."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find endpoints related to options data",
+              "params": {
+                "query": "options data"
+              }
+            },
+            {
+              "intent": "Search only local functions related to technical indicators",
+              "params": {
+                "query": "technical indicators",
+                "scope": "functions"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "octagon-mcp",
+      "intro": "The octagon-mcp server is a market intelligence and research server designed for broader, synthesis-heavy analysis across multiple financial and market information sources. It is useful when the user needs an aggregated research view, a multi-source market intelligence answer, or focused analysis on prediction market events.\n\n### How it works\n- The server centers on agent-style tools driven by a natural language `prompt`, with different tools oriented toward broader market intelligence, deep research, or prediction-market-specific analysis.\n- It also includes a historical prediction market data tool keyed by `event_ticker`, with optional pagination, time-window filtering, and analysis-column controls.\n- The server is oriented more toward synthesis and interpreted research workflows than toward direct low-level dataset retrieval.\n\n### Potential resolution paths\n- **Run broad market intelligence research:** Use `octagon-agent` when the user needs a wide market intelligence view that combines multiple research domains into one answer.\n- **Go deeper on a focused investment research question:** Use `octagon-deep-research-agent` when the request is narrower but still requires aggregated, up-to-date research from multiple sources.\n- **Analyze a prediction market with both data and research context:** Pull historical event data with `prediction_markets_history`, then use `octagon-prediction-markets-agent` when the user wants a more interpretive report on drivers, model versus market probabilities, or potential mispricings.\n\n### Best practices\n- **Choose the agent by research depth and scope:** Use the broader agent for holistic market intelligence, the deep research agent for focused investment research, and the prediction-markets agent when the question is specifically about Kalshi-style event markets.\n- **Use historical event data before interpretive prediction-market analysis when specific event context matters:** `prediction_markets_history` helps ground the later research step in a concrete event and time window.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "octagon-mcp_octagon-agent",
+          "purpose": "Runs a comprehensive market intelligence agent that combines multiple data sources into a broader research analysis. Use this when the user needs a more holistic market intelligence view spanning multiple research domains across public and private markets.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "prompt",
+              "required": true,
+              "default": "No default",
+              "description": "Natural language research request passed to the agent."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Research a public company across filings, earnings, and ownership signals",
+              "params": {
+                "prompt": "Provide a comprehensive market intelligence analysis of Nvidia, including filings, earnings, financial metrics, and institutional ownership trends"
+              }
+            },
+            {
+              "intent": "Research a broader market theme across public and private markets",
+              "params": {
+                "prompt": "Analyze the current AI infrastructure market across public companies, private funding activity, and recent M&A trends"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "octagon-mcp_octagon-deep-research-agent",
+          "purpose": "Runs a deep research agent that aggregates and synthesizes investment research across multiple sources. Use this when the user needs a broad, up-to-date research answer rather than a narrow lookup from a single data source.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "prompt",
+              "required": true,
+              "default": "No default",
+              "description": "Natural language research request passed to the agent."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Research the current investment case for semiconductor stocks",
+              "params": {
+                "prompt": "Provide a deep investment research overview of the current semiconductor sector outlook"
+              }
+            },
+            {
+              "intent": "Research a company with a focus on risks and catalysts",
+              "params": {
+                "prompt": "Analyze the current investment thesis for Tesla, including key risks and near-term catalysts"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "octagon-mcp_octagon-prediction-markets-agent",
+          "purpose": "Runs a specialized prediction markets research agent for Kalshi events. Use this when the user needs a focused research report on what may be driving a market, how market and model probabilities compare, or where potential mispricings may exist.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "prompt",
+              "required": true,
+              "default": "No default",
+              "description": "Natural language research request passed to the agent."
+            },
+            {
+              "number": 8,
+              "name": "cache",
+              "required": false,
+              "default": "null",
+              "description": "Flag indicating whether the response should be cached."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Research what is driving a specific Kalshi event",
+              "params": {
+                "prompt": "Create a research report on the current drivers of the BTC end-of-month Kalshi market"
+              }
+            },
+            {
+              "intent": "Analyze a Kalshi event for potential mispricing and cache the response",
+              "params": {
+                "prompt": "Compare market-implied and model-implied probabilities for this Kalshi election event and identify possible mispricings",
+                "cache": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "octagon-mcp_prediction_markets_history",
+          "purpose": "Retrieves historical data for a prediction market event by its event ticker. Use this when the user needs historical records for a specific prediction market, optionally with pagination, a bounded time window, or analysis fields included.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "event_ticker",
+              "required": true,
+              "default": "No default",
+              "description": "Event ticker used to identify the prediction market event."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "null",
+              "description": "Maximum number of history records to return."
+            },
+            {
+              "number": 4,
+              "name": "cursor",
+              "required": false,
+              "default": "null",
+              "description": "Pagination cursor used to continue from a previous response."
+            },
+            {
+              "number": 5,
+              "name": "captured_from",
+              "required": false,
+              "default": "null",
+              "description": "Start of the historical window used to filter records."
+            },
+            {
+              "number": 6,
+              "name": "captured_to",
+              "required": false,
+              "default": "null",
+              "description": "End of the historical window used to filter records."
+            },
+            {
+              "number": 7,
+              "name": "include_analysis",
+              "required": false,
+              "default": "null",
+              "description": "Flag indicating whether analysis columns should be included."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve recent history for a specific prediction market event",
+              "params": {
+                "event_ticker": "KXBTCY-27JAN0100"
+              }
+            },
+            {
+              "intent": "Retrieve a bounded historical window for a prediction market event with analysis columns",
+              "params": {
+                "event_ticker": "KXBTCY-27JAN0100",
+                "captured_from": "2025-01-01T00:00:00Z",
+                "captured_to": "2025-01-31T23:59:59Z",
+                "limit": 100,
+                "include_analysis": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "us-legal-mcp",
       "intro": "The us-legal-mcp server is a US legal research server for searching across congressional legislation, Federal Register materials, and court opinions, while also surfacing recent items from each source. It is useful when the user needs either targeted research within one legal source or a broader view across legislation, regulation, and case law.\n\n### How it works\n- The server is organized around source-specific search tools for Congress, the Federal Register, and CourtListener, plus recent-item tools for each of those sources.\n- Most search workflows start from a `query`, while optional filters such as `congress`, `court`, and `limit` help narrow scope or control result volume.\n- The cross-source tool is useful for broader discovery, while the source-specific tools are better when the user already knows whether the question is legislative, regulatory, or judicial.\n\n### Potential resolution paths\n- **Start broad, then narrow to the right source:** Use `search_all_legal` when the user only has a topic, then continue with `search_congress_bills`, `search_federal_register`, or `search_court_opinions` once the most relevant legal source is clear.\n- **Track a legal topic across different source types:** Search congressional bills for proposed legislation, search the Federal Register for regulatory material on the same topic, and search court opinions when the user also needs judicial treatment of that issue.\n- **Monitor what is new without starting from a keyword search:** Use `get_recent_bills`, `get_recent_regulations`, or `get_recent_court_opinions` when the goal is to review the latest published or introduced legal materials first, then follow with a source-specific search if a topic needs deeper research.\n\n### Best practices\n- **Choose the source-specific tool when the legal source is already known:** It will usually return more focused results than starting with the cross-source search.\n- **Use broad search first when the user is exploring a topic rather than a source:** `search_all_legal` works better as a starting point when the request does not clearly map to legislation, regulation, or case law.",
       "paramsWrapped": false,
@@ -7267,7 +7914,7 @@
     },
     {
       "name": "us-regulations-mcp",
-      "intro": "",
+      "intro": "The us-regulations-mcp server is a US regulatory research and compliance analysis server centered on supported federal and state regulations. It is useful for discovering relevant regulation text, inspecting regulation structure, retrieving exact sections, comparing requirements across regulations, checking sector applicability, mapping controls to regulations, and extracting compliance-oriented outputs from identified sections.\n\n### How it works\n- The server supports both discovery and follow-up workflows: broad search and listing tools help identify relevant regulations or sections, while retrieval and analysis tools operate on specific regulations, sections, or section sets.\n- Common inputs include `query`, `regulation`, `section`, `sections`, `regulations`, `topic`, `sector`, `framework`, and `state`, depending on whether the task is search, lookup, comparison, applicability, control mapping, or compliance extraction.\n- The server also includes server metadata through `about`, which can be used to verify coverage, freshness, and provenance before relying on the results.\n\n### Potential resolution paths\n- **Discover a rule, then retrieve the exact text:** Start with `search_regulations` to find relevant sections by topic, use `list_regulations` to inspect available regulation IDs or section structure if needed, then move into `get_section` once the exact regulation and section are known.\n- **Move from relevant sections into compliance outputs:** After identifying sections with `search_regulations` or `get_section`, use `get_evidence_requirements` to extract audit evidence expectations or `get_compliance_action_items` to turn the same sections into prioritized follow-up actions.\n- **Compare or scope obligations before drilling down:** Use `compare_requirements` to see how multiple regulations address the same topic, `check_applicability` to identify which regulations may apply to a sector, or `get_breach_notification_timeline` when the question is specifically about notification deadlines and jurisdictional requirements.\n- **Connect control frameworks to regulation text:** Use `map_controls` when the user starts from a NIST framework objective and needs to locate the related regulation sections before reviewing those sections in more detail.\n\n### Best practices\n- **Use discovery tools before section-level tools when the exact citation is not known:** `search_regulations` and `list_regulations` are better starting points than guessing a regulation ID or section number.\n- **Choose the analysis tool by the type of compliance question:** Use comparison tools for cross-regulation questions, applicability tools for scoping, section retrieval for exact text, and evidence or action tools when the user needs compliance artifacts or next steps.",
       "paramsWrapped": false,
       "tools": [
         {

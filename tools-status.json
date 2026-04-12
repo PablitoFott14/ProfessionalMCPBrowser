@@ -139,5 +139,22 @@
     "us-regulations-mcp_get_compliance_action_items": "active",
     "us-regulations-mcp_get_breach_notification_timeline": "active",
     "us-regulations-mcp_about": "active"
+  },
+  "massive-mcp": {
+    "massive-mcp_search_endpoints": "active",
+    "massive-mcp_get_endpoint_docs": "active",
+    "massive-mcp_call_api": "active",
+    "massive-mcp_query_data": "active"
+  },
+  "fred-mcp-server": {
+    "fred-mcp-server_fred_search": "active",
+    "fred-mcp-server_fred_get_series": "active",
+    "fred-mcp-server_fred_browse": "active"
+  },
+  "octagon-mcp": {
+    "octagon-mcp_octagon-deep-research-agent": "active",
+    "octagon-mcp_octagon-agent": "active",
+    "octagon-mcp_prediction_markets_history": "active",
+    "octagon-mcp_octagon-prediction-markets-agent": "active"
   }
 }

@@ -31,6 +31,18 @@
     "us-regulations-mcp": {
       "color": "#84cc16",
       "domain": "Legal"
+    },
+    "massive-mcp": {
+      "color": "#14b8a6",
+      "domain": "Finance"
+    },
+    "fred-mcp-server": {
+      "color": "#3b82f6",
+      "domain": "Finance"
+    },
+    "octagon-mcp": {
+      "color": "#eab308",
+      "domain": "Finance"
     }
   }
 }
