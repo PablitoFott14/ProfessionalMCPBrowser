@@ -42,14 +42,3 @@ Number of cash flow statements to return.
   }
 }
 ```
-
-### Potential resolution paths
-
-**"Does this company generate real cash or is profitability just on paper?"**
-Call `get_cash_flow_statements` alongside `get_income_statements` to compare operating cash flow to net income. A persistent gap between the two often signals accounting-driven earnings.
-
-**"Is cash burn accelerating quarter over quarter?"**
-Request `get_cash_flow_statements` with `period` set to quarterly and a higher `limit` to trace operating and free cash flow trends over time.
-
-**"I need a complete view of capital allocation before making an investment decision."**
-Use `get_cash_flow_statements` together with `get_balance_sheets` to see how cash generated is being deployed — into debt repayment, capex, or shareholder returns.

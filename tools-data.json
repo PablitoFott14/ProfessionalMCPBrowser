@@ -3728,7 +3728,7 @@
       "tools": [
         {
           "name": "akshare-one-mcp_get_balance_sheet",
-          "purpose": "akshare-one-mcp_get_balance_sheet retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.",
+          "purpose": "Retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.",
           "parameters": [
             {
               "number": 1,
@@ -3765,7 +3765,7 @@
         },
         {
           "name": "akshare-one-mcp_get_cash_flow",
-          "purpose": "akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.",
+          "purpose": "Retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.",
           "parameters": [
             {
               "number": 1,
@@ -3809,7 +3809,7 @@
         },
         {
           "name": "akshare-one-mcp_get_financial_metrics",
-          "purpose": "akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.",
+          "purpose": "Retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.",
           "parameters": [
             {
               "number": 1,
@@ -3846,7 +3846,7 @@
         },
         {
           "name": "akshare-one-mcp_get_hist_data",
-          "purpose": "akshare-one-mcp_get_hist_data retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.\n\nIt is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.",
+          "purpose": "Retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.\n\nIt is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.",
           "parameters": [
             {
               "number": 1,
@@ -3943,7 +3943,7 @@
         },
         {
           "name": "akshare-one-mcp_get_income_statement",
-          "purpose": "akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.",
+          "purpose": "Retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.",
           "parameters": [
             {
               "number": 1,
@@ -3980,7 +3980,7 @@
         },
         {
           "name": "akshare-one-mcp_get_inner_trade_data",
-          "purpose": "akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.",
+          "purpose": "Retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.",
           "parameters": [
             {
               "number": 1,
@@ -4003,7 +4003,7 @@
         },
         {
           "name": "akshare-one-mcp_get_news_data",
-          "purpose": "akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.",
+          "purpose": "Retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.",
           "parameters": [
             {
               "number": 1,
@@ -4040,7 +4040,7 @@
         },
         {
           "name": "akshare-one-mcp_get_realtime_data",
-          "purpose": "akshare-one-mcp_get_realtime_data retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.\n\nIt can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.",
+          "purpose": "Retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.\n\nIt can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.",
           "parameters": [
             {
               "number": 1,
@@ -4077,7 +4077,7 @@
         },
         {
           "name": "akshare-one-mcp_get_time_info",
-          "purpose": "akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.",
+          "purpose": "Returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.",
           "parameters": [],
           "examples": [
             {
@@ -6475,7 +6475,7 @@
       "tools": [
         {
           "name": "alphavantage_TOOL_CALL",
-          "purpose": "alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.",
+          "purpose": "Executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.",
           "parameters": [
             {
               "number": 1,
@@ -6518,7 +6518,7 @@
         },
         {
           "name": "alphavantage_TOOL_GET",
-          "purpose": "alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.",
+          "purpose": "Retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.",
           "parameters": [
             {
               "number": 1,
@@ -6550,7 +6550,7 @@
         },
         {
           "name": "alphavantage_TOOL_LIST",
-          "purpose": "alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.",
+          "purpose": "Lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.",
           "parameters": [],
           "examples": [
             {
@@ -6578,7 +6578,7 @@
               "params": {}
             }
           ],
-          "paths": "**\"I want to check price history for a crypto asset but I'm not sure of the ticker format.\"**\nCall `get_available_crypto_tickers` first to confirm the exact symbol, then pass it to `get_crypto_prices` or `get_historical_crypto_prices` with the desired date range.\n\n**\"Show me what crypto assets are available and then pull price data for a few of them.\"**\nUse `get_available_crypto_tickers` to present the full list, then call `get_historical_crypto_prices` once per selected ticker to retrieve OHLC data for comparison.",
+          "paths": "",
           "active": true
         },
         {
@@ -6623,7 +6623,7 @@
               }
             }
           ],
-          "paths": "**\"Is this company financially healthy?\"**\nCombine `get_balance_sheets` with `get_income_statements` and `get_cash_flow_statements` to assess leverage, profitability, and cash generation together. No single statement gives the full picture.\n\n**\"Has the company taken on significantly more debt recently?\"**\nCall `get_balance_sheets` with `period` set to quarterly and a higher `limit` to trace debt levels across multiple reporting periods.\n\n**\"I want to review the annual report and then validate the balance sheet numbers.\"**\nFetch `get_sec_filings` filtered to `10-K` first for the qualitative context, then call `get_balance_sheets` to confirm the reported figures.",
+          "paths": "",
           "active": true
         },
         {
@@ -6668,7 +6668,7 @@
               }
             }
           ],
-          "paths": "**\"Does this company generate real cash or is profitability just on paper?\"**\nCall `get_cash_flow_statements` alongside `get_income_statements` to compare operating cash flow to net income. A persistent gap between the two often signals accounting-driven earnings.\n\n**\"Is cash burn accelerating quarter over quarter?\"**\nRequest `get_cash_flow_statements` with `period` set to quarterly and a higher `limit` to trace operating and free cash flow trends over time.\n\n**\"I need a complete view of capital allocation before making an investment decision.\"**\nUse `get_cash_flow_statements` together with `get_balance_sheets` to see how cash generated is being deployed — into debt repayment, capex, or shareholder returns.",
+          "paths": "",
           "active": true
         },
         {
@@ -6691,7 +6691,7 @@
               }
             }
           ],
-          "paths": "**\"What's behind this stock's recent price move?\"**\nFetch `get_company_news` to surface recent events, then call `get_historical_stock_prices` over a matching date range to correlate price action with specific headlines.\n\n**\"Are there any developments I should be aware of before analyzing the financials?\"**\nRun `get_company_news` first to identify material events, then decide which financial statements are most relevant — for example, an acquisition announcement would prompt a closer look at `get_balance_sheets` and `get_cash_flow_statements`.\n\n**\"Did any news come out around the time of the company's last SEC filing?\"**\nCall `get_sec_filings` to find recent filing dates, then use `get_company_news` to check for related coverage around those same periods.",
+          "paths": "",
           "active": true
         },
         {
@@ -6754,7 +6754,7 @@
               }
             }
           ],
-          "paths": "**\"I want to analyze a crypto asset's price history but I'm not sure the ticker is supported.\"**\nUse `get_available_crypto_tickers` first to confirm the symbol exists, then call `get_crypto_prices` with the appropriate date range.\n\n**\"Compare the price behavior of two cryptocurrencies over the same period.\"**\nCall `get_crypto_prices` once per asset using identical `start_date` and `end_date` values, then compare the OHLC series side by side.\n\n**\"Analyze price volatility at a finer granularity than daily.\"**\nUse `get_crypto_prices` with `interval` set to `hour` or `minute` and adjust `interval_multiplier` to set the bar size — for example, 4-hour bars with `interval=hour, interval_multiplier=4`.",
+          "paths": "",
           "active": true
         },
         {
@@ -6777,7 +6777,7 @@
               }
             }
           ],
-          "paths": "**\"Is the stock moving on news today?\"**\nCall `get_current_stock_price` for the latest price, then `get_company_news` to check for recent headlines that could explain the move.\n\n**\"How does today's price compare to the company's fundamentals?\"**\nUse `get_current_stock_price` alongside `get_income_statements` to contextualize valuation — for example, comparing price to trailing earnings.\n\n**\"Quick price check before deciding whether to look deeper into the company.\"**\n`get_current_stock_price` alone is sufficient for a point-in-time snapshot. If the price warrants further investigation, follow up with `get_historical_stock_prices` for trend context or `get_balance_sheets` for financial health.",
+          "paths": "",
           "active": true
         },
         {
@@ -6839,7 +6839,7 @@
               }
             }
           ],
-          "paths": "**\"I want to analyze Bitcoin's price history but I'm not certain the ticker is available.\"**\nCall `get_available_crypto_tickers` first to confirm the symbol, then proceed with `get_historical_crypto_prices` for the target date range.\n\n**\"Compare how two crypto assets performed over the same period.\"**\nCall `get_historical_crypto_prices` once per asset with identical `start_date` and `end_date`. Use consistent `interval` values to ensure the series are directly comparable.\n\n**\"Analyze price at a finer resolution to identify intraday patterns.\"**\nSet `interval` to `hour` or `minute` and adjust `interval_multiplier` to control bar size. For example, `interval=hour, interval_multiplier=4` produces 4-hour bars.",
+          "paths": "",
           "active": true
         },
         {
@@ -6902,7 +6902,7 @@
               }
             }
           ],
-          "paths": "**\"Did the stock react to an earnings release or major announcement?\"**\nUse `get_historical_stock_prices` over the period surrounding the event, and pair it with `get_income_statements` or `get_sec_filings` to identify the announcement dates and correlate price movement.\n\n**\"Show the price trend alongside recent news.\"**\nCall `get_historical_stock_prices` for the relevant date range, then `get_company_news` to overlay significant headlines on the price series.\n\n**\"Build a complete picture of a company before making a decision.\"**\nCombine `get_historical_stock_prices` with `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to assess both market behavior and fundamental performance over the same time horizon.",
+          "paths": "",
           "active": true
         },
         {
@@ -6947,7 +6947,7 @@
               }
             }
           ],
-          "paths": "**\"Has this company been growing revenue and improving margins?\"**\nCall `get_income_statements` with enough periods to observe a trend — quarterly with a higher `limit` works well for recent cadence, annual for a longer view.\n\n**\"Did the stock price follow earnings growth?\"**\nPair `get_income_statements` with `get_historical_stock_prices` over matching periods to compare reported performance with market reaction.\n\n**\"I need a full fundamental assessment of this company.\"**\nUse `get_income_statements` together with `get_balance_sheets` and `get_cash_flow_statements` to evaluate profitability, financial position, and cash generation as a set. These three statements cover complementary dimensions of financial health.",
+          "paths": "",
           "active": true
         },
         {
@@ -6992,7 +6992,7 @@
               }
             }
           ],
-          "paths": "**\"I want to review the annual report before pulling the financial statements.\"**\nUse `get_sec_filings` filtered to `10-K` to retrieve the most recent annual report, then call `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to verify and explore the reported figures in detail.\n\n**\"Were there any material events that could explain a recent price move?\"**\nFetch `get_sec_filings` filtered to `8-K` to surface material event filings, then cross-reference with `get_company_news` and `get_historical_stock_prices` over the same period.\n\n**\"What has the company disclosed in the most recent quarter?\"**\nCall `get_sec_filings` filtered to `10-Q` for the latest quarterly filing, then use `get_income_statements` with `period` set to quarterly to review the underlying financial data in parallel.",
+          "paths": "",
           "active": true
         }
       ]

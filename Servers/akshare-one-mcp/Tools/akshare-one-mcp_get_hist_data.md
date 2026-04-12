@@ -1,7 +1,7 @@
 ## akshare-one-mcp_get_hist_data
 
 ### What this tool is for
-akshare-one-mcp_get_hist_data retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.
+Retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.
 
 It is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.
 

@@ -120,15 +120,14 @@ def next_server_color(used_colors, server_count):
 
 
 def update_metadata(data):
-    """Merge new servers/tools into tools-metadata.json without overwriting existing labels."""
-    existing = {'servers': {}, 'tools': {}}
+    """Merge new servers into tools-metadata.json without overwriting existing labels."""
+    existing = {'servers': {}}
     if os.path.exists(METADATA_FILE):
         try:
             with open(METADATA_FILE, encoding='utf-8') as f:
                 loaded = json.load(f)
                 if isinstance(loaded, dict):
                     existing['servers'] = loaded.get('servers', {}) or {}
-                    existing['tools'] = loaded.get('tools', {}) or {}
         except Exception:
             pass
 
@@ -150,13 +149,6 @@ def update_metadata(data):
                 meta['color'] = next_server_color(used_colors, idx)
             if not meta.get('domain'):
                 meta['domain'] = 'General'
-
-        server_domain = existing['servers'][s['name']].get('domain', 'General')
-        for t in s['tools']:
-            if t['name'] not in existing['tools']:
-                existing['tools'][t['name']] = {'domain': server_domain}
-            elif not existing['tools'][t['name']].get('domain'):
-                existing['tools'][t['name']]['domain'] = server_domain
 
     with open(METADATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(existing, f, indent=2, ensure_ascii=False)

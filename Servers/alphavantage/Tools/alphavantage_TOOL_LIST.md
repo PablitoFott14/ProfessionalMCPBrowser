@@ -1,7 +1,7 @@
 ## alphavantage_TOOL_LIST
 
 ### What this tool is for
-alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.
+Lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.
 
 ---
 

@@ -1,7 +1,7 @@
 ## alphavantage_TOOL_GET
 
 ### What this tool is for
-alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.
+Retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.
 
 ---
 

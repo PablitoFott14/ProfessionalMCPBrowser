@@ -1,7 +1,7 @@
 ## akshare-one-mcp_get_news_data
 
 ### What this tool is for
-akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.
+Retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.
 
 ---
 

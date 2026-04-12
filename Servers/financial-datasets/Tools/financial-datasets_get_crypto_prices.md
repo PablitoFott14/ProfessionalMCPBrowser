@@ -54,14 +54,3 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
   }
 }
 ```
-
-### Potential resolution paths
-
-**"I want to analyze a crypto asset's price history but I'm not sure the ticker is supported."**
-Use `get_available_crypto_tickers` first to confirm the symbol exists, then call `get_crypto_prices` with the appropriate date range.
-
-**"Compare the price behavior of two cryptocurrencies over the same period."**
-Call `get_crypto_prices` once per asset using identical `start_date` and `end_date` values, then compare the OHLC series side by side.
-
-**"Analyze price volatility at a finer granularity than daily."**
-Use `get_crypto_prices` with `interval` set to `hour` or `minute` and adjust `interval_multiplier` to set the bar size — for example, 4-hour bars with `interval=hour, interval_multiplier=4`.

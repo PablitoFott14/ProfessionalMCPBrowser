@@ -55,14 +55,3 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
   }
 }
 ```
-
-### Potential resolution paths
-
-**"I want to analyze Bitcoin's price history but I'm not certain the ticker is available."**
-Call `get_available_crypto_tickers` first to confirm the symbol, then proceed with `get_historical_crypto_prices` for the target date range.
-
-**"Compare how two crypto assets performed over the same period."**
-Call `get_historical_crypto_prices` once per asset with identical `start_date` and `end_date`. Use consistent `interval` values to ensure the series are directly comparable.
-
-**"Analyze price at a finer resolution to identify intraday patterns."**
-Set `interval` to `hour` or `minute` and adjust `interval_multiplier` to control bar size. For example, `interval=hour, interval_multiplier=4` produces 4-hour bars.
