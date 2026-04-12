@@ -83,8 +83,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
     "symbol": "NVDA",
     "start": "2024-03-01",
     "end": "2024-03-15",
-    "timeframe": "15Min",
-    "sort": "asc"
+    "timeframe": "15Min"
   }
 }
 ```

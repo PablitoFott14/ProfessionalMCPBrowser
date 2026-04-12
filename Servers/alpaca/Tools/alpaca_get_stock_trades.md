@@ -78,8 +78,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
     "symbol": ["AAPL", "NVDA"],
     "start": "2024-05-15T09:30:00",
     "end": "2024-05-15T12:00:00",
-    "feed": "sip",
-    "sort": "asc"
+    "feed": "sip"
   }
 }
 ```

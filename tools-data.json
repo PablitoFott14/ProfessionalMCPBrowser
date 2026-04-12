@@ -5777,8 +5777,7 @@
                 "symbol": "NVDA",
                 "start": "2024-03-01",
                 "end": "2024-03-15",
-                "timeframe": "15Min",
-                "sort": "asc"
+                "timeframe": "15Min"
               }
             }
           ],
@@ -6209,8 +6208,7 @@
                 ],
                 "start": "2024-05-15T09:30:00",
                 "end": "2024-05-15T12:00:00",
-                "feed": "sip",
-                "sort": "asc"
+                "feed": "sip"
               }
             }
           ],
