@@ -6998,6 +6998,660 @@
       ]
     },
     {
+      "name": "us-legal-mcp",
+      "intro": "The us-legal-mcp server is a US legal research server for searching across congressional legislation, Federal Register materials, and court opinions, while also surfacing recent items from each source. It is useful when the user needs either targeted research within one legal source or a broader view across legislation, regulation, and case law.\n\n### How it works\n- The server is organized around source-specific search tools for Congress, the Federal Register, and CourtListener, plus recent-item tools for each of those sources.\n- Most search workflows start from a `query`, while optional filters such as `congress`, `court`, and `limit` help narrow scope or control result volume.\n- The cross-source tool is useful for broader discovery, while the source-specific tools are better when the user already knows whether the question is legislative, regulatory, or judicial.\n\n### Potential resolution paths\n- **Start broad, then narrow to the right source:** Use `search_all_legal` when the user only has a topic, then continue with `search_congress_bills`, `search_federal_register`, or `search_court_opinions` once the most relevant legal source is clear.\n- **Track a legal topic across different source types:** Search congressional bills for proposed legislation, search the Federal Register for regulatory material on the same topic, and search court opinions when the user also needs judicial treatment of that issue.\n- **Monitor what is new without starting from a keyword search:** Use `get_recent_bills`, `get_recent_regulations`, or `get_recent_court_opinions` when the goal is to review the latest published or introduced legal materials first, then follow with a source-specific search if a topic needs deeper research.\n\n### Best practices\n- **Choose the source-specific tool when the legal source is already known:** It will usually return more focused results than starting with the cross-source search.\n- **Use broad search first when the user is exploring a topic rather than a source:** `search_all_legal` works better as a starting point when the request does not clearly map to legislation, regulation, or case law.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "us-legal-mcp_get_recent_bills",
+          "purpose": "Gets the most recently introduced bills in Congress. Use this when the user needs a current view of recently introduced congressional legislation rather than a keyword search.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "congress",
+              "required": false,
+              "default": "null",
+              "description": "Congress number used to scope the results."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the most recent bills introduced in Congress",
+              "params": {}
+            },
+            {
+              "intent": "Retrieve more recently introduced bills from the 118th Congress",
+              "params": {
+                "congress": 118,
+                "limit": 30
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_get_recent_court_opinions",
+          "purpose": "Gets the most recently published court opinions from CourtListener. Use this when the user needs a current view of new court opinions rather than a keyword-based case law search.",
+          "parameters": [
+            {
+              "number": 4,
+              "name": "court",
+              "required": false,
+              "default": "null",
+              "description": "Court identifier used to limit results to a specific court."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the most recently published court opinions",
+              "params": {}
+            },
+            {
+              "intent": "Retrieve recent Supreme Court opinions",
+              "params": {
+                "court": "scotus",
+                "limit": 15
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_get_recent_regulations",
+          "purpose": "Gets the most recently published Federal Register documents. Use this when the user needs a current view of newly published federal register material rather than a keyword search.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the most recently published Federal Register documents",
+              "params": {}
+            },
+            {
+              "intent": "Retrieve more recently published Federal Register documents",
+              "params": {
+                "limit": 30
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_search_all_legal",
+          "purpose": "Searches across multiple US legal sources, including Congress, the Federal Register, and court opinions. Use this when the user needs a broader legal search rather than searching a single source in isolation.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used across legal sources."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "description": "Number of results to return per source."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search across US legal sources for immigration-related material",
+              "params": {
+                "query": "immigration"
+              }
+            },
+            {
+              "intent": "Retrieve more cross-source legal results related to healthcare",
+              "params": {
+                "query": "healthcare",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_search_congress_bills",
+          "purpose": "Searches for bills and resolutions in Congress.gov. Use this when the user needs to find congressional legislation by topic or keyword.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used to find bills or resolutions."
+            },
+            {
+              "number": 2,
+              "name": "congress",
+              "required": false,
+              "default": "null",
+              "description": "Congress number used to scope the search."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for congressional bills related to immigration",
+              "params": {
+                "query": "immigration"
+              }
+            },
+            {
+              "intent": "Retrieve more infrastructure-related bills from the 118th Congress",
+              "params": {
+                "query": "infrastructure",
+                "congress": 118,
+                "limit": 30
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_search_court_opinions",
+          "purpose": "Searches court opinions and decisions from CourtListener across federal and state courts. Use this when the user needs case law results rather than legislative or regulatory materials.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used to find relevant court opinions."
+            },
+            {
+              "number": 4,
+              "name": "court",
+              "required": false,
+              "default": "null",
+              "description": "Court identifier used to limit the search to a specific court."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of court opinion results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search court opinions related to copyright disputes",
+              "params": {
+                "query": "copyright"
+              }
+            },
+            {
+              "intent": "Search Supreme Court opinions related to constitutional issues",
+              "params": {
+                "query": "constitutional",
+                "court": "scotus",
+                "limit": 15
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-legal-mcp_search_federal_register",
+          "purpose": "Searches for documents in the Federal Register, including regulations, executive orders, and related federal publications. Use this when the user needs to find federal register documents by topic or keyword.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used to find federal register documents."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "description": "Number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for Federal Register documents related to environmental policy",
+              "params": {
+                "query": "environmental"
+              }
+            },
+            {
+              "intent": "Retrieve more Federal Register documents related to healthcare",
+              "params": {
+                "query": "healthcare",
+                "limit": 30
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "us-regulations-mcp",
+      "intro": "",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "us-regulations-mcp_about",
+          "purpose": "Returns server metadata, dataset statistics, freshness, and provenance information. Use this at the start of a session when the user needs to verify the server's coverage and data basis before relying on its regulatory outputs.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "Review server coverage and freshness information before starting compliance research",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_check_applicability",
+          "purpose": "Determines which regulations may apply to a given industry sector. Use this as a starting point when the user needs a regulation applicability view before moving into specific regulation text or section-level research.",
+          "parameters": [
+            {
+              "number": 8,
+              "name": "sector",
+              "required": true,
+              "default": "No default",
+              "description": "Industry sector used to check regulatory applicability."
+            },
+            {
+              "number": 9,
+              "name": "subsector",
+              "required": false,
+              "default": "null",
+              "description": "More specific industry classification used to refine the applicability result."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check which regulations apply to the healthcare sector",
+              "params": {
+                "sector": "healthcare"
+              }
+            },
+            {
+              "intent": "Check which regulations apply to hospitals within the healthcare sector",
+              "params": {
+                "sector": "healthcare",
+                "subsector": "hospital"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_compare_requirements",
+          "purpose": "Compares how multiple regulations address the same topic across their relevant sections. Use this when the user needs a cross-regulation view of the same requirement area rather than a search within a single regulation.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "topic",
+              "required": true,
+              "default": "No default",
+              "description": "Topic used to compare regulatory treatment across multiple regulations."
+            },
+            {
+              "number": 2,
+              "name": "regulations",
+              "required": true,
+              "default": "No default",
+              "description": "List of regulation identifiers to include in the comparison."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare how regulations address breach notification",
+              "params": {
+                "topic": "breach notification",
+                "regulations": [
+                  "HIPAA",
+                  "CCPA",
+                  "GLBA"
+                ]
+              }
+            },
+            {
+              "intent": "Compare access control requirements across multiple regulations",
+              "params": {
+                "topic": "access controls",
+                "regulations": [
+                  "HIPAA",
+                  "SOX",
+                  "GLBA"
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_get_breach_notification_timeline",
+          "purpose": "Retrieves breach notification timelines across supported federal and state jurisdictions. Use this when the user needs to review notification deadlines, recipients, penalties, or thresholds by jurisdiction or regulation.",
+          "parameters": [
+            {
+              "number": 13,
+              "name": "state",
+              "required": false,
+              "default": "null",
+              "description": "State or jurisdiction name used to narrow the results."
+            },
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": false,
+              "default": "null",
+              "description": "Regulation identifier used to filter the returned breach notification rules."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get breach notification timelines across all supported jurisdictions",
+              "params": {}
+            },
+            {
+              "intent": "Get California breach notification timelines for HIPAA-related rules",
+              "params": {
+                "state": "California",
+                "regulation": "HIPAA"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_get_compliance_action_items",
+          "purpose": "Generates prioritized compliance action items from one or more regulation sections. Use this after relevant sections have been identified, when the user needs concrete compliance follow-up items tied to those sections.",
+          "parameters": [
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": true,
+              "default": "No default",
+              "description": "Regulation identifier used to select the regulation."
+            },
+            {
+              "number": 12,
+              "name": "sections",
+              "required": true,
+              "default": "No default",
+              "description": "List of section identifiers used to generate action items."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Generate compliance action items from selected HIPAA sections",
+              "params": {
+                "regulation": "HIPAA",
+                "sections": [
+                  "164.308(a)(1)(ii)(A)",
+                  "164.312(b)"
+                ]
+              }
+            },
+            {
+              "intent": "Generate action items from selected GLBA sections",
+              "params": {
+                "regulation": "GLBA",
+                "sections": [
+                  "314.4",
+                  "314.6"
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_get_evidence_requirements",
+          "purpose": "Extracts audit evidence requirements from a specific regulation section. Use this after identifying the relevant section, when the user needs to understand what artifacts or records may be required for compliance or audit support.",
+          "parameters": [
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": true,
+              "default": "No default",
+              "description": "Regulation identifier used to select the regulation."
+            },
+            {
+              "number": 6,
+              "name": "section",
+              "required": true,
+              "default": "No default",
+              "description": "Section identifier used to retrieve and analyze the specific provision."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Extract audit evidence requirements from a HIPAA section",
+              "params": {
+                "regulation": "HIPAA",
+                "section": "164.312(b)"
+              }
+            },
+            {
+              "intent": "Extract evidence requirements from the SOX section on internal controls",
+              "params": {
+                "regulation": "SOX",
+                "section": "SOX-404"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_get_section",
+          "purpose": "Retrieves the full text of a specific regulation section when the regulation and section are already known. Use this after discovery, when the user needs the actual section text rather than search results.",
+          "parameters": [
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": true,
+              "default": "No default",
+              "description": "Regulation identifier used to select the regulation."
+            },
+            {
+              "number": 6,
+              "name": "section",
+              "required": true,
+              "default": "No default",
+              "description": "Section identifier used to retrieve the specific provision."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the HIPAA section for uses and disclosures of protected health information",
+              "params": {
+                "regulation": "HIPAA",
+                "section": "164.502"
+              }
+            },
+            {
+              "intent": "Retrieve the CCPA section covering consumer rights requests",
+              "params": {
+                "regulation": "CCPA",
+                "section": "1798.100"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_list_regulations",
+          "purpose": "Lists the available regulations or returns the structure of a specific regulation. Use this when the user needs to discover valid regulation IDs or inspect a regulation's chapters and section numbers before retrieving a specific section.",
+          "parameters": [
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": false,
+              "default": "null",
+              "description": "Regulation identifier used to return the structure of a specific regulation."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "List all available regulations",
+              "params": {}
+            },
+            {
+              "intent": "Get the structure of the HIPAA regulation",
+              "params": {
+                "regulation": "HIPAA"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_map_controls",
+          "purpose": "Maps control framework objectives to relevant regulation sections for compliance mapping and gap analysis. Use this when the user needs to connect a control framework to specific regulatory requirements.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "framework",
+              "required": true,
+              "default": "No default",
+              "description": "Control framework used as the source for the mapping request."
+            },
+            {
+              "number": 11,
+              "name": "control",
+              "required": false,
+              "default": "null",
+              "description": "Specific control identifier used to narrow the mapping results."
+            },
+            {
+              "number": 5,
+              "name": "regulation",
+              "required": false,
+              "default": "null",
+              "description": "Regulation identifier used to limit mappings to a specific regulation."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Map NIST CSF controls to relevant regulations",
+              "params": {
+                "framework": "NIST_CSF"
+              }
+            },
+            {
+              "intent": "Map a specific NIST 800-53 control to HIPAA sections",
+              "params": {
+                "framework": "NIST_800_53_R5",
+                "control": "AC-1",
+                "regulation": "HIPAA"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "us-regulations-mcp_search_regulations",
+          "purpose": "Searches across supported US federal and state regulations to find relevant regulation text on a topic. Use this as the primary discovery tool when the user needs to locate regulation sections before moving to a specific provision.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used to find relevant regulation text."
+            },
+            {
+              "number": 2,
+              "name": "regulations",
+              "required": false,
+              "default": "null",
+              "description": "List of regulation identifiers used to limit the search scope."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "description": "Maximum number of results to return."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "description": "Number of results to skip for pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search regulations for breach notification requirements",
+              "params": {
+                "query": "breach notification requirements"
+              }
+            },
+            {
+              "intent": "Search HIPAA and CCPA regulation text related to safeguards with pagination",
+              "params": {
+                "query": "safeguards",
+                "regulations": [
+                  "HIPAA",
+                  "CCPA"
+                ],
+                "limit": 25,
+                "offset": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "yahoo-finance",
       "intro": "The yahoo-finance server is a market research server centered on ticker discovery, company snapshots, recent news, historical price data, option chains, earnings data, and sector-level entity lists. It is useful when the user needs to move between symbol discovery, ticker-specific context, and broader market browsing within the same server.\n\n### How it works\n- The server supports both discovery workflows and ticker-specific retrieval, depending on whether the user starts from a free-text search, a sector view, or a known symbol.\n- Most tools center on a `symbol`, while broader discovery tools use inputs such as `query`, `entity_type`, `sector`, `period`, `interval`, `option_type`, or `date` when applicable.\n- The server combines current company context, recent news, historical pricing, options data, and earnings data, so different views of the same ticker can be retrieved without switching servers.\n\n### Potential resolution paths\n- **Find a symbol, then inspect it:** Start with `search` when the user has a company name or broad query, then move into `get-ticker-info` or `get-ticker-news` once the correct symbol is identified.\n- **Move from a company snapshot into market history:** Use `get-ticker-info` for a broad ticker overview, then follow with `get-price-history` when the user needs to review how that company has traded over time.\n- **Expand from a stock into derivatives or event context:** Pull `ticker-option-chain` when the user needs option chain data for the same symbol, or `ticker-earning` when the focus shifts to annual or quarterly earnings context.\n- **Explore a sector before narrowing to a ticker:** Use `get-top-entities` to review leading entities within a sector, then choose a symbol from those results for ticker-level data such as `get-ticker-info`, `get-price-history`, or `get-ticker-news`.\n\n### Best practices\n- **Use discovery tools before ticker tools when the symbol is uncertain:** `search` and `get-top-entities` are better starting points than guessing a ticker and calling a symbol-specific endpoint directly.\n- **Match the tool to the type of context needed:** Use `get-ticker-info` for a broad company view, `get-ticker-news` for recent developments, `get-price-history` for past market behavior, `ticker-option-chain` for options data, and `ticker-earning` for earnings context.",
       "paramsWrapped": false,

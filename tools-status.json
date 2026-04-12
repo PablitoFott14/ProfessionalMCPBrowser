@@ -118,5 +118,26 @@
     "yahoo-finance_get-price-history": "active",
     "yahoo-finance_ticker-option-chain": "active",
     "yahoo-finance_ticker-earning": "active"
+  },
+  "us-legal-mcp": {
+    "us-legal-mcp_search_congress_bills": "active",
+    "us-legal-mcp_search_federal_register": "active",
+    "us-legal-mcp_search_all_legal": "active",
+    "us-legal-mcp_get_recent_bills": "active",
+    "us-legal-mcp_get_recent_regulations": "active",
+    "us-legal-mcp_search_court_opinions": "active",
+    "us-legal-mcp_get_recent_court_opinions": "active"
+  },
+  "us-regulations-mcp": {
+    "us-regulations-mcp_search_regulations": "active",
+    "us-regulations-mcp_get_section": "active",
+    "us-regulations-mcp_list_regulations": "active",
+    "us-regulations-mcp_compare_requirements": "active",
+    "us-regulations-mcp_check_applicability": "active",
+    "us-regulations-mcp_map_controls": "active",
+    "us-regulations-mcp_get_evidence_requirements": "active",
+    "us-regulations-mcp_get_compliance_action_items": "active",
+    "us-regulations-mcp_get_breach_notification_timeline": "active",
+    "us-regulations-mcp_about": "active"
   }
 }

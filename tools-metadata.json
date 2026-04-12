@@ -23,6 +23,14 @@
     "yahoo-finance": {
       "color": "#ec4899",
       "domain": "Finance"
+    },
+    "us-legal-mcp": {
+      "color": "#f97316",
+      "domain": "Legal"
+    },
+    "us-regulations-mcp": {
+      "color": "#84cc16",
+      "domain": "Legal"
     }
   }
 }
