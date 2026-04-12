@@ -13,7 +13,5 @@ The financial-datasets server is designed for research-heavy workflows. It bring
 - **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices` or crypto price tools when the user needs trend, volatility, or event-window analysis.
 
 ### Best practices
-- **Treat the server as a research bundle, not a set of isolated endpoints.**
-  Its value increases when filings, news, statements, and prices are read together.
-- **Match the tool to the depth of the question.**
-  Use current price tools for quick checks, historical series for trend analysis, and statement or filing tools when the user is really asking about business quality or disclosure.
+- **Treat the server as a research bundle, not a set of isolated endpoints:** Its value increases when filings, news, statements, and prices are read together.
+- **Match the tool to the depth of the question:** Use current price tools for quick checks, historical series for trend analysis, and statement or filing tools when the user is really asking about business quality or disclosure.

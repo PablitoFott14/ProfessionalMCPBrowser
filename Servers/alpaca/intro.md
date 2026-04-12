@@ -13,7 +13,5 @@ The alpaca server is the operational side of the stack: it combines live brokera
 - **Create a monitoring workflow before trading:** Build or update watchlists, review snapshots for tracked assets, and use the same server later to transition from observation into order placement when conditions are met.
 
 ### Best practices
-- **Separate read actions from account actions mentally.**
-  Many tools are safe informational lookups, while others directly affect capital, positions, or watchlists.
-- **Use the broader market picture before sending orders.**
-  Snapshots, latest quotes, option chain data, and account state checks reduce avoidable execution mistakes.
+- **Separate read actions from account actions mentally:** Many tools are safe informational lookups, while others directly affect capital, positions, or watchlists.
+- **Use the broader market picture before sending orders:** Snapshots, latest quotes, option chain data, and account state checks reduce avoidable execution mistakes.

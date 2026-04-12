@@ -13,7 +13,5 @@ The TwelveData server is a broad market intelligence layer for researching instr
 - **Move from market context to security context:** Combine `GetMarketState`, `GetProfile`, `GetStatistics`, `GetEarnings`, `GetDividends`, or `GetSplits` to understand not only what a symbol is doing, but also what kind of asset it is and what events may matter around it.
 
 ### Best practices
-- **Choose tools by intent, not just by endpoint name.**
-  Use discovery tools for finding the right asset first, quote tools for quick checks, and time series plus indicators when the task requires trend or signal analysis.
-- **Keep the workflow compact.**
-  In many cases, the best result comes from a short sequence such as symbol discovery, current price check, then historical or indicator follow-up on the same symbol.
+- **Choose tools by intent, not just by endpoint name:** Use discovery tools for finding the right asset first, quote tools for quick checks, and time series plus indicators when the task requires trend or signal analysis.
+- **Keep the workflow compact:** In many cases, the best result comes from a short sequence such as symbol discovery, current price check, then historical or indicator follow-up on the same symbol.
