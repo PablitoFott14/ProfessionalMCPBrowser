@@ -381,7 +381,7 @@ body{
 
   <div class="search-wrap">
     <span class="search-icon">⌕</span>
-    <input id="searchInput" type="search" placeholder="Search tools, parameters, descriptions… (⌘K)" autocomplete="off" spellcheck="false">
+    <input id="searchInput" type="search" placeholder="Search tool names only… (⌘K)" autocomplete="off" spellcheck="false">
     <span id="searchCount" class="search-count"></span>
     <button id="clearSearch" class="clear-btn" title="Clear">×</button>
   </div>
@@ -437,24 +437,28 @@ function getStatus(sname,tname){
 
 /* ── FUSE ─────────────────────────────────────────────────── */
 let fuse, fidx=[];
+function normName(s){
+  return String(s).toLowerCase().trim();
+}
 function initFuse(){
   fidx=[];
   for(const srv of S.data.servers)
     for(const t of srv.tools)
-      fidx.push({s:srv.name,n:t.name,p:t.purpose,
-        pn:t.parameters.map(x=>x.name).join(' '),
-        pd:t.parameters.map(x=>x.description).join(' ')});
+      fidx.push({s:srv.name,n:t.name,norm:normName(t.name)});
   fuse=new Fuse(fidx,{
-    keys:[{name:'n',weight:.45},{name:'p',weight:.3},{name:'s',weight:.05},
-          {name:'pn',weight:.12},{name:'pd',weight:.08}],
-    threshold:.38,includeMatches:true,minMatchCharLength:2,ignoreLocation:true,
+    keys:[{name:'n',weight:1}],
+    threshold:.24,includeMatches:false,minMatchCharLength:2,ignoreLocation:true,
   });
 }
 
 function getVisible(){
   let ms=null;
   if(S.search.trim().length>=2){
-    ms=new Set(fuse.search(S.search.trim()).map(r=>`${r.item.s}::${r.item.n}`));
+    const q=normName(S.search);
+    const exact=fidx.filter(x=>x.norm===q);
+    const substring=(exact.length?exact:fidx.filter(x=>x.norm.includes(q)));
+    const matches=substring.length?substring:fuse.search(S.search.trim()).map(r=>r.item);
+    ms=new Set(matches.map(x=>`${x.s}::${x.n}`));
   }
   const out={};
   for(const srv of S.data.servers){
