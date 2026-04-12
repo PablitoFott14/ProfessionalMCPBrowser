@@ -215,7 +215,7 @@ body{
 /* ── TOOLS GRID ─────────────────────────────────────────────── */
 .tools-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
 }
 /* ── TOOL CARD ──────────────────────────────────────────────── */
@@ -332,9 +332,9 @@ body{
 .p-enum{
   font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
   font-size:9.5px;padding:2px 6px;border-radius:3px;
-  background:rgba(99,102,241,.18);color:#a5b4fc;white-space:nowrap;
+  background:rgba(20,184,166,.14);color:#5eead4;white-space:nowrap;
 }
-[data-theme="light"] .p-enum{background:rgba(99,102,241,.12);color:#4f46e5}
+[data-theme="light"] .p-enum{background:rgba(13,148,136,.1);color:#0f766e}
 .no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:4px 0 14px}
 
 /* ── EXAMPLES ────────────────────────────────────────────────── */
@@ -386,7 +386,6 @@ body{
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media(max-width:920px){.sidebar{display:none}.main{margin-left:0;padding:14px}}
-@media(max-width:1400px){.tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:1080px){.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.tools-grid{grid-template-columns:1fr}}
 @media(max-width:540px){.logo-sep,.logo-sub,.hdr-badge{display:none}.header{padding:0 12px}}
@@ -609,18 +608,20 @@ function renderParams(params){
   if(!params.length) return `<p class="no-params">This tool takes no parameters.</p>`;
   const rows=params.map(p=>`<tr>
     <td class="p-num">${p.number}</td>
-    <td class="p-name"><span class="badge ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span> ${esc(p.name)}${p.allowed&&p.allowed.length?`<div class="p-allowed">${p.allowed.map(v=>`<span class="p-enum">${esc(v)}</span>`).join('')}</div>`:''}</td>
+    <td class="p-name">${esc(p.name)}</td>
+    <td><span class="badge ${p.required?'req':'opt'}">${p.required?'req':'opt'}</span></td>
     <td class="p-def">${p.default.toLowerCase()==='no default'?'—':esc(p.default)}</td>
-    <td class="p-desc">${esc(p.description)}</td>
+    <td class="p-desc">${esc(p.description)}${p.allowed&&p.allowed.length?`<div class="p-allowed">${p.allowed.map(v=>`<span class="p-enum">${esc(v)}</span>`).join('')}</div>`:''}</td>
   </tr>`).join('');
   return `<table class="ptable">
     <colgroup>
       <col style="width:22px">
-      <col style="width:28%">
+      <col style="width:22%">
+      <col style="width:34px">
       <col style="width:14%">
       <col>
     </colgroup>
-    <thead><tr><th>#</th><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+    <thead><tr><th>#</th><th>Parameter</th><th></th><th>Default</th><th>Description</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
