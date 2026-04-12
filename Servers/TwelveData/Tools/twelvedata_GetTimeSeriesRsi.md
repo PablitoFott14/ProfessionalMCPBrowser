@@ -3,8 +3,6 @@
 ### What this tool is for
 GetTimeSeriesRsi retrieves the Relative Strength Index (RSI) over time for a given instrument. It is a momentum oscillator that measures the speed and change of price movements, helping traders identify potential overbought or oversold conditions and trend reversals.
 
-In practice, this is used to determine whether an asset is trading above or below key thresholds (typically 70 for overbought, 30 for oversold), supporting entry and exit timing decisions.
-
 ---
 
 ### Used parameters

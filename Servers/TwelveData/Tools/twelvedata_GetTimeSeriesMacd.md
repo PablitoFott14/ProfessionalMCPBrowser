@@ -3,8 +3,6 @@
 ### What this tool is for
 GetTimeSeriesMacd retrieves the MACD indicator over time for a given instrument. It is used when the user wants to analyze momentum and potential trend reversals, rather than raw price data.
 
-In practice, this is used to identify signals like crossovers between MACD and its signal line, helping assess whether momentum is strengthening or weakening.
-
 ---
 
 ### Used parameters

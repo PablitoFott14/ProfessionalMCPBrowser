@@ -3,8 +3,6 @@
 ### What this tool is for
 GetStocks returns an array of stock symbols available at Twelve Data API. This list is updated daily and is used when the user needs to discover available instruments or filter them by exchange, country, type, or identifier before performing further analysis.
 
-In practice, this is used as a reference lookup to validate tickers, explore what is tradable on a given exchange, or build selection lists for downstream queries.
-
 ---
 
 ### Used parameters

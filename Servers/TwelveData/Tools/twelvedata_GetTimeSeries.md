@@ -3,8 +3,6 @@
 ### What this tool is for
 GetTimeSeries retrieves historical OHLC data over time for a given instrument. It is used when the user needs price evolution across a period, not just the latest value.
 
-In practice, this is the go to tool for analyzing trends, comparing price movements across dates, or feeding data into indicators or strategies.
-
 ---
 
 ### Used parameters

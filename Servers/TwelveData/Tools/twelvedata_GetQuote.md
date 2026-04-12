@@ -3,10 +3,6 @@
 ### What this tool is for
 GetQuote retrieves the latest available market data for a single instrument. It provides a real time snapshot including price, change, volume, and market status, making it the go to option when the user needs current conditions, not historical trends.
 
-MAKE SURE YOU ARE NOT LOOSING THE REFERENCE OF PARAMETER
-
-In practice, this is used to quickly check how an asset is performing right now, whether the market is open, and how the current price compares to recent benchmarks like the previous close or 52 week range.
-
 ---
 
 ### Used parameters

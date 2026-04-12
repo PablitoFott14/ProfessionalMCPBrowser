@@ -1994,7 +1994,7 @@
         },
         {
           "name": "twelvedata_GetQuote",
-          "purpose": "GetQuote retrieves the latest available market data for a single instrument. It provides a real time snapshot including price, change, volume, and market status, making it the go to option when the user needs current conditions, not historical trends.\n\nMAKE SURE YOU ARE NOT LOOSING THE REFERENCE OF PARAMETER\n\nIn practice, this is used to quickly check how an asset is performing right now, whether the market is open, and how the current price compares to recent benchmarks like the previous close or 52 week range.",
+          "purpose": "GetQuote retrieves the latest available market data for a single instrument. It provides a real time snapshot including price, change, volume, and market status, making it the go to option when the user needs current conditions, not historical trends.",
           "parameters": [
             {
               "number": 1,
@@ -2316,7 +2316,7 @@
         },
         {
           "name": "twelvedata_GetStocks",
-          "purpose": "GetStocks returns an array of stock symbols available at Twelve Data API. This list is updated daily and is used when the user needs to discover available instruments or filter them by exchange, country, type, or identifier before performing further analysis.\n\nIn practice, this is used as a reference lookup to validate tickers, explore what is tradable on a given exchange, or build selection lists for downstream queries.",
+          "purpose": "GetStocks returns an array of stock symbols available at Twelve Data API. This list is updated daily and is used when the user needs to discover available instruments or filter them by exchange, country, type, or identifier before performing further analysis.",
           "parameters": [
             {
               "number": 1,
@@ -2516,7 +2516,7 @@
         },
         {
           "name": "twelvedata_GetTechnicalIndicators",
-          "purpose": "GetTechnicalIndicators returns an array of objects with available technical indicators. It is used when the user needs to discover which indicators are supported, explore their parameters and output values, or build an abstract interface to make more convenient API calls from the application.\n\nIn practice, this is used as a catalog lookup to understand indicator metadata such as default settings, output display types, and groupings before calling a specific indicator endpoint.",
+          "purpose": "GetTechnicalIndicators returns an array of objects with available technical indicators. It is used when the user needs to discover which indicators are supported, explore their parameters and output values, or build an abstract interface to make more convenient API calls from the application.",
           "parameters": [
             {
               "number": 6,
@@ -2554,7 +2554,7 @@
         },
         {
           "name": "twelvedata_GetTimeSeries",
-          "purpose": "GetTimeSeries retrieves historical OHLC data over time for a given instrument. It is used when the user needs price evolution across a period, not just the latest value.\n\nIn practice, this is the go to tool for analyzing trends, comparing price movements across dates, or feeding data into indicators or strategies.",
+          "purpose": "GetTimeSeries retrieves historical OHLC data over time for a given instrument. It is used when the user needs price evolution across a period, not just the latest value.",
           "parameters": [
             {
               "number": 1,
@@ -3683,7 +3683,7 @@
         },
         {
           "name": "twelvedata_GetTimeSeriesMacd",
-          "purpose": "GetTimeSeriesMacd retrieves the MACD indicator over time for a given instrument. It is used when the user wants to analyze momentum and potential trend reversals, rather than raw price data.\n\nIn practice, this is used to identify signals like crossovers between MACD and its signal line, helping assess whether momentum is strengthening or weakening.",
+          "purpose": "GetTimeSeriesMacd retrieves the MACD indicator over time for a given instrument. It is used when the user wants to analyze momentum and potential trend reversals, rather than raw price data.",
           "parameters": [
             {
               "number": 1,
@@ -3845,7 +3845,7 @@
         },
         {
           "name": "twelvedata_GetTimeSeriesRsi",
-          "purpose": "GetTimeSeriesRsi retrieves the Relative Strength Index (RSI) over time for a given instrument. It is a momentum oscillator that measures the speed and change of price movements, helping traders identify potential overbought or oversold conditions and trend reversals.\n\nIn practice, this is used to determine whether an asset is trading above or below key thresholds (typically 70 for overbought, 30 for oversold), supporting entry and exit timing decisions.",
+          "purpose": "GetTimeSeriesRsi retrieves the Relative Strength Index (RSI) over time for a given instrument. It is a momentum oscillator that measures the speed and change of price movements, helping traders identify potential overbought or oversold conditions and trend reversals.",
           "parameters": [
             {
               "number": 1,
