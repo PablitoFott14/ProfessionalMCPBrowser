@@ -1,7 +1,7 @@
 ## akshare-one-mcp_get_financial_metrics
 
 ### What this tool is for
-akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.
+Retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.
 
 ---
 

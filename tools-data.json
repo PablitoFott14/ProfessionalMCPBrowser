@@ -3728,7 +3728,7 @@
       "tools": [
         {
           "name": "akshare-one-mcp_get_balance_sheet",
-          "purpose": "akshare-one-mcp_get_balance_sheet retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.",
+          "purpose": "Retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.",
           "parameters": [
             {
               "number": 1,
@@ -3765,7 +3765,7 @@
         },
         {
           "name": "akshare-one-mcp_get_cash_flow",
-          "purpose": "akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.",
+          "purpose": "Retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.",
           "parameters": [
             {
               "number": 1,
@@ -3809,7 +3809,7 @@
         },
         {
           "name": "akshare-one-mcp_get_financial_metrics",
-          "purpose": "akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.",
+          "purpose": "Retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.",
           "parameters": [
             {
               "number": 1,
@@ -3846,7 +3846,7 @@
         },
         {
           "name": "akshare-one-mcp_get_hist_data",
-          "purpose": "akshare-one-mcp_get_hist_data retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.\n\nIt is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.",
+          "purpose": "Retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.\n\nIt is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.",
           "parameters": [
             {
               "number": 1,
@@ -3943,7 +3943,7 @@
         },
         {
           "name": "akshare-one-mcp_get_income_statement",
-          "purpose": "akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.",
+          "purpose": "Retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.",
           "parameters": [
             {
               "number": 1,
@@ -3980,7 +3980,7 @@
         },
         {
           "name": "akshare-one-mcp_get_inner_trade_data",
-          "purpose": "akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.",
+          "purpose": "Retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.",
           "parameters": [
             {
               "number": 1,
@@ -4003,7 +4003,7 @@
         },
         {
           "name": "akshare-one-mcp_get_news_data",
-          "purpose": "akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.",
+          "purpose": "Retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.",
           "parameters": [
             {
               "number": 1,
@@ -4040,7 +4040,7 @@
         },
         {
           "name": "akshare-one-mcp_get_realtime_data",
-          "purpose": "akshare-one-mcp_get_realtime_data retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.\n\nIt can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.",
+          "purpose": "Retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.\n\nIt can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.",
           "parameters": [
             {
               "number": 1,
@@ -4077,7 +4077,7 @@
         },
         {
           "name": "akshare-one-mcp_get_time_info",
-          "purpose": "akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.",
+          "purpose": "Returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.",
           "parameters": [],
           "examples": [
             {
@@ -6475,7 +6475,7 @@
       "tools": [
         {
           "name": "alphavantage_TOOL_CALL",
-          "purpose": "alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.",
+          "purpose": "Executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.",
           "parameters": [
             {
               "number": 1,
@@ -6518,7 +6518,7 @@
         },
         {
           "name": "alphavantage_TOOL_GET",
-          "purpose": "alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.",
+          "purpose": "Retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.",
           "parameters": [
             {
               "number": 1,
@@ -6550,7 +6550,7 @@
         },
         {
           "name": "alphavantage_TOOL_LIST",
-          "purpose": "alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.",
+          "purpose": "Lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.",
           "parameters": [],
           "examples": [
             {

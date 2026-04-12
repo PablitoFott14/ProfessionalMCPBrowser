@@ -156,9 +156,11 @@ body{
   display:flex;align-items:center;gap:11px;
   padding-bottom:14px;border-bottom:1px solid var(--border);
   margin-bottom:18px;
+  flex-wrap:wrap;
 }
 .srv-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .srv-name{font-size:18px;font-weight:700;letter-spacing:-.4px}
+.srv-domain{margin-left:2px}
 .srv-count{
   margin-left:auto;padding:3px 10px;border-radius:20px;
   font-size:11px;font-weight:600;
@@ -257,11 +259,6 @@ body{
   text-transform:uppercase;
   white-space:nowrap;
 }
-.domain-pill.inline{font-size:9.5px;padding:2px 7px}
-.tc-meta{
-  display:flex;align-items:center;gap:8px;
-  padding-top:13px;
-}
 
 .tc-side{
   display:flex;flex-direction:column;align-items:center;
@@ -299,7 +296,7 @@ body{
 .tool-card.open .tc-body-inner{opacity:1}
 
 .tc-purpose{
-  padding:11px 0 15px;
+  padding:13px 0 15px;
   font-size:12.5px;color:var(--text-dim);line-height:1.75;
   white-space:pre-line;
 }
@@ -459,7 +456,7 @@ function sc(n){
 }
 
 /* ── STATE ────────────────────────────────────────────────── */
-const S = {data:null,status:{},meta:{servers:{},tools:{}},search:'',filter:null,expanded:new Set()};
+const S = {data:null,status:{},meta:{servers:{}},search:'',filter:null,expanded:new Set()};
 
 function getStatus(sname,tname){
   const s = (S.status[sname]?.[tname]) || 'active';
@@ -468,8 +465,8 @@ function getStatus(sname,tname){
   return                      {cls:'red',    label:'Inactive'};
 }
 
-function getToolDomain(sname,tname){
-  return S.meta?.tools?.[tname]?.domain || S.meta?.servers?.[sname]?.domain || 'Unassigned';
+function getServerDomain(sname){
+  return S.meta?.servers?.[sname]?.domain || 'Unassigned';
 }
 
 /* ── FUSE ─────────────────────────────────────────────────── */
@@ -639,7 +636,6 @@ function renderPaths(md){
 function renderCard(srv,tool){
   const c=sc(srv.name);
   const st=getStatus(srv.name,tool.name);
-  const domain=getToolDomain(srv.name,tool.name);
   const open=S.expanded.has(`${srv.name}::${tool.name}`);
   const desc=tool.purpose.replace(/\n+/g,' ').replace(/\s+/g,' ').trim().slice(0,110);
   const np=tool.parameters.length, ne=tool.examples.length;
@@ -653,7 +649,6 @@ function renderCard(srv,tool){
         <div class="tc-name">${esc(tool.name)}</div>
         <div class="tc-desc">${esc(desc)}</div>
         <div class="tc-foot">
-          <span class="domain-pill inline">${esc(domain)}</span>
           <span class="tc-counts">${np} param${np!==1?'s':''} · ${ne} example${ne!==1?'s':''}</span>
         </div>
       </div>
@@ -664,9 +659,6 @@ function renderCard(srv,tool){
     </div>
     <div class="tc-body">
       <div class="tc-body-inner">
-        <div class="tc-meta">
-          <span class="domain-pill">${esc(domain)}</span>
-        </div>
         <div class="tc-purpose">${esc(tool.purpose)}</div>
         <div class="s-label">Parameters</div>
         ${renderParams(tool.parameters)}
@@ -683,6 +675,7 @@ function renderCard(srv,tool){
 function renderServer(srv,vis){
   if(!vis.length) return '';
   const c=sc(srv.name);
+  const domain=getServerDomain(srv.name);
   const total=srv.tools.length;
   const nActive=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
 
@@ -695,6 +688,7 @@ function renderServer(srv,vis){
     <div class="srv-hdr">
       <div class="srv-dot" style="background:${c.color};box-shadow:0 0 8px ${c.color}aa"></div>
       <span class="srv-name" style="color:${c.color}">${esc(srv.name)}</span>
+      <span class="domain-pill srv-domain">${esc(domain)}</span>
       <div class="srv-count" style="background:${c.bg};color:${c.light}">${nActive} / ${total} active</div>
     </div>
     ${renderIntroPanel(srv)}
