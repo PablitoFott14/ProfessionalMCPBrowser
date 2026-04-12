@@ -1,19 +1,19 @@
 ## TwelveData
 
-The TwelveData server does not follow the typical flat parameter–value structure used by many other tools. Instead, all inputs must be passed within a dedicated `params` dictionary.
+The TwelveData server is a broad market intelligence layer for researching instruments, pulling price history, checking current market state, and layering technical indicators over the same symbol and interval. It is especially strong when the goal is to move from discovery to analysis quickly across equities, ETFs, forex, crypto, commodities, and related market metadata.
 
 ### How it works
-- Every tool call must include a `params` object.
-- The required inputs for the request are provided as properties inside this dictionary.
-- Each property comes with a default value, meaning not all parameters need to be explicitly set.
+- The server combines instrument discovery tools, quote and price endpoints, reference data, and time series analysis in one place.
+- It supports both simple point-in-time checks and deeper workflows such as chart building, trend analysis, and indicator confirmation.
+- Requests use a `params` object, but the main value of the server is the breadth of analysis it enables once a symbol or asset class is identified.
 
 ### Potential resolution paths
-- **Analyze a symbol's price trend with technical confirmation:** Fetch `GetTimeSeries` for the price history, then layer in `GetRSI` or `GetMACD` over the same interval to identify momentum or divergence.
-- **Get a full market snapshot before acting:** Use `GetQuote` or `GetPrice` for the current state, then pull `GetTimeSeries` with a short lookback to understand recent context without making multiple separate calls.
-- **Build an intraday chart with indicators:** Call `GetTimeSeries` with a minute or hourly interval, then request `GetBollingerBands` or `GetSTOCH` over the same range to overlay signals on the price series.
+- **Discover, then analyze a market:** Start with symbol lookup or asset-listing tools such as `GetSymbolSearch`, `GetStocks`, `GetEtf`, `GetCryptocurrencies`, or `GetForexPairs`, then move into `GetQuote`, `GetPrice`, or `GetTimeSeries` for the actual market view.
+- **Build a richer technical read on a symbol:** Pull `GetTimeSeries`, then add indicators such as `GetTimeSeriesSma`, `GetTimeSeriesEma`, `GetTimeSeriesRsi`, `GetTimeSeriesMacd`, `GetTimeSeriesBBands`, or `GetTimeSeriesAdx` to validate trend, momentum, and volatility from different angles.
+- **Move from market context to security context:** Combine `GetMarketState`, `GetProfile`, `GetStatistics`, `GetEarnings`, `GetDividends`, or `GetSplits` to understand not only what a symbol is doing, but also what kind of asset it is and what events may matter around it.
 
 ### Best practices
-- **Only include parameters that directly impact the user's intent.**
-  Avoid passing unnecessary fields that rely on defaults, as this can introduce noise and rubric redundancy.
-- **Be intentional with overrides.**
-  Since defaults are already defined, only override a parameter when it meaningfully changes the outcome.
+- **Choose tools by intent, not just by endpoint name.**
+  Use discovery tools for finding the right asset first, quote tools for quick checks, and time series plus indicators when the task requires trend or signal analysis.
+- **Keep the workflow compact.**
+  In many cases, the best result comes from a short sequence such as symbol discovery, current price check, then historical or indicator follow-up on the same symbol.

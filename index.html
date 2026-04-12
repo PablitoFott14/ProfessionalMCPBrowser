@@ -210,16 +210,13 @@ body{
 
 /* ── TOOLS GRID ─────────────────────────────────────────────── */
 .tools-grid{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-start;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:8px;
 }
-/* phantom child absorbs leftover row space so the last card never stretches */
-.tools-grid::after{content:'';flex:1 1 320px;max-height:0;pointer-events:none}
 /* ── TOOL CARD ──────────────────────────────────────────────── */
 .tool-card{
-  flex:1 1 320px;
+  min-width:0;
   background:var(--card);border:1px solid var(--border);
   border-radius:var(--radius);overflow:hidden;
   display:flex;flex-direction:column;
@@ -365,6 +362,8 @@ body{
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media(max-width:920px){.sidebar{display:none}.main{margin-left:0;padding:14px}}
+@media(max-width:1400px){.tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1080px){.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.tools-grid{grid-template-columns:1fr}}
 @media(max-width:540px){.logo-sep,.logo-sub,.hdr-badge{display:none}.header{padding:0 12px}}
 </style>

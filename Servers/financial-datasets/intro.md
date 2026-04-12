@@ -1,19 +1,19 @@
 ## financial-datasets
 
-The financial-datasets server provides fundamental and market data for public equities and cryptocurrencies. Parameters are passed as flat key-value pairs — no wrapping object is required.
+The financial-datasets server is designed for research-heavy workflows. It brings together company financial statements, SEC filings, market prices, company news, and crypto price history so users can move from a quick market question into a more complete fundamental or event-driven analysis without leaving the same server context.
 
 ### How it works
-- Most tools require only a ticker symbol. Optional parameters refine the period, granularity, or volume of results.
-- Financial statement tools default to annual reporting and 4 periods when those parameters are omitted.
-- Crypto price tools require a date range. The list of supported tickers can be retrieved before querying.
+- The server covers both fundamentals and market behavior, making it useful for linking financial performance, disclosures, headlines, and price movement.
+- It supports equity research workflows especially well, since statements, filings, news, and historical prices can be combined around the same company.
+- Inputs are generally simple, but the real strength is in combining several tools to answer broader investment or research questions.
 
 ### Potential resolution paths
-- **Full fundamental analysis:** Retrieve `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` together to cover profitability, leverage, and cash generation in one pass.
-- **Research before investing:** Start with `get_company_news` to surface recent events, then pull `get_sec_filings` for the relevant filing type, and follow up with the financial statements that the filing references.
-- **Crypto exploration:** Call `get_available_crypto_tickers` to confirm the symbol, then use `get_historical_crypto_prices` or `get_crypto_prices` for the target date range and granularity.
-- **Price reaction to earnings:** Combine `get_historical_stock_prices` with `get_income_statements` over matching periods to evaluate how the market responded to reported results.
+- **Run a full company research pass:** Combine `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to understand profitability, financial position, and cash generation together.
+- **Link narrative to numbers:** Use `get_company_news` and `get_sec_filings` to identify important developments, then review the related statements or price history to see how those events connect to fundamentals and market reaction.
+- **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices` or crypto price tools when the user needs trend, volatility, or event-window analysis.
 
 ### Best practices
-- Use `get_available_crypto_tickers` to confirm a ticker is supported before querying crypto price data.
-- Prefer `get_current_stock_price` for a real-time snapshot and `get_historical_stock_prices` when trend or range context is needed.
-- For financial statements, only specify `period` and `limit` when the defaults do not match the user's intent.
+- **Treat the server as a research bundle, not a set of isolated endpoints.**
+  Its value increases when filings, news, statements, and prices are read together.
+- **Match the tool to the depth of the question.**
+  Use current price tools for quick checks, historical series for trend analysis, and statement or filing tools when the user is really asking about business quality or disclosure.

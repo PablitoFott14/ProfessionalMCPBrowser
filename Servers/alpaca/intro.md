@@ -1,19 +1,19 @@
 ## alpaca
 
-The alpaca server provides full brokerage access through the Alpaca API, covering account management, market data, order execution, and portfolio operations across equities, cryptocurrencies, and options. Parameters are passed as flat key-value pairs — no nested wrapper object is required.
+The alpaca server is the operational side of the stack: it combines live brokerage actions with market data, account visibility, portfolio monitoring, watchlist management, and multi-asset trading across equities, crypto, and options. It is the server you use when the goal is not only to inspect the market, but to act on it and manage the resulting positions.
 
 ### How it works
-- Most tools return formatted strings ready for direct display or further processing.
-- Tools that affect account state — orders, positions, watchlists — operate on the live account by default.
-- Asset class constraints apply: crypto orders only accept `gtc` or `ioc` for `time_in_force`; options orders only accept `day`.
+- The server spans the full trade lifecycle: check market status, inspect assets and quotes, place orders, review positions, and manage portfolio state afterward.
+- It also supports broader account workflows such as watchlists, portfolio history, and corporate actions, so monitoring and execution stay in the same environment.
+- Requests use flat key-value inputs, and tools that change account state should be treated as live operational actions rather than passive lookups.
 
 ### Potential resolution paths
-- **Place an order safely:** Call `get_clock` to confirm market status, then `get_asset` to verify the symbol is tradable, before submitting any order.
-- **Build an options position:** Use `get_option_contracts` or `get_option_chain` to discover contract symbols and review Greeks, then place the order with `submit_options_order`.
-- **Monitor and manage a position:** Fetch `get_open_positions` for current exposure, `get_portfolio_history` for performance context, then close or adjust with `close_position` as needed.
-- **Track a new symbol:** Create a watchlist with `create_watchlist`, add symbols via `add_symbol_to_watchlist`, and pull snapshots with `get_stock_snapshot` or `get_crypto_snapshot` for a live market picture.
+- **Go from market check to execution:** Use `get_clock` and the relevant quote, trade, bar, or snapshot tools to understand current conditions, validate the asset with `get_asset`, then place the order through the appropriate stock, crypto, or options endpoint.
+- **Manage existing exposure with context:** Pull `get_all_positions`, `get_open_position`, and `get_portfolio_history` to understand what is already on the book, then close, reduce, or exercise positions with the relevant account-action tools.
+- **Create a monitoring workflow before trading:** Build or update watchlists, review snapshots for tracked assets, and use the same server later to transition from observation into order placement when conditions are met.
 
 ### Best practices
-- Use `get_clock` to verify market status before placing orders.
-- Use `get_option_contracts` or `get_option_chain` to discover contract symbols before querying option quotes or snapshots.
-- Prefer `get_stock_snapshot` or `get_crypto_snapshot` over multiple individual calls when a full market picture is needed.
+- **Separate read actions from account actions mentally.**
+  Many tools are safe informational lookups, while others directly affect capital, positions, or watchlists.
+- **Use the broader market picture before sending orders.**
+  Snapshots, latest quotes, option chain data, and account state checks reduce avoidable execution mistakes.
