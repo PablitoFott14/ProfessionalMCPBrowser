@@ -29,7 +29,7 @@ body{
   --text-dim:#6e6e96;
   --text-faint:#3e3e60;
   --header-h:56px;
-  --sidebar-w:260px;
+  --sidebar-w:220px;
   --shadow:0 6px 30px rgba(0,0,0,.55);
   --radius:10px;
 }
@@ -308,33 +308,33 @@ body{
 .s-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* ── PARAM TABLE ─────────────────────────────────────────────── */
-.ptable{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:16px}
+.ptable{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:16px;table-layout:fixed}
 .ptable th{
-  text-align:left;padding:5px 8px;font-size:9.5px;font-weight:700;
+  text-align:left;padding:4px 7px;font-size:9px;font-weight:700;
   letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);
   border-bottom:1px solid var(--border);
 }
-.ptable td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+.ptable td{padding:5px 7px;border-bottom:1px solid var(--border);vertical-align:top;overflow-wrap:break-word;word-break:break-word;min-width:0}
 .ptable tr:last-child td{border-bottom:none}
 .ptable tr:hover td{background:rgba(255,255,255,.02)}
 [data-theme="light"] .ptable tr:hover td{background:rgba(0,0,0,.02)}
 .p-num{color:var(--text-faint);font-size:10px;font-family:monospace}
-.p-name{font-family:monospace;font-weight:600;font-size:11.5px}
+.p-name{font-family:monospace;font-weight:600;font-size:11px}
 .badge{
   display:inline-block;padding:1px 5px;border-radius:3px;
   font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
 }
 .req{background:rgba(239,68,68,.13);color:#f87171}
 .opt{background:rgba(99,102,241,.11);color:#818cf8}
-.p-def{font-family:monospace;font-size:11px;color:var(--text-dim);white-space:nowrap}
-.p-desc{color:var(--text-dim);font-size:11.5px}
-.p-name{min-width:0}
+.p-def{font-family:monospace;font-size:10.5px;color:var(--text-dim);overflow-wrap:break-word}
+.p-desc{color:var(--text-dim);font-size:11px;line-height:1.5}
 .p-allowed{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
 .p-enum{
   font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
-  font-size:9.5px;padding:1px 5px;border-radius:3px;
-  background:var(--border);color:var(--text-faint);white-space:nowrap;
+  font-size:9.5px;padding:2px 6px;border-radius:3px;
+  background:rgba(99,102,241,.18);color:#a5b4fc;white-space:nowrap;
 }
+[data-theme="light"] .p-enum{background:rgba(99,102,241,.12);color:#4f46e5}
 .no-params{font-size:12px;color:var(--text-faint);font-style:italic;padding:4px 0 14px}
 
 /* ── EXAMPLES ────────────────────────────────────────────────── */
@@ -615,9 +615,9 @@ function renderParams(params){
   </tr>`).join('');
   return `<table class="ptable">
     <colgroup>
-      <col style="width:24px">
-      <col style="width:36%">
-      <col style="width:15%">
+      <col style="width:22px">
+      <col style="width:28%">
+      <col style="width:14%">
       <col>
     </colgroup>
     <thead><tr><th>#</th><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
