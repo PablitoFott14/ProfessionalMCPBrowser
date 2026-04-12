@@ -1,0 +1,23 @@
+## alphavantage_TOOL_LIST
+
+### What this tool is for
+alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.
+
+In practice, it should be used first to understand the available capability surface, then followed by `TOOL_GET` to retrieve the full schema for a chosen tool.
+
+---
+
+### Used parameters
+
+This tool takes no parameters.
+
+---
+
+### JSON input alternatives
+
+```json
+{
+  "intent": "List all available Alpha Vantage tools before choosing one to inspect",
+  "params": {}
+}
+```

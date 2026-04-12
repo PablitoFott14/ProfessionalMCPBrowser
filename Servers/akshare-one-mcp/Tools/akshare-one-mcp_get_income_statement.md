@@ -1,0 +1,39 @@
+## akshare-one-mcp_get_income_statement
+
+### What this tool is for
+akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.
+
+In practice, it helps answer questions about earnings trends, margin behavior, and whether the company is improving or weakening operationally.
+
+---
+
+### Used parameters
+
+**(1) symbol — Required**  
+Default: No default  
+Stock symbol or ticker to retrieve income statement data for.
+
+**(9) recent_n — Optional**  
+Default: 10  
+Limits how many of the most recent income statement records are returned.
+
+---
+
+### JSON input alternatives
+
+```json
+{
+  "intent": "Review the most recent income statement data for a mainland China bank stock",
+  "params": {
+    "symbol": "000001"
+  }
+}
+
+{
+  "intent": "Pull a longer income statement history for a Hong Kong listed technology company",
+  "params": {
+    "symbol": "00700",
+    "recent_n": 20
+  }
+}
+```

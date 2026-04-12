@@ -93,5 +93,21 @@
     "financial-datasets_get_historical_stock_prices": "active",
     "financial-datasets_get_income_statements": "active",
     "financial-datasets_get_sec_filings": "active"
+  },
+  "akshare-one-mcp": {
+    "akshare-one-mcp_get_hist_data": "active",
+    "akshare-one-mcp_get_news_data": "active",
+    "akshare-one-mcp_get_realtime_data": "active",
+    "akshare-one-mcp_get_balance_sheet": "active",
+    "akshare-one-mcp_get_income_statement": "active",
+    "akshare-one-mcp_get_cash_flow": "active",
+    "akshare-one-mcp_get_inner_trade_data": "active",
+    "akshare-one-mcp_get_time_info": "active",
+    "akshare-one-mcp_get_financial_metrics": "active"
+  },
+  "alphavantage": {
+    "alphavantage_TOOL_LIST": "active",
+    "alphavantage_TOOL_GET": "active",
+    "alphavantage_TOOL_CALL": "active"
   }
 }

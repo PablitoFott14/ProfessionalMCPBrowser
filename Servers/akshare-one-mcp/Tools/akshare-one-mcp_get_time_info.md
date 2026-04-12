@@ -1,0 +1,23 @@
+## akshare-one-mcp_get_time_info
+
+### What this tool is for
+akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.
+
+In practice, it helps anchor requests that depend on current timing or recent trading-session context.
+
+---
+
+### Used parameters
+
+This tool takes no parameters.
+
+---
+
+### JSON input alternatives
+
+```json
+{
+  "intent": "Retrieve the current time context and last trading day reference",
+  "params": {}
+}
+```

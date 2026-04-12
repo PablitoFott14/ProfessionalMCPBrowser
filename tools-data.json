@@ -3722,6 +3722,375 @@
       ]
     },
     {
+      "name": "akshare-one-mcp",
+      "intro": "The akshare-one-mcp server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.\n\n### How it works\n- The server centers on stock symbols and supports both point-in-time checks and broader historical review.\n- It combines market-facing tools such as real-time and historical data with company-facing tools such as news, insider trading, financial statements, and summary metrics.\n- Most tools take a `symbol`, with optional filters such as date range, source, interval, or recent record count depending on the endpoint.\n\n### Potential resolution paths\n- **Check a stock quickly, then expand into context:** Start with `get_realtime_data` for the latest market snapshot, use `get_time_info` to anchor the timing, then pull `get_news_data` if the user needs recent developments behind the move.\n- **Move from price action into deeper analysis:** Use `get_hist_data` to review the trend over time, optionally add indicators for a more technical read, then compare that behavior with `get_news_data` or `get_inner_trade_data` to add event and insider context.\n- **Run a focused financial review:** Pull `get_financial_metrics` for a compact overview, then drill into `get_balance_sheet`, `get_income_statement`, and `get_cash_flow` when the user needs the underlying detail behind solvency, profitability, or cash generation.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "akshare-one-mcp_get_balance_sheet",
+          "purpose": "akshare-one-mcp_get_balance_sheet retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.\n\nIn practice, it helps answer questions about leverage, liquidity, and balance sheet strength for a given company.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve balance sheet data for."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "10",
+              "description": "Limits how many of the most recent balance sheet records are returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review the most recent balance sheet entries for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Pull a longer balance sheet history for a Hong Kong listed technology company",
+              "params": {
+                "symbol": "00700",
+                "recent_n": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_cash_flow",
+          "purpose": "akshare-one-mcp_get_cash_flow retrieves company cash flow statement data for a stock. It is useful when the user needs to understand how the business is generating and using cash across operating, investing, and financing activities.\n\nIn practice, it helps answer questions about cash generation quality, capital spending, and whether reported earnings are being supported by actual cash flow.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve cash flow statement data for."
+            },
+            {
+              "number": 7,
+              "name": "source",
+              "required": false,
+              "default": "sina",
+              "description": "Uses the fixed supported data source for this tool."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "10",
+              "description": "Limits how many of the most recent cash flow records are returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review the most recent cash flow statement data for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Pull a longer cash flow history for a Hong Kong listed technology company",
+              "params": {
+                "symbol": "00700",
+                "recent_n": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_financial_metrics",
+          "purpose": "akshare-one-mcp_get_financial_metrics retrieves key financial metrics derived from the three major financial statements. It is useful when the user wants a compact financial view without reviewing the full balance sheet, income statement, and cash flow statement separately.\n\nIn practice, it works well for quickly screening a company’s financial condition before deciding whether deeper statement-level analysis is needed.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve financial metrics for."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "10",
+              "description": "Limits how many of the most recent metric records are returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review recent financial metrics for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Pull a longer financial metric history for a Hong Kong listed technology company",
+              "params": {
+                "symbol": "00700",
+                "recent_n": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_hist_data",
+          "purpose": "akshare-one-mcp_get_hist_data retrieves historical market data for a stock across multiple time intervals. It is useful when the user needs price history for charting, trend analysis, backtesting, or for adding technical indicators to the same series.\n\nIt is also the main history tool for switching between supported data sources, including `eastmoney_direct` for broader A, B, and H share coverage.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve history for."
+            },
+            {
+              "number": 2,
+              "name": "interval",
+              "required": false,
+              "default": "day",
+              "description": "Sets the time resolution of the returned series."
+            },
+            {
+              "number": 3,
+              "name": "interval_multiplier",
+              "required": false,
+              "default": "1",
+              "description": "Expands the selected interval into larger bars."
+            },
+            {
+              "number": 4,
+              "name": "start_date",
+              "required": false,
+              "default": "1970-01-01",
+              "description": "Defines the beginning of the requested date range."
+            },
+            {
+              "number": 5,
+              "name": "end_date",
+              "required": false,
+              "default": "2030-12-31",
+              "description": "Defines the end of the requested date range."
+            },
+            {
+              "number": 6,
+              "name": "adjust",
+              "required": false,
+              "default": "none",
+              "description": "Controls whether the series uses adjusted prices."
+            },
+            {
+              "number": 7,
+              "name": "source",
+              "required": false,
+              "default": "eastmoney",
+              "description": "Chooses which market data source is used."
+            },
+            {
+              "number": 8,
+              "name": "indicators_list",
+              "required": false,
+              "default": "null",
+              "description": "Adds selected technical indicators to the historical series."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "100",
+              "description": "Limits the output to the most recent records."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review the most recent adjusted daily history for a mainland China stock",
+              "params": {
+                "symbol": "000001",
+                "adjust": "qfq",
+                "recent_n": 60
+              }
+            },
+            {
+              "intent": "Analyze a shorter hourly window with technical indicators for a Hong Kong listed stock",
+              "params": {
+                "symbol": "00700",
+                "interval": "hour",
+                "start_date": "2024-09-01",
+                "end_date": "2024-09-20",
+                "source": "eastmoney_direct",
+                "indicators_list": [
+                  "SMA",
+                  "MACD",
+                  "RSI"
+                ],
+                "recent_n": 80
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_income_statement",
+          "purpose": "akshare-one-mcp_get_income_statement retrieves company income statement data for a stock. It is useful when the user needs revenue, expenses, and profitability information to understand operating performance over recent reporting periods.\n\nIn practice, it helps answer questions about earnings trends, margin behavior, and whether the company is improving or weakening operationally.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve income statement data for."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "10",
+              "description": "Limits how many of the most recent income statement records are returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review the most recent income statement data for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Pull a longer income statement history for a Hong Kong listed technology company",
+              "params": {
+                "symbol": "00700",
+                "recent_n": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_inner_trade_data",
+          "purpose": "akshare-one-mcp_get_inner_trade_data retrieves insider trading data for a company. It is useful when the user wants to review disclosed insider buy or sell activity tied to a specific stock.\n\nIn practice, it can help add behavioral context around management or insider transactions before looking deeper into price action or fundamentals.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve insider trading data for."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review insider trading activity for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_news_data",
+          "purpose": "akshare-one-mcp_get_news_data retrieves recent news related to a stock. It is useful when the user wants quick visibility into the latest headlines, developments, or sentiment-driving events around a specific symbol.\n\nIn practice, it works well as a context tool before checking price action or reviewing recent market activity for the same stock.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock symbol or ticker to retrieve news for."
+            },
+            {
+              "number": 9,
+              "name": "recent_n",
+              "required": false,
+              "default": "10",
+              "description": "Limits how many of the most recent news records are returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Review the latest headlines for a mainland China bank stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Pull a wider set of recent news items for a large Hong Kong listed technology company",
+              "params": {
+                "symbol": "00700",
+                "recent_n": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_realtime_data",
+          "purpose": "akshare-one-mcp_get_realtime_data retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.\n\nIt can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": false,
+              "default": "null",
+              "description": "Stock symbol or ticker to retrieve real-time data for."
+            },
+            {
+              "number": 7,
+              "name": "source",
+              "required": false,
+              "default": "eastmoney_direct",
+              "description": "Chooses which real-time market data source is used."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check the latest real-time data for a specific mainland China stock",
+              "params": {
+                "symbol": "000001"
+              }
+            },
+            {
+              "intent": "Retrieve live data for a Hong Kong listed stock using a different source",
+              "params": {
+                "symbol": "00700",
+                "source": "xueqiu"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "akshare-one-mcp_get_time_info",
+          "purpose": "akshare-one-mcp_get_time_info returns the current time context, including ISO-formatted time, a timestamp, and the last trading day. It is useful when the user needs a quick market-time reference before making sense of real-time or recent market data.\n\nIn practice, it helps anchor requests that depend on current timing or recent trading-session context.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "Retrieve the current time context and last trading day reference",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "alpaca",
       "intro": "The alpaca server is the operational side of the stack: it combines live brokerage actions with market data, account visibility, portfolio monitoring, watchlist management, and multi-asset trading across equities, crypto, and options. It is the server you use when the goal is not only to inspect the market, but to act on it and manage the resulting positions.\n\n### How it works\n- The server spans the full trade lifecycle: check market status, inspect assets and quotes, place orders, review positions, and manage portfolio state afterward.\n- It also supports broader account workflows such as watchlists, portfolio history, and corporate actions, so monitoring and execution stay in the same environment.\n- Requests use flat key-value inputs, and tools that change account state should be treated as live operational actions rather than passive lookups.\n\n### Potential resolution paths\n- **Go from market check to execution:** Use `get_clock` and the relevant quote, trade, bar, or snapshot tools to understand current conditions, validate the asset with `get_asset`, then place the order through the appropriate stock, crypto, or options endpoint.\n- **Manage existing exposure with context:** Pull `get_all_positions`, `get_open_position`, and `get_portfolio_history` to understand what is already on the book, then close, reduce, or exercise positions with the relevant account-action tools.\n- **Create a monitoring workflow before trading:** Build or update watchlists, review snapshots for tracked assets, and use the same server later to transition from observation into order placement when conditions are met.\n\n### Best practices\n- **Separate read actions from account actions mentally:** Many tools are safe informational lookups, while others directly affect capital, positions, or watchlists.\n- **Use the broader market picture before sending orders:** Snapshots, latest quotes, option chain data, and account state checks reduce avoidable execution mistakes.",
       "paramsWrapped": false,
@@ -6092,6 +6461,101 @@
                   "AMZN"
                 ]
               }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "alphavantage",
+      "intro": "The alphavantage server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.\n\n### How it works\n- The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.\n- It does not expose domain-specific endpoints directly in this layer; instead, it provides a controlled way to navigate and call the underlying Alpha Vantage tool set.\n- Requests stay generic at the wrapper level, using `tool_name` to identify the target tool and `arguments` to pass the tool-specific inputs.\n\n### Potential resolution paths\n- **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.\n- **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.\n- **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "alphavantage_TOOL_CALL",
+          "purpose": "alphavantage_TOOL_CALL executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.\n\nIn practice, it is the execution step that turns discovery and schema inspection into a live request.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "tool_name",
+              "required": true,
+              "default": "No default",
+              "description": "The name of the tool to execute."
+            },
+            {
+              "number": 2,
+              "name": "arguments",
+              "required": true,
+              "default": "No default",
+              "description": "Dictionary of arguments matching the selected tool's parameter schema."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Call a daily time series tool after confirming its schema",
+              "params": {
+                "tool_name": "TIME_SERIES_DAILY",
+                "arguments": {
+                  "symbol": "IBM"
+                }
+              }
+            },
+            {
+              "intent": "Execute an intraday time series request with a specific interval after schema review",
+              "params": {
+                "tool_name": "TIME_SERIES_INTRADAY",
+                "arguments": {
+                  "symbol": "MSFT",
+                  "interval": "5min"
+                }
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "alphavantage_TOOL_GET",
+          "purpose": "alphavantage_TOOL_GET retrieves the full schema for one or more Alpha Vantage tools, including their parameters. It is useful after `TOOL_LIST` when the user needs the exact inputs for a specific tool before calling it.\n\nIn practice, it helps narrow discovery into execution by exposing the full parameter shape of candidate tools.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "tool_name",
+              "required": true,
+              "default": "No default",
+              "description": "Tool name or list of tool names to retrieve schema for."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the full schema for a specific Alpha Vantage daily time series tool",
+              "params": {
+                "tool_name": "TIME_SERIES_DAILY"
+              }
+            },
+            {
+              "intent": "Compare the schemas of multiple Alpha Vantage time series tools before choosing one",
+              "params": {
+                "tool_name": [
+                  "TIME_SERIES_DAILY",
+                  "TIME_SERIES_INTRADAY"
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "alphavantage_TOOL_LIST",
+          "purpose": "alphavantage_TOOL_LIST lists the available Alpha Vantage API tools along with their names and descriptions. It is useful as the discovery entry point for this server before selecting a specific tool to inspect or call.\n\nIn practice, it should be used first to understand the available capability surface, then followed by `TOOL_GET` to retrieve the full schema for a chosen tool.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "List all available Alpha Vantage tools before choosing one to inspect",
+              "params": {}
             }
           ],
           "paths": "",
