@@ -19,6 +19,10 @@
     "alphavantage": {
       "color": "#06b6d4",
       "domain": "Finance"
+    },
+    "yahoo-finance": {
+      "color": "#ec4899",
+      "domain": "Finance"
     }
   }
 }

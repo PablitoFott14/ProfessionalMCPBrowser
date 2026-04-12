@@ -109,5 +109,14 @@
     "alphavantage_TOOL_LIST": "active",
     "alphavantage_TOOL_GET": "active",
     "alphavantage_TOOL_CALL": "active"
+  },
+  "yahoo-finance": {
+    "yahoo-finance_get-ticker-info": "active",
+    "yahoo-finance_get-ticker-news": "active",
+    "yahoo-finance_search": "active",
+    "yahoo-finance_get-top-entities": "active",
+    "yahoo-finance_get-price-history": "active",
+    "yahoo-finance_ticker-option-chain": "active",
+    "yahoo-finance_ticker-earning": "active"
   }
 }

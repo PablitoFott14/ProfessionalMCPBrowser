@@ -1,0 +1,44 @@
+## yahoo-finance_get-price-history
+
+### What this tool is for
+Fetches historical price data for a stock symbol over a specified period and interval. Use this when the user needs past price movement rather than a current snapshot.
+
+---
+
+### Used parameters
+
+**(1) symbol — Required**  
+Default: No default  
+Stock ticker symbol to retrieve price history for.
+
+**(6) period — Optional**  
+Default: 1y  
+Period of historical price data to fetch.
+
+**(7) interval — Optional**  
+Default: 1d  
+Data interval used for the historical price series.
+
+---
+
+### JSON input alternatives
+
+```json
+{
+  "intent": "Fetch the default price history for Apple",
+  "params": {
+    "symbol": "AAPL"
+  }
+}
+```
+
+```json
+{
+  "intent": "Retrieve six months of hourly price history for Tesla",
+  "params": {
+    "symbol": "TSLA",
+    "period": "6mo",
+    "interval": "1h"
+  }
+}
+```

@@ -6996,6 +6996,297 @@
           "active": true
         }
       ]
+    },
+    {
+      "name": "yahoo-finance",
+      "intro": "The yahoo-finance server is a market research server centered on ticker discovery, company snapshots, recent news, historical price data, option chains, earnings data, and sector-level entity lists. It is useful when the user needs to move between symbol discovery, ticker-specific context, and broader market browsing within the same server.\n\n### How it works\n- The server supports both discovery workflows and ticker-specific retrieval, depending on whether the user starts from a free-text search, a sector view, or a known symbol.\n- Most tools center on a `symbol`, while broader discovery tools use inputs such as `query`, `entity_type`, `sector`, `period`, `interval`, `option_type`, or `date` when applicable.\n- The server combines current company context, recent news, historical pricing, options data, and earnings data, so different views of the same ticker can be retrieved without switching servers.\n\n### Potential resolution paths\n- **Find a symbol, then inspect it:** Start with `search` when the user has a company name or broad query, then move into `get-ticker-info` or `get-ticker-news` once the correct symbol is identified.\n- **Move from a company snapshot into market history:** Use `get-ticker-info` for a broad ticker overview, then follow with `get-price-history` when the user needs to review how that company has traded over time.\n- **Expand from a stock into derivatives or event context:** Pull `ticker-option-chain` when the user needs option chain data for the same symbol, or `ticker-earning` when the focus shifts to annual or quarterly earnings context.\n- **Explore a sector before narrowing to a ticker:** Use `get-top-entities` to review leading entities within a sector, then choose a symbol from those results for ticker-level data such as `get-ticker-info`, `get-price-history`, or `get-ticker-news`.\n\n### Best practices\n- **Use discovery tools before ticker tools when the symbol is uncertain:** `search` and `get-top-entities` are better starting points than guessing a ticker and calling a symbol-specific endpoint directly.\n- **Match the tool to the type of context needed:** Use `get-ticker-info` for a broad company view, `get-ticker-news` for recent developments, `get-price-history` for past market behavior, `ticker-option-chain` for options data, and `ticker-earning` for earnings context.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "yahoo-finance_get-price-history",
+          "purpose": "Fetches historical price data for a stock symbol over a specified period and interval. Use this when the user needs past price movement rather than a current snapshot.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock ticker symbol to retrieve price history for."
+            },
+            {
+              "number": 6,
+              "name": "period",
+              "required": false,
+              "default": "1y",
+              "description": "Period of historical price data to fetch."
+            },
+            {
+              "number": 7,
+              "name": "interval",
+              "required": false,
+              "default": "1d",
+              "description": "Data interval used for the historical price series."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch the default price history for Apple",
+              "params": {
+                "symbol": "AAPL"
+              }
+            },
+            {
+              "intent": "Retrieve six months of hourly price history for Tesla",
+              "params": {
+                "symbol": "TSLA",
+                "period": "6mo",
+                "interval": "1h"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_get-ticker-info",
+          "purpose": "Retrieves comprehensive stock data for a ticker, including company information, financial data, trading metrics, and governance-related fields. Use this when the user needs a broad company snapshot rather than a single price or narrowly scoped metric.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock ticker symbol to retrieve data for."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve a broad company and trading snapshot for Apple",
+              "params": {
+                "symbol": "AAPL"
+              }
+            },
+            {
+              "intent": "Review company, financial, and governance data for Tesla",
+              "params": {
+                "symbol": "TSLA"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_get-ticker-news",
+          "purpose": "Fetches recent news articles related to a specific stock symbol, including title, content, and source details. Use this when the user needs recent company-specific news rather than a broader company snapshot.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock ticker symbol to retrieve news for."
+            },
+            {
+              "number": 2,
+              "name": "count",
+              "required": false,
+              "default": "10",
+              "description": "Number of news articles to fetch."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch the latest news articles for Apple",
+              "params": {
+                "symbol": "AAPL"
+              }
+            },
+            {
+              "intent": "Retrieve a larger set of recent news articles for Nvidia",
+              "params": {
+                "symbol": "NVDA",
+                "count": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_get-top-entities",
+          "purpose": "Gets top entities in a sector, including ETFs, mutual funds, companies, growth companies, or performing companies. Use this when the user wants a sector-level view of leading instruments or organizations rather than a single ticker lookup.",
+          "parameters": [
+            {
+              "number": 4,
+              "name": "entity_type",
+              "required": true,
+              "default": "No default",
+              "description": "Type of entities to retrieve."
+            },
+            {
+              "number": 5,
+              "name": "sector",
+              "required": false,
+              "default": "\"\"",
+              "description": "Sector name used to filter the returned entities."
+            },
+            {
+              "number": 2,
+              "name": "count",
+              "required": false,
+              "default": "10",
+              "description": "Number of entities to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get top ETFs in the technology sector",
+              "params": {
+                "entity_type": "etfs",
+                "sector": "technology"
+              }
+            },
+            {
+              "intent": "Retrieve more top performing companies in healthcare",
+              "params": {
+                "entity_type": "performing_companies",
+                "sector": "healthcare",
+                "count": 15
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_search",
+          "purpose": "Searches Yahoo Finance for stocks, ETFs, and other financial instruments. Use this when the user needs to discover possible symbols or instruments before requesting ticker-specific data.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "description": "Search query used to find matching instruments."
+            },
+            {
+              "number": 2,
+              "name": "count",
+              "required": false,
+              "default": "10",
+              "description": "Number of search results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for results related to Apple",
+              "params": {
+                "query": "Apple"
+              }
+            },
+            {
+              "intent": "Retrieve a broader set of search results for semiconductor ETFs",
+              "params": {
+                "query": "semiconductor ETF",
+                "count": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_ticker-earning",
+          "purpose": "Gets earnings data for a ticker, including annual or quarterly data and upcoming earnings dates when available. Use this when the user needs reported earnings context rather than price or news data.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock ticker symbol to retrieve earnings data for."
+            },
+            {
+              "number": 6,
+              "name": "period",
+              "required": false,
+              "default": "annual",
+              "description": "Earnings period to retrieve."
+            },
+            {
+              "number": 9,
+              "name": "date",
+              "required": false,
+              "default": "null",
+              "description": "Specific date used to retrieve earnings data when supported."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the most recent annual earnings data for Apple",
+              "params": {
+                "symbol": "AAPL"
+              }
+            },
+            {
+              "intent": "Get quarterly earnings data for Tesla around a specific date",
+              "params": {
+                "symbol": "TSLA",
+                "period": "quarterly",
+                "date": "2024-10-23"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "yahoo-finance_ticker-option-chain",
+          "purpose": "Gets option chain data for a ticker, using the most recent available dates or a specific expiration date when provided. Use this when the user needs call, put, or combined option chain data for a stock.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "description": "Stock ticker symbol to retrieve option chain data for."
+            },
+            {
+              "number": 8,
+              "name": "option_type",
+              "required": false,
+              "default": "both",
+              "description": "Type of options to retrieve."
+            },
+            {
+              "number": 9,
+              "name": "date",
+              "required": false,
+              "default": "null",
+              "description": "Specific expiration date used to retrieve option chain data."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the most recent option chain data for Apple",
+              "params": {
+                "symbol": "AAPL"
+              }
+            },
+            {
+              "intent": "Get put option chain data for Tesla for a specific expiration date",
+              "params": {
+                "symbol": "TSLA",
+                "option_type": "put",
+                "date": "2025-01-17"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
     }
   ]
 }
