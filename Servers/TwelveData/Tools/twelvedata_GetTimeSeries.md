@@ -75,6 +75,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetTimeSeries",
   "intent": "Analyze recent intraday price trend for a European utility stock",
   "params": {
     "symbol": "IBE",
@@ -86,6 +87,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetTimeSeries",
   "intent": "Retrieve forex price movements for a specific date range",
   "params": {
     "symbol": "GBP/NZD",

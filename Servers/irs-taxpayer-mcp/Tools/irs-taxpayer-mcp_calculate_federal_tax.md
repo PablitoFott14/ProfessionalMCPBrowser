@@ -77,6 +77,7 @@ State or local taxes included in itemized deductions for AMT-related calculation
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_federal_tax",
   "intent": "Calculate federal tax for a single W-2 taxpayer in 2024",
   "params": {
     "taxYear": 2024,
@@ -89,6 +90,7 @@ State or local taxes included in itemized deductions for AMT-related calculation
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_federal_tax",
   "intent": "Calculate federal tax for a married joint filer with self-employment income, qualified business income, and capital gains in 2025",
   "params": {
     "taxYear": 2025,

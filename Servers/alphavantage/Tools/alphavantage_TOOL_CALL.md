@@ -21,6 +21,7 @@ Dictionary of arguments matching the selected tool's parameter schema.
 
 ```json
 {
+  "tool": "alphavantage_TOOL_CALL",
   "intent": "Call a daily time series tool after confirming its schema",
   "params": {
     "tool_name": "TIME_SERIES_DAILY",
@@ -31,6 +32,7 @@ Dictionary of arguments matching the selected tool's parameter schema.
 }
 
 {
+  "tool": "alphavantage_TOOL_CALL",
   "intent": "Execute an intraday time series request with a specific interval after schema review",
   "params": {
     "tool_name": "TIME_SERIES_INTRADAY",

@@ -17,6 +17,7 @@ Ticker symbol of the asset to retrieve the position for (e.g., AAPL, MSFT).
 
 ```json
 {
+  "tool": "alpaca_get_open_position",
   "intent": "Check the current position details and P/L for Apple",
   "params": {
     "symbol": "AAPL"

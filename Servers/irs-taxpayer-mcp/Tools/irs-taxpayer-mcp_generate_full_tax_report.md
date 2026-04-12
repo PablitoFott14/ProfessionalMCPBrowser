@@ -101,6 +101,7 @@ Estimated tax payments already made.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_generate_full_tax_report",
   "intent": "Generate a full tax estimate report for a single wage earner with investment income",
   "params": {
     "taxYear": 2024,
@@ -118,6 +119,7 @@ Estimated tax payments already made.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_generate_full_tax_report",
   "intent": "Generate a full tax estimate report for a joint filer with business income, deductions, and estimated payments",
   "params": {
     "taxYear": 2025,

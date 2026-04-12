@@ -29,6 +29,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetSymbolSearch",
   "intent": "Search for a company using partial name",
   "params": {
     "symbol": "Siemens"
@@ -36,6 +37,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetSymbolSearch",
   "intent": "Identify instrument using ISIN with extended results",
   "params": {
     "symbol": "US0231351067",

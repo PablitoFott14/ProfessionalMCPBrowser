@@ -109,6 +109,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetTimeSeriesAtr",
   "intent": "Measure daily volatility of a forex pair",
   "params": {
     "symbol": "USD/CAD",
@@ -118,6 +119,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetTimeSeriesAtr",
   "intent": "Intraday volatility analysis on a crypto asset with time window",
   "params": {
     "symbol": "MATIC/USD",

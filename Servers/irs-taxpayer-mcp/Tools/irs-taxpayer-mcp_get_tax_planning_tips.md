@@ -73,6 +73,7 @@ Year-to-date charitable donations.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
   "intent": "Get year-end tax planning ideas for a salaried single filer",
   "params": {
     "taxYear": 2024,
@@ -89,6 +90,7 @@ Year-to-date charitable donations.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
   "intent": "Get year-end tax planning ideas for a self-employed joint filer with gains and charitable giving",
   "params": {
     "taxYear": 2025,

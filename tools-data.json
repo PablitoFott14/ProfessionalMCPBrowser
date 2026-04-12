@@ -47,10 +47,12 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetApiUsage",
               "intent": "Check current API usage status",
               "params": {}
             },
             {
+              "tool": "twelvedata_GetApiUsage",
               "intent": "Retrieve usage data with specific timezone context",
               "params": {
                 "timezone": "America/New_York"
@@ -109,12 +111,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetCommodities",
               "intent": "Discover all precious metal commodities",
               "params": {
                 "category": "Precious Metal"
               }
             },
             {
+              "tool": "twelvedata_GetCommodities",
               "intent": "Retrieve specific commodity pair information",
               "params": {
                 "symbol": "XAG/USD"
@@ -173,12 +177,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetCrossListings",
               "intent": "Retrieve cross listings for a major US stock",
               "params": {
                 "symbol": "NVDA"
               }
             },
             {
+              "tool": "twelvedata_GetCrossListings",
               "intent": "Filter cross listings by country",
               "params": {
                 "symbol": "RDSA",
@@ -252,12 +258,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetCryptocurrencies",
               "intent": "Discover all crypto pairs with BTC as base currency",
               "params": {
                 "currency_base": "BTC"
               }
             },
             {
+              "tool": "twelvedata_GetCryptocurrencies",
               "intent": "Filter crypto pairs by exchange and quote currency",
               "params": {
                 "exchange": "Binance",
@@ -303,10 +311,12 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetCryptocurrencyExchanges",
               "intent": "Retrieve list of available cryptocurrency exchanges",
               "params": {}
             },
             {
+              "tool": "twelvedata_GetCryptocurrencyExchanges",
               "intent": "Retrieve exchanges with extended result size for broader coverage",
               "params": {
                 "outputsize": 100
@@ -386,6 +396,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetCurrencyConversion",
               "intent": "Convert a fixed amount from EUR to USD",
               "params": {
                 "symbol": "EUR/USD",
@@ -393,6 +404,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetCurrencyConversion",
               "intent": "Convert crypto amount using historical rate and timezone",
               "params": {
                 "symbol": "ETH/BTC",
@@ -504,6 +516,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetDividends",
               "intent": "Retrieve latest dividend payment for a US stock",
               "params": {
                 "symbol": "JNJ",
@@ -511,6 +524,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetDividends",
               "intent": "Analyze dividend history over multiple years",
               "params": {
                 "symbol": "PG",
@@ -599,12 +613,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetEarliestTimestamp",
               "intent": "Check earliest available data for a stock",
               "params": {
                 "symbol": "IBM"
               }
             },
             {
+              "tool": "twelvedata_GetEarliestTimestamp",
               "intent": "Validate historical coverage for intraday crypto analysis",
               "params": {
                 "symbol": "LTC/USD",
@@ -735,6 +751,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetEarnings",
               "intent": "Retrieve latest earnings for a US company",
               "params": {
                 "symbol": "NVDA",
@@ -742,6 +759,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetEarnings",
               "intent": "Analyze earnings history within a defined time window",
               "params": {
                 "symbol": "ASML",
@@ -852,12 +870,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetEod",
               "intent": "Retrieve latest closing price for a US stock",
               "params": {
                 "symbol": "MSFT"
               }
             },
             {
+              "tool": "twelvedata_GetEod",
               "intent": "Historical EOD price for a crypto asset with precision control",
               "params": {
                 "symbol": "SOL/USD",
@@ -968,12 +988,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetEtf",
               "intent": "Discover ETFs listed in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
+              "tool": "twelvedata_GetEtf",
               "intent": "Filter ETFs by exchange including delisted instruments",
               "params": {
                 "exchange": "NYSE",
@@ -1047,12 +1069,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetExchangeRate",
               "intent": "Quick check of current forex rate",
               "params": {
                 "symbol": "EUR/USD"
               }
             },
             {
+              "tool": "twelvedata_GetExchangeRate",
               "intent": "Retrieve crypto pair rate at a specific moment with controlled precision",
               "params": {
                 "symbol": "BTC/ETH",
@@ -1135,6 +1159,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetExchanges",
               "intent": "Retrieve exchanges for US stock markets",
               "params": {
                 "country": "United States",
@@ -1142,6 +1167,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetExchanges",
               "intent": "Find exchange using MIC code with plan visibility",
               "params": {
                 "code": "XNGS",
@@ -1208,12 +1234,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetForexPairs",
               "intent": "Retrieve all forex pairs with EUR as base currency",
               "params": {
                 "currency_base": "EUR"
               }
             },
             {
+              "tool": "twelvedata_GetForexPairs",
               "intent": "Filter forex pairs combining base and quote currencies",
               "params": {
                 "currency_base": "AUD",
@@ -1315,12 +1343,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetFunds",
               "intent": "Discover funds available in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
+              "tool": "twelvedata_GetFunds",
               "intent": "Retrieve funds from a specific exchange with pagination",
               "params": {
                 "exchange": "NYSE",
@@ -1387,12 +1417,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetIpoCalendar",
               "intent": "Retrieve upcoming IPOs in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
+              "tool": "twelvedata_GetIpoCalendar",
               "intent": "Analyze IPO activity on a specific exchange within a time window",
               "params": {
                 "exchange": "NASDAQ",
@@ -1453,12 +1485,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetLogo",
               "intent": "Retrieve logo for a publicly traded company",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "twelvedata_GetLogo",
               "intent": "Retrieve logos for a forex pair with exchange context",
               "params": {
                 "symbol": "EUR/USD",
@@ -1511,12 +1545,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetMarketState",
               "intent": "Check if a major US exchange is currently open",
               "params": {
                 "exchange": "NYSE"
               }
             },
             {
+              "tool": "twelvedata_GetMarketState",
               "intent": "Monitor market state using MIC code with country filtering",
               "params": {
                 "code": "XNAS",
@@ -1632,12 +1668,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetPrice",
               "intent": "Retrieve real-time price for a US stock",
               "params": {
                 "symbol": "GOOGL"
               }
             },
             {
+              "tool": "twelvedata_GetPrice",
               "intent": "Retrieve crypto price with exchange context and precision",
               "params": {
                 "symbol": "ADA/USD",
@@ -1719,6 +1757,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetProfile",
               "intent": "Retrieve general company profile for a European industrial firm",
               "params": {
                 "symbol": "SIE",
@@ -1726,6 +1765,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetProfile",
               "intent": "Identify company using FIGI with geographic filtering",
               "params": {
                 "figi": "BBG000BLNNH6",
@@ -1806,6 +1846,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetQuote",
               "intent": "Check current price and market status for a European equity",
               "params": {
                 "symbol": "MC",
@@ -1813,6 +1854,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetQuote",
               "intent": "Analyze short term crypto performance using rolling change",
               "params": {
                 "symbol": "SOL/USD",
@@ -1916,12 +1958,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetSplits",
               "intent": "Retrieve latest available split data",
               "params": {
                 "symbol": "TSLA"
               }
             },
             {
+              "tool": "twelvedata_GetSplits",
               "intent": "Analyze full split history for long term adjustments",
               "params": {
                 "symbol": "AAPL",
@@ -2002,6 +2046,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetStatistics",
               "intent": "Fundamental snapshot of a European listed company",
               "params": {
                 "symbol": "SAP",
@@ -2009,6 +2054,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetStatistics",
               "intent": "Company lookup using ISIN with broader market context",
               "params": {
                 "isin": "US5949181045",
@@ -2124,6 +2170,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetStocks",
               "intent": "Discover stocks listed on a specific exchange",
               "params": {
                 "exchange": "NASDAQ",
@@ -2131,6 +2178,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetStocks",
               "intent": "Filter stocks by country including delisted instruments",
               "params": {
                 "country": "United States",
@@ -2177,12 +2225,14 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetSymbolSearch",
               "intent": "Search for a company using partial name",
               "params": {
                 "symbol": "Siemens"
               }
             },
             {
+              "tool": "twelvedata_GetSymbolSearch",
               "intent": "Identify instrument using ISIN with extended results",
               "params": {
                 "symbol": "US0231351067",
@@ -2215,10 +2265,12 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTechnicalIndicators",
               "intent": "Retrieve the full catalog of available technical indicators",
               "params": {}
             },
             {
+              "tool": "twelvedata_GetTechnicalIndicators",
               "intent": "Retrieve a limited set of technical indicator metadata",
               "params": {
                 "outputsize": 50
@@ -2340,6 +2392,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeries",
               "intent": "Analyze recent intraday price trend for a European utility stock",
               "params": {
                 "symbol": "IBE",
@@ -2350,6 +2403,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeries",
               "intent": "Retrieve forex price movements for a specific date range",
               "params": {
                 "symbol": "GBP/NZD",
@@ -2538,6 +2592,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesAdx",
               "intent": "Evaluate trend strength for a US equity",
               "params": {
                 "symbol": "MSFT",
@@ -2546,6 +2601,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesAdx",
               "intent": "Intraday trend strength analysis for a crypto pair",
               "params": {
                 "symbol": "SOL/USD",
@@ -2735,6 +2791,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesAtr",
               "intent": "Measure daily volatility of a forex pair",
               "params": {
                 "symbol": "USD/CAD",
@@ -2743,6 +2800,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesAtr",
               "intent": "Intraday volatility analysis on a crypto asset with time window",
               "params": {
                 "symbol": "MATIC/USD",
@@ -2869,6 +2927,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesBBands",
               "intent": "Assess volatility for a forex pair",
               "params": {
                 "symbol": "EUR/GBP",
@@ -2876,6 +2935,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesBBands",
               "intent": "Analyze Bollinger Bands for a crypto asset with custom settings and date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -3032,6 +3092,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesCross",
               "intent": "Analyze forex cross between two major currencies",
               "params": {
                 "base": "EUR",
@@ -3040,6 +3101,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesCross",
               "intent": "Crypto cross analysis with exchange specific context",
               "params": {
                 "base": "ETH",
@@ -3154,6 +3216,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesEma",
               "intent": "Short term trend check on a forex pair",
               "params": {
                 "symbol": "GBP/JPY",
@@ -3161,6 +3224,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesEma",
               "intent": "Crypto momentum analysis with custom EMA window and timeframe",
               "params": {
                 "symbol": "ADA/USD",
@@ -3288,6 +3352,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesMacd",
               "intent": "Analyze medium term momentum for a European bank",
               "params": {
                 "symbol": "SAN",
@@ -3296,6 +3361,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesMacd",
               "intent": "Analyze short term signal for a crypto asset",
               "params": {
                 "symbol": "AVAX/USD",
@@ -3492,6 +3558,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesRsi",
               "intent": "Check overbought or oversold conditions for a US equity",
               "params": {
                 "symbol": "AAPL",
@@ -3500,6 +3567,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesRsi",
               "intent": "Intraday RSI momentum analysis for a crypto asset with custom window",
               "params": {
                 "symbol": "ETH/USD",
@@ -3696,6 +3764,7 @@
           ],
           "examples": [
             {
+              "tool": "twelvedata_GetTimeSeriesSma",
               "intent": "Identify medium term trend for a forex pair",
               "params": {
                 "symbol": "EUR/CHF",
@@ -3704,6 +3773,7 @@
               }
             },
             {
+              "tool": "twelvedata_GetTimeSeriesSma",
               "intent": "Short term SMA analysis on a crypto asset with adjusted data",
               "params": {
                 "symbol": "LINK/USD",
@@ -3747,12 +3817,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_balance_sheet",
               "intent": "Review the most recent balance sheet entries for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_balance_sheet",
               "intent": "Pull a longer balance sheet history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -3791,12 +3863,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_cash_flow",
               "intent": "Review the most recent cash flow statement data for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_cash_flow",
               "intent": "Pull a longer cash flow history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -3828,12 +3902,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_financial_metrics",
               "intent": "Review recent financial metrics for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_financial_metrics",
               "intent": "Pull a longer financial metric history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -3914,6 +3990,7 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_hist_data",
               "intent": "Review the most recent adjusted daily history for a mainland China stock",
               "params": {
                 "symbol": "000001",
@@ -3922,6 +3999,7 @@
               }
             },
             {
+              "tool": "akshare-one-mcp_get_hist_data",
               "intent": "Analyze a shorter hourly window with technical indicators for a Hong Kong listed stock",
               "params": {
                 "symbol": "00700",
@@ -3962,12 +4040,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_income_statement",
               "intent": "Review the most recent income statement data for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_income_statement",
               "intent": "Pull a longer income statement history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -3992,6 +4072,7 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_inner_trade_data",
               "intent": "Review insider trading activity for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
@@ -4022,12 +4103,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_news_data",
               "intent": "Review the latest headlines for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_news_data",
               "intent": "Pull a wider set of recent news items for a large Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4059,12 +4142,14 @@
           ],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_realtime_data",
               "intent": "Check the latest real-time data for a specific mainland China stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
+              "tool": "akshare-one-mcp_get_realtime_data",
               "intent": "Retrieve live data for a Hong Kong listed stock using a different source",
               "params": {
                 "symbol": "00700",
@@ -4081,6 +4166,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "akshare-one-mcp_get_time_info",
               "intent": "Retrieve the current time context and last trading day reference",
               "params": {}
             }
@@ -4116,6 +4202,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_add_asset_to_watchlist_by_id",
               "intent": "Add Nvidia to an existing watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -4132,6 +4219,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alpaca_cancel_all_orders",
               "intent": "Cancel all open orders on the account",
               "params": {}
             }
@@ -4153,6 +4241,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_cancel_order_by_id",
               "intent": "Cancel a specific order by its ID",
               "params": {
                 "order_id": "a3f1c2e4-5678-4b9d-8abc-123456789def"
@@ -4176,10 +4265,12 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_close_all_positions",
               "intent": "Close all open positions immediately",
               "params": {}
             },
             {
+              "tool": "alpaca_close_all_positions",
               "intent": "Cancel all open orders and then close all positions",
               "params": {
                 "cancel_orders": true
@@ -4217,12 +4308,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_close_position",
               "intent": "Close the entire Apple position",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "alpaca_close_position",
               "intent": "Reduce the Tesla position by half",
               "params": {
                 "symbol": "TSLA",
@@ -4254,6 +4347,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_create_watchlist",
               "intent": "Create a watchlist of tech stocks to monitor",
               "params": {
                 "name": "Tech Watchlist",
@@ -4266,6 +4360,7 @@
               }
             },
             {
+              "tool": "alpaca_create_watchlist",
               "intent": "Set up a watchlist for energy sector stocks",
               "params": {
                 "name": "Energy Sector",
@@ -4295,6 +4390,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_delete_watchlist_by_id",
               "intent": "Delete a watchlist that is no longer needed",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"
@@ -4318,6 +4414,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_exercise_options_position",
               "intent": "Exercise a held Nvidia call option contract",
               "params": {
                 "symbol_or_contract_id": "NVDA250919C001680"
@@ -4333,6 +4430,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alpaca_get_account_info",
               "intent": "Check current account balance, buying power, and trading status",
               "params": {}
             }
@@ -4375,6 +4473,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_all_assets",
               "intent": "Get all active US equity assets listed on NASDAQ",
               "params": {
                 "status": "active",
@@ -4383,6 +4482,7 @@
               }
             },
             {
+              "tool": "alpaca_get_all_assets",
               "intent": "List all active crypto assets available on Alpaca",
               "params": {
                 "status": "active",
@@ -4399,6 +4499,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alpaca_get_all_positions",
               "intent": "Get a full overview of all current portfolio positions including P/L",
               "params": {}
             }
@@ -4420,6 +4521,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_asset",
               "intent": "Get detailed trading properties and status for Nvidia",
               "params": {
                 "symbol": "NVDA"
@@ -4450,6 +4552,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_calendar",
               "intent": "Check which days markets are open during the holiday season",
               "params": {
                 "start_date": "2024-12-20",
@@ -4457,6 +4560,7 @@
               }
             },
             {
+              "tool": "alpaca_get_calendar",
               "intent": "Get the full market calendar for Q1 2025",
               "params": {
                 "start_date": "2025-01-01",
@@ -4473,6 +4577,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alpaca_get_clock",
               "intent": "Check if the market is currently open and when it next opens or closes",
               "params": {}
             }
@@ -4543,6 +4648,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_corporate_actions",
               "intent": "Get all cash dividends and stock splits announced in Q1 2024",
               "params": {
                 "ca_types": [
@@ -4554,6 +4660,7 @@
               }
             },
             {
+              "tool": "alpaca_get_corporate_actions",
               "intent": "Retrieve all corporate actions for Apple and Tesla over the past year",
               "params": {
                 "symbols": [
@@ -4646,6 +4753,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_bars",
               "intent": "Get the last 7 days of hourly bars for Bitcoin",
               "params": {
                 "symbol": "BTC/USD",
@@ -4653,6 +4761,7 @@
               }
             },
             {
+              "tool": "alpaca_get_crypto_bars",
               "intent": "Retrieve 4-hour Ethereum bars for a specific date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -4686,12 +4795,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_latest_bar",
               "intent": "Get the latest minute bar for Ethereum",
               "params": {
                 "symbol": "ETH/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_latest_bar",
               "intent": "Get the latest bars for Bitcoin and Solana simultaneously",
               "params": {
                 "symbol": [
@@ -4725,12 +4836,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_latest_orderbook",
               "intent": "Get the current orderbook depth for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_latest_orderbook",
               "intent": "Retrieve the latest orderbook for Bitcoin and Ethereum to compare liquidity",
               "params": {
                 "symbol": [
@@ -4764,12 +4877,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_latest_quote",
               "intent": "Get the latest bid/ask quote for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_latest_quote",
               "intent": "Get the latest quotes for Bitcoin and Ethereum simultaneously",
               "params": {
                 "symbol": [
@@ -4803,12 +4918,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_latest_trade",
               "intent": "Get the most recent trade execution for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_latest_trade",
               "intent": "Get the latest trades for Bitcoin, Ethereum, and Solana simultaneously",
               "params": {
                 "symbol": [
@@ -4892,6 +5009,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_quotes",
               "intent": "Get the last 30 minutes of bid/ask quotes for Bitcoin",
               "params": {
                 "symbol": "BTC/USD",
@@ -4899,6 +5017,7 @@
               }
             },
             {
+              "tool": "alpaca_get_crypto_quotes",
               "intent": "Retrieve crypto quote history for Ethereum over a specific date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -4932,12 +5051,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_snapshot",
               "intent": "Get a full market snapshot for Bitcoin including quote, trade, and bars",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_snapshot",
               "intent": "Retrieve snapshots for Bitcoin and Ethereum simultaneously",
               "params": {
                 "symbol": [
@@ -5027,12 +5148,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_crypto_trades",
               "intent": "Get the last 15 minutes of trade prints for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
+              "tool": "alpaca_get_crypto_trades",
               "intent": "Retrieve Solana trade history over a specific time window in UTC",
               "params": {
                 "symbol": "SOL/USD",
@@ -5060,6 +5183,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_open_position",
               "intent": "Check the current position details and P/L for Apple",
               "params": {
                 "symbol": "AAPL"
@@ -5146,12 +5270,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_option_chain",
               "intent": "Get the full options chain for SPY showing all calls and puts",
               "params": {
                 "underlying_symbol": "SPY"
               }
             },
             {
+              "tool": "alpaca_get_option_chain",
               "intent": "Retrieve near-the-money Apple call options expiring within the next month",
               "params": {
                 "underlying_symbol": "AAPL",
@@ -5250,6 +5376,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_option_contracts",
               "intent": "Get all active call options for Nvidia expiring in a specific week",
               "params": {
                 "underlying_symbols": "NVDA",
@@ -5258,6 +5385,7 @@
               }
             },
             {
+              "tool": "alpaca_get_option_contracts",
               "intent": "Find SPY put options expiring within a date range with strikes near current price",
               "params": {
                 "underlying_symbols": "SPY",
@@ -5293,12 +5421,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_option_latest_quote",
               "intent": "Get the latest quote for a specific Apple call option",
               "params": {
                 "symbol_or_symbols": "AAPL230616C00150000"
               }
             },
             {
+              "tool": "alpaca_get_option_latest_quote",
               "intent": "Retrieve latest quotes for multiple option contracts using indicative feed",
               "params": {
                 "symbol_or_symbols": [
@@ -5333,12 +5463,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_option_snapshot",
               "intent": "Get a full snapshot including Greeks and IV for a specific Apple put option",
               "params": {
                 "symbol_or_symbols": "AAPL250613P00205000"
               }
             },
             {
+              "tool": "alpaca_get_option_snapshot",
               "intent": "Retrieve snapshots for multiple option contracts using the indicative feed",
               "params": {
                 "symbol_or_symbols": [
@@ -5415,6 +5547,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_orders",
               "intent": "Get the 20 most recent closed orders",
               "params": {
                 "status": "closed",
@@ -5422,6 +5555,7 @@
               }
             },
             {
+              "tool": "alpaca_get_orders",
               "intent": "Retrieve all open buy orders for Apple and Tesla",
               "params": {
                 "status": "open",
@@ -5506,6 +5640,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_portfolio_history",
               "intent": "Get daily equity and P/L for the past 3 months",
               "params": {
                 "period": "3M",
@@ -5513,6 +5648,7 @@
               }
             },
             {
+              "tool": "alpaca_get_portfolio_history",
               "intent": "Retrieve 1-hour resolution portfolio history for a specific date range including extended hours",
               "params": {
                 "start": "2024-01-01",
@@ -5623,6 +5759,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_bars",
               "intent": "Get the last 10 days of daily bars for Apple and Microsoft",
               "params": {
                 "symbol": [
@@ -5634,6 +5771,7 @@
               }
             },
             {
+              "tool": "alpaca_get_stock_bars",
               "intent": "Retrieve 15-minute bars for Nvidia over a specific date range",
               "params": {
                 "symbol": "NVDA",
@@ -5675,12 +5813,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_latest_bar",
               "intent": "Get the latest price bar for Apple",
               "params": {
                 "symbol_or_symbols": "AAPL"
               }
             },
             {
+              "tool": "alpaca_get_stock_latest_bar",
               "intent": "Get the latest bars for a set of stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -5723,12 +5863,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_latest_quote",
               "intent": "Get the latest bid/ask quote for Tesla",
               "params": {
                 "symbol_or_symbols": "TSLA"
               }
             },
             {
+              "tool": "alpaca_get_stock_latest_quote",
               "intent": "Get the latest quotes for multiple stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -5771,12 +5913,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_latest_trade",
               "intent": "Get the most recent trade execution for Apple",
               "params": {
                 "symbol_or_symbols": "AAPL"
               }
             },
             {
+              "tool": "alpaca_get_stock_latest_trade",
               "intent": "Get the latest trade for several stocks simultaneously using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -5882,6 +6026,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_quotes",
               "intent": "Get the last 30 minutes of bid/ask quotes for Apple",
               "params": {
                 "symbol": "AAPL",
@@ -5889,6 +6034,7 @@
               }
             },
             {
+              "tool": "alpaca_get_stock_quotes",
               "intent": "Retrieve quote data for multiple stocks over a specific intraday window",
               "params": {
                 "symbol": [
@@ -5932,12 +6078,14 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_snapshot",
               "intent": "Get a full market snapshot for Nvidia including quote, trade, and bars",
               "params": {
                 "symbol_or_symbols": "NVDA"
               }
             },
             {
+              "tool": "alpaca_get_stock_snapshot",
               "intent": "Retrieve snapshots for a basket of stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6044,6 +6192,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_stock_trades",
               "intent": "Get the last 30 minutes of individual trades for Tesla",
               "params": {
                 "symbol": "TSLA",
@@ -6051,6 +6200,7 @@
               }
             },
             {
+              "tool": "alpaca_get_stock_trades",
               "intent": "Retrieve trade history for Apple and Nvidia over a specific morning session",
               "params": {
                 "symbol": [
@@ -6081,6 +6231,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_get_watchlist_by_id",
               "intent": "Get the full details and symbol list of a specific watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"
@@ -6096,6 +6247,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alpaca_get_watchlists",
               "intent": "List all existing watchlists on the account",
               "params": {}
             }
@@ -6173,6 +6325,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_place_crypto_order",
               "intent": "Buy $500 worth of Bitcoin at market price",
               "params": {
                 "symbol": "BTC/USD",
@@ -6181,6 +6334,7 @@
               }
             },
             {
+              "tool": "alpaca_place_crypto_order",
               "intent": "Place a limit buy order for 0.5 ETH at a specific price",
               "params": {
                 "symbol": "ETH/USD",
@@ -6237,6 +6391,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_place_option_market_order",
               "intent": "Buy 1 Apple call option contract at market price",
               "params": {
                 "legs": [
@@ -6249,6 +6404,7 @@
               }
             },
             {
+              "tool": "alpaca_place_option_market_order",
               "intent": "Place a bull call spread on Apple — buy lower strike, sell higher strike",
               "params": {
                 "legs": [
@@ -6362,6 +6518,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_place_stock_order",
               "intent": "Place a market buy order for 10 shares of Apple",
               "params": {
                 "symbol": "AAPL",
@@ -6370,6 +6527,7 @@
               }
             },
             {
+              "tool": "alpaca_place_stock_order",
               "intent": "Place a limit sell order for Nvidia with a bracket to protect profits",
               "params": {
                 "symbol": "NVDA",
@@ -6407,6 +6565,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_remove_asset_from_watchlist_by_id",
               "intent": "Remove Tesla from an existing watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -6445,6 +6604,7 @@
           ],
           "examples": [
             {
+              "tool": "alpaca_update_watchlist_by_id",
               "intent": "Rename a watchlist by its ID",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -6452,6 +6612,7 @@
               }
             },
             {
+              "tool": "alpaca_update_watchlist_by_id",
               "intent": "Replace all symbols in a watchlist with a new set of tickers",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -6494,6 +6655,7 @@
           ],
           "examples": [
             {
+              "tool": "alphavantage_TOOL_CALL",
               "intent": "Call a daily time series tool after confirming its schema",
               "params": {
                 "tool_name": "TIME_SERIES_DAILY",
@@ -6503,6 +6665,7 @@
               }
             },
             {
+              "tool": "alphavantage_TOOL_CALL",
               "intent": "Execute an intraday time series request with a specific interval after schema review",
               "params": {
                 "tool_name": "TIME_SERIES_INTRADAY",
@@ -6530,12 +6693,14 @@
           ],
           "examples": [
             {
+              "tool": "alphavantage_TOOL_GET",
               "intent": "Retrieve the full schema for a specific Alpha Vantage daily time series tool",
               "params": {
                 "tool_name": "TIME_SERIES_DAILY"
               }
             },
             {
+              "tool": "alphavantage_TOOL_GET",
               "intent": "Compare the schemas of multiple Alpha Vantage time series tools before choosing one",
               "params": {
                 "tool_name": [
@@ -6554,6 +6719,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "alphavantage_TOOL_LIST",
               "intent": "List all available Alpha Vantage tools before choosing one to inspect",
               "params": {}
             }
@@ -6574,6 +6740,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "financial-datasets_get_available_crypto_tickers",
               "intent": "Discover all supported cryptocurrency tickers before querying prices",
               "params": {}
             }
@@ -6609,12 +6776,14 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_balance_sheets",
               "intent": "Get the last 4 annual balance sheets for Google",
               "params": {
                 "ticker": "GOOGL"
               }
             },
             {
+              "tool": "financial-datasets_get_balance_sheets",
               "intent": "Retrieve the last 6 quarterly balance sheets for JPMorgan",
               "params": {
                 "ticker": "JPM",
@@ -6654,12 +6823,14 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_cash_flow_statements",
               "intent": "Get the last 4 annual cash flow statements for Apple",
               "params": {
                 "ticker": "AAPL"
               }
             },
             {
+              "tool": "financial-datasets_get_cash_flow_statements",
               "intent": "Retrieve the last 8 quarterly cash flow statements for Tesla",
               "params": {
                 "ticker": "TSLA",
@@ -6685,6 +6856,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_company_news",
               "intent": "Get the latest news for Microsoft",
               "params": {
                 "ticker": "MSFT"
@@ -6736,6 +6908,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_crypto_prices",
               "intent": "Get daily Solana prices for Q1 2024",
               "params": {
                 "ticker": "SOL-USD",
@@ -6744,6 +6917,7 @@
               }
             },
             {
+              "tool": "financial-datasets_get_crypto_prices",
               "intent": "Retrieve 4-hour Ripple price bars for a specific month",
               "params": {
                 "ticker": "XRP-USD",
@@ -6771,6 +6945,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_current_stock_price",
               "intent": "Get the current price of Amazon stock",
               "params": {
                 "ticker": "AMZN"
@@ -6822,6 +6997,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_historical_crypto_prices",
               "intent": "Get daily Bitcoin price history for the year 2023",
               "params": {
                 "ticker": "BTC-USD",
@@ -6830,6 +7006,7 @@
               }
             },
             {
+              "tool": "financial-datasets_get_historical_crypto_prices",
               "intent": "Retrieve hourly Ethereum prices for a specific two-week window",
               "params": {
                 "ticker": "ETH-USD",
@@ -6884,6 +7061,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_historical_stock_prices",
               "intent": "Get daily Apple stock prices for the full year 2023",
               "params": {
                 "ticker": "AAPL",
@@ -6892,6 +7070,7 @@
               }
             },
             {
+              "tool": "financial-datasets_get_historical_stock_prices",
               "intent": "Retrieve 30-minute intraday bars for Nvidia over a specific week",
               "params": {
                 "ticker": "NVDA",
@@ -6933,12 +7112,14 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_income_statements",
               "intent": "Get the last 4 annual income statements for Microsoft",
               "params": {
                 "ticker": "MSFT"
               }
             },
             {
+              "tool": "financial-datasets_get_income_statements",
               "intent": "Retrieve the last 8 quarterly income statements for Amazon to analyze revenue trends",
               "params": {
                 "ticker": "AMZN",
@@ -6978,6 +7159,7 @@
           ],
           "examples": [
             {
+              "tool": "financial-datasets_get_sec_filings",
               "intent": "Get the most recent annual reports filed by Apple",
               "params": {
                 "ticker": "AAPL",
@@ -6985,6 +7167,7 @@
               }
             },
             {
+              "tool": "financial-datasets_get_sec_filings",
               "intent": "Retrieve the last 20 SEC filings for Tesla across all types",
               "params": {
                 "ticker": "TSLA",
@@ -7058,12 +7241,14 @@
           ],
           "examples": [
             {
+              "tool": "fred-mcp-server_fred_browse",
               "intent": "Browse the top-level FRED categories",
               "params": {
                 "browse_type": "categories"
               }
             },
             {
+              "tool": "fred-mcp-server_fred_browse",
               "intent": "Retrieve series in a specific FRED category",
               "params": {
                 "browse_type": "category_series",
@@ -7159,6 +7344,7 @@
           ],
           "examples": [
             {
+              "tool": "fred-mcp-server_fred_get_series",
               "intent": "Retrieve GDP observations from 2015 onward",
               "params": {
                 "series_id": "GDP",
@@ -7166,6 +7352,7 @@
               }
             },
             {
+              "tool": "fred-mcp-server_fred_get_series",
               "intent": "Retrieve recent CPI percent changes in descending date order",
               "params": {
                 "series_id": "CPIAUCSL",
@@ -7255,12 +7442,14 @@
           ],
           "examples": [
             {
+              "tool": "fred-mcp-server_fred_search",
               "intent": "Search FRED for unemployment-related series",
               "params": {
                 "search_text": "unemployment"
               }
             },
             {
+              "tool": "fred-mcp-server_fred_search",
               "intent": "Search FRED for monthly CPI series ordered by popularity",
               "params": {
                 "search_text": "CPI",
@@ -7345,6 +7534,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
               "intent": "Compare education tax benefits for an undergraduate student with tuition expenses",
               "params": {
                 "filingStatus": "single",
@@ -7355,6 +7545,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
               "intent": "Compare education tax benefits for a graduate student with student loan interest and a 529 plan",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -7440,6 +7631,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
               "intent": "Analyze the tax benefit of itemizing for a single homeowner",
               "params": {
                 "taxYear": 2024,
@@ -7450,6 +7642,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
               "intent": "Analyze the tax benefit of a larger mortgage for a joint filer with additional itemized deductions",
               "params": {
                 "taxYear": 2025,
@@ -7551,6 +7744,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_analyze_paycheck",
               "intent": "Analyze withholding for a biweekly paycheck",
               "params": {
                 "taxYear": 2025,
@@ -7563,6 +7757,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_analyze_paycheck",
               "intent": "Analyze a paycheck including state withholding and pre-tax contributions",
               "params": {
                 "taxYear": 2025,
@@ -7659,6 +7854,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
               "intent": "Compare relocating from California to Texas for a wage earner",
               "params": {
                 "taxYear": 2025,
@@ -7671,6 +7867,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
               "intent": "Compare relocating from New York to Florida for a joint filer with business income and dependents",
               "params": {
                 "taxYear": 2025,
@@ -7801,6 +7998,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_assess_audit_risk",
               "intent": "Assess audit risk for a self-employed taxpayer with several common review triggers",
               "params": {
                 "filingStatus": "single",
@@ -7814,6 +8012,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_assess_audit_risk",
               "intent": "Assess audit risk for a joint filer with charitable deductions, rental losses, and foreign-account exposure",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -7879,6 +8078,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_calculate_eitc",
               "intent": "Calculate EITC for a single filer with no qualifying children",
               "params": {
                 "taxYear": 2024,
@@ -7889,6 +8089,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_calculate_eitc",
               "intent": "Calculate EITC for a head of household filer with two qualifying children",
               "params": {
                 "taxYear": 2025,
@@ -8022,6 +8223,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_calculate_federal_tax",
               "intent": "Calculate federal tax for a single W-2 taxpayer in 2024",
               "params": {
                 "taxYear": 2024,
@@ -8031,6 +8233,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_calculate_federal_tax",
               "intent": "Calculate federal tax for a married joint filer with self-employment income, qualified business income, and capital gains in 2025",
               "params": {
                 "taxYear": 2025,
@@ -8117,6 +8320,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
               "intent": "Check which OBBB deductions may apply for a single taxpayer with tip income",
               "params": {
                 "taxYear": 2025,
@@ -8128,6 +8332,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
               "intent": "Estimate OBBB deductions for a joint filer with senior bonus, overtime pay, and auto loan interest",
               "params": {
                 "taxYear": 2025,
@@ -8235,6 +8440,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_calculate_total_tax",
               "intent": "Calculate combined federal and California tax for a single wage earner",
               "params": {
                 "taxYear": 2024,
@@ -8245,6 +8451,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_calculate_total_tax",
               "intent": "Calculate combined federal and New York tax for a joint filer with business income and dependents",
               "params": {
                 "taxYear": 2025,
@@ -8331,6 +8538,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
               "intent": "Estimate W-4 withholding for a single salaried employee paid biweekly",
               "params": {
                 "taxYear": 2024,
@@ -8340,6 +8548,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
               "intent": "Estimate W-4 settings for a joint filer with dependents, other income, and a working spouse",
               "params": {
                 "taxYear": 2025,
@@ -8460,6 +8669,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_check_credit_eligibility",
               "intent": "Check likely credit eligibility for a single parent with children and childcare costs",
               "params": {
                 "agi": 52000,
@@ -8471,6 +8681,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_check_credit_eligibility",
               "intent": "Check likely credit eligibility for a taxpayer with education, EV, and retirement-related factors",
               "params": {
                 "agi": 78000,
@@ -8499,12 +8710,14 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_check_refund_status",
               "intent": "Get refund status instructions for an electronically filed return",
               "params": {
                 "filedElectronically": true
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_check_refund_status",
               "intent": "Get general IRS refund status instructions",
               "params": {}
             }
@@ -8547,6 +8760,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_compare_filing_statuses",
               "intent": "Compare filing statuses for a taxpayer with moderate income",
               "params": {
                 "taxYear": 2024,
@@ -8554,6 +8768,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_compare_filing_statuses",
               "intent": "Compare filing statuses for a taxpayer with itemized deductions and dependents",
               "params": {
                 "taxYear": 2025,
@@ -8636,6 +8851,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
               "intent": "Compare MFJ and MFS for a married couple with straightforward income",
               "params": {
                 "taxYear": 2024,
@@ -8644,6 +8860,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
               "intent": "Compare MFJ and MFS for a married couple with children, itemized deductions, and education-related restrictions",
               "params": {
                 "taxYear": 2025,
@@ -8681,6 +8898,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_compare_state_taxes",
               "intent": "Compare state taxes across several common relocation states",
               "params": {
                 "states": [
@@ -8693,6 +8911,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_compare_state_taxes",
               "intent": "Compare state taxes across northeastern states for the same income",
               "params": {
                 "states": [
@@ -8743,6 +8962,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_compare_tax_years",
               "intent": "Compare tax years for a single filer with wage income only",
               "params": {
                 "filingStatus": "single",
@@ -8750,6 +8970,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_compare_tax_years",
               "intent": "Compare tax years for a head of household filer with self-employment income and dependents",
               "params": {
                 "filingStatus": "head_of_household",
@@ -8811,6 +9032,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
               "intent": "Estimate quarterly taxes for a self-employed single filer",
               "params": {
                 "taxYear": 2024,
@@ -8820,6 +9042,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
               "intent": "Estimate quarterly taxes for a joint filer with withholding and credits",
               "params": {
                 "taxYear": 2025,
@@ -8897,6 +9120,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
               "intent": "Estimate self-employment tax for a single filer with Schedule C income only",
               "params": {
                 "taxYear": 2024,
@@ -8906,6 +9130,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
               "intent": "Estimate self-employment tax for a joint filer with business income, W-2 income, and retirement contributions",
               "params": {
                 "taxYear": 2025,
@@ -8950,6 +9175,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_estimate_state_tax",
               "intent": "Estimate California state income tax for a single filer",
               "params": {
                 "stateCode": "CA",
@@ -8957,6 +9183,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_estimate_state_tax",
               "intent": "Estimate New York state income tax for a married filer",
               "params": {
                 "stateCode": "NY",
@@ -9129,6 +9356,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_generate_full_tax_report",
               "intent": "Generate a full tax estimate report for a single wage earner with investment income",
               "params": {
                 "taxYear": 2024,
@@ -9143,6 +9371,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_generate_full_tax_report",
               "intent": "Generate a full tax estimate report for a joint filer with business income, deductions, and estimated payments",
               "params": {
                 "taxYear": 2025,
@@ -9180,12 +9409,14 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_form_filing_guide",
               "intent": "Get a filing guide for Form 1040",
               "params": {
                 "formNumber": "1040"
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_form_filing_guide",
               "intent": "Get a filing guide for Schedule C",
               "params": {
                 "formNumber": "Schedule C"
@@ -9209,12 +9440,14 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_irs_form_info",
               "intent": "Get information about Form 1040",
               "params": {
                 "formNumber": "1040"
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_irs_form_info",
               "intent": "Get information about Schedule C",
               "params": {
                 "formNumber": "Schedule C"
@@ -9273,6 +9506,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
               "intent": "Generate a basic personalized tax calendar for a wage earner",
               "params": {
                 "taxYear": 2025,
@@ -9280,6 +9514,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
               "intent": "Generate a personalized tax calendar for a self-employed taxpayer with investments and a filed extension",
               "params": {
                 "taxYear": 2025,
@@ -9307,10 +9542,12 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_retirement_accounts",
               "intent": "List retirement account details across available account types",
               "params": {}
             },
             {
+              "tool": "irs-taxpayer-mcp_get_retirement_accounts",
               "intent": "Get details for a Roth IRA",
               "params": {
                 "accountType": "roth_ira"
@@ -9334,10 +9571,12 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_retirement_strategy",
               "intent": "List available tax-advantaged retirement strategies",
               "params": {}
             },
             {
+              "tool": "irs-taxpayer-mcp_get_retirement_strategy",
               "intent": "Get details for the Backdoor Roth strategy",
               "params": {
                 "strategyId": "backdoor_roth"
@@ -9361,12 +9600,14 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_state_tax_info",
               "intent": "Get state income tax information for California",
               "params": {
                 "stateCode": "CA"
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_state_tax_info",
               "intent": "Get state income tax information for Texas",
               "params": {
                 "stateCode": "TX"
@@ -9397,6 +9638,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_tax_brackets",
               "intent": "Retrieve 2024 tax brackets for a single filer",
               "params": {
                 "taxYear": 2024,
@@ -9404,6 +9646,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_tax_brackets",
               "intent": "Retrieve 2025 tax brackets for a head of household filer",
               "params": {
                 "taxYear": 2025,
@@ -9428,10 +9671,12 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_tax_deadlines",
               "intent": "Get IRS tax deadlines for the default tax year",
               "params": {}
             },
             {
+              "tool": "irs-taxpayer-mcp_get_tax_deadlines",
               "intent": "Get IRS tax deadlines for 2024",
               "params": {
                 "taxYear": 2024
@@ -9588,6 +9833,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
               "intent": "Generate a checklist for a salaried filer with investments, mortgage, and children",
               "params": {
                 "hasW2": true,
@@ -9600,6 +9846,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
               "intent": "Generate a checklist for a freelancer with rental property, student loans, and recent life events",
               "params": {
                 "hasSelfEmployment": true,
@@ -9728,6 +9975,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
               "intent": "Get year-end tax planning ideas for a salaried single filer",
               "params": {
                 "taxYear": 2024,
@@ -9741,6 +9989,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
               "intent": "Get year-end tax planning ideas for a self-employed joint filer with gains and charitable giving",
               "params": {
                 "taxYear": 2025,
@@ -9771,10 +10020,12 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_list_deductions",
               "intent": "List all available tax deductions",
               "params": {}
             },
             {
+              "tool": "irs-taxpayer-mcp_list_deductions",
               "intent": "List charitable deductions",
               "params": {
                 "category": "charity"
@@ -9790,6 +10041,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_list_no_income_tax_states",
               "intent": "List states with no state income tax",
               "params": {}
             }
@@ -9818,10 +10070,12 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_list_tax_credits",
               "intent": "List all available federal tax credits",
               "params": {}
             },
             {
+              "tool": "irs-taxpayer-mcp_list_tax_credits",
               "intent": "List refundable family-related tax credits",
               "params": {
                 "category": "family",
@@ -9846,12 +10100,14 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_lookup_tax_rule",
               "intent": "Look up the wash sale rule",
               "params": {
                 "topic": "wash sale rule"
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_lookup_tax_rule",
               "intent": "Look up stock-option and credit-related tax rules",
               "params": {
                 "topic": "ISO vs NSO and AMT"
@@ -9938,6 +10194,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_optimize_capital_gains",
               "intent": "Identify which lots to sell to realize losses for tax-loss harvesting",
               "params": {
                 "taxYear": 2025,
@@ -9963,6 +10220,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_optimize_capital_gains",
               "intent": "Review lots for a joint filer trying to realize gains efficiently",
               "params": {
                 "taxYear": 2025,
@@ -10075,6 +10333,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
               "intent": "Project taxes over the next three years with rising income and steady retirement contributions",
               "params": {
                 "filingStatus": "single",
@@ -10105,6 +10364,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
               "intent": "Project a joint filer's taxes across several years with Roth conversions and state changes",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -10216,6 +10476,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
               "intent": "Plan withdrawals for a retiree balancing taxable and traditional accounts",
               "params": {
                 "taxYear": 2025,
@@ -10229,6 +10490,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
               "intent": "Plan joint retirement withdrawals and evaluate whether Roth conversions may help",
               "params": {
                 "taxYear": 2025,
@@ -10309,6 +10571,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_process_1099_income",
               "intent": "Process freelance and interest income reported on 1099 forms",
               "params": {
                 "taxYear": 2024,
@@ -10328,6 +10591,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_process_1099_income",
               "intent": "Process mixed 1099 income with W-2 context and investment income details",
               "params": {
                 "taxYear": 2025,
@@ -10505,6 +10769,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_run_tax_health_check",
               "intent": "Run a health check for a salaried filer with a mortgage, retirement savings, and withholding",
               "params": {
                 "taxYear": 2025,
@@ -10522,6 +10787,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_run_tax_health_check",
               "intent": "Run a health check for a joint filer with business income, dependents, and tax-saving opportunities",
               "params": {
                 "taxYear": 2025,
@@ -10656,6 +10922,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
               "intent": "Estimate the tax impact of relocating from California to Texas",
               "params": {
                 "taxYear": 2025,
@@ -10666,6 +10933,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
               "intent": "Estimate the tax impact of a raise, Roth conversion, and extra 401k contributions",
               "params": {
                 "taxYear": 2025,
@@ -10759,6 +11027,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_standard_vs_itemized",
               "intent": "Compare standard and itemized deductions for a single filer with mortgage interest and charitable giving",
               "params": {
                 "taxYear": 2024,
@@ -10769,6 +11038,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_standard_vs_itemized",
               "intent": "Compare standard and itemized deductions for a head of household filer with medical expenses and state taxes",
               "params": {
                 "taxYear": 2025,
@@ -10812,6 +11082,7 @@
           ],
           "examples": [
             {
+              "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
               "intent": "Compare what changed between 2024 and 2025 for a single filer",
               "params": {
                 "fromYear": 2024,
@@ -10819,6 +11090,7 @@
               }
             },
             {
+              "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
               "intent": "Compare tax law changes between 2024 and 2025 for a head of household filer",
               "params": {
                 "fromYear": 2024,
@@ -10886,6 +11158,7 @@
           ],
           "examples": [
             {
+              "tool": "massive-mcp_call_api",
               "intent": "Fetch daily aggregate data for AAPL over January 2024",
               "params": {
                 "method": "GET",
@@ -10893,6 +11166,7 @@
               }
             },
             {
+              "tool": "massive-mcp_call_api",
               "intent": "Fetch aggregate data, store it for later querying, and apply a post-processing function",
               "params": {
                 "method": "GET",
@@ -10930,12 +11204,14 @@
           ],
           "examples": [
             {
+              "tool": "massive-mcp_get_endpoint_docs",
               "intent": "Retrieve documentation for a discovered aggregates endpoint",
               "params": {
                 "url": "https://example.com/docs/aggs"
               }
             },
             {
+              "tool": "massive-mcp_get_endpoint_docs",
               "intent": "Retrieve documentation for a discovered options endpoint",
               "params": {
                 "url": "https://example.com/docs/options"
@@ -10966,12 +11242,14 @@
           ],
           "examples": [
             {
+              "tool": "massive-mcp_query_data",
               "intent": "List all stored data tables",
               "params": {
                 "sql": "SHOW TABLES"
               }
             },
             {
+              "tool": "massive-mcp_query_data",
               "intent": "Calculate the average close price from a stored prices table and post-process the result",
               "params": {
                 "sql": "SELECT AVG(close) AS avg_close FROM prices",
@@ -11011,12 +11289,14 @@
           ],
           "examples": [
             {
+              "tool": "massive-mcp_search_endpoints",
               "intent": "Find endpoints related to options data",
               "params": {
                 "query": "options data"
               }
             },
             {
+              "tool": "massive-mcp_search_endpoints",
               "intent": "Search only local functions related to technical indicators",
               "params": {
                 "query": "technical indicators",
@@ -11048,12 +11328,14 @@
           ],
           "examples": [
             {
+              "tool": "octagon-mcp_octagon-agent",
               "intent": "Research a public company across filings, earnings, and ownership signals",
               "params": {
                 "prompt": "Provide a comprehensive market intelligence analysis of Nvidia, including filings, earnings, financial metrics, and institutional ownership trends"
               }
             },
             {
+              "tool": "octagon-mcp_octagon-agent",
               "intent": "Research a broader market theme across public and private markets",
               "params": {
                 "prompt": "Analyze the current AI infrastructure market across public companies, private funding activity, and recent M&A trends"
@@ -11077,12 +11359,14 @@
           ],
           "examples": [
             {
+              "tool": "octagon-mcp_octagon-deep-research-agent",
               "intent": "Research the current investment case for semiconductor stocks",
               "params": {
                 "prompt": "Provide a deep investment research overview of the current semiconductor sector outlook"
               }
             },
             {
+              "tool": "octagon-mcp_octagon-deep-research-agent",
               "intent": "Research a company with a focus on risks and catalysts",
               "params": {
                 "prompt": "Analyze the current investment thesis for Tesla, including key risks and near-term catalysts"
@@ -11113,12 +11397,14 @@
           ],
           "examples": [
             {
+              "tool": "octagon-mcp_octagon-prediction-markets-agent",
               "intent": "Research what is driving a specific Kalshi event",
               "params": {
                 "prompt": "Create a research report on the current drivers of the BTC end-of-month Kalshi market"
               }
             },
             {
+              "tool": "octagon-mcp_octagon-prediction-markets-agent",
               "intent": "Analyze a Kalshi event for potential mispricing and cache the response",
               "params": {
                 "prompt": "Compare market-implied and model-implied probabilities for this Kalshi election event and identify possible mispricings",
@@ -11178,12 +11464,14 @@
           ],
           "examples": [
             {
+              "tool": "octagon-mcp_prediction_markets_history",
               "intent": "Retrieve recent history for a specific prediction market event",
               "params": {
                 "event_ticker": "KXBTCY-27JAN0100"
               }
             },
             {
+              "tool": "octagon-mcp_prediction_markets_history",
               "intent": "Retrieve a bounded historical window for a prediction market event with analysis columns",
               "params": {
                 "event_ticker": "KXBTCY-27JAN0100",
@@ -11225,10 +11513,12 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_get_recent_bills",
               "intent": "Get the most recent bills introduced in Congress",
               "params": {}
             },
             {
+              "tool": "us-legal-mcp_get_recent_bills",
               "intent": "Retrieve more recently introduced bills from the 118th Congress",
               "params": {
                 "congress": 118,
@@ -11260,10 +11550,12 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_get_recent_court_opinions",
               "intent": "Get the most recently published court opinions",
               "params": {}
             },
             {
+              "tool": "us-legal-mcp_get_recent_court_opinions",
               "intent": "Retrieve recent Supreme Court opinions",
               "params": {
                 "court": "scotus",
@@ -11288,10 +11580,12 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_get_recent_regulations",
               "intent": "Get the most recently published Federal Register documents",
               "params": {}
             },
             {
+              "tool": "us-legal-mcp_get_recent_regulations",
               "intent": "Retrieve more recently published Federal Register documents",
               "params": {
                 "limit": 30
@@ -11322,12 +11616,14 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_search_all_legal",
               "intent": "Search across US legal sources for immigration-related material",
               "params": {
                 "query": "immigration"
               }
             },
             {
+              "tool": "us-legal-mcp_search_all_legal",
               "intent": "Retrieve more cross-source legal results related to healthcare",
               "params": {
                 "query": "healthcare",
@@ -11366,12 +11662,14 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_search_congress_bills",
               "intent": "Search for congressional bills related to immigration",
               "params": {
                 "query": "immigration"
               }
             },
             {
+              "tool": "us-legal-mcp_search_congress_bills",
               "intent": "Retrieve more infrastructure-related bills from the 118th Congress",
               "params": {
                 "query": "infrastructure",
@@ -11411,12 +11709,14 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_search_court_opinions",
               "intent": "Search court opinions related to copyright disputes",
               "params": {
                 "query": "copyright"
               }
             },
             {
+              "tool": "us-legal-mcp_search_court_opinions",
               "intent": "Search Supreme Court opinions related to constitutional issues",
               "params": {
                 "query": "constitutional",
@@ -11449,12 +11749,14 @@
           ],
           "examples": [
             {
+              "tool": "us-legal-mcp_search_federal_register",
               "intent": "Search for Federal Register documents related to environmental policy",
               "params": {
                 "query": "environmental"
               }
             },
             {
+              "tool": "us-legal-mcp_search_federal_register",
               "intent": "Retrieve more Federal Register documents related to healthcare",
               "params": {
                 "query": "healthcare",
@@ -11478,6 +11780,7 @@
           "parameters": [],
           "examples": [
             {
+              "tool": "us-regulations-mcp_about",
               "intent": "Review server coverage and freshness information before starting compliance research",
               "params": {}
             }
@@ -11506,12 +11809,14 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_check_applicability",
               "intent": "Check which regulations apply to the healthcare sector",
               "params": {
                 "sector": "healthcare"
               }
             },
             {
+              "tool": "us-regulations-mcp_check_applicability",
               "intent": "Check which regulations apply to hospitals within the healthcare sector",
               "params": {
                 "sector": "healthcare",
@@ -11543,6 +11848,7 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_compare_requirements",
               "intent": "Compare how regulations address breach notification",
               "params": {
                 "topic": "breach notification",
@@ -11554,6 +11860,7 @@
               }
             },
             {
+              "tool": "us-regulations-mcp_compare_requirements",
               "intent": "Compare access control requirements across multiple regulations",
               "params": {
                 "topic": "access controls",
@@ -11589,10 +11896,12 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_get_breach_notification_timeline",
               "intent": "Get breach notification timelines across all supported jurisdictions",
               "params": {}
             },
             {
+              "tool": "us-regulations-mcp_get_breach_notification_timeline",
               "intent": "Get California breach notification timelines for HIPAA-related rules",
               "params": {
                 "state": "California",
@@ -11624,6 +11933,7 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_get_compliance_action_items",
               "intent": "Generate compliance action items from selected HIPAA sections",
               "params": {
                 "regulation": "HIPAA",
@@ -11634,6 +11944,7 @@
               }
             },
             {
+              "tool": "us-regulations-mcp_get_compliance_action_items",
               "intent": "Generate action items from selected GLBA sections",
               "params": {
                 "regulation": "GLBA",
@@ -11668,6 +11979,7 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_get_evidence_requirements",
               "intent": "Extract audit evidence requirements from a HIPAA section",
               "params": {
                 "regulation": "HIPAA",
@@ -11675,6 +11987,7 @@
               }
             },
             {
+              "tool": "us-regulations-mcp_get_evidence_requirements",
               "intent": "Extract evidence requirements from the SOX section on internal controls",
               "params": {
                 "regulation": "SOX",
@@ -11706,6 +12019,7 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_get_section",
               "intent": "Retrieve the HIPAA section for uses and disclosures of protected health information",
               "params": {
                 "regulation": "HIPAA",
@@ -11713,6 +12027,7 @@
               }
             },
             {
+              "tool": "us-regulations-mcp_get_section",
               "intent": "Retrieve the CCPA section covering consumer rights requests",
               "params": {
                 "regulation": "CCPA",
@@ -11737,10 +12052,12 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_list_regulations",
               "intent": "List all available regulations",
               "params": {}
             },
             {
+              "tool": "us-regulations-mcp_list_regulations",
               "intent": "Get the structure of the HIPAA regulation",
               "params": {
                 "regulation": "HIPAA"
@@ -11778,12 +12095,14 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_map_controls",
               "intent": "Map NIST CSF controls to relevant regulations",
               "params": {
                 "framework": "NIST_CSF"
               }
             },
             {
+              "tool": "us-regulations-mcp_map_controls",
               "intent": "Map a specific NIST 800-53 control to HIPAA sections",
               "params": {
                 "framework": "NIST_800_53_R5",
@@ -11830,12 +12149,14 @@
           ],
           "examples": [
             {
+              "tool": "us-regulations-mcp_search_regulations",
               "intent": "Search regulations for breach notification requirements",
               "params": {
                 "query": "breach notification requirements"
               }
             },
             {
+              "tool": "us-regulations-mcp_search_regulations",
               "intent": "Search HIPAA and CCPA regulation text related to safeguards with pagination",
               "params": {
                 "query": "safeguards",
@@ -11886,12 +12207,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_get-price-history",
               "intent": "Fetch the default price history for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "yahoo-finance_get-price-history",
               "intent": "Retrieve six months of hourly price history for Tesla",
               "params": {
                 "symbol": "TSLA",
@@ -11917,12 +12240,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_get-ticker-info",
               "intent": "Retrieve a broad company and trading snapshot for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "yahoo-finance_get-ticker-info",
               "intent": "Review company, financial, and governance data for Tesla",
               "params": {
                 "symbol": "TSLA"
@@ -11953,12 +12278,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_get-ticker-news",
               "intent": "Fetch the latest news articles for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "yahoo-finance_get-ticker-news",
               "intent": "Retrieve a larger set of recent news articles for Nvidia",
               "params": {
                 "symbol": "NVDA",
@@ -11997,6 +12324,7 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_get-top-entities",
               "intent": "Get top ETFs in the technology sector",
               "params": {
                 "entity_type": "etfs",
@@ -12004,6 +12332,7 @@
               }
             },
             {
+              "tool": "yahoo-finance_get-top-entities",
               "intent": "Retrieve more top performing companies in healthcare",
               "params": {
                 "entity_type": "performing_companies",
@@ -12036,12 +12365,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_search",
               "intent": "Search for results related to Apple",
               "params": {
                 "query": "Apple"
               }
             },
             {
+              "tool": "yahoo-finance_search",
               "intent": "Retrieve a broader set of search results for semiconductor ETFs",
               "params": {
                 "query": "semiconductor ETF",
@@ -12080,12 +12411,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_ticker-earning",
               "intent": "Retrieve the most recent annual earnings data for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "yahoo-finance_ticker-earning",
               "intent": "Get quarterly earnings data for Tesla around a specific date",
               "params": {
                 "symbol": "TSLA",
@@ -12125,12 +12458,14 @@
           ],
           "examples": [
             {
+              "tool": "yahoo-finance_ticker-option-chain",
               "intent": "Retrieve the most recent option chain data for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
+              "tool": "yahoo-finance_ticker-option-chain",
               "intent": "Get put option chain data for Tesla for a specific expiration date",
               "params": {
                 "symbol": "TSLA",

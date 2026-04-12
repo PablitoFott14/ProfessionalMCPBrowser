@@ -37,6 +37,7 @@ Flag indicating whether the taxpayer has rental property income.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
   "intent": "Generate a basic personalized tax calendar for a wage earner",
   "params": {
     "taxYear": 2025,
@@ -47,6 +48,7 @@ Flag indicating whether the taxpayer has rental property income.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
   "intent": "Generate a personalized tax calendar for a self-employed taxpayer with investments and a filed extension",
   "params": {
     "taxYear": 2025,

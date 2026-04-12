@@ -25,6 +25,7 @@ Number of entities to return.
 
 ```json
 {
+  "tool": "yahoo-finance_get-top-entities",
   "intent": "Get top ETFs in the technology sector",
   "params": {
     "entity_type": "etfs",
@@ -35,6 +36,7 @@ Number of entities to return.
 
 ```json
 {
+  "tool": "yahoo-finance_get-top-entities",
   "intent": "Retrieve more top performing companies in healthcare",
   "params": {
     "entity_type": "performing_companies",

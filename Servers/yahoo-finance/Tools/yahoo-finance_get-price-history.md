@@ -25,6 +25,7 @@ Data interval used for the historical price series.
 
 ```json
 {
+  "tool": "yahoo-finance_get-price-history",
   "intent": "Fetch the default price history for Apple",
   "params": {
     "symbol": "AAPL"
@@ -34,6 +35,7 @@ Data interval used for the historical price series.
 
 ```json
 {
+  "tool": "yahoo-finance_get-price-history",
   "intent": "Retrieve six months of hourly price history for Tesla",
   "params": {
     "symbol": "TSLA",

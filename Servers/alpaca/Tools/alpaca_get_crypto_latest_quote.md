@@ -21,6 +21,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_quote",
   "intent": "Get the latest bid/ask quote for Bitcoin",
   "params": {
     "symbol": "BTC/USD"
@@ -30,6 +31,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_quote",
   "intent": "Get the latest quotes for Bitcoin and Ethereum simultaneously",
   "params": {
     "symbol": ["BTC/USD", "ETH/USD"]

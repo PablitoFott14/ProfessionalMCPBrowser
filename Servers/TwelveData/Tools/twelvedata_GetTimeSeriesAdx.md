@@ -109,6 +109,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetTimeSeriesAdx",
   "intent": "Evaluate trend strength for a US equity",
   "params": {
     "symbol": "MSFT",
@@ -118,6 +119,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetTimeSeriesAdx",
   "intent": "Intraday trend strength analysis for a crypto pair",
   "params": {
     "symbol": "SOL/USD",

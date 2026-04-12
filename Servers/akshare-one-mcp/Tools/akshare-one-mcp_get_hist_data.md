@@ -51,6 +51,7 @@ Limits the output to the most recent records.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_hist_data",
   "intent": "Review the most recent adjusted daily history for a mainland China stock",
   "params": {
     "symbol": "000001",
@@ -60,6 +61,7 @@ Limits the output to the most recent records.
 }
 
 {
+  "tool": "akshare-one-mcp_get_hist_data",
   "intent": "Analyze a shorter hourly window with technical indicators for a Hong Kong listed stock",
   "params": {
     "symbol": "00700",

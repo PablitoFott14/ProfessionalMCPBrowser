@@ -65,6 +65,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetDividends",
   "intent": "Retrieve latest dividend payment for a US stock",
   "params": {
     "symbol": "JNJ",
@@ -73,6 +74,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetDividends",
   "intent": "Analyze dividend history over multiple years",
   "params": {
     "symbol": "PG",

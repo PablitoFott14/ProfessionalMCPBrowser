@@ -41,6 +41,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetIpoCalendar",
   "intent": "Retrieve upcoming IPOs in the US",
   "params": {
     "country": "United States"
@@ -48,6 +49,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetIpoCalendar",
   "intent": "Analyze IPO activity on a specific exchange within a time window",
   "params": {
     "exchange": "NASDAQ",

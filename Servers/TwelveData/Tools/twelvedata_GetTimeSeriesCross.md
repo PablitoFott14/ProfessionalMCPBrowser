@@ -89,6 +89,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetTimeSeriesCross",
   "intent": "Analyze forex cross between two major currencies",
   "params": {
     "base": "EUR",
@@ -98,6 +99,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetTimeSeriesCross",
   "intent": "Crypto cross analysis with exchange specific context",
   "params": {
     "base": "ETH",

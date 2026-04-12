@@ -337,9 +337,16 @@ body{
 /* ── EXAMPLES ────────────────────────────────────────────────── */
 .examples{display:flex;flex-direction:column;gap:8px}
 .ex-block{border-radius:7px;overflow:hidden;border:1px solid var(--border)}
-.ex-intent{
-  padding:7px 11px;font-size:11px;color:var(--text-dim);
+.ex-header{
   background:var(--surface);border-bottom:1px solid var(--border);
+  padding:7px 11px;display:flex;flex-direction:column;gap:3px;
+}
+.ex-tool{
+  font-family:'JetBrains Mono',Consolas,'Courier New',monospace;
+  font-size:10px;font-weight:600;color:var(--text);letter-spacing:-.1px;
+}
+.ex-intent{
+  font-size:11px;color:var(--text-dim);
   font-style:italic;line-height:1.5;
 }
 .ex-json{
@@ -613,13 +620,15 @@ function renderParams(params){
 function renderExamples(exs, paramsWrapped){
   if(!exs.length) return `<p class="no-ex">No examples available.</p>`;
   return `<div class="examples">${exs.map(ex=>{
-    // paramsWrapped: tool expects {"params":{...}} — show the wrapper
-    // otherwise: show just the inner params object (flat call)
     const payload = paramsWrapped
       ? (ex.params!=null ? {params: ex.params} : ex)
       : (ex.params??ex);
+    const hasHeader = ex.tool || ex.intent;
     return `<div class="ex-block">
-      ${ex.intent?`<div class="ex-intent">${esc(ex.intent)}</div>`:''}
+      ${hasHeader?`<div class="ex-header">
+        ${ex.tool?`<span class="ex-tool">${esc(ex.tool)}</span>`:''}
+        ${ex.intent?`<span class="ex-intent">${esc(ex.intent)}</span>`:''}
+      </div>`:''}
       <pre class="ex-json">${hJson(payload)}</pre>
     </div>`;
   }).join('')}</div>`;

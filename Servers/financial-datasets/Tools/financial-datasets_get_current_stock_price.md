@@ -17,6 +17,7 @@ Ticker symbol of the company (e.g., AAPL, GOOGL).
 
 ```json
 {
+  "tool": "financial-datasets_get_current_stock_price",
   "intent": "Get the current price of Amazon stock",
   "params": {
     "ticker": "AMZN"

@@ -21,6 +21,7 @@ Taxable income used across the state comparison.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_compare_state_taxes",
   "intent": "Compare state taxes across several common relocation states",
   "params": {
     "states": ["CA", "TX", "WA", "NY"],
@@ -31,6 +32,7 @@ Taxable income used across the state comparison.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_compare_state_taxes",
   "intent": "Compare state taxes across northeastern states for the same income",
   "params": {
     "states": ["NY", "NJ", "MA", "CT"],

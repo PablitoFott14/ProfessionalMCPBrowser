@@ -29,6 +29,7 @@ Number of qualifying dependents used in the comparison.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_compare_filing_statuses",
   "intent": "Compare filing statuses for a taxpayer with moderate income",
   "params": {
     "taxYear": 2024,
@@ -39,6 +40,7 @@ Number of qualifying dependents used in the comparison.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_compare_filing_statuses",
   "intent": "Compare filing statuses for a taxpayer with itemized deductions and dependents",
   "params": {
     "taxYear": 2025,

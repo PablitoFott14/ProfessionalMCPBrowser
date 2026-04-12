@@ -21,6 +21,7 @@ Number of results to return per source.
 
 ```json
 {
+  "tool": "us-legal-mcp_search_all_legal",
   "intent": "Search across US legal sources for immigration-related material",
   "params": {
     "query": "immigration"
@@ -30,6 +31,7 @@ Number of results to return per source.
 
 ```json
 {
+  "tool": "us-legal-mcp_search_all_legal",
   "intent": "Retrieve more cross-source legal results related to healthcare",
   "params": {
     "query": "healthcare",

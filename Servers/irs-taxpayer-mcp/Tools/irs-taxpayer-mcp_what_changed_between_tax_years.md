@@ -25,6 +25,7 @@ Filing status used for filing-status-specific comparisons.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
   "intent": "Compare what changed between 2024 and 2025 for a single filer",
   "params": {
     "fromYear": 2024,
@@ -35,6 +36,7 @@ Filing status used for filing-status-specific comparisons.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
   "intent": "Compare tax law changes between 2024 and 2025 for a head of household filer",
   "params": {
     "fromYear": 2024,

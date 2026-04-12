@@ -57,6 +57,7 @@ State code within a projection entry.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
   "intent": "Project taxes over the next three years with rising income and steady retirement contributions",
   "params": {
     "filingStatus": "single",
@@ -90,6 +91,7 @@ State code within a projection entry.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
   "intent": "Project a joint filer's taxes across several years with Roth conversions and state changes",
   "params": {
     "filingStatus": "married_filing_jointly",

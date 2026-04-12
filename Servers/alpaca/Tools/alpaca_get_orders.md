@@ -45,6 +45,7 @@ Filters orders by a list of ticker symbols.
 
 ```json
 {
+  "tool": "alpaca_get_orders",
   "intent": "Get the 20 most recent closed orders",
   "params": {
     "status": "closed",
@@ -55,6 +56,7 @@ Filters orders by a list of ticker symbols.
 
 ```json
 {
+  "tool": "alpaca_get_orders",
   "intent": "Retrieve all open buy orders for Apple and Tesla",
   "params": {
     "status": "open",

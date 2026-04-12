@@ -49,6 +49,7 @@ Marginal tax rate used for tax savings estimates.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
   "intent": "Check which OBBB deductions may apply for a single taxpayer with tip income",
   "params": {
     "taxYear": 2025,
@@ -63,6 +64,7 @@ Marginal tax rate used for tax savings estimates.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
   "intent": "Estimate OBBB deductions for a joint filer with senior bonus, overtime pay, and auto loan interest",
   "params": {
     "taxYear": 2025,

@@ -17,6 +17,7 @@ Stock symbol or ticker to retrieve insider trading data for.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_inner_trade_data",
   "intent": "Review insider trading activity for a mainland China bank stock",
   "params": {
     "symbol": "000001"

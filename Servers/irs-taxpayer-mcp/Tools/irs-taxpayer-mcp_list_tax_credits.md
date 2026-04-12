@@ -21,6 +21,7 @@ Flag indicating whether only refundable credits should be shown.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_list_tax_credits",
   "intent": "List all available federal tax credits",
   "params": {}
 }
@@ -28,6 +29,7 @@ Flag indicating whether only refundable credits should be shown.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_list_tax_credits",
   "intent": "List refundable family-related tax credits",
   "params": {
     "category": "family",

@@ -23,6 +23,7 @@ Options data feed source (opra or indicative). OPRA requires a subscription.
 
 ```json
 {
+  "tool": "alpaca_get_option_latest_quote",
   "intent": "Get the latest quote for a specific Apple call option",
   "params": {
     "symbol_or_symbols": "AAPL230616C00150000"
@@ -32,6 +33,7 @@ Options data feed source (opra or indicative). OPRA requires a subscription.
 
 ```json
 {
+  "tool": "alpaca_get_option_latest_quote",
   "intent": "Retrieve latest quotes for multiple option contracts using indicative feed",
   "params": {
     "symbol_or_symbols": ["AAPL230616C00150000", "MSFT230616P00300000"],

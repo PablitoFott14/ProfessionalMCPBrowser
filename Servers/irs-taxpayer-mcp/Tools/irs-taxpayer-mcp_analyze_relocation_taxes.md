@@ -53,6 +53,7 @@ Annual income growth rate used in the projection.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
   "intent": "Compare relocating from California to Texas for a wage earner",
   "params": {
     "taxYear": 2025,
@@ -68,6 +69,7 @@ Annual income growth rate used in the projection.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
   "intent": "Compare relocating from New York to Florida for a joint filer with business income and dependents",
   "params": {
     "taxYear": 2025,

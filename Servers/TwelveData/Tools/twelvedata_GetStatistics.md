@@ -49,6 +49,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetStatistics",
   "intent": "Fundamental snapshot of a European listed company",
   "params": {
     "symbol": "SAP",
@@ -57,6 +58,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetStatistics",
   "intent": "Company lookup using ISIN with broader market context",
   "params": {
     "isin": "US5949181045",

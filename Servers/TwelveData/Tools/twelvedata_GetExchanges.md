@@ -49,6 +49,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetExchanges",
   "intent": "Retrieve exchanges for US stock markets",
   "params": {
     "country": "United States",
@@ -57,6 +58,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetExchanges",
   "intent": "Find exchange using MIC code with plan visibility",
   "params": {
     "code": "XNGS",

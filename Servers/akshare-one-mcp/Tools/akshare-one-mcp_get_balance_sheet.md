@@ -21,6 +21,7 @@ Limits how many of the most recent balance sheet records are returned.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_balance_sheet",
   "intent": "Review the most recent balance sheet entries for a mainland China bank stock",
   "params": {
     "symbol": "000001"
@@ -28,6 +29,7 @@ Limits how many of the most recent balance sheet records are returned.
 }
 
 {
+  "tool": "akshare-one-mcp_get_balance_sheet",
   "intent": "Pull a longer balance sheet history for a Hong Kong listed technology company",
   "params": {
     "symbol": "00700",

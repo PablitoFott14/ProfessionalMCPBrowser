@@ -17,6 +17,7 @@ Natural language research request passed to the agent.
 
 ```json
 {
+  "tool": "octagon-mcp_octagon-deep-research-agent",
   "intent": "Research the current investment case for semiconductor stocks",
   "params": {
     "prompt": "Provide a deep investment research overview of the current semiconductor sector outlook"
@@ -26,6 +27,7 @@ Natural language research request passed to the agent.
 
 ```json
 {
+  "tool": "octagon-mcp_octagon-deep-research-agent",
   "intent": "Research a company with a focus on risks and catalysts",
   "params": {
     "prompt": "Analyze the current investment thesis for Tesla, including key risks and near-term catalysts"

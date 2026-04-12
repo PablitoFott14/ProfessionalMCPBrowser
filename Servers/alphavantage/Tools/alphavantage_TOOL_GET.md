@@ -17,6 +17,7 @@ Tool name or list of tool names to retrieve schema for.
 
 ```json
 {
+  "tool": "alphavantage_TOOL_GET",
   "intent": "Retrieve the full schema for a specific Alpha Vantage daily time series tool",
   "params": {
     "tool_name": "TIME_SERIES_DAILY"
@@ -24,6 +25,7 @@ Tool name or list of tool names to retrieve schema for.
 }
 
 {
+  "tool": "alphavantage_TOOL_GET",
   "intent": "Compare the schemas of multiple Alpha Vantage time series tools before choosing one",
   "params": {
     "tool_name": [

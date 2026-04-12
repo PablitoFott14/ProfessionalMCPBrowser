@@ -25,6 +25,7 @@ Number of cash flow statements to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_cash_flow_statements",
   "intent": "Get the last 4 annual cash flow statements for Apple",
   "params": {
     "ticker": "AAPL"
@@ -34,6 +35,7 @@ Number of cash flow statements to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_cash_flow_statements",
   "intent": "Retrieve the last 8 quarterly cash flow statements for Tesla",
   "params": {
     "ticker": "TSLA",

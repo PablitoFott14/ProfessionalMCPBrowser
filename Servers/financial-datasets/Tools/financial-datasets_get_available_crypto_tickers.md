@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "financial-datasets_get_available_crypto_tickers",
   "intent": "Discover all supported cryptocurrency tickers before querying prices",
   "params": {}
 }

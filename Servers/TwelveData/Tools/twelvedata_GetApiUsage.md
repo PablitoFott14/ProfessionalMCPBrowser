@@ -33,11 +33,13 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetApiUsage",
   "intent": "Check current API usage status",
   "params": {}
 }
 
 {
+  "tool": "twelvedata_GetApiUsage",
   "intent": "Retrieve usage data with specific timezone context",
   "params": {
     "timezone": "America/New_York"

@@ -53,6 +53,7 @@ Value used for the selected filter variable.
 
 ```json
 {
+  "tool": "fred-mcp-server_fred_search",
   "intent": "Search FRED for unemployment-related series",
   "params": {
     "search_text": "unemployment"
@@ -62,6 +63,7 @@ Value used for the selected filter variable.
 
 ```json
 {
+  "tool": "fred-mcp-server_fred_search",
   "intent": "Search FRED for monthly CPI series ordered by popularity",
   "params": {
     "search_text": "CPI",

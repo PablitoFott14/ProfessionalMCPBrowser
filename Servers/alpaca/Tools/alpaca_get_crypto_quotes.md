@@ -49,6 +49,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_crypto_quotes",
   "intent": "Get the last 30 minutes of bid/ask quotes for Bitcoin",
   "params": {
     "symbol": "BTC/USD",
@@ -59,6 +60,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_crypto_quotes",
   "intent": "Retrieve crypto quote history for Ethereum over a specific date range",
   "params": {
     "symbol": "ETH/USD",

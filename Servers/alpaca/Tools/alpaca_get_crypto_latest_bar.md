@@ -21,6 +21,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_bar",
   "intent": "Get the latest minute bar for Ethereum",
   "params": {
     "symbol": "ETH/USD"
@@ -30,6 +31,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_bar",
   "intent": "Get the latest bars for Bitcoin and Solana simultaneously",
   "params": {
     "symbol": ["BTC/USD", "SOL/USD"]

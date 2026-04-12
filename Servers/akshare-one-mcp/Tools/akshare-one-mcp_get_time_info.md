@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_time_info",
   "intent": "Retrieve the current time context and last trading day reference",
   "params": {}
 }

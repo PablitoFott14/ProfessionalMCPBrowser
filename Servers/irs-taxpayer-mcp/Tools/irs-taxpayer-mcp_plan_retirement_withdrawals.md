@@ -53,6 +53,7 @@ Flag indicating whether Roth conversion strategy should be considered.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
   "intent": "Plan withdrawals for a retiree balancing taxable and traditional accounts",
   "params": {
     "taxYear": 2025,
@@ -69,6 +70,7 @@ Flag indicating whether Roth conversion strategy should be considered.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
   "intent": "Plan joint retirement withdrawals and evaluate whether Roth conversions may help",
   "params": {
     "taxYear": 2025,

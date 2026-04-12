@@ -41,6 +41,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetForexPairs",
   "intent": "Retrieve all forex pairs with EUR as base currency",
   "params": {
     "currency_base": "EUR"
@@ -48,6 +49,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetForexPairs",
   "intent": "Filter forex pairs combining base and quote currencies",
   "params": {
     "currency_base": "AUD",

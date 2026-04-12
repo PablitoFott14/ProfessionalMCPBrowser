@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "alpaca_get_watchlists",
   "intent": "List all existing watchlists on the account",
   "params": {}
 }

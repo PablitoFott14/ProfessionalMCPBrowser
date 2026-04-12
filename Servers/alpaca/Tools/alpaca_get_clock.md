@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "alpaca_get_clock",
   "intent": "Check if the market is currently open and when it next opens or closes",
   "params": {}
 }

@@ -45,6 +45,7 @@ Number of qualifying dependents used in the estimate.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
   "intent": "Estimate self-employment tax for a single filer with Schedule C income only",
   "params": {
     "taxYear": 2024,
@@ -57,6 +58,7 @@ Number of qualifying dependents used in the estimate.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
   "intent": "Estimate self-employment tax for a joint filer with business income, W-2 income, and retirement contributions",
   "params": {
     "taxYear": 2025,

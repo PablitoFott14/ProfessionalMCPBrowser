@@ -73,6 +73,7 @@ Hypothetical change in itemized deductions.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
   "intent": "Estimate the tax impact of relocating from California to Texas",
   "params": {
     "taxYear": 2025,
@@ -86,6 +87,7 @@ Hypothetical change in itemized deductions.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
   "intent": "Estimate the tax impact of a raise, Roth conversion, and extra 401k contributions",
   "params": {
     "taxYear": 2025,

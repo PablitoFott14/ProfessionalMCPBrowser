@@ -21,6 +21,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_orderbook",
   "intent": "Get the current orderbook depth for Bitcoin",
   "params": {
     "symbol": "BTC/USD"
@@ -30,6 +31,7 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
+  "tool": "alpaca_get_crypto_latest_orderbook",
   "intent": "Retrieve the latest orderbook for Bitcoin and Ethereum to compare liquidity",
   "params": {
     "symbol": ["BTC/USD", "ETH/USD"]

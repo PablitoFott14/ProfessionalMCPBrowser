@@ -69,6 +69,7 @@ Flag indicating whether the taxpayer paid income tax to a foreign country.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_check_credit_eligibility",
   "intent": "Check likely credit eligibility for a single parent with children and childcare costs",
   "params": {
     "agi": 52000,
@@ -83,6 +84,7 @@ Flag indicating whether the taxpayer paid income tax to a foreign country.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_check_credit_eligibility",
   "intent": "Check likely credit eligibility for a taxpayer with education, EV, and retirement-related factors",
   "params": {
     "agi": 78000,

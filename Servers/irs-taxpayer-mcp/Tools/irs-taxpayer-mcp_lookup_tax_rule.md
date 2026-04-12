@@ -17,6 +17,7 @@ Tax topic to look up.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_lookup_tax_rule",
   "intent": "Look up the wash sale rule",
   "params": {
     "topic": "wash sale rule"
@@ -26,6 +27,7 @@ Tax topic to look up.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_lookup_tax_rule",
   "intent": "Look up stock-option and credit-related tax rules",
   "params": {
     "topic": "ISO vs NSO and AMT"

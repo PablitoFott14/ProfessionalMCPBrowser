@@ -45,6 +45,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetExchangeRate",
   "intent": "Quick check of current forex rate",
   "params": {
     "symbol": "EUR/USD"
@@ -52,6 +53,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetExchangeRate",
   "intent": "Retrieve crypto pair rate at a specific moment with controlled precision",
   "params": {
     "symbol": "BTC/ETH",

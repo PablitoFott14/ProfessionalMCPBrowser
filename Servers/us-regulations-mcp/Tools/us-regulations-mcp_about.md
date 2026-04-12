@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "us-regulations-mcp_about",
   "intent": "Review server coverage and freshness information before starting compliance research",
   "params": {}
 }

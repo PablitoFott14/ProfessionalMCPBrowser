@@ -17,6 +17,7 @@ Deduction category used to filter the listed deductions.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_list_deductions",
   "intent": "List all available tax deductions",
   "params": {}
 }
@@ -24,6 +25,7 @@ Deduction category used to filter the listed deductions.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_list_deductions",
   "intent": "List charitable deductions",
   "params": {
     "category": "charity"

@@ -65,6 +65,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetEod",
   "intent": "Retrieve latest closing price for a US stock",
   "params": {
     "symbol": "MSFT"
@@ -72,6 +73,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetEod",
   "intent": "Historical EOD price for a crypto asset with precision control",
   "params": {
     "symbol": "SOL/USD",

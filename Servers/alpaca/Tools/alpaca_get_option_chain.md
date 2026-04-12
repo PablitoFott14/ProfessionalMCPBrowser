@@ -53,6 +53,7 @@ Maximum number of contract snapshots to return.
 
 ```json
 {
+  "tool": "alpaca_get_option_chain",
   "intent": "Get the full options chain for SPY showing all calls and puts",
   "params": {
     "underlying_symbol": "SPY"
@@ -62,6 +63,7 @@ Maximum number of contract snapshots to return.
 
 ```json
 {
+  "tool": "alpaca_get_option_chain",
   "intent": "Retrieve near-the-money Apple call options expiring within the next month",
   "params": {
     "underlying_symbol": "AAPL",

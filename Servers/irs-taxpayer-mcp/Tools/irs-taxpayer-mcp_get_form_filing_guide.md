@@ -17,6 +17,7 @@ IRS form or schedule to explain.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_form_filing_guide",
   "intent": "Get a filing guide for Form 1040",
   "params": {
     "formNumber": "1040"
@@ -26,6 +27,7 @@ IRS form or schedule to explain.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_form_filing_guide",
   "intent": "Get a filing guide for Schedule C",
   "params": {
     "formNumber": "Schedule C"

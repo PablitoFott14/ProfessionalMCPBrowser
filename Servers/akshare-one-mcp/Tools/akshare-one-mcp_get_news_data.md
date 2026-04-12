@@ -21,6 +21,7 @@ Limits how many of the most recent news records are returned.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_news_data",
   "intent": "Review the latest headlines for a mainland China bank stock",
   "params": {
     "symbol": "000001"
@@ -28,6 +29,7 @@ Limits how many of the most recent news records are returned.
 }
 
 {
+  "tool": "akshare-one-mcp_get_news_data",
   "intent": "Pull a wider set of recent news items for a large Hong Kong listed technology company",
   "params": {
     "symbol": "00700",

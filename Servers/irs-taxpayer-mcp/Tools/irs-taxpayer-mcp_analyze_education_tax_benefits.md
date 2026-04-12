@@ -45,6 +45,7 @@ Amount contributed to a 529 plan during the year.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
   "intent": "Compare education tax benefits for an undergraduate student with tuition expenses",
   "params": {
     "filingStatus": "single",
@@ -58,6 +59,7 @@ Amount contributed to a 529 plan during the year.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
   "intent": "Compare education tax benefits for a graduate student with student loan interest and a 529 plan",
   "params": {
     "filingStatus": "married_filing_jointly",

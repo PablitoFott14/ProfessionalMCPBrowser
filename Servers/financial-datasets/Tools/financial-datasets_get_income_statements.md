@@ -25,6 +25,7 @@ Number of income statements to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_income_statements",
   "intent": "Get the last 4 annual income statements for Microsoft",
   "params": {
     "ticker": "MSFT"
@@ -34,6 +35,7 @@ Number of income statements to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_income_statements",
   "intent": "Retrieve the last 8 quarterly income statements for Amazon to analyze revenue trends",
   "params": {
     "ticker": "AMZN",

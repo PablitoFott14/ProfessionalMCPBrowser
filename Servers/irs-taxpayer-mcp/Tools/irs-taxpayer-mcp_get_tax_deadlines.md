@@ -17,6 +17,7 @@ Tax year used to retrieve the relevant IRS deadlines.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_tax_deadlines",
   "intent": "Get IRS tax deadlines for the default tax year",
   "params": {}
 }
@@ -24,6 +25,7 @@ Tax year used to retrieve the relevant IRS deadlines.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_get_tax_deadlines",
   "intent": "Get IRS tax deadlines for 2024",
   "params": {
     "taxYear": 2024

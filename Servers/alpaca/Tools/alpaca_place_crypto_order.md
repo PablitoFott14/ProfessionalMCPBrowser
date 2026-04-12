@@ -54,6 +54,7 @@ Custom identifier for the order.
 
 ```json
 {
+  "tool": "alpaca_place_crypto_order",
   "intent": "Buy $500 worth of Bitcoin at market price",
   "params": {
     "symbol": "BTC/USD",
@@ -65,6 +66,7 @@ Custom identifier for the order.
 
 ```json
 {
+  "tool": "alpaca_place_crypto_order",
   "intent": "Place a limit buy order for 0.5 ETH at a specific price",
   "params": {
     "symbol": "ETH/USD",

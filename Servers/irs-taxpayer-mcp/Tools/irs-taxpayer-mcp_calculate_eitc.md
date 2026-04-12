@@ -37,6 +37,7 @@ Investment income used in EITC eligibility and amount calculation.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_eitc",
   "intent": "Calculate EITC for a single filer with no qualifying children",
   "params": {
     "taxYear": 2024,
@@ -50,6 +51,7 @@ Investment income used in EITC eligibility and amount calculation.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_calculate_eitc",
   "intent": "Calculate EITC for a head of household filer with two qualifying children",
   "params": {
     "taxYear": 2025,

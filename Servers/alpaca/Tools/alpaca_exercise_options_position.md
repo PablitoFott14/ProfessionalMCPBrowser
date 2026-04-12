@@ -17,6 +17,7 @@ Option contract symbol in OCC format (e.g., NVDA250919C001680) or the contract U
 
 ```json
 {
+  "tool": "alpaca_exercise_options_position",
   "intent": "Exercise a held Nvidia call option contract",
   "params": {
     "symbol_or_contract_id": "NVDA250919C001680"

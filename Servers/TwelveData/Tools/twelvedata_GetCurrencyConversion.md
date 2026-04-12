@@ -49,6 +49,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetCurrencyConversion",
   "intent": "Convert a fixed amount from EUR to USD",
   "params": {
     "symbol": "EUR/USD",
@@ -57,6 +58,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetCurrencyConversion",
   "intent": "Convert crypto amount using historical rate and timezone",
   "params": {
     "symbol": "ETH/BTC",

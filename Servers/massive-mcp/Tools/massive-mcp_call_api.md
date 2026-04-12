@@ -37,6 +37,7 @@ API key override used for this request.
 
 ```json
 {
+  "tool": "massive-mcp_call_api",
   "intent": "Fetch daily aggregate data for AAPL over January 2024",
   "params": {
     "method": "GET",
@@ -47,6 +48,7 @@ API key override used for this request.
 
 ```json
 {
+  "tool": "massive-mcp_call_api",
   "intent": "Fetch aggregate data, store it for later querying, and apply a post-processing function",
   "params": {
     "method": "GET",

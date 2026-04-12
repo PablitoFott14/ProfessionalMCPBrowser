@@ -29,6 +29,7 @@ Comma-separated list of asset attributes to filter by.
 
 ```json
 {
+  "tool": "alpaca_get_all_assets",
   "intent": "Get all active US equity assets listed on NASDAQ",
   "params": {
     "status": "active",
@@ -40,6 +41,7 @@ Comma-separated list of asset attributes to filter by.
 
 ```json
 {
+  "tool": "alpaca_get_all_assets",
   "intent": "List all active crypto assets available on Alpaca",
   "params": {
     "status": "active",

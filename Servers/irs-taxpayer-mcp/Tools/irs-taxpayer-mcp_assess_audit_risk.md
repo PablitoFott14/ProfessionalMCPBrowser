@@ -73,6 +73,7 @@ Flag indicating whether most deductions are reported as round numbers.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_assess_audit_risk",
   "intent": "Assess audit risk for a self-employed taxpayer with several common review triggers",
   "params": {
     "filingStatus": "single",
@@ -89,6 +90,7 @@ Flag indicating whether most deductions are reported as round numbers.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_assess_audit_risk",
   "intent": "Assess audit risk for a joint filer with charitable deductions, rental losses, and foreign-account exposure",
   "params": {
     "filingStatus": "married_filing_jointly",

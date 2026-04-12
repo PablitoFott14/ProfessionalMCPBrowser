@@ -25,6 +25,7 @@ Number of results to return.
 
 ```json
 {
+  "tool": "us-legal-mcp_search_congress_bills",
   "intent": "Search for congressional bills related to immigration",
   "params": {
     "query": "immigration"
@@ -34,6 +35,7 @@ Number of results to return.
 
 ```json
 {
+  "tool": "us-legal-mcp_search_congress_bills",
   "intent": "Retrieve more infrastructure-related bills from the 118th Congress",
   "params": {
     "query": "infrastructure",

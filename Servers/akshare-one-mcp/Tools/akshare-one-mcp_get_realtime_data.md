@@ -23,6 +23,7 @@ Chooses which real-time market data source is used.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_realtime_data",
   "intent": "Check the latest real-time data for a specific mainland China stock",
   "params": {
     "symbol": "000001"
@@ -30,6 +31,7 @@ Chooses which real-time market data source is used.
 }
 
 {
+  "tool": "akshare-one-mcp_get_realtime_data",
   "intent": "Retrieve live data for a Hong Kong listed stock using a different source",
   "params": {
     "symbol": "00700",

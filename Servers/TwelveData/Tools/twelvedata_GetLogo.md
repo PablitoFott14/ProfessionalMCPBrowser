@@ -37,6 +37,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetLogo",
   "intent": "Retrieve logo for a publicly traded company",
   "params": {
     "symbol": "AAPL"
@@ -44,6 +45,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetLogo",
   "intent": "Retrieve logos for a forex pair with exchange context",
   "params": {
     "symbol": "EUR/USD",

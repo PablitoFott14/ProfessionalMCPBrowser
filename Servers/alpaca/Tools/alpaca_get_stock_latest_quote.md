@@ -25,6 +25,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_latest_quote",
   "intent": "Get the latest bid/ask quote for Tesla",
   "params": {
     "symbol_or_symbols": "TSLA"
@@ -34,6 +35,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_latest_quote",
   "intent": "Get the latest quotes for multiple stocks using the SIP feed",
   "params": {
     "symbol_or_symbols": ["AAPL", "NVDA", "META"],

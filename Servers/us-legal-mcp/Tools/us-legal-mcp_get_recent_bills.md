@@ -21,6 +21,7 @@ Number of results to return.
 
 ```json
 {
+  "tool": "us-legal-mcp_get_recent_bills",
   "intent": "Get the most recent bills introduced in Congress",
   "params": {}
 }
@@ -28,6 +29,7 @@ Number of results to return.
 
 ```json
 {
+  "tool": "us-legal-mcp_get_recent_bills",
   "intent": "Retrieve more recently introduced bills from the 118th Congress",
   "params": {
     "congress": 118,

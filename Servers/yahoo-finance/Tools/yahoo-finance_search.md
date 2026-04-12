@@ -21,6 +21,7 @@ Number of search results to return.
 
 ```json
 {
+  "tool": "yahoo-finance_search",
   "intent": "Search for results related to Apple",
   "params": {
     "query": "Apple"
@@ -30,6 +31,7 @@ Number of search results to return.
 
 ```json
 {
+  "tool": "yahoo-finance_search",
   "intent": "Retrieve a broader set of search results for semiconductor ETFs",
   "params": {
     "query": "semiconductor ETF",

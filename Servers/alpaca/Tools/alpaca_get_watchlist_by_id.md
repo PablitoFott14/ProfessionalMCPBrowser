@@ -17,6 +17,7 @@ UUID of the watchlist to retrieve.
 
 ```json
 {
+  "tool": "alpaca_get_watchlist_by_id",
   "intent": "Get the full details and symbol list of a specific watchlist",
   "params": {
     "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"

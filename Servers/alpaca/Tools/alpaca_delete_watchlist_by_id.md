@@ -17,6 +17,7 @@ UUID of the watchlist to delete.
 
 ```json
 {
+  "tool": "alpaca_delete_watchlist_by_id",
   "intent": "Delete a watchlist that is no longer needed",
   "params": {
     "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"

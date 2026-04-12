@@ -21,6 +21,7 @@ Ticker symbol of the asset to remove (e.g., AAPL, TSLA).
 
 ```json
 {
+  "tool": "alpaca_remove_asset_from_watchlist_by_id",
   "intent": "Remove Tesla from an existing watchlist",
   "params": {
     "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",

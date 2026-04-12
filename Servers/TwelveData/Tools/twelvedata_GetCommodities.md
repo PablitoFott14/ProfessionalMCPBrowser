@@ -37,6 +37,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetCommodities",
   "intent": "Discover all precious metal commodities",
   "params": {
     "category": "Precious Metal"
@@ -44,6 +45,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetCommodities",
   "intent": "Retrieve specific commodity pair information",
   "params": {
     "symbol": "XAG/USD"

@@ -37,6 +37,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetCrossListings",
   "intent": "Retrieve cross listings for a major US stock",
   "params": {
     "symbol": "NVDA"
@@ -44,6 +45,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetCrossListings",
   "intent": "Filter cross listings by country",
   "params": {
     "symbol": "RDSA",

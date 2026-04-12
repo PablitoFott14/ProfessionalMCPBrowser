@@ -25,6 +25,7 @@ Specific date used to retrieve earnings data when supported.
 
 ```json
 {
+  "tool": "yahoo-finance_ticker-earning",
   "intent": "Retrieve the most recent annual earnings data for Apple",
   "params": {
     "symbol": "AAPL"
@@ -34,6 +35,7 @@ Specific date used to retrieve earnings data when supported.
 
 ```json
 {
+  "tool": "yahoo-finance_ticker-earning",
   "intent": "Get quarterly earnings data for Tesla around a specific date",
   "params": {
     "symbol": "TSLA",

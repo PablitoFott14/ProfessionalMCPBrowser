@@ -53,6 +53,7 @@ Flag indicating whether the taxpayer is blind.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_standard_vs_itemized",
   "intent": "Compare standard and itemized deductions for a single filer with mortgage interest and charitable giving",
   "params": {
     "taxYear": 2024,
@@ -66,6 +67,7 @@ Flag indicating whether the taxpayer is blind.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_standard_vs_itemized",
   "intent": "Compare standard and itemized deductions for a head of household filer with medical expenses and state taxes",
   "params": {
     "taxYear": 2025,

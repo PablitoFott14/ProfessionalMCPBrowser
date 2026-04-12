@@ -45,6 +45,7 @@ Sort order of the results (asc or desc).
 
 ```json
 {
+  "tool": "alpaca_get_corporate_actions",
   "intent": "Get all cash dividends and stock splits announced in Q1 2024",
   "params": {
     "ca_types": ["cash_dividend", "forward_split"],
@@ -56,6 +57,7 @@ Sort order of the results (asc or desc).
 
 ```json
 {
+  "tool": "alpaca_get_corporate_actions",
   "intent": "Retrieve all corporate actions for Apple and Tesla over the past year",
   "params": {
     "symbols": ["AAPL", "TSLA"],

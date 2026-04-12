@@ -25,6 +25,7 @@ Limits how many of the most recent cash flow records are returned.
 
 ```json
 {
+  "tool": "akshare-one-mcp_get_cash_flow",
   "intent": "Review the most recent cash flow statement data for a mainland China bank stock",
   "params": {
     "symbol": "000001"
@@ -32,6 +33,7 @@ Limits how many of the most recent cash flow records are returned.
 }
 
 {
+  "tool": "akshare-one-mcp_get_cash_flow",
   "intent": "Pull a longer cash flow history for a Hong Kong listed technology company",
   "params": {
     "symbol": "00700",

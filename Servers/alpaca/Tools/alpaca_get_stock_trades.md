@@ -61,6 +61,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_stock_trades",
   "intent": "Get the last 30 minutes of individual trades for Tesla",
   "params": {
     "symbol": "TSLA",
@@ -71,6 +72,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_stock_trades",
   "intent": "Retrieve trade history for Apple and Nvidia over a specific morning session",
   "params": {
     "symbol": ["AAPL", "NVDA"],

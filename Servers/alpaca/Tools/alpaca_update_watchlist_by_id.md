@@ -25,6 +25,7 @@ New list of ticker symbols to replace the current watchlist contents.
 
 ```json
 {
+  "tool": "alpaca_update_watchlist_by_id",
   "intent": "Rename a watchlist by its ID",
   "params": {
     "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -35,6 +36,7 @@ New list of ticker symbols to replace the current watchlist contents.
 
 ```json
 {
+  "tool": "alpaca_update_watchlist_by_id",
   "intent": "Replace all symbols in a watchlist with a new set of tickers",
   "params": {
     "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",

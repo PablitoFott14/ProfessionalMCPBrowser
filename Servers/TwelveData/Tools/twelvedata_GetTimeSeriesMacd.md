@@ -75,6 +75,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetTimeSeriesMacd",
   "intent": "Analyze medium term momentum for a European bank",
   "params": {
     "symbol": "SAN",
@@ -84,6 +85,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetTimeSeriesMacd",
   "intent": "Analyze short term signal for a crypto asset",
   "params": {
     "symbol": "AVAX/USD",

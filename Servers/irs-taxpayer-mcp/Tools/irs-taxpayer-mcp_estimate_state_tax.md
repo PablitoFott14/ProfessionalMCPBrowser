@@ -25,6 +25,7 @@ Filing status used for the state tax estimate.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_estimate_state_tax",
   "intent": "Estimate California state income tax for a single filer",
   "params": {
     "stateCode": "CA",
@@ -35,6 +36,7 @@ Filing status used for the state tax estimate.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_estimate_state_tax",
   "intent": "Estimate New York state income tax for a married filer",
   "params": {
     "stateCode": "NY",

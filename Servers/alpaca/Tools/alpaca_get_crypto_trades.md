@@ -53,6 +53,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_crypto_trades",
   "intent": "Get the last 15 minutes of trade prints for Bitcoin",
   "params": {
     "symbol": "BTC/USD"
@@ -62,6 +63,7 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
+  "tool": "alpaca_get_crypto_trades",
   "intent": "Retrieve Solana trade history over a specific time window in UTC",
   "params": {
     "symbol": "SOL/USD",

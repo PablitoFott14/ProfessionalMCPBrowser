@@ -17,6 +17,7 @@ Ticker symbol of the asset to look up (e.g., AAPL, TSLA).
 
 ```json
 {
+  "tool": "alpaca_get_asset",
   "intent": "Get detailed trading properties and status for Nvidia",
   "params": {
     "symbol": "NVDA"

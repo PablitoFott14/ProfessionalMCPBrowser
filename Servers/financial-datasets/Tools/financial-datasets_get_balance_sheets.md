@@ -25,6 +25,7 @@ Number of balance sheets to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_balance_sheets",
   "intent": "Get the last 4 annual balance sheets for Google",
   "params": {
     "ticker": "GOOGL"
@@ -34,6 +35,7 @@ Number of balance sheets to return.
 
 ```json
 {
+  "tool": "financial-datasets_get_balance_sheets",
   "intent": "Retrieve the last 6 quarterly balance sheets for JPMorgan",
   "params": {
     "ticker": "JPM",

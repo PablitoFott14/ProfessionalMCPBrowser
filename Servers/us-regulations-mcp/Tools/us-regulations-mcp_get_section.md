@@ -21,6 +21,7 @@ Section identifier used to retrieve the specific provision.
 
 ```json
 {
+  "tool": "us-regulations-mcp_get_section",
   "intent": "Retrieve the HIPAA section for uses and disclosures of protected health information",
   "params": {
     "regulation": "HIPAA",
@@ -31,6 +32,7 @@ Section identifier used to retrieve the specific provision.
 
 ```json
 {
+  "tool": "us-regulations-mcp_get_section",
   "intent": "Retrieve the CCPA section covering consumer rights requests",
   "params": {
     "regulation": "CCPA",

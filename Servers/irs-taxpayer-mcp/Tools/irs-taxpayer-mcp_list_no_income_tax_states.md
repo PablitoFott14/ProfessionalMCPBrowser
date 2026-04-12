@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "irs-taxpayer-mcp_list_no_income_tax_states",
   "intent": "List states with no state income tax",
   "params": {}
 }

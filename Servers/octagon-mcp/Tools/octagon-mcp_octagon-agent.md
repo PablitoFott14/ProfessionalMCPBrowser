@@ -17,6 +17,7 @@ Natural language research request passed to the agent.
 
 ```json
 {
+  "tool": "octagon-mcp_octagon-agent",
   "intent": "Research a public company across filings, earnings, and ownership signals",
   "params": {
     "prompt": "Provide a comprehensive market intelligence analysis of Nvidia, including filings, earnings, financial metrics, and institutional ownership trends"
@@ -26,6 +27,7 @@ Natural language research request passed to the agent.
 
 ```json
 {
+  "tool": "octagon-mcp_octagon-agent",
   "intent": "Research a broader market theme across public and private markets",
   "params": {
     "prompt": "Analyze the current AI infrastructure market across public companies, private funding activity, and recent M&A trends"

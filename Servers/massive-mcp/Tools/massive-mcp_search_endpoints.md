@@ -21,6 +21,7 @@ Search scope used to limit results to endpoints, functions, or both.
 
 ```json
 {
+  "tool": "massive-mcp_search_endpoints",
   "intent": "Find endpoints related to options data",
   "params": {
     "query": "options data"
@@ -30,6 +31,7 @@ Search scope used to limit results to endpoints, functions, or both.
 
 ```json
 {
+  "tool": "massive-mcp_search_endpoints",
   "intent": "Search only local functions related to technical indicators",
   "params": {
     "query": "technical indicators",

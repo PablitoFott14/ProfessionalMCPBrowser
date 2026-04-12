@@ -21,6 +21,7 @@ More specific industry classification used to refine the applicability result.
 
 ```json
 {
+  "tool": "us-regulations-mcp_check_applicability",
   "intent": "Check which regulations apply to the healthcare sector",
   "params": {
     "sector": "healthcare"
@@ -30,6 +31,7 @@ More specific industry classification used to refine the applicability result.
 
 ```json
 {
+  "tool": "us-regulations-mcp_check_applicability",
   "intent": "Check which regulations apply to hospitals within the healthcare sector",
   "params": {
     "sector": "healthcare",

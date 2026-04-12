@@ -25,6 +25,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_snapshot",
   "intent": "Get a full market snapshot for Nvidia including quote, trade, and bars",
   "params": {
     "symbol_or_symbols": "NVDA"
@@ -34,6 +35,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_snapshot",
   "intent": "Retrieve snapshots for a basket of stocks using the SIP feed",
   "params": {
     "symbol_or_symbols": ["AAPL", "MSFT", "GOOGL", "AMZN"],

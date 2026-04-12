@@ -25,6 +25,7 @@ Specific expiration date used to retrieve option chain data.
 
 ```json
 {
+  "tool": "yahoo-finance_ticker-option-chain",
   "intent": "Retrieve the most recent option chain data for Apple",
   "params": {
     "symbol": "AAPL"
@@ -34,6 +35,7 @@ Specific expiration date used to retrieve option chain data.
 
 ```json
 {
+  "tool": "yahoo-finance_ticker-option-chain",
   "intent": "Get put option chain data for Tesla for a specific expiration date",
   "params": {
     "symbol": "TSLA",

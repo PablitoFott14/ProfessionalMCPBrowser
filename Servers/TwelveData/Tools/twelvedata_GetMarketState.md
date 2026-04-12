@@ -33,6 +33,7 @@ API authentication key.
 
 ```json
 {
+  "tool": "twelvedata_GetMarketState",
   "intent": "Check if a major US exchange is currently open",
   "params": {
     "exchange": "NYSE"
@@ -40,6 +41,7 @@ API authentication key.
 }
 
 {
+  "tool": "twelvedata_GetMarketState",
   "intent": "Monitor market state using MIC code with country filtering",
   "params": {
     "code": "XNAS",

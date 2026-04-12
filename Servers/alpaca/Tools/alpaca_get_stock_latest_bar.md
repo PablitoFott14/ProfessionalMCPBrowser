@@ -25,6 +25,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_latest_bar",
   "intent": "Get the latest price bar for Apple",
   "params": {
     "symbol_or_symbols": "AAPL"
@@ -34,6 +35,7 @@ Currency for price values (e.g., USD, EUR, GBP).
 
 ```json
 {
+  "tool": "alpaca_get_stock_latest_bar",
   "intent": "Get the latest bars for a set of stocks using the SIP feed",
   "params": {
     "symbol_or_symbols": ["MSFT", "GOOGL", "AMZN"],

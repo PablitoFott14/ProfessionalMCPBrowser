@@ -17,6 +17,7 @@ Documentation URL used to retrieve endpoint details.
 
 ```json
 {
+  "tool": "massive-mcp_get_endpoint_docs",
   "intent": "Retrieve documentation for a discovered aggregates endpoint",
   "params": {
     "url": "https://example.com/docs/aggs"
@@ -26,6 +27,7 @@ Documentation URL used to retrieve endpoint details.
 
 ```json
 {
+  "tool": "massive-mcp_get_endpoint_docs",
   "intent": "Retrieve documentation for a discovered options endpoint",
   "params": {
     "url": "https://example.com/docs/options"

@@ -49,6 +49,7 @@ List of cashflow categories to include in the response.
 
 ```json
 {
+  "tool": "alpaca_get_portfolio_history",
   "intent": "Get daily equity and P/L for the past 3 months",
   "params": {
     "period": "3M",
@@ -59,6 +60,7 @@ List of cashflow categories to include in the response.
 
 ```json
 {
+  "tool": "alpaca_get_portfolio_history",
   "intent": "Retrieve 1-hour resolution portfolio history for a specific date range including extended hours",
   "params": {
     "start": "2024-01-01",

@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "alphavantage_TOOL_LIST",
   "intent": "List all available Alpha Vantage tools before choosing one to inspect",
   "params": {}
 }

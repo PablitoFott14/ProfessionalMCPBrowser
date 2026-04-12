@@ -15,6 +15,7 @@ This tool takes no parameters.
 
 ```json
 {
+  "tool": "alpaca_get_account_info",
   "intent": "Check current account balance, buying power, and trading status",
   "params": {}
 }

@@ -21,6 +21,7 @@ List of section identifiers used to generate action items.
 
 ```json
 {
+  "tool": "us-regulations-mcp_get_compliance_action_items",
   "intent": "Generate compliance action items from selected HIPAA sections",
   "params": {
     "regulation": "HIPAA",
@@ -31,6 +32,7 @@ List of section identifiers used to generate action items.
 
 ```json
 {
+  "tool": "us-regulations-mcp_get_compliance_action_items",
   "intent": "Generate action items from selected GLBA sections",
   "params": {
     "regulation": "GLBA",

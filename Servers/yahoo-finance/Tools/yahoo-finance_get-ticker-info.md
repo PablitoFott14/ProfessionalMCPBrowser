@@ -17,6 +17,7 @@ Stock ticker symbol to retrieve data for.
 
 ```json
 {
+  "tool": "yahoo-finance_get-ticker-info",
   "intent": "Retrieve a broad company and trading snapshot for Apple",
   "params": {
     "symbol": "AAPL"
@@ -26,6 +27,7 @@ Stock ticker symbol to retrieve data for.
 
 ```json
 {
+  "tool": "yahoo-finance_get-ticker-info",
   "intent": "Review company, financial, and governance data for Tesla",
   "params": {
     "symbol": "TSLA"
