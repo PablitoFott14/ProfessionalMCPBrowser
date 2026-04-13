@@ -151,12 +151,34 @@ body{
 .sni-bar-wrap{height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin-left:14px}
 .sni-bar-fill{height:100%;border-radius:1px;transition:width .4s}
 .sni-sub{font-size:10px;color:var(--text-faint);margin-left:14px}
+.nav-domain{margin-bottom:14px}
+.nav-domain:last-child{margin-bottom:0}
+.nav-domain-hdr{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:7px 9px;margin-bottom:5px;border-radius:8px;
+  border:1px solid var(--border);
+}
+.nav-domain-left{display:flex;align-items:center;gap:8px;min-width:0}
+.nav-domain-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.nav-domain-title{
+  font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+}
+.nav-domain-meta{font-size:10px;color:var(--text-dim);white-space:nowrap}
 
 /* ── MAIN ────────────────────────────────────────────────────── */
 .main{margin-left:var(--sidebar-w);flex:1;padding:26px 30px;min-width:0}
 
 /* ── FILTER PILLS ────────────────────────────────────────────── */
 .filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
+.filter-domain-group{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  padding:6px 8px;border:1px solid var(--border);border-radius:999px;
+  background:var(--surface);
+}
+.filter-domain-label{
+  font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  padding-right:2px;white-space:nowrap;
+}
 .pill{
   padding:4px 13px;border-radius:20px;
   border:1px solid var(--border-md);background:var(--surface);
@@ -168,6 +190,23 @@ body{
 
 /* ── SERVER SECTION ─────────────────────────────────────────── */
 .server-section{margin-bottom:56px;scroll-margin-top:calc(var(--header-h)+14px)}
+.domain-section{
+  margin-bottom:34px;padding:16px 16px 4px;border-radius:16px;
+  border:1px solid var(--border);
+  scroll-margin-top:calc(var(--header-h)+14px);
+}
+.domain-hdr{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.domain-hdr-left{display:flex;flex-direction:column;gap:4px;min-width:0}
+.domain-kicker{
+  font-size:10px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;
+}
+.domain-title{font-size:24px;font-weight:800;letter-spacing:-.8px;line-height:1}
+.domain-meta{font-size:11.5px;color:var(--text-dim)}
+.domain-body{display:block}
 
 /* ── SERVER HEADER ───────────────────────────────────────────── */
 .srv-hdr{
@@ -539,6 +578,33 @@ function getStatus(sname,tname){
 function getServerDomain(sname){
   return S.meta?.servers?.[sname]?.domain || 'Unassigned';
 }
+const DOMAIN_ORDER = ['Finance','Legal'];
+const DOMAIN_ACCENTS = {
+  Finance: '#0ea5e9',
+  Legal: '#f59e0b',
+};
+function getDomainAccent(domain){
+  const color = DOMAIN_ACCENTS[domain] || '#6366f1';
+  return {color, bg:rgba(color,.10), border:rgba(color,.22)};
+}
+function getDomainGroups(servers=S.data.servers){
+  const grouped = new Map();
+  for(const srv of servers){
+    const domain = getServerDomain(srv.name);
+    if(!grouped.has(domain)) grouped.set(domain, []);
+    grouped.get(domain).push(srv);
+  }
+  return [...grouped.keys()]
+    .sort((a,b)=>{
+      const ai = DOMAIN_ORDER.indexOf(a);
+      const bi = DOMAIN_ORDER.indexOf(b);
+      if(ai === -1 && bi === -1) return a.localeCompare(b);
+      if(ai === -1) return 1;
+      if(bi === -1) return -1;
+      return ai - bi;
+    })
+    .map(domain=>({domain, servers: grouped.get(domain)}));
+}
 
 /* ── FUSE ─────────────────────────────────────────────────── */
 let fuse, fidx=[];
@@ -754,7 +820,6 @@ function renderCard(srv,tool){
 function renderServer(srv,vis){
   if(!vis.length) return '';
   const c=sc(srv.name);
-  const domain=getServerDomain(srv.name);
   const total=srv.tools.length;
   const nActive=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
 
@@ -767,7 +832,6 @@ function renderServer(srv,vis){
     <div class="srv-hdr">
       <div class="srv-dot" style="background:${c.color};box-shadow:0 0 8px ${c.color}aa"></div>
       <span class="srv-name" style="color:${c.color}">${esc(srv.name)}</span>
-      <span class="domain-pill srv-domain">${esc(domain)}</span>
       <div class="srv-count" style="background:${c.bg};color:${c.light}">${nActive} / ${total} active</div>
     </div>
     ${renderIntroPanel(srv)}
@@ -776,27 +840,66 @@ function renderServer(srv,vis){
 }
 
 /* ── SIDEBAR ──────────────────────────────────────────────── */
-function renderSidebar(vis){
-  document.getElementById('serverNav').innerHTML=S.data.servers.map(srv=>{
-    const c=sc(srv.name);
-    const domain=getServerDomain(srv.name);
-    const total=srv.tools.length;
-    const nA=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
-    const pct=total?Math.round((nA/total)*100):0;
-    const vc=vis[srv.name]?.length??0;
-    return `<a class="sni${S.filter===srv.name?' active':''}"
-        href="#section-${esc(srv.name)}" onclick="setFilter('${esc(srv.name)}',event)">
-      <div class="sni-row">
-        <span class="sni-dot" style="background:${c.color}"></span>
-        <span class="sni-meta">
-          <span class="sni-name">${esc(srv.name)}</span>
-          <span class="sni-domain">${esc(domain)}</span>
-        </span>
-        <span class="sni-count">${S.search?`${vc}/`:''}${total}</span>
+function renderDomainSection(domain, servers, vis){
+  let html = '';
+  let visibleTools = 0;
+  let totalTools = 0;
+  for(const srv of servers){
+    const v = vis[srv.name] || [];
+    visibleTools += v.length;
+    totalTools += srv.tools.length;
+    html += renderServer(srv, v);
+  }
+  if(!html) return '';
+  const a = getDomainAccent(domain);
+  const toolsMeta = S.search.trim().length >= 2 ? `${visibleTools} shown of ${totalTools} tools` : `${totalTools} tools`;
+  return `<section class="domain-section" id="domain-${esc(domain)}"
+      style="background:linear-gradient(180deg, ${a.bg} 0px, rgba(0,0,0,0) 120px);border-color:${a.border}">
+    <div class="domain-hdr">
+      <div class="domain-hdr-left">
+        <div class="domain-kicker" style="color:${a.color}">Domain</div>
+        <div class="domain-title">${esc(domain)}</div>
       </div>
-      <div class="sni-bar-wrap"><div class="sni-bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
-      <div class="sni-sub">${nA} / ${total} active</div>
-    </a>`;
+      <div class="domain-meta">${servers.length} server${servers.length!==1?'s':''} · ${toolsMeta}</div>
+    </div>
+    <div class="domain-body">${html}</div>
+  </section>`;
+}
+
+function renderSidebar(vis){
+  document.getElementById('serverNav').innerHTML=getDomainGroups().map(({domain, servers})=>{
+    const a = getDomainAccent(domain);
+    const domainVisible = servers.reduce((sum, srv)=>sum + (vis[srv.name]?.length ?? 0), 0);
+    const domainTotal = servers.reduce((sum, srv)=>sum + srv.tools.length, 0);
+    const items = servers.map(srv=>{
+      const c=sc(srv.name);
+      const total=srv.tools.length;
+      const nA=srv.tools.filter(t=>getStatus(srv.name,t.name).cls==='green').length;
+      const pct=total?Math.round((nA/total)*100):0;
+      const vc=vis[srv.name]?.length??0;
+      return `<a class="sni${S.filter===srv.name?' active':''}"
+          href="#section-${esc(srv.name)}" onclick="setFilter('${esc(srv.name)}',event)">
+        <div class="sni-row">
+          <span class="sni-dot" style="background:${c.color}"></span>
+          <span class="sni-meta">
+            <span class="sni-name">${esc(srv.name)}</span>
+          </span>
+          <span class="sni-count">${S.search?`${vc}/`:''}${total}</span>
+        </div>
+        <div class="sni-bar-wrap"><div class="sni-bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
+        <div class="sni-sub">${nA} / ${total} active</div>
+      </a>`;
+    }).join('');
+    return `<div class="nav-domain">
+      <div class="nav-domain-hdr" style="background:${a.bg};border-color:${a.border}">
+        <div class="nav-domain-left">
+          <span class="nav-domain-dot" style="background:${a.color}"></span>
+          <span class="nav-domain-title" style="color:${a.color}">${esc(domain)}</span>
+        </div>
+        <span class="nav-domain-meta">${S.search?`${domainVisible}/`:''}${domainTotal}</span>
+      </div>
+      ${items}
+    </div>`;
   }).join('');
   document.getElementById('sidebarAll').className='sb-all'+(S.filter?'':' active');
   document.getElementById('sidebarAllCount').textContent=S.data.servers.length;
@@ -804,12 +907,19 @@ function renderSidebar(vis){
 
 /* ── FILTER BAR ───────────────────────────────────────────── */
 function renderFilterBar(){
-  document.getElementById('filterBar').innerHTML=
-    [`<span class="pill${!S.filter?' active':''}" style="${!S.filter?'background:#6366f1;color:#fff':''}" onclick="setFilter(null)">All</span>`]
-    .concat(S.data.servers.map(srv=>{
-      const c=sc(srv.name),a=S.filter===srv.name;
-      return `<span class="pill${a?' active':''}" style="${a?`background:${c.color};color:#fff`:''}" onclick="setFilter('${esc(srv.name)}')">${esc(srv.name)}</span>`;
-    })).join('');
+  const all = `<span class="pill${!S.filter?' active':''}" style="${!S.filter?'background:#6366f1;color:#fff':''}" onclick="setFilter(null)">All</span>`;
+  const groups = getDomainGroups().map(({domain, servers})=>{
+    const a = getDomainAccent(domain);
+    const pills = servers.map(srv=>{
+      const c=sc(srv.name),active=S.filter===srv.name;
+      return `<span class="pill${active?' active':''}" style="${active?`background:${c.color};color:#fff`:''}" onclick="setFilter('${esc(srv.name)}')">${esc(srv.name)}</span>`;
+    }).join('');
+    return `<div class="filter-domain-group">
+      <span class="filter-domain-label" style="color:${a.color}">${esc(domain)}</span>
+      ${pills}
+    </div>`;
+  }).join('');
+  document.getElementById('filterBar').innerHTML = all + groups;
 }
 
 /* ── RENDER ───────────────────────────────────────────────── */
@@ -818,10 +928,9 @@ function render(){
   const cnt=document.getElementById('content');
   const em=document.getElementById('emptyState');
   let html='',total=0;
-  for(const srv of S.data.servers){
-    const v=vis[srv.name]||[];
-    total+=v.length;
-    html+=renderServer(srv,v);
+  for(const {domain, servers} of getDomainGroups()){
+    for(const srv of servers) total += (vis[srv.name]||[]).length;
+    html += renderDomainSection(domain, servers, vis);
   }
   cnt.innerHTML=html;
 
