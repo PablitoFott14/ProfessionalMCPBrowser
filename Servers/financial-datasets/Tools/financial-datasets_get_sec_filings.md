@@ -26,7 +26,6 @@ Filters results to a specific filing type.
 
 ```json
 {
-  "tool": "financial-datasets_get_sec_filings",
   "intent": "Get the most recent annual reports filed by Apple",
   "params": {
     "ticker": "AAPL",
@@ -37,7 +36,6 @@ Filters results to a specific filing type.
 
 ```json
 {
-  "tool": "financial-datasets_get_sec_filings",
   "intent": "Retrieve the last 20 SEC filings for Tesla across all types",
   "params": {
     "ticker": "TSLA",

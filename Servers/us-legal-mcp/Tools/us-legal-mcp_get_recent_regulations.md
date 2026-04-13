@@ -17,7 +17,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_get_recent_regulations",
   "intent": "Get the most recently published Federal Register documents",
   "params": {}
 }
@@ -25,7 +24,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_get_recent_regulations",
   "intent": "Retrieve more recently published Federal Register documents",
   "params": {
     "limit": 30

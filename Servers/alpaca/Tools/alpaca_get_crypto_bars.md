@@ -54,7 +54,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_crypto_bars",
   "intent": "Get the last 7 days of hourly bars for Bitcoin",
   "params": {
     "symbol": "BTC/USD",
@@ -65,7 +64,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_crypto_bars",
   "intent": "Retrieve 4-hour Ethereum bars for a specific date range",
   "params": {
     "symbol": "ETH/USD",

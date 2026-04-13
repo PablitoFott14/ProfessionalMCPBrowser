@@ -1,6 +1,6 @@
 ## akshare-one-mcp
 
-The akshare-one-mcp server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.
+The `akshare-one-mcp` server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.
 
 ### How it works
 - The server centers on stock symbols and supports both point-in-time checks and broader historical review.

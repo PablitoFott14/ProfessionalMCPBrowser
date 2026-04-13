@@ -59,7 +59,6 @@ Maximum number of contracts to return.
 
 ```json
 {
-  "tool": "alpaca_get_option_contracts",
   "intent": "Get all active call options for Nvidia expiring in a specific week",
   "params": {
     "underlying_symbols": "NVDA",
@@ -71,7 +70,6 @@ Maximum number of contracts to return.
 
 ```json
 {
-  "tool": "alpaca_get_option_contracts",
   "intent": "Find SPY put options expiring within a date range with strikes near current price",
   "params": {
     "underlying_symbols": "SPY",

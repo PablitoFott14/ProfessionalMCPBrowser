@@ -34,7 +34,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_historical_stock_prices",
   "intent": "Get daily Apple stock prices for the full year 2023",
   "params": {
     "ticker": "AAPL",
@@ -46,7 +45,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_historical_stock_prices",
   "intent": "Retrieve 30-minute intraday bars for Nvidia over a specific week",
   "params": {
     "ticker": "NVDA",

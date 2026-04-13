@@ -21,7 +21,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_get_recent_court_opinions",
   "intent": "Get the most recently published court opinions",
   "params": {}
 }
@@ -29,7 +28,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_get_recent_court_opinions",
   "intent": "Retrieve recent Supreme Court opinions",
   "params": {
     "court": "scotus",

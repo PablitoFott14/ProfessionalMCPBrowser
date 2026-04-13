@@ -1,6 +1,6 @@
 ## massive-mcp
 
-The massive-mcp server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.
+The `massive-mcp` server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.
 
 ### How it works
 - The server is organized as a stepwise workflow: `search_endpoints` is used to discover relevant endpoints or local functions, `get_endpoint_docs` is used to inspect endpoint parameters, `call_api` is used to fetch market data, and `query_data` is used to analyze stored results.

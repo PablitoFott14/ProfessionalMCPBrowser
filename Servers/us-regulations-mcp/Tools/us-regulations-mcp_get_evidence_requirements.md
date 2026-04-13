@@ -21,7 +21,6 @@ Section identifier used to retrieve and analyze the specific provision.
 
 ```json
 {
-  "tool": "us-regulations-mcp_get_evidence_requirements",
   "intent": "Extract audit evidence requirements from a HIPAA section",
   "params": {
     "regulation": "HIPAA",
@@ -32,7 +31,6 @@ Section identifier used to retrieve and analyze the specific provision.
 
 ```json
 {
-  "tool": "us-regulations-mcp_get_evidence_requirements",
   "intent": "Extract evidence requirements from the SOX section on internal controls",
   "params": {
     "regulation": "SOX",

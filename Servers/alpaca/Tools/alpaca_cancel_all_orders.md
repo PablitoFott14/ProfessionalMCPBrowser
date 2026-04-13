@@ -15,7 +15,6 @@ This tool takes no parameters.
 
 ```json
 {
-  "tool": "alpaca_cancel_all_orders",
   "intent": "Cancel all open orders on the account",
   "params": {}
 }

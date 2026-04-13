@@ -2,7 +2,7 @@
   "servers": [
     {
       "name": "TwelveData",
-      "intro": "The TwelveData server is a broad market intelligence layer for researching instruments, pulling price history, checking current market state, and layering technical indicators over the same symbol and interval. It is especially strong when the goal is to move from discovery to analysis quickly across equities, ETFs, forex, crypto, commodities, and related market metadata.\n\n### How it works\n- The server combines instrument discovery tools, quote and price endpoints, reference data, and time series analysis in one place.\n- It supports both simple point-in-time checks and deeper workflows such as chart building, trend analysis, and indicator confirmation.\n- Requests use a `params` object, but the main value of the server is the breadth of analysis it enables once a symbol or asset class is identified.\n\n### Potential resolution paths\n- **Discover, then analyze a market:** Start with symbol lookup or asset-listing tools such as `GetSymbolSearch`, `GetStocks`, `GetEtf`, `GetCryptocurrencies`, or `GetForexPairs`, then move into `GetQuote`, `GetPrice`, or `GetTimeSeries` for the actual market view.\n- **Build a richer technical read on a symbol:** Pull `GetTimeSeries`, then add indicators such as `GetTimeSeriesSma`, `GetTimeSeriesEma`, `GetTimeSeriesRsi`, `GetTimeSeriesMacd`, `GetTimeSeriesBBands`, or `GetTimeSeriesAdx` to validate trend, momentum, and volatility from different angles.\n- **Move from market context to security context:** Combine `GetMarketState`, `GetProfile`, `GetStatistics`, `GetEarnings`, `GetDividends`, or `GetSplits` to understand not only what a symbol is doing, but also what kind of asset it is and what events may matter around it.\n\n### Best practices\n- **Choose tools by intent, not just by endpoint name:** Use discovery tools for finding the right asset first, quote tools for quick checks, and time series plus indicators when the task requires trend or signal analysis.\n- **Keep the workflow compact:** In many cases, the best result comes from a short sequence such as symbol discovery, current price check, then historical or indicator follow-up on the same symbol.",
+      "intro": "The `TwelveData` server is a broad market intelligence layer for researching instruments, pulling price history, checking current market state, and layering technical indicators over the same symbol and interval. It is especially strong when the goal is to move from discovery to analysis quickly across equities, ETFs, forex, crypto, commodities, and related market metadata.\n\n### How it works\n- The server combines instrument discovery tools, quote and price endpoints, reference data, and time series analysis in one place.\n- It supports both simple point-in-time checks and deeper workflows such as chart building, trend analysis, and indicator confirmation.\n- Requests use a `params` object, but the main value of the server is the breadth of analysis it enables once a symbol or asset class is identified.\n\n### Potential resolution paths\n- **Discover, then analyze a market:** Start with symbol lookup or asset-listing tools such as `GetSymbolSearch`, `GetStocks`, `GetEtf`, `GetCryptocurrencies`, or `GetForexPairs`, then move into `GetQuote`, `GetPrice`, or `GetTimeSeries` for the actual market view.\n- **Build a richer technical read on a symbol:** Pull `GetTimeSeries`, then add indicators such as `GetTimeSeriesSma`, `GetTimeSeriesEma`, `GetTimeSeriesRsi`, `GetTimeSeriesMacd`, `GetTimeSeriesBBands`, or `GetTimeSeriesAdx` to validate trend, momentum, and volatility from different angles.\n- **Move from market context to security context:** Combine `GetMarketState`, `GetProfile`, `GetStatistics`, `GetEarnings`, `GetDividends`, or `GetSplits` to understand not only what a symbol is doing, but also what kind of asset it is and what events may matter around it.\n\n### Best practices\n- **Choose tools by intent, not just by endpoint name:** Use `GetSymbolSearch`, `GetStocks`, `GetEtf`, `GetCryptocurrencies`, or `GetForexPairs` for discovery, `GetQuote` or `GetPrice` for quick checks, and `GetTimeSeries`, `GetTimeSeriesSma`, `GetTimeSeriesEma`, `GetTimeSeriesRsi`, `GetTimeSeriesMacd`, `GetTimeSeriesBBands`, or `GetTimeSeriesAdx` when the task requires trend or signal analysis.\n- **Keep the workflow compact:** In many cases, the best result comes from a short sequence such as `GetSymbolSearch`, `GetQuote`, and `GetTimeSeries` on the same symbol.",
       "paramsWrapped": true,
       "tools": [
         {
@@ -55,12 +55,10 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetApiUsage",
               "intent": "Check current API usage status",
               "params": {}
             },
             {
-              "tool": "twelvedata_GetApiUsage",
               "intent": "Retrieve usage data with specific timezone context",
               "params": {
                 "timezone": "America/New_York"
@@ -128,14 +126,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetCommodities",
               "intent": "Discover all precious metal commodities",
               "params": {
                 "category": "Precious Metal"
               }
             },
             {
-              "tool": "twelvedata_GetCommodities",
               "intent": "Retrieve specific commodity pair information",
               "params": {
                 "symbol": "XAG/USD"
@@ -200,14 +196,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetCrossListings",
               "intent": "Retrieve cross listings for a major US stock",
               "params": {
                 "symbol": "NVDA"
               }
             },
             {
-              "tool": "twelvedata_GetCrossListings",
               "intent": "Filter cross listings by country",
               "params": {
                 "symbol": "RDSA",
@@ -292,14 +286,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetCryptocurrencies",
               "intent": "Discover all crypto pairs with BTC as base currency",
               "params": {
                 "currency_base": "BTC"
               }
             },
             {
-              "tool": "twelvedata_GetCryptocurrencies",
               "intent": "Filter crypto pairs by exchange and quote currency",
               "params": {
                 "exchange": "Binance",
@@ -352,12 +344,10 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetCryptocurrencyExchanges",
               "intent": "Retrieve list of available cryptocurrency exchanges",
               "params": {}
             },
             {
-              "tool": "twelvedata_GetCryptocurrencyExchanges",
               "intent": "Retrieve exchanges with extended result size for broader coverage",
               "params": {
                 "outputsize": 100
@@ -449,7 +439,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetCurrencyConversion",
               "intent": "Convert a fixed amount from EUR to USD",
               "params": {
                 "symbol": "EUR/USD",
@@ -457,7 +446,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetCurrencyConversion",
               "intent": "Convert crypto amount using historical rate and timezone",
               "params": {
                 "symbol": "ETH/BTC",
@@ -582,7 +570,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetDividends",
               "intent": "Retrieve latest dividend payment for a US stock",
               "params": {
                 "symbol": "JNJ",
@@ -590,7 +577,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetDividends",
               "intent": "Analyze dividend history over multiple years",
               "params": {
                 "symbol": "PG",
@@ -689,14 +675,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetEarliestTimestamp",
               "intent": "Check earliest available data for a stock",
               "params": {
                 "symbol": "IBM"
               }
             },
             {
-              "tool": "twelvedata_GetEarliestTimestamp",
               "intent": "Validate historical coverage for intraday crypto analysis",
               "params": {
                 "symbol": "LTC/USD",
@@ -846,7 +830,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetEarnings",
               "intent": "Retrieve latest earnings for a US company",
               "params": {
                 "symbol": "NVDA",
@@ -854,7 +837,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetEarnings",
               "intent": "Analyze earnings history within a defined time window",
               "params": {
                 "symbol": "ASML",
@@ -978,14 +960,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetEod",
               "intent": "Retrieve latest closing price for a US stock",
               "params": {
                 "symbol": "MSFT"
               }
             },
             {
-              "tool": "twelvedata_GetEod",
               "intent": "Historical EOD price for a crypto asset with precision control",
               "params": {
                 "symbol": "SOL/USD",
@@ -1112,14 +1092,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetEtf",
               "intent": "Discover ETFs listed in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
-              "tool": "twelvedata_GetEtf",
               "intent": "Filter ETFs by exchange including delisted instruments",
               "params": {
                 "exchange": "NYSE",
@@ -1204,14 +1182,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetExchangeRate",
               "intent": "Quick check of current forex rate",
               "params": {
                 "symbol": "EUR/USD"
               }
             },
             {
-              "tool": "twelvedata_GetExchangeRate",
               "intent": "Retrieve crypto pair rate at a specific moment with controlled precision",
               "params": {
                 "symbol": "BTC/ETH",
@@ -1306,7 +1282,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetExchanges",
               "intent": "Retrieve exchanges for US stock markets",
               "params": {
                 "country": "United States",
@@ -1314,7 +1289,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetExchanges",
               "intent": "Find exchange using MIC code with plan visibility",
               "params": {
                 "code": "XNGS",
@@ -1391,14 +1365,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetForexPairs",
               "intent": "Retrieve all forex pairs with EUR as base currency",
               "params": {
                 "currency_base": "EUR"
               }
             },
             {
-              "tool": "twelvedata_GetForexPairs",
               "intent": "Filter forex pairs combining base and quote currencies",
               "params": {
                 "currency_base": "AUD",
@@ -1515,14 +1487,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetFunds",
               "intent": "Discover funds available in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
-              "tool": "twelvedata_GetFunds",
               "intent": "Retrieve funds from a specific exchange with pagination",
               "params": {
                 "exchange": "NYSE",
@@ -1596,14 +1566,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetIpoCalendar",
               "intent": "Retrieve upcoming IPOs in the US",
               "params": {
                 "country": "United States"
               }
             },
             {
-              "tool": "twelvedata_GetIpoCalendar",
               "intent": "Analyze IPO activity on a specific exchange within a time window",
               "params": {
                 "exchange": "NASDAQ",
@@ -1670,14 +1638,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetLogo",
               "intent": "Retrieve logo for a publicly traded company",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "twelvedata_GetLogo",
               "intent": "Retrieve logos for a forex pair with exchange context",
               "params": {
                 "symbol": "EUR/USD",
@@ -1735,14 +1701,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetMarketState",
               "intent": "Check if a major US exchange is currently open",
               "params": {
                 "exchange": "NYSE"
               }
             },
             {
-              "tool": "twelvedata_GetMarketState",
               "intent": "Monitor market state using MIC code with country filtering",
               "params": {
                 "code": "XNAS",
@@ -1875,14 +1839,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetPrice",
               "intent": "Retrieve real-time price for a US stock",
               "params": {
                 "symbol": "GOOGL"
               }
             },
             {
-              "tool": "twelvedata_GetPrice",
               "intent": "Retrieve crypto price with exchange context and precision",
               "params": {
                 "symbol": "ADA/USD",
@@ -1973,7 +1935,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetProfile",
               "intent": "Retrieve general company profile for a European industrial firm",
               "params": {
                 "symbol": "SIE",
@@ -1981,7 +1942,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetProfile",
               "intent": "Identify company using FIGI with geographic filtering",
               "params": {
                 "figi": "BBG000BLNNH6",
@@ -2074,7 +2034,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetQuote",
               "intent": "Check current price and market status for a European equity",
               "params": {
                 "symbol": "MC",
@@ -2082,7 +2041,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetQuote",
               "intent": "Analyze short term crypto performance using rolling change",
               "params": {
                 "symbol": "SOL/USD",
@@ -2198,14 +2156,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetSplits",
               "intent": "Retrieve latest available split data",
               "params": {
                 "symbol": "TSLA"
               }
             },
             {
-              "tool": "twelvedata_GetSplits",
               "intent": "Analyze full split history for long term adjustments",
               "params": {
                 "symbol": "AAPL",
@@ -2295,7 +2251,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetStatistics",
               "intent": "Fundamental snapshot of a European listed company",
               "params": {
                 "symbol": "SAP",
@@ -2303,7 +2258,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetStatistics",
               "intent": "Company lookup using ISIN with broader market context",
               "params": {
                 "isin": "US5949181045",
@@ -2436,7 +2390,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetStocks",
               "intent": "Discover stocks listed on a specific exchange",
               "params": {
                 "exchange": "NASDAQ",
@@ -2444,7 +2397,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetStocks",
               "intent": "Filter stocks by country including delisted instruments",
               "params": {
                 "country": "United States",
@@ -2495,14 +2447,12 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetSymbolSearch",
               "intent": "Search for a company using partial name",
               "params": {
                 "symbol": "Siemens"
               }
             },
             {
-              "tool": "twelvedata_GetSymbolSearch",
               "intent": "Identify instrument using ISIN with extended results",
               "params": {
                 "symbol": "US0231351067",
@@ -2537,12 +2487,10 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTechnicalIndicators",
               "intent": "Retrieve the full catalog of available technical indicators",
               "params": {}
             },
             {
-              "tool": "twelvedata_GetTechnicalIndicators",
               "intent": "Retrieve a limited set of technical indicator metadata",
               "params": {
                 "outputsize": 50
@@ -2689,7 +2637,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeries",
               "intent": "Analyze recent intraday price trend for a European utility stock",
               "params": {
                 "symbol": "IBE",
@@ -2700,7 +2647,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeries",
               "intent": "Retrieve forex price movements for a specific date range",
               "params": {
                 "symbol": "GBP/NZD",
@@ -2923,7 +2869,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesAdx",
               "intent": "Evaluate trend strength for a US equity",
               "params": {
                 "symbol": "MSFT",
@@ -2932,7 +2877,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesAdx",
               "intent": "Intraday trend strength analysis for a crypto pair",
               "params": {
                 "symbol": "SOL/USD",
@@ -3156,7 +3100,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesAtr",
               "intent": "Measure daily volatility of a forex pair",
               "params": {
                 "symbol": "USD/CAD",
@@ -3165,7 +3108,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesAtr",
               "intent": "Intraday volatility analysis on a crypto asset with time window",
               "params": {
                 "symbol": "MATIC/USD",
@@ -3318,7 +3260,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesBBands",
               "intent": "Assess volatility for a forex pair",
               "params": {
                 "symbol": "EUR/GBP",
@@ -3326,7 +3267,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesBBands",
               "intent": "Analyze Bollinger Bands for a crypto asset with custom settings and date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -3509,7 +3449,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesCross",
               "intent": "Analyze forex cross between two major currencies",
               "params": {
                 "base": "EUR",
@@ -3518,7 +3457,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesCross",
               "intent": "Crypto cross analysis with exchange specific context",
               "params": {
                 "base": "ETH",
@@ -3657,7 +3595,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesEma",
               "intent": "Short term trend check on a forex pair",
               "params": {
                 "symbol": "GBP/JPY",
@@ -3665,7 +3602,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesEma",
               "intent": "Crypto momentum analysis with custom EMA window and timeframe",
               "params": {
                 "symbol": "ADA/USD",
@@ -3819,7 +3755,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesMacd",
               "intent": "Analyze medium term momentum for a European bank",
               "params": {
                 "symbol": "SAN",
@@ -3828,7 +3763,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesMacd",
               "intent": "Analyze short term signal for a crypto asset",
               "params": {
                 "symbol": "AVAX/USD",
@@ -4065,7 +3999,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesRsi",
               "intent": "Check overbought or oversold conditions for a US equity",
               "params": {
                 "symbol": "AAPL",
@@ -4074,7 +4007,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesRsi",
               "intent": "Intraday RSI momentum analysis for a crypto asset with custom window",
               "params": {
                 "symbol": "ETH/USD",
@@ -4311,7 +4243,6 @@
           ],
           "examples": [
             {
-              "tool": "twelvedata_GetTimeSeriesSma",
               "intent": "Identify medium term trend for a forex pair",
               "params": {
                 "symbol": "EUR/CHF",
@@ -4320,7 +4251,6 @@
               }
             },
             {
-              "tool": "twelvedata_GetTimeSeriesSma",
               "intent": "Short term SMA analysis on a crypto asset with adjusted data",
               "params": {
                 "symbol": "LINK/USD",
@@ -4340,7 +4270,7 @@
     },
     {
       "name": "akshare-one-mcp",
-      "intro": "The akshare-one-mcp server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.\n\n### How it works\n- The server centers on stock symbols and supports both point-in-time checks and broader historical review.\n- It combines market-facing tools such as real-time and historical data with company-facing tools such as news, insider trading, financial statements, and summary metrics.\n- Most tools take a `symbol`, with optional filters such as date range, source, interval, or recent record count depending on the endpoint.\n\n### Potential resolution paths\n- **Check a stock quickly, then expand into context:** Start with `get_realtime_data` for the latest market snapshot, use `get_time_info` to anchor the timing, then pull `get_news_data` if the user needs recent developments behind the move.\n- **Move from price action into deeper analysis:** Use `get_hist_data` to review the trend over time, optionally add indicators for a more technical read, then compare that behavior with `get_news_data` or `get_inner_trade_data` to add event and insider context.\n- **Run a focused financial review:** Pull `get_financial_metrics` for a compact overview, then drill into `get_balance_sheet`, `get_income_statement`, and `get_cash_flow` when the user needs the underlying detail behind solvency, profitability, or cash generation.\n\n### Best practices\n- **Start with the narrowest tool that matches the question:** Use `get_realtime_data` or `get_time_info` for quick checks, and only expand into history, news, or statements when the user needs more context.\n- **Use summary before detail when doing financial review:** `get_financial_metrics` is a good first pass, then the individual statement tools can be used when the user needs the supporting detail behind the headline numbers.",
+      "intro": "The `akshare-one-mcp` server is a stock-focused market research server that combines price data, company news, insider trading disclosures, and core financial statement coverage in one place. It is useful when the goal is to move from a quick market check into a broader company-level review without switching across separate data sources or workflows.\n\n### How it works\n- The server centers on stock symbols and supports both point-in-time checks and broader historical review.\n- It combines market-facing tools such as real-time and historical data with company-facing tools such as news, insider trading, financial statements, and summary metrics.\n- Most tools take a `symbol`, with optional filters such as date range, source, interval, or recent record count depending on the endpoint.\n\n### Potential resolution paths\n- **Check a stock quickly, then expand into context:** Start with `get_realtime_data` for the latest market snapshot, use `get_time_info` to anchor the timing, then pull `get_news_data` if the user needs recent developments behind the move.\n- **Move from price action into deeper analysis:** Use `get_hist_data` to review the trend over time, optionally add indicators for a more technical read, then compare that behavior with `get_news_data` or `get_inner_trade_data` to add event and insider context.\n- **Run a focused financial review:** Pull `get_financial_metrics` for a compact overview, then drill into `get_balance_sheet`, `get_income_statement`, and `get_cash_flow` when the user needs the underlying detail behind solvency, profitability, or cash generation.\n\n### Best practices\n- **Start with the narrowest tool that matches the question:** Use `get_realtime_data` or `get_time_info` for quick checks, and only expand into history, news, or statements when the user needs more context.\n- **Use summary before detail when doing financial review:** `get_financial_metrics` is a good first pass, then the individual statement tools can be used when the user needs the supporting detail behind the headline numbers.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -4366,14 +4296,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_balance_sheet",
               "intent": "Review the most recent balance sheet entries for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_balance_sheet",
               "intent": "Pull a longer balance sheet history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4415,14 +4343,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_cash_flow",
               "intent": "Review the most recent cash flow statement data for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_cash_flow",
               "intent": "Pull a longer cash flow history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4456,14 +4382,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_financial_metrics",
               "intent": "Review recent financial metrics for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_financial_metrics",
               "intent": "Pull a longer financial metric history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4563,7 +4487,6 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_hist_data",
               "intent": "Review the most recent adjusted daily history for a mainland China stock",
               "params": {
                 "symbol": "000001",
@@ -4572,7 +4495,6 @@
               }
             },
             {
-              "tool": "akshare-one-mcp_get_hist_data",
               "intent": "Analyze a shorter hourly window with technical indicators for a Hong Kong listed stock",
               "params": {
                 "symbol": "00700",
@@ -4615,14 +4537,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_income_statement",
               "intent": "Review the most recent income statement data for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_income_statement",
               "intent": "Pull a longer income statement history for a Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4648,7 +4568,6 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_inner_trade_data",
               "intent": "Review insider trading activity for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
@@ -4681,14 +4600,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_news_data",
               "intent": "Review the latest headlines for a mainland China bank stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_news_data",
               "intent": "Pull a wider set of recent news items for a large Hong Kong listed technology company",
               "params": {
                 "symbol": "00700",
@@ -4722,14 +4639,12 @@
           ],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_realtime_data",
               "intent": "Check the latest real-time data for a specific mainland China stock",
               "params": {
                 "symbol": "000001"
               }
             },
             {
-              "tool": "akshare-one-mcp_get_realtime_data",
               "intent": "Retrieve live data for a Hong Kong listed stock using a different source",
               "params": {
                 "symbol": "00700",
@@ -4746,7 +4661,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "akshare-one-mcp_get_time_info",
               "intent": "Retrieve the current time context and last trading day reference",
               "params": {}
             }
@@ -4758,7 +4672,7 @@
     },
     {
       "name": "alpaca",
-      "intro": "The alpaca server is the operational side of the stack: it combines live brokerage actions with market data, account visibility, portfolio monitoring, watchlist management, and multi-asset trading across equities, crypto, and options. It is the server you use when the goal is not only to inspect the market, but to act on it and manage the resulting positions.\n\n### How it works\n- The server spans the full trade lifecycle: check market status, inspect assets and quotes, place orders, review positions, and manage portfolio state afterward.\n- It also supports broader account workflows such as watchlists, portfolio history, and corporate actions, so monitoring and execution stay in the same environment.\n- Requests use flat key-value inputs, and tools that change account state should be treated as live operational actions rather than passive lookups.\n\n### Potential resolution paths\n- **Go from market check to execution:** Use `get_clock` and the relevant quote, trade, bar, or snapshot tools to understand current conditions, validate the asset with `get_asset`, then place the order through the appropriate stock, crypto, or options endpoint.\n- **Manage existing exposure with context:** Pull `get_all_positions`, `get_open_position`, and `get_portfolio_history` to understand what is already on the book, then close, reduce, or exercise positions with the relevant account-action tools.\n- **Create a monitoring workflow before trading:** Build or update watchlists, review snapshots for tracked assets, and use the same server later to transition from observation into order placement when conditions are met.\n\n### Best practices\n- **Separate read actions from account actions mentally:** Many tools are safe informational lookups, while others directly affect capital, positions, or watchlists.\n- **Use the broader market picture before sending orders:** Snapshots, latest quotes, option chain data, and account state checks reduce avoidable execution mistakes.",
+      "intro": "The `alpaca` server is the operational side of the stack: it combines live brokerage actions with market data, account visibility, portfolio monitoring, watchlist management, and multi-asset trading across equities, crypto, and options. It is the server you use when the goal is not only to inspect the market, but to act on it and manage the resulting positions.\n\n### How it works\n- The server spans the full trade lifecycle: check market status, inspect assets and quotes, place orders, review positions, and manage portfolio state afterward.\n- It also supports broader account workflows such as watchlists, portfolio history, and corporate actions, so monitoring and execution stay in the same environment.\n- Requests use flat key-value inputs, and tools that change account state should be treated as live operational actions rather than passive lookups.\n\n### Potential resolution paths\n- **Go from market check to execution:** Use `get_clock` plus market-data tools such as `get_stock_latest_quote`, `get_crypto_latest_quote`, `get_stock_snapshot`, `get_crypto_snapshot`, or `get_option_snapshot` to understand current conditions, validate the asset with `get_asset`, then place the order through `place_stock_order`, `place_crypto_order`, or `place_option_market_order`.\n- **Manage existing exposure with context:** Pull `get_all_positions`, `get_open_position`, and `get_portfolio_history` to understand what is already on the book, then use `close_position`, `close_all_positions`, `cancel_order_by_id`, `cancel_all_orders`, or `exercise_options_position` for the follow-up account action.\n- **Create a monitoring workflow before trading:** Use `create_watchlist`, `update_watchlist_by_id`, `add_asset_to_watchlist_by_id`, `remove_asset_from_watchlist_by_id`, `get_watchlists`, or `get_watchlist_by_id`, then review tracked names with `get_stock_snapshot`, `get_crypto_snapshot`, or `get_option_snapshot` before transitioning into order placement.\n\n### Best practices\n- **Separate read actions from account actions mentally:** Tools such as `get_account_info`, `get_asset`, `get_clock`, `get_stock_snapshot`, `get_crypto_snapshot`, and `get_option_snapshot` are informational, while `place_stock_order`, `place_crypto_order`, `place_option_market_order`, `close_position`, `close_all_positions`, and watchlist mutation tools directly affect account state.\n- **Use the broader market picture before sending orders:** `get_stock_snapshot`, `get_crypto_snapshot`, `get_option_snapshot`, `get_stock_latest_quote`, `get_crypto_latest_quote`, `get_option_chain`, `get_account_info`, and `get_all_positions` reduce avoidable execution mistakes.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -4784,7 +4698,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_add_asset_to_watchlist_by_id",
               "intent": "Add Nvidia to an existing watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -4801,7 +4714,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alpaca_cancel_all_orders",
               "intent": "Cancel all open orders on the account",
               "params": {}
             }
@@ -4824,7 +4736,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_cancel_order_by_id",
               "intent": "Cancel a specific order by its ID",
               "params": {
                 "order_id": "a3f1c2e4-5678-4b9d-8abc-123456789def"
@@ -4849,12 +4760,10 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_close_all_positions",
               "intent": "Close all open positions immediately",
               "params": {}
             },
             {
-              "tool": "alpaca_close_all_positions",
               "intent": "Cancel all open orders and then close all positions",
               "params": {
                 "cancel_orders": true
@@ -4895,14 +4804,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_close_position",
               "intent": "Close the entire Apple position",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "alpaca_close_position",
               "intent": "Reduce the Tesla position by half",
               "params": {
                 "symbol": "TSLA",
@@ -4936,7 +4843,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_create_watchlist",
               "intent": "Create a watchlist of tech stocks to monitor",
               "params": {
                 "name": "Tech Watchlist",
@@ -4949,7 +4855,6 @@
               }
             },
             {
-              "tool": "alpaca_create_watchlist",
               "intent": "Set up a watchlist for energy sector stocks",
               "params": {
                 "name": "Energy Sector",
@@ -4980,7 +4885,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_delete_watchlist_by_id",
               "intent": "Delete a watchlist that is no longer needed",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"
@@ -5005,7 +4909,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_exercise_options_position",
               "intent": "Exercise a held Nvidia call option contract",
               "params": {
                 "symbol_or_contract_id": "NVDA250919C001680"
@@ -5021,7 +4924,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alpaca_get_account_info",
               "intent": "Check current account balance, buying power, and trading status",
               "params": {}
             }
@@ -5068,7 +4970,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_all_assets",
               "intent": "Get all active US equity assets listed on NASDAQ",
               "params": {
                 "status": "active",
@@ -5077,7 +4978,6 @@
               }
             },
             {
-              "tool": "alpaca_get_all_assets",
               "intent": "List all active crypto assets available on Alpaca",
               "params": {
                 "status": "active",
@@ -5094,7 +4994,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alpaca_get_all_positions",
               "intent": "Get a full overview of all current portfolio positions including P/L",
               "params": {}
             }
@@ -5117,7 +5016,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_asset",
               "intent": "Get detailed trading properties and status for Nvidia",
               "params": {
                 "symbol": "NVDA"
@@ -5150,7 +5048,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_calendar",
               "intent": "Check which days markets are open during the holiday season",
               "params": {
                 "start_date": "2024-12-20",
@@ -5158,7 +5055,6 @@
               }
             },
             {
-              "tool": "alpaca_get_calendar",
               "intent": "Get the full market calendar for Q1 2025",
               "params": {
                 "start_date": "2025-01-01",
@@ -5175,7 +5071,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alpaca_get_clock",
               "intent": "Check if the market is currently open and when it next opens or closes",
               "params": {}
             }
@@ -5271,7 +5166,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_corporate_actions",
               "intent": "Get all cash dividends and stock splits announced in Q1 2024",
               "params": {
                 "ca_types": [
@@ -5283,7 +5177,6 @@
               }
             },
             {
-              "tool": "alpaca_get_corporate_actions",
               "intent": "Retrieve all corporate actions for Apple and Tesla over the past year",
               "params": {
                 "symbols": [
@@ -5388,7 +5281,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_bars",
               "intent": "Get the last 7 days of hourly bars for Bitcoin",
               "params": {
                 "symbol": "BTC/USD",
@@ -5396,7 +5288,6 @@
               }
             },
             {
-              "tool": "alpaca_get_crypto_bars",
               "intent": "Retrieve 4-hour Ethereum bars for a specific date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -5434,14 +5325,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_latest_bar",
               "intent": "Get the latest minute bar for Ethereum",
               "params": {
                 "symbol": "ETH/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_latest_bar",
               "intent": "Get the latest bars for Bitcoin and Solana simultaneously",
               "params": {
                 "symbol": [
@@ -5479,14 +5368,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_latest_orderbook",
               "intent": "Get the current orderbook depth for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_latest_orderbook",
               "intent": "Retrieve the latest orderbook for Bitcoin and Ethereum to compare liquidity",
               "params": {
                 "symbol": [
@@ -5524,14 +5411,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_latest_quote",
               "intent": "Get the latest bid/ask quote for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_latest_quote",
               "intent": "Get the latest quotes for Bitcoin and Ethereum simultaneously",
               "params": {
                 "symbol": [
@@ -5569,14 +5454,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_latest_trade",
               "intent": "Get the most recent trade execution for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_latest_trade",
               "intent": "Get the latest trades for Bitcoin, Ethereum, and Solana simultaneously",
               "params": {
                 "symbol": [
@@ -5671,7 +5554,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_quotes",
               "intent": "Get the last 30 minutes of bid/ask quotes for Bitcoin",
               "params": {
                 "symbol": "BTC/USD",
@@ -5679,7 +5561,6 @@
               }
             },
             {
-              "tool": "alpaca_get_crypto_quotes",
               "intent": "Retrieve crypto quote history for Ethereum over a specific date range",
               "params": {
                 "symbol": "ETH/USD",
@@ -5717,14 +5598,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_snapshot",
               "intent": "Get a full market snapshot for Bitcoin including quote, trade, and bars",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_snapshot",
               "intent": "Retrieve snapshots for Bitcoin and Ethereum simultaneously",
               "params": {
                 "symbol": [
@@ -5829,14 +5708,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_crypto_trades",
               "intent": "Get the last 15 minutes of trade prints for Bitcoin",
               "params": {
                 "symbol": "BTC/USD"
               }
             },
             {
-              "tool": "alpaca_get_crypto_trades",
               "intent": "Retrieve Solana trade history over a specific time window in UTC",
               "params": {
                 "symbol": "SOL/USD",
@@ -5865,7 +5742,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_open_position",
               "intent": "Check the current position details and P/L for Apple",
               "params": {
                 "symbol": "AAPL"
@@ -5968,14 +5844,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_option_chain",
               "intent": "Get the full options chain for SPY showing all calls and puts",
               "params": {
                 "underlying_symbol": "SPY"
               }
             },
             {
-              "tool": "alpaca_get_option_chain",
               "intent": "Retrieve near-the-money Apple call options expiring within the next month",
               "params": {
                 "underlying_symbol": "AAPL",
@@ -6091,7 +5965,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_option_contracts",
               "intent": "Get all active call options for Nvidia expiring in a specific week",
               "params": {
                 "underlying_symbols": "NVDA",
@@ -6100,7 +5973,6 @@
               }
             },
             {
-              "tool": "alpaca_get_option_contracts",
               "intent": "Find SPY put options expiring within a date range with strikes near current price",
               "params": {
                 "underlying_symbols": "SPY",
@@ -6141,14 +6013,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_option_latest_quote",
               "intent": "Get the latest quote for a specific Apple call option",
               "params": {
                 "symbol_or_symbols": "AAPL230616C00150000"
               }
             },
             {
-              "tool": "alpaca_get_option_latest_quote",
               "intent": "Retrieve latest quotes for multiple option contracts using indicative feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6188,14 +6058,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_option_snapshot",
               "intent": "Get a full snapshot including Greeks and IV for a specific Apple put option",
               "params": {
                 "symbol_or_symbols": "AAPL250613P00205000"
               }
             },
             {
-              "tool": "alpaca_get_option_snapshot",
               "intent": "Retrieve snapshots for multiple option contracts using the indicative feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6290,7 +6158,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_orders",
               "intent": "Get the 20 most recent closed orders",
               "params": {
                 "status": "closed",
@@ -6298,7 +6165,6 @@
               }
             },
             {
-              "tool": "alpaca_get_orders",
               "intent": "Retrieve all open buy orders for Apple and Tesla",
               "params": {
                 "status": "open",
@@ -6396,7 +6262,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_portfolio_history",
               "intent": "Get daily equity and P/L for the past 3 months",
               "params": {
                 "period": "3M",
@@ -6404,7 +6269,6 @@
               }
             },
             {
-              "tool": "alpaca_get_portfolio_history",
               "intent": "Retrieve 1-hour resolution portfolio history for a specific date range including extended hours",
               "params": {
                 "start": "2024-01-01",
@@ -6536,7 +6400,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_bars",
               "intent": "Get the last 10 days of daily bars for Apple and Microsoft",
               "params": {
                 "symbol": [
@@ -6548,7 +6411,6 @@
               }
             },
             {
-              "tool": "alpaca_get_stock_bars",
               "intent": "Retrieve 15-minute bars for Nvidia over a specific date range",
               "params": {
                 "symbol": "NVDA",
@@ -6597,14 +6459,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_latest_bar",
               "intent": "Get the latest price bar for Apple",
               "params": {
                 "symbol_or_symbols": "AAPL"
               }
             },
             {
-              "tool": "alpaca_get_stock_latest_bar",
               "intent": "Get the latest bars for a set of stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6655,14 +6515,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_latest_quote",
               "intent": "Get the latest bid/ask quote for Tesla",
               "params": {
                 "symbol_or_symbols": "TSLA"
               }
             },
             {
-              "tool": "alpaca_get_stock_latest_quote",
               "intent": "Get the latest quotes for multiple stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6713,14 +6571,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_latest_trade",
               "intent": "Get the most recent trade execution for Apple",
               "params": {
                 "symbol_or_symbols": "AAPL"
               }
             },
             {
-              "tool": "alpaca_get_stock_latest_trade",
               "intent": "Get the latest trade for several stocks simultaneously using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -6846,7 +6702,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_quotes",
               "intent": "Get the last 30 minutes of bid/ask quotes for Apple",
               "params": {
                 "symbol": "AAPL",
@@ -6854,7 +6709,6 @@
               }
             },
             {
-              "tool": "alpaca_get_stock_quotes",
               "intent": "Retrieve quote data for multiple stocks over a specific intraday window",
               "params": {
                 "symbol": [
@@ -6906,14 +6760,12 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_snapshot",
               "intent": "Get a full market snapshot for Nvidia including quote, trade, and bars",
               "params": {
                 "symbol_or_symbols": "NVDA"
               }
             },
             {
-              "tool": "alpaca_get_stock_snapshot",
               "intent": "Retrieve snapshots for a basket of stocks using the SIP feed",
               "params": {
                 "symbol_or_symbols": [
@@ -7040,7 +6892,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_stock_trades",
               "intent": "Get the last 30 minutes of individual trades for Tesla",
               "params": {
                 "symbol": "TSLA",
@@ -7048,7 +6899,6 @@
               }
             },
             {
-              "tool": "alpaca_get_stock_trades",
               "intent": "Retrieve trade history for Apple and Nvidia over a specific morning session",
               "params": {
                 "symbol": [
@@ -7079,7 +6929,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_get_watchlist_by_id",
               "intent": "Get the full details and symbol list of a specific watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500"
@@ -7095,7 +6944,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alpaca_get_watchlists",
               "intent": "List all existing watchlists on the account",
               "params": {}
             }
@@ -7192,7 +7040,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_place_crypto_order",
               "intent": "Buy $500 worth of Bitcoin at market price",
               "params": {
                 "symbol": "BTC/USD",
@@ -7201,7 +7048,6 @@
               }
             },
             {
-              "tool": "alpaca_place_crypto_order",
               "intent": "Place a limit buy order for 0.5 ETH at a specific price",
               "params": {
                 "symbol": "ETH/USD",
@@ -7268,7 +7114,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_place_option_market_order",
               "intent": "Buy 1 Apple call option contract at market price",
               "params": {
                 "legs": [
@@ -7281,7 +7126,6 @@
               }
             },
             {
-              "tool": "alpaca_place_option_market_order",
               "intent": "Place a bull call spread on Apple — buy lower strike, sell higher strike",
               "params": {
                 "legs": [
@@ -7428,7 +7272,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_place_stock_order",
               "intent": "Place a market buy order for 10 shares of Apple",
               "params": {
                 "symbol": "AAPL",
@@ -7437,7 +7280,6 @@
               }
             },
             {
-              "tool": "alpaca_place_stock_order",
               "intent": "Place a limit sell order for Nvidia with a bracket to protect profits",
               "params": {
                 "symbol": "NVDA",
@@ -7477,7 +7319,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_remove_asset_from_watchlist_by_id",
               "intent": "Remove Tesla from an existing watchlist",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -7519,7 +7360,6 @@
           ],
           "examples": [
             {
-              "tool": "alpaca_update_watchlist_by_id",
               "intent": "Rename a watchlist by its ID",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -7527,7 +7367,6 @@
               }
             },
             {
-              "tool": "alpaca_update_watchlist_by_id",
               "intent": "Replace all symbols in a watchlist with a new set of tickers",
               "params": {
                 "watchlist_id": "e7c5b8a2-1234-4f6d-9abc-8e3f1d2c4500",
@@ -7546,7 +7385,7 @@
     },
     {
       "name": "alphavantage",
-      "intro": "The alphavantage server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.\n\n### How it works\n- The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.\n- It does not expose domain-specific endpoints directly in this layer; instead, it provides a controlled way to navigate and call the underlying Alpha Vantage tool set.\n- Requests stay generic at the wrapper level, using `tool_name` to identify the target tool and `arguments` to pass the tool-specific inputs.\n\n### Potential resolution paths\n- **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.\n- **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.\n- **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.\n\n### Best practices\n- **Do not skip the schema step when the target tool is unfamiliar:** `TOOL_GET` reduces avoidable mistakes by confirming the exact input shape before execution.\n- **Use discovery progressively:** Start broad with `TOOL_LIST`, narrow with `TOOL_GET`, and only then move into `TOOL_CALL` once the correct Alpha Vantage endpoint is clear.",
+      "intro": "The `alphavantage` server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.\n\n### How it works\n- The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.\n- It does not expose domain-specific endpoints directly in this layer; instead, it provides a controlled way to navigate and call the underlying Alpha Vantage tool set.\n- Requests stay generic at the wrapper level, using `tool_name` to identify the target tool and `arguments` to pass the tool-specific inputs.\n\n### Potential resolution paths\n- **Explore before choosing a tool:** Start with `TOOL_LIST` to see the available Alpha Vantage tool catalog, then use `TOOL_GET` on the most relevant options before deciding which one to call.\n- **Clarify schema before execution:** If the user already has a likely target such as a time series tool, use `TOOL_GET` to inspect the exact parameter structure, then move into `TOOL_CALL` with only the arguments that match that schema.\n- **Compare multiple candidate tools before calling one:** Use `TOOL_GET` with a list of tool names when the correct endpoint is uncertain, compare their schemas, and then send the final request through `TOOL_CALL`.\n\n### Best practices\n- **Do not skip the schema step when the target tool is unfamiliar:** `TOOL_GET` reduces avoidable mistakes by confirming the exact input shape before execution.\n- **Use discovery progressively:** Start broad with `TOOL_LIST`, narrow with `TOOL_GET`, and only then move into `TOOL_CALL` once the correct Alpha Vantage endpoint is clear.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -7572,7 +7411,6 @@
           ],
           "examples": [
             {
-              "tool": "alphavantage_TOOL_CALL",
               "intent": "Call a daily time series tool after confirming its schema",
               "params": {
                 "tool_name": "TIME_SERIES_DAILY",
@@ -7582,7 +7420,6 @@
               }
             },
             {
-              "tool": "alphavantage_TOOL_CALL",
               "intent": "Execute an intraday time series request with a specific interval after schema review",
               "params": {
                 "tool_name": "TIME_SERIES_INTRADAY",
@@ -7611,14 +7448,12 @@
           ],
           "examples": [
             {
-              "tool": "alphavantage_TOOL_GET",
               "intent": "Retrieve the full schema for a specific Alpha Vantage daily time series tool",
               "params": {
                 "tool_name": "TIME_SERIES_DAILY"
               }
             },
             {
-              "tool": "alphavantage_TOOL_GET",
               "intent": "Compare the schemas of multiple Alpha Vantage time series tools before choosing one",
               "params": {
                 "tool_name": [
@@ -7637,7 +7472,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "alphavantage_TOOL_LIST",
               "intent": "List all available Alpha Vantage tools before choosing one to inspect",
               "params": {}
             }
@@ -7649,7 +7483,7 @@
     },
     {
       "name": "coingecko-mcp",
-      "intro": "The coingecko-mcp server provides access to the full CoinGecko API through a code execution model. Rather than exposing individual endpoints as separate tools, it gives access to the entire API surface through a single execution tool backed by a documentation search tool. It is the right server when the goal is to query any CoinGecko data — prices, market caps, historical charts, trending assets, coin metadata, exchanges, or token details — with full control over what is retrieved and how results are shaped.\n\n### How it works\n\n- All API interaction goes through `coingecko-mcp_execute`, which runs a TypeScript async function against an initialized SDK client. The function must be named `run`, accept the client as its single argument, and return or log whatever data is needed.\n- `coingecko-mcp_search_docs` is a companion discovery tool that searches the SDK documentation for methods, parameters, and usage examples before code is written. It supports multiple languages but TypeScript is the relevant choice for this server.\n- Because the server exposes the full CoinGecko API rather than a fixed set of endpoints, the range of queries is broad — but each call requires knowing the correct SDK method and parameter structure.\n\n### Potential resolution paths\n\n- **Look up a method, then execute it:** Use `coingecko-mcp_search_docs` to find the right SDK method and its parameter shape for a given topic (e.g., coin market chart, trending, exchanges), then pass the corresponding code to `coingecko-mcp_execute`.\n- **Query current market data for one or more assets:** Call `coingecko-mcp_execute` directly with `client.simple.price.get` when the method is already known, passing the target coin IDs and currency.\n- **Retrieve historical price or volume data for a coin:** Use `coingecko-mcp_search_docs` to confirm the correct chart endpoint, then call `coingecko-mcp_execute` with the appropriate coin ID, currency, and date range parameters.\n- **Explore trending or top-ranked coins:** Call `coingecko-mcp_execute` with a markets or trending endpoint to retrieve ranked lists, optionally filtering by category, order, or page.\n\n### Best practices\n\n- **Search the documentation before executing when the SDK method is not known:** `coingecko-mcp_search_docs` eliminates guesswork about method names and parameter shapes — using it first avoids failed or malformed execute calls.\n- **Return data explicitly from the `run` function:** The execute tool captures both return values and console output, but returning structured data directly produces cleaner results than relying on logging alone.",
+      "intro": "The `coingecko-mcp` server provides access to the full CoinGecko API through a code execution model. Rather than exposing individual endpoints as separate tools, it gives access to the entire API surface through a single execution tool backed by a documentation search tool. It is the right server when the goal is to query any CoinGecko data — prices, market caps, historical charts, trending assets, coin metadata, exchanges, or token details — with full control over what is retrieved and how results are shaped.\n\n### How it works\n\n- All API interaction goes through `coingecko-mcp_execute`, which runs a TypeScript async function against an initialized SDK client. The function must be named `run`, accept the client as its single argument, and return or log whatever data is needed.\n- `coingecko-mcp_search_docs` is a companion discovery tool that searches the SDK documentation for methods, parameters, and usage examples before code is written. It supports multiple languages but TypeScript is the relevant choice for this server.\n- Because the server exposes the full CoinGecko API rather than a fixed set of endpoints, the range of queries is broad — but each call requires knowing the correct SDK method and parameter structure.\n\n### Potential resolution paths\n\n- **Look up a method, then execute it:** Use `coingecko-mcp_search_docs` to find the right SDK method and its parameter shape for a given topic (e.g., coin market chart, trending, exchanges), then pass the corresponding code to `coingecko-mcp_execute`.\n- **Query current market data for one or more assets:** Call `coingecko-mcp_execute` directly with `client.simple.price.get` when the method is already known, passing the target coin IDs and currency.\n- **Retrieve historical price or volume data for a coin:** Use `coingecko-mcp_search_docs` to confirm the correct chart endpoint, then call `coingecko-mcp_execute` with the appropriate coin ID, currency, and date range parameters.\n- **Explore trending or top-ranked coins:** Call `coingecko-mcp_execute` with a markets or trending endpoint to retrieve ranked lists, optionally filtering by category, order, or page.\n\n### Best practices\n\n- **Search the documentation before executing when the SDK method is not known:** `coingecko-mcp_search_docs` eliminates guesswork about method names and parameter shapes — using it first avoids failed or malformed execute calls.\n- **Return data explicitly from the `run` function:** The execute tool captures both return values and console output, but returning structured data directly produces cleaner results than relying on logging alone.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -7756,7 +7590,7 @@
     },
     {
       "name": "financial-datasets",
-      "intro": "The financial-datasets server is designed for research-heavy workflows. It brings together company financial statements, SEC filings, market prices, company news, and crypto price history so users can move from a quick market question into a more complete fundamental or event-driven analysis without leaving the same server context.\n\n### How it works\n- The server covers both fundamentals and market behavior, making it useful for linking financial performance, disclosures, headlines, and price movement.\n- It supports equity research workflows especially well, since statements, filings, news, and historical prices can be combined around the same company.\n- Inputs are generally simple, but the real strength is in combining several tools to answer broader investment or research questions.\n\n### Potential resolution paths\n- **Run a full company research pass:** Combine `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to understand profitability, financial position, and cash generation together.\n- **Link narrative to numbers:** Use `get_company_news` and `get_sec_filings` to identify important developments, then review the related statements or price history to see how those events connect to fundamentals and market reaction.\n- **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices` or crypto price tools when the user needs trend, volatility, or event-window analysis.\n\n### Best practices\n- **Treat the server as a research bundle, not a set of isolated endpoints:** Its value increases when filings, news, statements, and prices are read together.\n- **Match the tool to the depth of the question:** Use current price tools for quick checks, historical series for trend analysis, and statement or filing tools when the user is really asking about business quality or disclosure.",
+      "intro": "The `financial-datasets` server is designed for research-heavy workflows. It brings together company financial statements, SEC filings, market prices, company news, and crypto price history so users can move from a quick market question into a more complete fundamental or event-driven analysis without leaving the same server context.\n\n### How it works\n- The server covers both fundamentals and market behavior, making it useful for linking financial performance, disclosures, headlines, and price movement.\n- It supports equity research workflows especially well, since statements, filings, news, and historical prices can be combined around the same company.\n- Inputs are generally simple, but the real strength is in combining several tools to answer broader investment or research questions.\n\n### Potential resolution paths\n- **Run a full company research pass:** Combine `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to understand profitability, financial position, and cash generation together.\n- **Link narrative to numbers:** Use `get_company_news` and `get_sec_filings` to identify important developments, then review the related statements or price history to see how those events connect to fundamentals and market reaction.\n- **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices`, `get_crypto_prices`, or `get_historical_crypto_prices` when the user needs trend, volatility, or event-window analysis.\n\n### Best practices\n- **Treat the server as a research bundle, not a set of isolated endpoints:** Its value increases when `get_sec_filings`, `get_company_news`, `get_income_statements`, `get_balance_sheets`, `get_cash_flow_statements`, `get_current_stock_price`, and `get_historical_stock_prices` are read together.\n- **Match the tool to the depth of the question:** Use `get_current_stock_price` or `get_crypto_prices` for quick checks, `get_historical_stock_prices` or `get_historical_crypto_prices` for trend analysis, and `get_income_statements`, `get_balance_sheets`, `get_cash_flow_statements`, or `get_sec_filings` when the user is really asking about business quality or disclosure.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -7765,7 +7599,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "financial-datasets_get_available_crypto_tickers",
               "intent": "Discover all supported cryptocurrency tickers before querying prices",
               "params": {}
             }
@@ -7808,14 +7641,12 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_balance_sheets",
               "intent": "Get the last 4 annual balance sheets for Google",
               "params": {
                 "ticker": "GOOGL"
               }
             },
             {
-              "tool": "financial-datasets_get_balance_sheets",
               "intent": "Retrieve the last 6 quarterly balance sheets for JPMorgan",
               "params": {
                 "ticker": "JPM",
@@ -7862,14 +7693,12 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_cash_flow_statements",
               "intent": "Get the last 4 annual cash flow statements for Apple",
               "params": {
                 "ticker": "AAPL"
               }
             },
             {
-              "tool": "financial-datasets_get_cash_flow_statements",
               "intent": "Retrieve the last 8 quarterly cash flow statements for Tesla",
               "params": {
                 "ticker": "TSLA",
@@ -7896,7 +7725,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_company_news",
               "intent": "Get the latest news for Microsoft",
               "params": {
                 "ticker": "MSFT"
@@ -7959,7 +7787,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_crypto_prices",
               "intent": "Get daily Solana prices for Q1 2024",
               "params": {
                 "ticker": "SOL-USD",
@@ -7968,7 +7795,6 @@
               }
             },
             {
-              "tool": "financial-datasets_get_crypto_prices",
               "intent": "Retrieve 4-hour Ripple price bars for a specific month",
               "params": {
                 "ticker": "XRP-USD",
@@ -7997,7 +7823,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_current_stock_price",
               "intent": "Get the current price of Amazon stock",
               "params": {
                 "ticker": "AMZN"
@@ -8060,7 +7885,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_historical_crypto_prices",
               "intent": "Get daily Bitcoin price history for the year 2023",
               "params": {
                 "ticker": "BTC-USD",
@@ -8069,7 +7893,6 @@
               }
             },
             {
-              "tool": "financial-datasets_get_historical_crypto_prices",
               "intent": "Retrieve hourly Ethereum prices for a specific two-week window",
               "params": {
                 "ticker": "ETH-USD",
@@ -8135,7 +7958,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_historical_stock_prices",
               "intent": "Get daily Apple stock prices for the full year 2023",
               "params": {
                 "ticker": "AAPL",
@@ -8144,7 +7966,6 @@
               }
             },
             {
-              "tool": "financial-datasets_get_historical_stock_prices",
               "intent": "Retrieve 30-minute intraday bars for Nvidia over a specific week",
               "params": {
                 "ticker": "NVDA",
@@ -8193,14 +8014,12 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_income_statements",
               "intent": "Get the last 4 annual income statements for Microsoft",
               "params": {
                 "ticker": "MSFT"
               }
             },
             {
-              "tool": "financial-datasets_get_income_statements",
               "intent": "Retrieve the last 8 quarterly income statements for Amazon to analyze revenue trends",
               "params": {
                 "ticker": "AMZN",
@@ -8250,7 +8069,6 @@
           ],
           "examples": [
             {
-              "tool": "financial-datasets_get_sec_filings",
               "intent": "Get the most recent annual reports filed by Apple",
               "params": {
                 "ticker": "AAPL",
@@ -8258,7 +8076,6 @@
               }
             },
             {
-              "tool": "financial-datasets_get_sec_filings",
               "intent": "Retrieve the last 20 SEC filings for Tesla across all types",
               "params": {
                 "ticker": "TSLA",
@@ -8273,7 +8090,7 @@
     },
     {
       "name": "fred-mcp-server",
-      "intro": "The fred-mcp-server is an economic data research server centered on FRED series discovery, catalog browsing, and direct series retrieval. It is useful when the user needs to find relevant economic indicators, explore the structure of the FRED catalog, or pull observations for a known series.\n\n### How it works\n- The server supports three main workflows: keyword and filter-based series search, catalog browsing through categories, releases, or sources, and direct retrieval of series observations by `series_id`.\n- Common inputs include search fields such as `search_text`, `tag_names`, and search filters, browse controls such as `browse_type`, `category_id`, and `release_id`, and retrieval controls such as `observation_start`, `observation_end`, `units`, `frequency`, and `aggregation_method`.\n- It can be used either for discovery, when the user does not yet know the series ID, or for direct data retrieval once the target series has already been identified.\n\n### Potential resolution paths\n- **Search for an indicator, then retrieve its data:** Start with `fred_search` to locate relevant series by keyword or filter, then move into `fred_get_series` once the correct `series_id` is known.\n- **Browse the catalog before narrowing to a series:** Use `fred_browse` to explore categories, releases, sources, or series collections, then pick a series from those results for direct retrieval with `fred_get_series`.\n- **Move from raw observations into transformed views:** Pull a known series with `fred_get_series`, then use options such as `units`, `frequency`, or `aggregation_method` when the user needs a transformed or resampled version of the same series.\n\n### Best practices\n- **Use search or browse before direct retrieval when the series ID is uncertain:** `fred_search` and `fred_browse` are better starting points than guessing a `series_id`.\n- **Match retrieval settings to the question being asked:** Use date filters for time-bounded requests, `units` for transformed values, and `frequency` plus `aggregation_method` when the user needs data at a different cadence.",
+      "intro": "The `fred-mcp-server` is an economic data research server centered on FRED series discovery, catalog browsing, and direct series retrieval. It is useful when the user needs to find relevant economic indicators, explore the structure of the FRED catalog, or pull observations for a known series.\n\n### How it works\n- The server supports three main workflows: keyword and filter-based series search, catalog browsing through categories, releases, or sources, and direct retrieval of series observations by `series_id`.\n- Common inputs include search fields such as `search_text`, `tag_names`, and search filters, browse controls such as `browse_type`, `category_id`, and `release_id`, and retrieval controls such as `observation_start`, `observation_end`, `units`, `frequency`, and `aggregation_method`.\n- It can be used either for discovery, when the user does not yet know the series ID, or for direct data retrieval once the target series has already been identified.\n\n### Potential resolution paths\n- **Search for an indicator, then retrieve its data:** Start with `fred_search` to locate relevant series by keyword or filter, then move into `fred_get_series` once the correct `series_id` is known.\n- **Browse the catalog before narrowing to a series:** Use `fred_browse` to explore categories, releases, sources, or series collections, then pick a series from those results for direct retrieval with `fred_get_series`.\n- **Move from raw observations into transformed views:** Pull a known series with `fred_get_series`, then use options such as `units`, `frequency`, or `aggregation_method` when the user needs a transformed or resampled version of the same series.\n\n### Best practices\n- **Use search or browse before direct retrieval when the series ID is uncertain:** `fred_search` and `fred_browse` are better starting points than guessing a `series_id`.\n- **Match retrieval settings to the question being asked:** Use date filters for time-bounded requests, `units` for transformed values, and `frequency` plus `aggregation_method` when the user needs data at a different cadence.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -8342,14 +8159,12 @@
           ],
           "examples": [
             {
-              "tool": "fred-mcp-server_fred_browse",
               "intent": "Browse the top-level FRED categories",
               "params": {
                 "browse_type": "categories"
               }
             },
             {
-              "tool": "fred-mcp-server_fred_browse",
               "intent": "Retrieve series in a specific FRED category",
               "params": {
                 "browse_type": "category_series",
@@ -8486,7 +8301,6 @@
           ],
           "examples": [
             {
-              "tool": "fred-mcp-server_fred_get_series",
               "intent": "Retrieve GDP observations from 2015 onward",
               "params": {
                 "series_id": "GDP",
@@ -8494,7 +8308,6 @@
               }
             },
             {
-              "tool": "fred-mcp-server_fred_get_series",
               "intent": "Retrieve recent CPI percent changes in descending date order",
               "params": {
                 "series_id": "CPIAUCSL",
@@ -8597,14 +8410,12 @@
           ],
           "examples": [
             {
-              "tool": "fred-mcp-server_fred_search",
               "intent": "Search FRED for unemployment-related series",
               "params": {
                 "search_text": "unemployment"
               }
             },
             {
-              "tool": "fred-mcp-server_fred_search",
               "intent": "Search FRED for monthly CPI series ordered by popularity",
               "params": {
                 "search_text": "CPI",
@@ -8623,7 +8434,7 @@
     },
     {
       "name": "goldrush-mcp",
-      "intro": "The goldrush-mcp server is a comprehensive on-chain data layer for EVM chains, Bitcoin, and NFTs. It covers wallet balances, transaction history, token transfers, event logs, block data, NFT ownership, DeFi pool prices, gas estimates, and historical snapshots — all accessible through a consistent set of address- and chain-scoped tools. It is the right server when the goal is to retrieve, inspect, or analyze blockchain state across one or many chains without writing direct RPC calls.\n\n### How it works\n\n- Most tools are scoped to a `chainName` plus a wallet address, contract address, or block identifier. Multi-chain tools accept arrays of up to 10 chains and addresses in a single call; single-chain tools take one chain and one address.\n- Domain name resolution (ENS, RNS, Lens Handle, Unstoppable Domains) is supported natively in most wallet and contract address fields, but not in all tools — `multichain_balances` explicitly requires a raw address.\n- Bitcoin is covered through dedicated tools that accept either an extended public key (HD wallets) or a standard non-HD address, separate from the EVM tool set.\n- Pagination varies by tool: some use `page`/`pageNumber`/`pageSize`, others use cursor-based `before`/`after` parameters.\n\n### Potential resolution paths\n\n- **Build a cross-chain wallet dashboard:** Use `multichain_address_activity` to discover which chains a wallet is active on, then call `multichain_balances` or `multichain_transactions` scoped to only those chains.\n- **Inspect a single-chain wallet in depth:** Start with `token_balances` or `native_token_balance` for the current holdings, then use `erc20_token_transfers` for token-level history, `transaction_summary` for a quick activity overview, and `transactions_for_address` for full paginated transaction history.\n- **Audit wallet exposure and security:** Use `token_approvals` to surface which contracts have spending permissions, then cross-reference with `erc20_token_transfers` to understand what activity those approvals have generated.\n- **Explore blocks and transactions:** Use `block_heights` to map a date range to block numbers, `block` or `transactions_for_block` to inspect block contents, and `transaction` to drill into a specific hash with decoded logs, internal transfers, and state changes.\n- **Analyze contract-level on-chain activity:** Use `log_events_by_address` to retrieve all events from a specific contract, or `log_events_by_topic` to find all instances of a given event type across the entire chain.\n- **Work with NFTs:** Use `nft_for_address` to retrieve a wallet's full NFT holdings, `nft_check_ownership` to verify collection-level ownership, and `nft_check_ownership_token_id` to confirm ownership of a specific token.\n- **Reconstruct historical portfolio state:** Use `historical_token_balances` or `historical_portfolio_value` to snapshot a wallet at a past date or block, and `historical_token_prices` to retrieve the price series for the relevant tokens over that window.\n- **Query Bitcoin wallets:** Use `bitcoin_hd_wallet_balances` for HD wallets via an extended public key, or `bitcoin_non_hd_wallet_balances` and `bitcoin_transactions` for standard non-HD addresses.\n\n### Best practices\n\n- **Use `multichain_address_activity` before multi-chain queries when the active chains are unknown:** Scoping `multichain_balances` or `multichain_transactions` to only the chains where a wallet has activity avoids unnecessary calls and reduces response size.\n- **Use `resolve_address` before tools that do not support automatic domain resolution:** Tools such as `multichain_balances` require a raw address — passing an ENS name directly will fail, so resolving it first with `resolve_address` is necessary when starting from a human-readable name.",
+      "intro": "The `goldrush-mcp` server is a comprehensive on-chain data layer for EVM chains, Bitcoin, and NFTs. It covers wallet balances, transaction history, token transfers, event logs, block data, NFT ownership, DeFi pool prices, gas estimates, and historical snapshots — all accessible through a consistent set of address- and chain-scoped tools. It is the right server when the goal is to retrieve, inspect, or analyze blockchain state across one or many chains without writing direct RPC calls.\n\n### How it works\n\n- Most tools are scoped to a `chainName` plus a wallet address, contract address, or block identifier. Multi-chain tools accept arrays of up to 10 chains and addresses in a single call; single-chain tools take one chain and one address.\n- Domain name resolution (ENS, RNS, Lens Handle, Unstoppable Domains) is supported natively in most wallet and contract address fields, but not in all tools — `multichain_balances` explicitly requires a raw address.\n- Bitcoin is covered through dedicated tools that accept either an extended public key (HD wallets) or a standard non-HD address, separate from the EVM tool set.\n- Pagination varies by tool: some use `page`/`pageNumber`/`pageSize`, others use cursor-based `before`/`after` parameters.\n\n### Potential resolution paths\n\n- **Build a cross-chain wallet dashboard:** Use `multichain_address_activity` to discover which chains a wallet is active on, then call `multichain_balances` or `multichain_transactions` scoped to only those chains.\n- **Inspect a single-chain wallet in depth:** Start with `token_balances` or `native_token_balance` for the current holdings, then use `erc20_token_transfers` for token-level history, `transaction_summary` for a quick activity overview, and `transactions_for_address` for full paginated transaction history.\n- **Audit wallet exposure and security:** Use `token_approvals` to surface which contracts have spending permissions, then cross-reference with `erc20_token_transfers` to understand what activity those approvals have generated.\n- **Explore blocks and transactions:** Use `block_heights` to map a date range to block numbers, `block` or `transactions_for_block` to inspect block contents, and `transaction` to drill into a specific hash with decoded logs, internal transfers, and state changes.\n- **Analyze contract-level on-chain activity:** Use `log_events_by_address` to retrieve all events from a specific contract, or `log_events_by_topic` to find all instances of a given event type across the entire chain.\n- **Work with NFTs:** Use `nft_for_address` to retrieve a wallet's full NFT holdings, `nft_check_ownership` to verify collection-level ownership, and `nft_check_ownership_token_id` to confirm ownership of a specific token.\n- **Reconstruct historical portfolio state:** Use `historical_token_balances` or `historical_portfolio_value` to snapshot a wallet at a past date or block, and `historical_token_prices` to retrieve the price series for the relevant tokens over that window.\n- **Query Bitcoin wallets:** Use `bitcoin_hd_wallet_balances` for HD wallets via an extended public key, or `bitcoin_non_hd_wallet_balances` and `bitcoin_transactions` for standard non-HD addresses.\n\n### Best practices\n\n- **Use `multichain_address_activity` before multi-chain queries when the active chains are unknown:** Scoping `multichain_balances` or `multichain_transactions` to only the chains where a wallet has activity avoids unnecessary calls and reduces response size.\n- **Use `resolve_address` before tools that do not support automatic domain resolution:** Tools such as `multichain_balances` require a raw address — passing an ENS name directly will fail, so resolving it first with `resolve_address` is necessary when starting from a human-readable name.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -12216,7 +12027,7 @@
     },
     {
       "name": "irs-taxpayer-mcp",
-      "intro": "The irs-taxpayer-mcp server covers the full range of US federal and state tax workflows: calculating liability, comparing filing options, planning deductions and credits, estimating withholding and quarterly payments, assessing audit risk, and projecting taxes across multiple years. It is the server to use when the goal is not just to look up a tax rule, but to apply it to a specific taxpayer situation and produce an actionable result.\n\n### How it works\n\n- The server spans both reference and computation: some tools return reference data such as brackets, deadlines, forms, and rules, while others perform calculations or comparisons based on the taxpayer's specific income, filing status, deductions, and credits.\n- Most tools are self-contained and accept the taxpayer's situation directly as input, so they can be used in isolation or chained together to build a progressively fuller tax picture.\n- The server covers federal taxes, state taxes, self-employment, retirement, capital gains, 1099 income, and education benefits, making it broadly applicable across different taxpayer profiles without switching servers.\n\n### Potential resolution paths\n\n- **Move from a broad tax estimate to a complete picture:** Start with `calculate_federal_tax` or `calculate_total_tax` for an initial liability estimate, then add `standard_vs_itemized`, `check_credit_eligibility`, and `list_deductions` to refine deductions and credits before calling `generate_full_tax_report` for a consolidated summary.\n- **Assess withholding and adjust accordingly:** Use `analyze_paycheck` to check whether current withholding is accurate, then call `calculate_w4_withholding` to get revised W-4 settings, and `estimate_quarterly_tax` if additional estimated payments are needed.\n- **Run a filing-status or state-level comparison before committing:** Use `compare_filing_statuses` or `compare_mfj_vs_mfs` to find the most favorable federal status, `compare_state_taxes` or `analyze_relocation_taxes` to evaluate state-level impact, and `estimate_state_tax` or `get_state_tax_info` for a deeper look at a specific state.\n- **Build a multi-year or retirement-focused tax plan:** Combine `plan_multi_year_taxes`, `get_retirement_strategy`, `plan_retirement_withdrawals`, and `optimize_capital_gains` to project and optimize tax exposure across a longer horizon.\n- **Prepare for filing from scratch:** Use `get_tax_document_checklist` to identify what documents are needed, `get_tax_deadlines` to confirm relevant dates, `get_irs_form_info` or `get_form_filing_guide` for form-level guidance, and `run_tax_health_check` to surface risks before submitting.\n\n### Best practices\n\n- **Start with reference tools when the taxpayer situation is not fully defined:** Tools such as `get_tax_brackets`, `list_deductions`, `list_tax_credits`, and `lookup_tax_rule` provide the grounding needed before moving into calculation or planning tools that require specific inputs.\n- **Use computation tools in sequence rather than in isolation:** The server produces the most useful results when tools are layered — for example, running a liability estimate first, then refining it with deduction and credit tools, and only then generating a report or multi-year projection.",
+      "intro": "The `irs-taxpayer-mcp` server covers the full range of US federal and state tax workflows: calculating liability, comparing filing options, planning deductions and credits, estimating withholding and quarterly payments, assessing audit risk, and projecting taxes across multiple years. It is the server to use when the goal is not just to look up a tax rule, but to apply it to a specific taxpayer situation and produce an actionable result.\n\n### How it works\n\n- The server spans both reference and computation: some tools return reference data such as brackets, deadlines, forms, and rules, while others perform calculations or comparisons based on the taxpayer's specific income, filing status, deductions, and credits.\n- Most tools are self-contained and accept the taxpayer's situation directly as input, so they can be used in isolation or chained together to build a progressively fuller tax picture.\n- The server covers federal taxes, state taxes, self-employment, retirement, capital gains, 1099 income, and education benefits, making it broadly applicable across different taxpayer profiles without switching servers.\n\n### Potential resolution paths\n\n- **Move from a broad tax estimate to a complete picture:** Start with `calculate_federal_tax` or `calculate_total_tax` for an initial liability estimate, then add `standard_vs_itemized`, `check_credit_eligibility`, and `list_deductions` to refine deductions and credits before calling `generate_full_tax_report` for a consolidated summary.\n- **Assess withholding and adjust accordingly:** Use `analyze_paycheck` to check whether current withholding is accurate, then call `calculate_w4_withholding` to get revised W-4 settings, and `estimate_quarterly_tax` if additional estimated payments are needed.\n- **Run a filing-status or state-level comparison before committing:** Use `compare_filing_statuses` or `compare_mfj_vs_mfs` to find the most favorable federal status, `compare_state_taxes` or `analyze_relocation_taxes` to evaluate state-level impact, and `estimate_state_tax` or `get_state_tax_info` for a deeper look at a specific state.\n- **Build a multi-year or retirement-focused tax plan:** Combine `plan_multi_year_taxes`, `get_retirement_strategy`, `plan_retirement_withdrawals`, and `optimize_capital_gains` to project and optimize tax exposure across a longer horizon.\n- **Prepare for filing from scratch:** Use `get_tax_document_checklist` to identify what documents are needed, `get_tax_deadlines` to confirm relevant dates, `get_irs_form_info` or `get_form_filing_guide` for form-level guidance, and `run_tax_health_check` to surface risks before submitting.\n\n### Best practices\n\n- **Start with reference tools when the taxpayer situation is not fully defined:** Tools such as `get_tax_brackets`, `list_deductions`, `list_tax_credits`, and `lookup_tax_rule` provide the grounding needed before moving into calculation or planning tools that require specific inputs.\n- **Use computation tools in sequence rather than in isolation:** The server produces the most useful results when tools are layered — for example, running a liability estimate first, then refining it with deduction and credit tools, and only then generating a report or multi-year projection.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -12296,7 +12107,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
               "intent": "Compare education tax benefits for an undergraduate student with tuition expenses",
               "params": {
                 "filingStatus": "single",
@@ -12307,7 +12117,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_analyze_education_tax_benefits",
               "intent": "Compare education tax benefits for a graduate student with student loan interest and a 529 plan",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -12408,7 +12217,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
               "intent": "Analyze the tax benefit of itemizing for a single homeowner",
               "params": {
                 "taxYear": 2024,
@@ -12419,7 +12227,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
               "intent": "Analyze the tax benefit of a larger mortgage for a joint filer with additional itemized deductions",
               "params": {
                 "taxYear": 2025,
@@ -12543,7 +12350,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_analyze_paycheck",
               "intent": "Analyze withholding for a biweekly paycheck",
               "params": {
                 "taxYear": 2025,
@@ -12556,7 +12362,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_analyze_paycheck",
               "intent": "Analyze a paycheck including state withholding and pre-tax contributions",
               "params": {
                 "taxYear": 2025,
@@ -12669,7 +12474,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
               "intent": "Compare relocating from California to Texas for a wage earner",
               "params": {
                 "taxYear": 2025,
@@ -12682,7 +12486,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_analyze_relocation_taxes",
               "intent": "Compare relocating from New York to Florida for a joint filer with business income and dependents",
               "params": {
                 "taxYear": 2025,
@@ -12834,7 +12637,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_assess_audit_risk",
               "intent": "Assess audit risk for a self-employed taxpayer with several common review triggers",
               "params": {
                 "filingStatus": "single",
@@ -12848,7 +12650,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_assess_audit_risk",
               "intent": "Assess audit risk for a joint filer with charitable deductions, rental losses, and foreign-account exposure",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -12926,7 +12727,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_calculate_eitc",
               "intent": "Calculate EITC for a single filer with no qualifying children",
               "params": {
                 "taxYear": 2024,
@@ -12937,7 +12737,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_calculate_eitc",
               "intent": "Calculate EITC for a head of household filer with two qualifying children",
               "params": {
                 "taxYear": 2025,
@@ -13093,7 +12892,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_calculate_federal_tax",
               "intent": "Calculate federal tax for a single W-2 taxpayer in 2024",
               "params": {
                 "taxYear": 2024,
@@ -13103,7 +12901,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_calculate_federal_tax",
               "intent": "Calculate federal tax for a married joint filer with self-employment income, qualified business income, and capital gains in 2025",
               "params": {
                 "taxYear": 2025,
@@ -13205,7 +13002,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
               "intent": "Check which OBBB deductions may apply for a single taxpayer with tip income",
               "params": {
                 "taxYear": 2025,
@@ -13217,7 +13013,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_calculate_obbb_deductions",
               "intent": "Estimate OBBB deductions for a joint filer with senior bonus, overtime pay, and auto loan interest",
               "params": {
                 "taxYear": 2025,
@@ -13343,7 +13138,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_calculate_total_tax",
               "intent": "Calculate combined federal and California tax for a single wage earner",
               "params": {
                 "taxYear": 2024,
@@ -13354,7 +13148,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_calculate_total_tax",
               "intent": "Calculate combined federal and New York tax for a joint filer with business income and dependents",
               "params": {
                 "taxYear": 2025,
@@ -13461,7 +13254,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
               "intent": "Estimate W-4 withholding for a single salaried employee paid biweekly",
               "params": {
                 "taxYear": 2024,
@@ -13471,7 +13263,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
               "intent": "Estimate W-4 settings for a joint filer with dependents, other income, and a working spouse",
               "params": {
                 "taxYear": 2025,
@@ -13612,7 +13403,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_check_credit_eligibility",
               "intent": "Check likely credit eligibility for a single parent with children and childcare costs",
               "params": {
                 "agi": 52000,
@@ -13624,7 +13414,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_check_credit_eligibility",
               "intent": "Check likely credit eligibility for a taxpayer with education, EV, and retirement-related factors",
               "params": {
                 "agi": 78000,
@@ -13654,14 +13443,12 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_check_refund_status",
               "intent": "Get refund status instructions for an electronically filed return",
               "params": {
                 "filedElectronically": true
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_check_refund_status",
               "intent": "Get general IRS refund status instructions",
               "params": {}
             }
@@ -13708,7 +13495,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_compare_filing_statuses",
               "intent": "Compare filing statuses for a taxpayer with moderate income",
               "params": {
                 "taxYear": 2024,
@@ -13716,7 +13502,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_compare_filing_statuses",
               "intent": "Compare filing statuses for a taxpayer with itemized deductions and dependents",
               "params": {
                 "taxYear": 2025,
@@ -13808,7 +13593,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
               "intent": "Compare MFJ and MFS for a married couple with straightforward income",
               "params": {
                 "taxYear": 2024,
@@ -13817,7 +13601,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
               "intent": "Compare MFJ and MFS for a married couple with children, itemized deductions, and education-related restrictions",
               "params": {
                 "taxYear": 2025,
@@ -13857,7 +13640,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_compare_state_taxes",
               "intent": "Compare state taxes across several common relocation states",
               "params": {
                 "states": [
@@ -13870,7 +13652,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_compare_state_taxes",
               "intent": "Compare state taxes across northeastern states for the same income",
               "params": {
                 "states": [
@@ -13931,7 +13712,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_compare_tax_years",
               "intent": "Compare tax years for a single filer with wage income only",
               "params": {
                 "filingStatus": "single",
@@ -13939,7 +13719,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_compare_tax_years",
               "intent": "Compare tax years for a head of household filer with self-employment income and dependents",
               "params": {
                 "filingStatus": "head_of_household",
@@ -14013,7 +13792,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
               "intent": "Estimate quarterly taxes for a self-employed single filer",
               "params": {
                 "taxYear": 2024,
@@ -14023,7 +13801,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
               "intent": "Estimate quarterly taxes for a joint filer with withholding and credits",
               "params": {
                 "taxYear": 2025,
@@ -14115,7 +13892,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
               "intent": "Estimate self-employment tax for a single filer with Schedule C income only",
               "params": {
                 "taxYear": 2024,
@@ -14125,7 +13901,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_estimate_self_employment_tax",
               "intent": "Estimate self-employment tax for a joint filer with business income, W-2 income, and retirement contributions",
               "params": {
                 "taxYear": 2025,
@@ -14179,7 +13954,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_estimate_state_tax",
               "intent": "Estimate California state income tax for a single filer",
               "params": {
                 "stateCode": "CA",
@@ -14187,7 +13961,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_estimate_state_tax",
               "intent": "Estimate New York state income tax for a married filer",
               "params": {
                 "stateCode": "NY",
@@ -14388,7 +14161,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_generate_full_tax_report",
               "intent": "Generate a full tax estimate report for a single wage earner with investment income",
               "params": {
                 "taxYear": 2024,
@@ -14403,7 +14175,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_generate_full_tax_report",
               "intent": "Generate a full tax estimate report for a joint filer with business income, deductions, and estimated payments",
               "params": {
                 "taxYear": 2025,
@@ -14442,14 +14213,12 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_form_filing_guide",
               "intent": "Get a filing guide for Form 1040",
               "params": {
                 "formNumber": "1040"
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_form_filing_guide",
               "intent": "Get a filing guide for Schedule C",
               "params": {
                 "formNumber": "Schedule C"
@@ -14474,14 +14243,12 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_irs_form_info",
               "intent": "Get information about Form 1040",
               "params": {
                 "formNumber": "1040"
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_irs_form_info",
               "intent": "Get information about Schedule C",
               "params": {
                 "formNumber": "Schedule C"
@@ -14546,7 +14313,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
               "intent": "Generate a basic personalized tax calendar for a wage earner",
               "params": {
                 "taxYear": 2025,
@@ -14554,7 +14320,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_personalized_tax_calendar",
               "intent": "Generate a personalized tax calendar for a self-employed taxpayer with investments and a filed extension",
               "params": {
                 "taxYear": 2025,
@@ -14583,12 +14348,10 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_retirement_accounts",
               "intent": "List retirement account details across available account types",
               "params": {}
             },
             {
-              "tool": "irs-taxpayer-mcp_get_retirement_accounts",
               "intent": "Get details for a Roth IRA",
               "params": {
                 "accountType": "roth_ira"
@@ -14613,12 +14376,10 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_retirement_strategy",
               "intent": "List available tax-advantaged retirement strategies",
               "params": {}
             },
             {
-              "tool": "irs-taxpayer-mcp_get_retirement_strategy",
               "intent": "Get details for the Backdoor Roth strategy",
               "params": {
                 "strategyId": "backdoor_roth"
@@ -14643,14 +14404,12 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_state_tax_info",
               "intent": "Get state income tax information for California",
               "params": {
                 "stateCode": "CA"
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_state_tax_info",
               "intent": "Get state income tax information for Texas",
               "params": {
                 "stateCode": "TX"
@@ -14689,7 +14448,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_tax_brackets",
               "intent": "Retrieve 2024 tax brackets for a single filer",
               "params": {
                 "taxYear": 2024,
@@ -14697,7 +14455,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_tax_brackets",
               "intent": "Retrieve 2025 tax brackets for a head of household filer",
               "params": {
                 "taxYear": 2025,
@@ -14723,12 +14480,10 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_tax_deadlines",
               "intent": "Get IRS tax deadlines for the default tax year",
               "params": {}
             },
             {
-              "tool": "irs-taxpayer-mcp_get_tax_deadlines",
               "intent": "Get IRS tax deadlines for 2024",
               "params": {
                 "taxYear": 2024
@@ -14905,7 +14660,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
               "intent": "Generate a checklist for a salaried filer with investments, mortgage, and children",
               "params": {
                 "hasW2": true,
@@ -14918,7 +14672,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
               "intent": "Generate a checklist for a freelancer with rental property, student loans, and recent life events",
               "params": {
                 "hasSelfEmployment": true,
@@ -15068,7 +14821,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
               "intent": "Get year-end tax planning ideas for a salaried single filer",
               "params": {
                 "taxYear": 2024,
@@ -15082,7 +14834,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_get_tax_planning_tips",
               "intent": "Get year-end tax planning ideas for a self-employed joint filer with gains and charitable giving",
               "params": {
                 "taxYear": 2025,
@@ -15114,12 +14865,10 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_list_deductions",
               "intent": "List all available tax deductions",
               "params": {}
             },
             {
-              "tool": "irs-taxpayer-mcp_list_deductions",
               "intent": "List charitable deductions",
               "params": {
                 "category": "charity"
@@ -15135,7 +14884,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_list_no_income_tax_states",
               "intent": "List states with no state income tax",
               "params": {}
             }
@@ -15166,12 +14914,10 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_list_tax_credits",
               "intent": "List all available federal tax credits",
               "params": {}
             },
             {
-              "tool": "irs-taxpayer-mcp_list_tax_credits",
               "intent": "List refundable family-related tax credits",
               "params": {
                 "category": "family",
@@ -15197,14 +14943,12 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_lookup_tax_rule",
               "intent": "Look up the wash sale rule",
               "params": {
                 "topic": "wash sale rule"
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_lookup_tax_rule",
               "intent": "Look up stock-option and credit-related tax rules",
               "params": {
                 "topic": "ISO vs NSO and AMT"
@@ -15307,7 +15051,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_optimize_capital_gains",
               "intent": "Identify which lots to sell to realize losses for tax-loss harvesting",
               "params": {
                 "taxYear": 2025,
@@ -15333,7 +15076,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_optimize_capital_gains",
               "intent": "Review lots for a joint filer trying to realize gains efficiently",
               "params": {
                 "taxYear": 2025,
@@ -15463,7 +15205,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
               "intent": "Project taxes over the next three years with rising income and steady retirement contributions",
               "params": {
                 "filingStatus": "single",
@@ -15494,7 +15235,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_plan_multi_year_taxes",
               "intent": "Project a joint filer's taxes across several years with Roth conversions and state changes",
               "params": {
                 "filingStatus": "married_filing_jointly",
@@ -15622,7 +15362,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
               "intent": "Plan withdrawals for a retiree balancing taxable and traditional accounts",
               "params": {
                 "taxYear": 2025,
@@ -15636,7 +15375,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_plan_retirement_withdrawals",
               "intent": "Plan joint retirement withdrawals and evaluate whether Roth conversions may help",
               "params": {
                 "taxYear": 2025,
@@ -15731,7 +15469,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_process_1099_income",
               "intent": "Process freelance and interest income reported on 1099 forms",
               "params": {
                 "taxYear": 2024,
@@ -15751,7 +15488,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_process_1099_income",
               "intent": "Process mixed 1099 income with W-2 context and investment income details",
               "params": {
                 "taxYear": 2025,
@@ -15955,7 +15691,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_run_tax_health_check",
               "intent": "Run a health check for a salaried filer with a mortgage, retirement savings, and withholding",
               "params": {
                 "taxYear": 2025,
@@ -15973,7 +15708,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_run_tax_health_check",
               "intent": "Run a health check for a joint filer with business income, dependents, and tax-saving opportunities",
               "params": {
                 "taxYear": 2025,
@@ -16135,7 +15869,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
               "intent": "Estimate the tax impact of relocating from California to Texas",
               "params": {
                 "taxYear": 2025,
@@ -16146,7 +15879,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_simulate_tax_scenario",
               "intent": "Estimate the tax impact of a raise, Roth conversion, and extra 401k contributions",
               "params": {
                 "taxYear": 2025,
@@ -16256,7 +15988,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_standard_vs_itemized",
               "intent": "Compare standard and itemized deductions for a single filer with mortgage interest and charitable giving",
               "params": {
                 "taxYear": 2024,
@@ -16267,7 +15998,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_standard_vs_itemized",
               "intent": "Compare standard and itemized deductions for a head of household filer with medical expenses and state taxes",
               "params": {
                 "taxYear": 2025,
@@ -16320,7 +16050,6 @@
           ],
           "examples": [
             {
-              "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
               "intent": "Compare what changed between 2024 and 2025 for a single filer",
               "params": {
                 "fromYear": 2024,
@@ -16328,7 +16057,6 @@
               }
             },
             {
-              "tool": "irs-taxpayer-mcp_what_changed_between_tax_years",
               "intent": "Compare tax law changes between 2024 and 2025 for a head of household filer",
               "params": {
                 "fromYear": 2024,
@@ -16344,7 +16072,7 @@
     },
     {
       "name": "massive-mcp",
-      "intro": "The massive-mcp server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.\n\n### How it works\n- The server is organized as a stepwise workflow: `search_endpoints` is used to discover relevant endpoints or local functions, `get_endpoint_docs` is used to inspect endpoint parameters, `call_api` is used to fetch market data, and `query_data` is used to analyze stored results.\n- Common inputs include `query` and `scope` for discovery, `url` for documentation lookup, `method`, `path`, `params`, `store_as`, and `api_key` for API calls, and `sql` for querying stored tables.\n- The server also supports optional post-processing through `apply`, both when data is fetched and when query results are analyzed.\n\n### Potential resolution paths\n- **Discover an endpoint, then execute it:** Start with `search_endpoints` to find the right market data endpoint, use `get_endpoint_docs` to inspect the endpoint pattern and query parameters, then call `call_api` with the selected path and needed request parameters.\n- **Turn raw API results into queryable tables:** Use `call_api` with `store_as` when the user wants to keep the returned data available for later analysis, then use `query_data` to inspect, filter, aggregate, or compare the stored results with SQL.\n- **Move from data retrieval into post-processing:** Use `search_endpoints` with function scope when the user needs available local functions, then apply those functions either during `call_api` or after a SQL result with `query_data`.\n\n### Best practices\n- **Follow the workflow in order when the endpoint is not already known:** `search_endpoints` and `get_endpoint_docs` are the right starting points before building a `call_api` request.\n- **Store results when the user will need follow-up analysis:** `store_as` makes later SQL analysis through `query_data` much more efficient than repeatedly calling the same endpoint.",
+      "intro": "The `massive-mcp` server is a financial market data access server for discovering API endpoints, reviewing endpoint documentation, calling those endpoints, and analyzing stored results with SQL. It is useful when the user needs to move from a natural-language market data request into an executable data workflow without leaving the server.\n\n### How it works\n- The server is organized as a stepwise workflow: `search_endpoints` is used to discover relevant endpoints or local functions, `get_endpoint_docs` is used to inspect endpoint parameters, `call_api` is used to fetch market data, and `query_data` is used to analyze stored results.\n- Common inputs include `query` and `scope` for discovery, `url` for documentation lookup, `method`, `path`, `params`, `store_as`, and `api_key` for API calls, and `sql` for querying stored tables.\n- The server also supports optional post-processing through `apply`, both when data is fetched and when query results are analyzed.\n\n### Potential resolution paths\n- **Discover an endpoint, then execute it:** Start with `search_endpoints` to find the right market data endpoint, use `get_endpoint_docs` to inspect the endpoint pattern and query parameters, then call `call_api` with the selected path and needed request parameters.\n- **Turn raw API results into queryable tables:** Use `call_api` with `store_as` when the user wants to keep the returned data available for later analysis, then use `query_data` to inspect, filter, aggregate, or compare the stored results with SQL.\n- **Move from data retrieval into post-processing:** Use `search_endpoints` with function scope when the user needs available local functions, then apply those functions either during `call_api` or after a SQL result with `query_data`.\n\n### Best practices\n- **Follow the workflow in order when the endpoint is not already known:** `search_endpoints` and `get_endpoint_docs` are the right starting points before building a `call_api` request.\n- **Store results when the user will need follow-up analysis:** `store_as` makes later SQL analysis through `query_data` much more efficient than repeatedly calling the same endpoint.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -16404,7 +16132,6 @@
           ],
           "examples": [
             {
-              "tool": "massive-mcp_call_api",
               "intent": "Fetch daily aggregate data for AAPL over January 2024",
               "params": {
                 "method": "GET",
@@ -16412,7 +16139,6 @@
               }
             },
             {
-              "tool": "massive-mcp_call_api",
               "intent": "Fetch aggregate data, store it for later querying, and apply a post-processing function",
               "params": {
                 "method": "GET",
@@ -16451,14 +16177,12 @@
           ],
           "examples": [
             {
-              "tool": "massive-mcp_get_endpoint_docs",
               "intent": "Retrieve documentation for a discovered aggregates endpoint",
               "params": {
                 "url": "https://example.com/docs/aggs"
               }
             },
             {
-              "tool": "massive-mcp_get_endpoint_docs",
               "intent": "Retrieve documentation for a discovered options endpoint",
               "params": {
                 "url": "https://example.com/docs/options"
@@ -16491,14 +16215,12 @@
           ],
           "examples": [
             {
-              "tool": "massive-mcp_query_data",
               "intent": "List all stored data tables",
               "params": {
                 "sql": "SHOW TABLES"
               }
             },
             {
-              "tool": "massive-mcp_query_data",
               "intent": "Calculate the average close price from a stored prices table and post-process the result",
               "params": {
                 "sql": "SELECT AVG(close) AS avg_close FROM prices",
@@ -16543,14 +16265,12 @@
           ],
           "examples": [
             {
-              "tool": "massive-mcp_search_endpoints",
               "intent": "Find endpoints related to options data",
               "params": {
                 "query": "options data"
               }
             },
             {
-              "tool": "massive-mcp_search_endpoints",
               "intent": "Search only local functions related to technical indicators",
               "params": {
                 "query": "technical indicators",
@@ -16565,7 +16285,7 @@
     },
     {
       "name": "octagon-mcp",
-      "intro": "The octagon-mcp server is a market intelligence and research server designed for broader, synthesis-heavy analysis across multiple financial and market information sources. It is useful when the user needs an aggregated research view, a multi-source market intelligence answer, or focused analysis on prediction market events.\n\n### How it works\n- The server centers on agent-style tools driven by a natural language `prompt`, with different tools oriented toward broader market intelligence, deep research, or prediction-market-specific analysis.\n- It also includes a historical prediction market data tool keyed by `event_ticker`, with optional pagination, time-window filtering, and analysis-column controls.\n- The server is oriented more toward synthesis and interpreted research workflows than toward direct low-level dataset retrieval.\n\n### Potential resolution paths\n- **Run broad market intelligence research:** Use `octagon-agent` when the user needs a wide market intelligence view that combines multiple research domains into one answer.\n- **Go deeper on a focused investment research question:** Use `octagon-deep-research-agent` when the request is narrower but still requires aggregated, up-to-date research from multiple sources.\n- **Analyze a prediction market with both data and research context:** Pull historical event data with `prediction_markets_history`, then use `octagon-prediction-markets-agent` when the user wants a more interpretive report on drivers, model versus market probabilities, or potential mispricings.\n\n### Best practices\n- **Choose the agent by research depth and scope:** Use the broader agent for holistic market intelligence, the deep research agent for focused investment research, and the prediction-markets agent when the question is specifically about Kalshi-style event markets.\n- **Retrieve historical market data for a specific event before running prediction-market analysis:** Call `prediction_markets_history` with the `event_ticker` and relevant time window first, then pass that concrete market context into `octagon-prediction-markets-agent` — the analysis is more grounded when actual pricing and event history are part of the prompt.",
+      "intro": "The `octagon-mcp` server is a market intelligence and research server designed for broader, synthesis-heavy analysis across multiple financial and market information sources. It is useful when the user needs an aggregated research view, a multi-source market intelligence answer, or focused analysis on prediction market events.\n\n### How it works\n- The server centers on agent-style tools driven by a natural language `prompt`, with different tools oriented toward broader market intelligence, deep research, or prediction-market-specific analysis.\n- It also includes a historical prediction market data tool keyed by `event_ticker`, with optional pagination, time-window filtering, and analysis-column controls.\n- The server is oriented more toward synthesis and interpreted research workflows than toward direct low-level dataset retrieval.\n\n### Potential resolution paths\n- **Run broad market intelligence research:** Use `octagon-agent` when the user needs a wide market intelligence view that combines multiple research domains into one answer.\n- **Go deeper on a focused investment research question:** Use `octagon-deep-research-agent` when the request is narrower but still requires aggregated, up-to-date research from multiple sources.\n- **Analyze a prediction market with both data and research context:** Pull historical event data with `prediction_markets_history`, then use `octagon-prediction-markets-agent` when the user wants a more interpretive report on drivers, model versus market probabilities, or potential mispricings.\n\n### Best practices\n- **Choose the agent by research depth and scope:** Use `octagon-agent` for holistic market intelligence, `octagon-deep-research-agent` for focused investment research, and `octagon-prediction-markets-agent` when the question is specifically about Kalshi-style event markets.\n- **Retrieve historical market data for a specific event before running prediction-market analysis:** Call `prediction_markets_history` with the `event_ticker` and relevant time window first, then pass that concrete market context into `octagon-prediction-markets-agent` — the analysis is more grounded when actual pricing and event history are part of the prompt.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -16583,14 +16303,12 @@
           ],
           "examples": [
             {
-              "tool": "octagon-mcp_octagon-agent",
               "intent": "Research a public company across filings, earnings, and ownership signals",
               "params": {
                 "prompt": "Provide a comprehensive market intelligence analysis of Nvidia, including filings, earnings, financial metrics, and institutional ownership trends"
               }
             },
             {
-              "tool": "octagon-mcp_octagon-agent",
               "intent": "Research a broader market theme across public and private markets",
               "params": {
                 "prompt": "Analyze the current AI infrastructure market across public companies, private funding activity, and recent M&A trends"
@@ -16615,14 +16333,12 @@
           ],
           "examples": [
             {
-              "tool": "octagon-mcp_octagon-deep-research-agent",
               "intent": "Research the current investment case for semiconductor stocks",
               "params": {
                 "prompt": "Provide a deep investment research overview of the current semiconductor sector outlook"
               }
             },
             {
-              "tool": "octagon-mcp_octagon-deep-research-agent",
               "intent": "Research a company with a focus on risks and catalysts",
               "params": {
                 "prompt": "Analyze the current investment thesis for Tesla, including key risks and near-term catalysts"
@@ -16655,14 +16371,12 @@
           ],
           "examples": [
             {
-              "tool": "octagon-mcp_octagon-prediction-markets-agent",
               "intent": "Research what is driving a specific Kalshi event",
               "params": {
                 "prompt": "Create a research report on the current drivers of the BTC end-of-month Kalshi market"
               }
             },
             {
-              "tool": "octagon-mcp_octagon-prediction-markets-agent",
               "intent": "Analyze a Kalshi event for potential mispricing and cache the response",
               "params": {
                 "prompt": "Compare market-implied and model-implied probabilities for this Kalshi election event and identify possible mispricings",
@@ -16728,14 +16442,12 @@
           ],
           "examples": [
             {
-              "tool": "octagon-mcp_prediction_markets_history",
               "intent": "Retrieve recent history for a specific prediction market event",
               "params": {
                 "event_ticker": "KXBTCY-27JAN0100"
               }
             },
             {
-              "tool": "octagon-mcp_prediction_markets_history",
               "intent": "Retrieve a bounded historical window for a prediction market event with analysis columns",
               "params": {
                 "event_ticker": "KXBTCY-27JAN0100",
@@ -17524,7 +17236,7 @@
     },
     {
       "name": "us-legal-mcp",
-      "intro": "The us-legal-mcp server is a US legal research server for searching across congressional legislation, Federal Register materials, and court opinions, while also surfacing recent items from each source. It is useful when the user needs either targeted research within one legal source or a broader view across legislation, regulation, and case law.\n\n### How it works\n- The server is organized around source-specific search tools for Congress, the Federal Register, and CourtListener, plus recent-item tools for each of those sources.\n- Most search workflows start from a `query`, while optional filters such as `congress`, `court`, and `limit` help narrow scope or control result volume.\n- The cross-source tool is useful for broader discovery, while the source-specific tools are better when the user already knows whether the question is legislative, regulatory, or judicial.\n\n### Potential resolution paths\n- **Start broad, then narrow to the right source:** Use `search_all_legal` when the user only has a topic, then continue with `search_congress_bills`, `search_federal_register`, or `search_court_opinions` once the most relevant legal source is clear.\n- **Track a legal topic across different source types:** Search congressional bills for proposed legislation, search the Federal Register for regulatory material on the same topic, and search court opinions when the user also needs judicial treatment of that issue.\n- **Monitor what is new without starting from a keyword search:** Use `get_recent_bills`, `get_recent_regulations`, or `get_recent_court_opinions` when the goal is to review the latest published or introduced legal materials first, then follow with a source-specific search if a topic needs deeper research.\n\n### Best practices\n- **Choose the source-specific tool when the legal source is already known:** It will usually return more focused results than starting with the cross-source search.\n- **Use broad search first when the user is exploring a topic rather than a source:** `search_all_legal` works better as a starting point when the request does not clearly map to legislation, regulation, or case law.",
+      "intro": "The `us-legal-mcp` server is a US legal research server for searching across congressional legislation, Federal Register materials, and court opinions, while also surfacing recent items from each source. It is useful when the user needs either targeted research within one legal source or a broader view across legislation, regulation, and case law.\n\n### How it works\n- The server is organized around source-specific search tools for Congress, the Federal Register, and CourtListener, plus recent-item tools for each of those sources.\n- Most search workflows start from a `query`, while optional filters such as `congress`, `court`, and `limit` help narrow scope or control result volume.\n- The cross-source tool is useful for broader discovery, while the source-specific tools are better when the user already knows whether the question is legislative, regulatory, or judicial.\n\n### Potential resolution paths\n- **Start broad, then narrow to the right source:** Use `search_all_legal` when the user only has a topic, then continue with `search_congress_bills`, `search_federal_register`, or `search_court_opinions` once the most relevant legal source is clear.\n- **Track a legal topic across different source types:** Use `search_congress_bills` for proposed legislation, `search_federal_register` for regulatory material on the same topic, and `search_court_opinions` when the user also needs judicial treatment of that issue.\n- **Monitor what is new without starting from a keyword search:** Use `get_recent_bills`, `get_recent_regulations`, or `get_recent_court_opinions` when the goal is to review the latest published or introduced legal materials first, then follow with a source-specific search if a topic needs deeper research.\n\n### Best practices\n- **Choose the source-specific tool when the legal source is already known:** It will usually return more focused results than starting with the cross-source search.\n- **Use broad search first when the user is exploring a topic rather than a source:** `search_all_legal` works better as a starting point when the request does not clearly map to legislation, regulation, or case law.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -17550,12 +17262,10 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_get_recent_bills",
               "intent": "Get the most recent bills introduced in Congress",
               "params": {}
             },
             {
-              "tool": "us-legal-mcp_get_recent_bills",
               "intent": "Retrieve more recently introduced bills from the 118th Congress",
               "params": {
                 "congress": 118,
@@ -17589,12 +17299,10 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_get_recent_court_opinions",
               "intent": "Get the most recently published court opinions",
               "params": {}
             },
             {
-              "tool": "us-legal-mcp_get_recent_court_opinions",
               "intent": "Retrieve recent Supreme Court opinions",
               "params": {
                 "court": "scotus",
@@ -17620,12 +17328,10 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_get_recent_regulations",
               "intent": "Get the most recently published Federal Register documents",
               "params": {}
             },
             {
-              "tool": "us-legal-mcp_get_recent_regulations",
               "intent": "Retrieve more recently published Federal Register documents",
               "params": {
                 "limit": 30
@@ -17658,14 +17364,12 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_search_all_legal",
               "intent": "Search across US legal sources for immigration-related material",
               "params": {
                 "query": "immigration"
               }
             },
             {
-              "tool": "us-legal-mcp_search_all_legal",
               "intent": "Retrieve more cross-source legal results related to healthcare",
               "params": {
                 "query": "healthcare",
@@ -17707,14 +17411,12 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_search_congress_bills",
               "intent": "Search for congressional bills related to immigration",
               "params": {
                 "query": "immigration"
               }
             },
             {
-              "tool": "us-legal-mcp_search_congress_bills",
               "intent": "Retrieve more infrastructure-related bills from the 118th Congress",
               "params": {
                 "query": "infrastructure",
@@ -17757,14 +17459,12 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_search_court_opinions",
               "intent": "Search court opinions related to copyright disputes",
               "params": {
                 "query": "copyright"
               }
             },
             {
-              "tool": "us-legal-mcp_search_court_opinions",
               "intent": "Search Supreme Court opinions related to constitutional issues",
               "params": {
                 "query": "constitutional",
@@ -17799,14 +17499,12 @@
           ],
           "examples": [
             {
-              "tool": "us-legal-mcp_search_federal_register",
               "intent": "Search for Federal Register documents related to environmental policy",
               "params": {
                 "query": "environmental"
               }
             },
             {
-              "tool": "us-legal-mcp_search_federal_register",
               "intent": "Retrieve more Federal Register documents related to healthcare",
               "params": {
                 "query": "healthcare",
@@ -17821,7 +17519,7 @@
     },
     {
       "name": "us-regulations-mcp",
-      "intro": "The us-regulations-mcp server is a US regulatory research and compliance analysis server centered on supported federal and state regulations. It is useful for discovering relevant regulation text, inspecting regulation structure, retrieving exact sections, comparing requirements across regulations, checking sector applicability, mapping controls to regulations, and extracting compliance-oriented outputs from identified sections.\n\n### How it works\n- The server supports both discovery and follow-up workflows: broad search and listing tools help identify relevant regulations or sections, while retrieval and analysis tools operate on specific regulations, sections, or section sets.\n- Common inputs include `query`, `regulation`, `section`, `sections`, `regulations`, `topic`, `sector`, `framework`, and `state`, depending on whether the task is search, lookup, comparison, applicability, control mapping, or compliance extraction.\n- The server also includes server metadata through `about`, which can be used to verify coverage, freshness, and provenance before relying on the results.\n\n### Potential resolution paths\n- **Discover a rule, then retrieve the exact text:** Start with `search_regulations` to find relevant sections by topic, use `list_regulations` to inspect available regulation IDs or section structure if needed, then move into `get_section` once the exact regulation and section are known.\n- **Move from relevant sections into compliance outputs:** After identifying sections with `search_regulations` or `get_section`, use `get_evidence_requirements` to extract audit evidence expectations or `get_compliance_action_items` to turn the same sections into prioritized follow-up actions.\n- **Compare or scope obligations before drilling down:** Use `compare_requirements` to see how multiple regulations address the same topic, `check_applicability` to identify which regulations may apply to a sector, or `get_breach_notification_timeline` when the question is specifically about notification deadlines and jurisdictional requirements.\n- **Connect control frameworks to regulation text:** Use `map_controls` when the user starts from a NIST framework objective and needs to locate the related regulation sections before reviewing those sections in more detail.\n\n### Best practices\n- **Use discovery tools before section-level tools when the exact citation is not known:** `search_regulations` and `list_regulations` are better starting points than guessing a regulation ID or section number.\n- **Choose the analysis tool by the type of compliance question:** Use comparison tools for cross-regulation questions, applicability tools for scoping, section retrieval for exact text, and evidence or action tools when the user needs compliance artifacts or next steps.",
+      "intro": "The `us-regulations-mcp` server is a US regulatory research and compliance analysis server centered on supported federal and state regulations. It is useful for discovering relevant regulation text, inspecting regulation structure, retrieving exact sections, comparing requirements across regulations, checking sector applicability, mapping controls to regulations, and extracting compliance-oriented outputs from identified sections.\n\n### How it works\n- The server supports both discovery and follow-up workflows: broad search and listing tools help identify relevant regulations or sections, while retrieval and analysis tools operate on specific regulations, sections, or section sets.\n- Common inputs include `query`, `regulation`, `section`, `sections`, `regulations`, `topic`, `sector`, `framework`, and `state`, depending on whether the task is search, lookup, comparison, applicability, control mapping, or compliance extraction.\n- The server also includes server metadata through `about`, which can be used to verify coverage, freshness, and provenance before relying on the results.\n\n### Potential resolution paths\n- **Discover a rule, then retrieve the exact text:** Start with `search_regulations` to find relevant sections by topic, use `list_regulations` to inspect available regulation IDs or section structure if needed, then move into `get_section` once the exact regulation and section are known.\n- **Move from relevant sections into compliance outputs:** After identifying sections with `search_regulations` or `get_section`, use `get_evidence_requirements` to extract audit evidence expectations or `get_compliance_action_items` to turn the same sections into prioritized follow-up actions.\n- **Compare or scope obligations before drilling down:** Use `compare_requirements` to see how multiple regulations address the same topic, `check_applicability` to identify which regulations may apply to a sector, or `get_breach_notification_timeline` when the question is specifically about notification deadlines and jurisdictional requirements.\n- **Connect control frameworks to regulation text:** Use `map_controls` when the user starts from a NIST framework objective and needs to locate the related regulation sections before reviewing those sections in more detail.\n\n### Best practices\n- **Use discovery tools before section-level tools when the exact citation is not known:** `search_regulations` and `list_regulations` are better starting points than guessing a regulation ID or section number.\n- **Choose the analysis tool by the type of compliance question:** Use comparison tools for cross-regulation questions, applicability tools for scoping, section retrieval for exact text, and evidence or action tools when the user needs compliance artifacts or next steps.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -17830,7 +17528,6 @@
           "parameters": [],
           "examples": [
             {
-              "tool": "us-regulations-mcp_about",
               "intent": "Review server coverage and freshness information before starting compliance research",
               "params": {}
             }
@@ -17861,14 +17558,12 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_check_applicability",
               "intent": "Check which regulations apply to the healthcare sector",
               "params": {
                 "sector": "healthcare"
               }
             },
             {
-              "tool": "us-regulations-mcp_check_applicability",
               "intent": "Check which regulations apply to hospitals within the healthcare sector",
               "params": {
                 "sector": "healthcare",
@@ -17902,7 +17597,6 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_compare_requirements",
               "intent": "Compare how regulations address breach notification",
               "params": {
                 "topic": "breach notification",
@@ -17914,7 +17608,6 @@
               }
             },
             {
-              "tool": "us-regulations-mcp_compare_requirements",
               "intent": "Compare access control requirements across multiple regulations",
               "params": {
                 "topic": "access controls",
@@ -17952,12 +17645,10 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_get_breach_notification_timeline",
               "intent": "Get breach notification timelines across all supported jurisdictions",
               "params": {}
             },
             {
-              "tool": "us-regulations-mcp_get_breach_notification_timeline",
               "intent": "Get California breach notification timelines for HIPAA-related rules",
               "params": {
                 "state": "California",
@@ -17991,7 +17682,6 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_get_compliance_action_items",
               "intent": "Generate compliance action items from selected HIPAA sections",
               "params": {
                 "regulation": "HIPAA",
@@ -18002,7 +17692,6 @@
               }
             },
             {
-              "tool": "us-regulations-mcp_get_compliance_action_items",
               "intent": "Generate action items from selected GLBA sections",
               "params": {
                 "regulation": "GLBA",
@@ -18039,7 +17728,6 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_get_evidence_requirements",
               "intent": "Extract audit evidence requirements from a HIPAA section",
               "params": {
                 "regulation": "HIPAA",
@@ -18047,7 +17735,6 @@
               }
             },
             {
-              "tool": "us-regulations-mcp_get_evidence_requirements",
               "intent": "Extract evidence requirements from the SOX section on internal controls",
               "params": {
                 "regulation": "SOX",
@@ -18081,7 +17768,6 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_get_section",
               "intent": "Retrieve the HIPAA section for uses and disclosures of protected health information",
               "params": {
                 "regulation": "HIPAA",
@@ -18089,7 +17775,6 @@
               }
             },
             {
-              "tool": "us-regulations-mcp_get_section",
               "intent": "Retrieve the CCPA section covering consumer rights requests",
               "params": {
                 "regulation": "CCPA",
@@ -18115,12 +17800,10 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_list_regulations",
               "intent": "List all available regulations",
               "params": {}
             },
             {
-              "tool": "us-regulations-mcp_list_regulations",
               "intent": "Get the structure of the HIPAA regulation",
               "params": {
                 "regulation": "HIPAA"
@@ -18161,14 +17844,12 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_map_controls",
               "intent": "Map NIST CSF controls to relevant regulations",
               "params": {
                 "framework": "NIST_CSF"
               }
             },
             {
-              "tool": "us-regulations-mcp_map_controls",
               "intent": "Map a specific NIST 800-53 control to HIPAA sections",
               "params": {
                 "framework": "NIST_800_53_R5",
@@ -18219,14 +17900,12 @@
           ],
           "examples": [
             {
-              "tool": "us-regulations-mcp_search_regulations",
               "intent": "Search regulations for breach notification requirements",
               "params": {
                 "query": "breach notification requirements"
               }
             },
             {
-              "tool": "us-regulations-mcp_search_regulations",
               "intent": "Search HIPAA and CCPA regulation text related to safeguards with pagination",
               "params": {
                 "query": "safeguards",
@@ -18538,7 +18217,7 @@
               "required": false,
               "default": "null",
               "allowed": [],
-              "description": "Filters results by litigation role."
+              "description": "Filters results by litigation role. Allowed: plaintiff, defendant"
             },
             {
               "number": 5,
@@ -19535,7 +19214,7 @@
               "required": false,
               "default": "any",
               "allowed": [],
-              "description": "Controls the match type for this search."
+              "description": "Controls the match type for this search. Allowed: any, all, phrase"
             },
             {
               "number": 4,
@@ -20041,7 +19720,7 @@
               "required": false,
               "default": "null",
               "allowed": [],
-              "description": "Filters results by decision type."
+              "description": "Filters results by decision type. Allowed: institution, final, termination"
             },
             {
               "number": 20,
@@ -20132,7 +19811,7 @@
               "required": false,
               "default": "null",
               "allowed": [],
-              "description": "Filters results by trial type."
+              "description": "Filters results by trial type. Allowed: IPR, PGR, CBM, DER"
             },
             {
               "number": 9,
@@ -20172,7 +19851,7 @@
               "required": false,
               "default": "null",
               "allowed": [],
-              "description": "Filters results by proceeding status."
+              "description": "Filters results by proceeding status. Allowed: Pending, Instituted, Terminated, FWD Entered"
             },
             {
               "number": 4,
@@ -20488,7 +20167,7 @@
     },
     {
       "name": "yahoo-finance",
-      "intro": "The yahoo-finance server is a market research server centered on ticker discovery, company snapshots, recent news, historical price data, option chains, earnings data, and sector-level entity lists. It is useful when the user needs to move between symbol discovery, ticker-specific context, and broader market browsing within the same server.\n\n### How it works\n- The server supports both discovery workflows and ticker-specific retrieval, depending on whether the user starts from a free-text search, a sector view, or a known symbol.\n- Most tools center on a `symbol`, while broader discovery tools use inputs such as `query`, `entity_type`, `sector`, `period`, `interval`, `option_type`, or `date` when applicable.\n- The server combines current company context, recent news, historical pricing, options data, and earnings data, so different views of the same ticker can be retrieved without switching servers.\n\n### Potential resolution paths\n- **Find a symbol, then inspect it:** Start with `search` when the user has a company name or broad query, then move into `get-ticker-info` or `get-ticker-news` once the correct symbol is identified.\n- **Move from a company snapshot into market history:** Use `get-ticker-info` for a broad ticker overview, then follow with `get-price-history` when the user needs to review how that company has traded over time.\n- **Expand from a stock into derivatives or event context:** Pull `ticker-option-chain` when the user needs option chain data for the same symbol, or `ticker-earning` when the focus shifts to annual or quarterly earnings context.\n- **Explore a sector before narrowing to a ticker:** Use `get-top-entities` to review leading entities within a sector, then choose a symbol from those results for ticker-level data such as `get-ticker-info`, `get-price-history`, or `get-ticker-news`.\n\n### Best practices\n- **Use discovery tools before ticker tools when the symbol is uncertain:** `search` and `get-top-entities` are better starting points than guessing a ticker and calling a symbol-specific endpoint directly.\n- **Match the tool to the type of context needed:** Use `get-ticker-info` for a broad company view, `get-ticker-news` for recent developments, `get-price-history` for past market behavior, `ticker-option-chain` for options data, and `ticker-earning` for earnings context.",
+      "intro": "The `yahoo-finance` server is a market research server centered on ticker discovery, company snapshots, recent news, historical price data, option chains, earnings data, and sector-level entity lists. It is useful when the user needs to move between symbol discovery, ticker-specific context, and broader market browsing within the same server.\n\n### How it works\n- The server supports both discovery workflows and ticker-specific retrieval, depending on whether the user starts from a free-text search, a sector view, or a known symbol.\n- Most tools center on a `symbol`, while broader discovery tools use inputs such as `query`, `entity_type`, `sector`, `period`, `interval`, `option_type`, or `date` when applicable.\n- The server combines current company context, recent news, historical pricing, options data, and earnings data, so different views of the same ticker can be retrieved without switching servers.\n\n### Potential resolution paths\n- **Find a symbol, then inspect it:** Start with `search` when the user has a company name or broad query, then move into `get-ticker-info` or `get-ticker-news` once the correct symbol is identified.\n- **Move from a company snapshot into market history:** Use `get-ticker-info` for a broad ticker overview, then follow with `get-price-history` when the user needs to review how that company has traded over time.\n- **Expand from a stock into derivatives or event context:** Pull `ticker-option-chain` when the user needs option chain data for the same symbol, or `ticker-earning` when the focus shifts to annual or quarterly earnings context.\n- **Explore a sector before narrowing to a ticker:** Use `get-top-entities` to review leading entities within a sector, then choose a symbol from those results for ticker-level data such as `get-ticker-info`, `get-price-history`, or `get-ticker-news`.\n\n### Best practices\n- **Use discovery tools before ticker tools when the symbol is uncertain:** `search` and `get-top-entities` are better starting points than guessing a ticker and calling a symbol-specific endpoint directly.\n- **Match the tool to the type of context needed:** Use `get-ticker-info` for a broad company view, `get-ticker-news` for recent developments, `get-price-history` for past market behavior, `ticker-option-chain` for options data, and `ticker-earning` for earnings context.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -20548,14 +20227,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_get-price-history",
               "intent": "Fetch the default price history for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "yahoo-finance_get-price-history",
               "intent": "Retrieve six months of hourly price history for Tesla",
               "params": {
                 "symbol": "TSLA",
@@ -20582,14 +20259,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_get-ticker-info",
               "intent": "Retrieve a broad company and trading snapshot for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "yahoo-finance_get-ticker-info",
               "intent": "Review company, financial, and governance data for Tesla",
               "params": {
                 "symbol": "TSLA"
@@ -20622,14 +20297,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_get-ticker-news",
               "intent": "Fetch the latest news articles for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "yahoo-finance_get-ticker-news",
               "intent": "Retrieve a larger set of recent news articles for Nvidia",
               "params": {
                 "symbol": "NVDA",
@@ -20677,7 +20350,6 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_get-top-entities",
               "intent": "Get top ETFs in the technology sector",
               "params": {
                 "entity_type": "etfs",
@@ -20685,7 +20357,6 @@
               }
             },
             {
-              "tool": "yahoo-finance_get-top-entities",
               "intent": "Retrieve more top performing companies in healthcare",
               "params": {
                 "entity_type": "performing_companies",
@@ -20720,14 +20391,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_search",
               "intent": "Search for results related to Apple",
               "params": {
                 "query": "Apple"
               }
             },
             {
-              "tool": "yahoo-finance_search",
               "intent": "Retrieve a broader set of search results for semiconductor ETFs",
               "params": {
                 "query": "semiconductor ETF",
@@ -20772,14 +20441,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_ticker-earning",
               "intent": "Retrieve the most recent annual earnings data for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "yahoo-finance_ticker-earning",
               "intent": "Get quarterly earnings data for Tesla around a specific date",
               "params": {
                 "symbol": "TSLA",
@@ -20826,14 +20493,12 @@
           ],
           "examples": [
             {
-              "tool": "yahoo-finance_ticker-option-chain",
               "intent": "Retrieve the most recent option chain data for Apple",
               "params": {
                 "symbol": "AAPL"
               }
             },
             {
-              "tool": "yahoo-finance_ticker-option-chain",
               "intent": "Get put option chain data for Tesla for a specific expiration date",
               "params": {
                 "symbol": "TSLA",

@@ -25,7 +25,6 @@ Number of court opinion results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_search_court_opinions",
   "intent": "Search court opinions related to copyright disputes",
   "params": {
     "query": "copyright"
@@ -35,7 +34,6 @@ Number of court opinion results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_search_court_opinions",
   "intent": "Search Supreme Court opinions related to constitutional issues",
   "params": {
     "query": "constitutional",

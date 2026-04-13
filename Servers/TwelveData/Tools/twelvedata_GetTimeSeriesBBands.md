@@ -76,7 +76,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetTimeSeriesBBands",
   "intent": "Assess volatility for a forex pair",
   "params": {
     "symbol": "EUR/GBP",
@@ -85,7 +84,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetTimeSeriesBBands",
   "intent": "Analyze Bollinger Bands for a crypto asset with custom settings and date range",
   "params": {
     "symbol": "ETH/USD",

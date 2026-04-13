@@ -49,7 +49,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetProfile",
   "intent": "Retrieve general company profile for a European industrial firm",
   "params": {
     "symbol": "SIE",
@@ -58,7 +57,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetProfile",
   "intent": "Identify company using FIGI with geographic filtering",
   "params": {
     "figi": "BBG000BLNNH6",

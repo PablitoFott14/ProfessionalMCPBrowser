@@ -21,7 +21,6 @@ List of post-processing function steps to apply to the query results.
 
 ```json
 {
-  "tool": "massive-mcp_query_data",
   "intent": "List all stored data tables",
   "params": {
     "sql": "SHOW TABLES"
@@ -31,7 +30,6 @@ List of post-processing function steps to apply to the query results.
 
 ```json
 {
-  "tool": "massive-mcp_query_data",
   "intent": "Calculate the average close price from a stored prices table and post-process the result",
   "params": {
     "sql": "SELECT AVG(close) AS avg_close FROM prices",

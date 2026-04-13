@@ -21,7 +21,6 @@ Flag indicating whether the response should be cached.
 
 ```json
 {
-  "tool": "octagon-mcp_octagon-prediction-markets-agent",
   "intent": "Research what is driving a specific Kalshi event",
   "params": {
     "prompt": "Create a research report on the current drivers of the BTC end-of-month Kalshi market"
@@ -31,7 +30,6 @@ Flag indicating whether the response should be cached.
 
 ```json
 {
-  "tool": "octagon-mcp_octagon-prediction-markets-agent",
   "intent": "Analyze a Kalshi event for potential mispricing and cache the response",
   "params": {
     "prompt": "Compare market-implied and model-implied probabilities for this Kalshi election event and identify possible mispricings",

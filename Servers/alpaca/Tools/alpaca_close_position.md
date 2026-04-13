@@ -25,7 +25,6 @@ Percentage of the position to liquidate (e.g., "50" for 50%). Must result in at 
 
 ```json
 {
-  "tool": "alpaca_close_position",
   "intent": "Close the entire Apple position",
   "params": {
     "symbol": "AAPL"
@@ -35,7 +34,6 @@ Percentage of the position to liquidate (e.g., "50" for 50%). Must result in at 
 
 ```json
 {
-  "tool": "alpaca_close_position",
   "intent": "Reduce the Tesla position by half",
   "params": {
     "symbol": "TSLA",

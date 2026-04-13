@@ -70,7 +70,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetPrice",
   "intent": "Retrieve real-time price for a US stock",
   "params": {
     "symbol": "GOOGL"
@@ -78,7 +77,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetPrice",
   "intent": "Retrieve crypto price with exchange context and precision",
   "params": {
     "symbol": "ADA/USD",

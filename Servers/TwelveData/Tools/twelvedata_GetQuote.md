@@ -50,7 +50,6 @@ Defines the rolling change period in hours. Especially relevant for crypto outpu
 
 ```json
 {
-  "tool": "twelvedata_GetQuote",
   "intent": "Check current price and market status for a European equity",
   "params": {
     "symbol": "MC",
@@ -59,7 +58,6 @@ Defines the rolling change period in hours. Especially relevant for crypto outpu
 }
 
 {
-  "tool": "twelvedata_GetQuote",
   "intent": "Analyze short term crypto performance using rolling change",
   "params": {
     "symbol": "SOL/USD",

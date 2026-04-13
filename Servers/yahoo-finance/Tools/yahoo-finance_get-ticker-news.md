@@ -21,7 +21,6 @@ Number of news articles to fetch.
 
 ```json
 {
-  "tool": "yahoo-finance_get-ticker-news",
   "intent": "Fetch the latest news articles for Apple",
   "params": {
     "symbol": "AAPL"
@@ -31,7 +30,6 @@ Number of news articles to fetch.
 
 ```json
 {
-  "tool": "yahoo-finance_get-ticker-news",
   "intent": "Retrieve a larger set of recent news articles for Nvidia",
   "params": {
     "symbol": "NVDA",

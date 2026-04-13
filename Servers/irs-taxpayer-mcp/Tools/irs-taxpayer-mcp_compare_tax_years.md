@@ -30,7 +30,6 @@ Number of qualifying dependents used in the comparison.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_compare_tax_years",
   "intent": "Compare tax years for a single filer with wage income only",
   "params": {
     "filingStatus": "single",
@@ -41,7 +40,6 @@ Number of qualifying dependents used in the comparison.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_compare_tax_years",
   "intent": "Compare tax years for a head of household filer with self-employment income and dependents",
   "params": {
     "filingStatus": "head_of_household",

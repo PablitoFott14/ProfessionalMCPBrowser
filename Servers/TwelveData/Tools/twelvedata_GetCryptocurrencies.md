@@ -46,7 +46,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetCryptocurrencies",
   "intent": "Discover all crypto pairs with BTC as base currency",
   "params": {
     "currency_base": "BTC"
@@ -54,7 +53,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetCryptocurrencies",
   "intent": "Filter crypto pairs by exchange and quote currency",
   "params": {
     "exchange": "Binance",

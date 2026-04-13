@@ -15,7 +15,6 @@ This tool takes no parameters.
 
 ```json
 {
-  "tool": "alpaca_get_all_positions",
   "intent": "Get a full overview of all current portfolio positions including P/L",
   "params": {}
 }

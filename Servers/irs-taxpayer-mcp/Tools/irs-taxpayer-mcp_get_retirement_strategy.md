@@ -17,7 +17,6 @@ Specific retirement strategy identifier used to narrow the returned information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_retirement_strategy",
   "intent": "List available tax-advantaged retirement strategies",
   "params": {}
 }
@@ -25,7 +24,6 @@ Specific retirement strategy identifier used to narrow the returned information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_retirement_strategy",
   "intent": "Get details for the Backdoor Roth strategy",
   "params": {
     "strategyId": "backdoor_roth"

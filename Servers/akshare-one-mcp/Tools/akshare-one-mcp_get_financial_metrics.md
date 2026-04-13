@@ -21,7 +21,6 @@ Limits how many of the most recent metric records are returned.
 
 ```json
 {
-  "tool": "akshare-one-mcp_get_financial_metrics",
   "intent": "Review recent financial metrics for a mainland China bank stock",
   "params": {
     "symbol": "000001"
@@ -29,7 +28,6 @@ Limits how many of the most recent metric records are returned.
 }
 
 {
-  "tool": "akshare-one-mcp_get_financial_metrics",
   "intent": "Pull a longer financial metric history for a Hong Kong listed technology company",
   "params": {
     "symbol": "00700",

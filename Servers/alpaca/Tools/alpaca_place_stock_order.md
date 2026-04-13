@@ -65,7 +65,6 @@ Custom identifier for the order, useful for tracking on the client side.
 
 ```json
 {
-  "tool": "alpaca_place_stock_order",
   "intent": "Place a market buy order for 10 shares of Apple",
   "params": {
     "symbol": "AAPL",
@@ -77,7 +76,6 @@ Custom identifier for the order, useful for tracking on the client side.
 
 ```json
 {
-  "tool": "alpaca_place_stock_order",
   "intent": "Place a limit sell order for Nvidia with a bracket to protect profits",
   "params": {
     "symbol": "NVDA",

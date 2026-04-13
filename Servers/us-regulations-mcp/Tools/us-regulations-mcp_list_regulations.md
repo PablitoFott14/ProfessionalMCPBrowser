@@ -17,7 +17,6 @@ Regulation identifier used to return the structure of a specific regulation.
 
 ```json
 {
-  "tool": "us-regulations-mcp_list_regulations",
   "intent": "List all available regulations",
   "params": {}
 }
@@ -25,7 +24,6 @@ Regulation identifier used to return the structure of a specific regulation.
 
 ```json
 {
-  "tool": "us-regulations-mcp_list_regulations",
   "intent": "Get the structure of the HIPAA regulation",
   "params": {
     "regulation": "HIPAA"

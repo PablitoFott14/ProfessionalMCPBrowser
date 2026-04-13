@@ -21,7 +21,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_search_federal_register",
   "intent": "Search for Federal Register documents related to environmental policy",
   "params": {
     "query": "environmental"
@@ -31,7 +30,6 @@ Number of results to return.
 
 ```json
 {
-  "tool": "us-legal-mcp_search_federal_register",
   "intent": "Retrieve more Federal Register documents related to healthcare",
   "params": {
     "query": "healthcare",

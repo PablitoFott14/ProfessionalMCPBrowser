@@ -63,7 +63,7 @@ Dataset product identifier.
 Required. No default value.
 
 (17) trial_type
-Trial type.
+Trial type. Accepted values: IPR, PGR, CBM, DER.
 Optional. Default: null.
 
 (18) party_name
@@ -71,7 +71,7 @@ Party name.
 Optional. Default: null.
 
 (19) status
-Status.
+Proceeding status. Accepted values: Pending, Instituted, Terminated, FWD Entered.
 Optional. Default: null.
 
 (20) proceeding_number
@@ -83,7 +83,7 @@ Document type.
 Optional. Default: null.
 
 (22) decision_type
-Decision type.
+Decision type. Accepted values: institution, final, termination.
 Optional. Default: null.
 
 (23) decision_date_from
@@ -103,7 +103,7 @@ Appeal number.
 Required. No default value.
 
 (27) search_type
-Search type.
+Search type. Accepted values: any, all, phrase.
 Optional. Default varies by tool.
 
 (28) patent_id
@@ -179,7 +179,7 @@ Date range end.
 Optional. Default: null.
 
 (46) role
-Role.
+Role filter. Accepted values: plaintiff, defendant.
 Optional. Default: null.
 
 (47) case_id

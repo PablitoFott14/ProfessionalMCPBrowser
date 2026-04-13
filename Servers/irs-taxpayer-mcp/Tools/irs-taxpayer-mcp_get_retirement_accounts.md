@@ -17,7 +17,6 @@ Specific retirement account type used to narrow the returned information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_retirement_accounts",
   "intent": "List retirement account details across available account types",
   "params": {}
 }
@@ -25,7 +24,6 @@ Specific retirement account type used to narrow the returned information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_retirement_accounts",
   "intent": "Get details for a Roth IRA",
   "params": {
     "accountType": "roth_ira"

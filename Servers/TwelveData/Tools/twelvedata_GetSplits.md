@@ -61,7 +61,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetSplits",
   "intent": "Retrieve latest available split data",
   "params": {
     "symbol": "TSLA"
@@ -69,7 +68,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetSplits",
   "intent": "Analyze full split history for long term adjustments",
   "params": {
     "symbol": "AAPL",

@@ -14,6 +14,7 @@ Full-text search query for PTAB proceedings.
 **(17) trial_type - Optional**
 Default: null
 Filters results by trial type.
+Allowed: IPR, PGR, CBM, DER
 
 **(9) patent_number - Optional**
 Default: null
@@ -34,6 +35,7 @@ Sets the filing date range end for this PTAB search.
 **(19) status - Optional**
 Default: null
 Filters results by proceeding status.
+Allowed: Pending, Instituted, Terminated, FWD Entered
 
 **(4) offset - Optional**
 Default: 0

@@ -21,7 +21,6 @@ List of regulation identifiers to include in the comparison.
 
 ```json
 {
-  "tool": "us-regulations-mcp_compare_requirements",
   "intent": "Compare how regulations address breach notification",
   "params": {
     "topic": "breach notification",
@@ -32,7 +31,6 @@ List of regulation identifiers to include in the comparison.
 
 ```json
 {
-  "tool": "us-regulations-mcp_compare_requirements",
   "intent": "Compare access control requirements across multiple regulations",
   "params": {
     "topic": "access controls",

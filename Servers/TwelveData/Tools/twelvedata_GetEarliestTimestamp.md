@@ -53,7 +53,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetEarliestTimestamp",
   "intent": "Check earliest available data for a stock",
   "params": {
     "symbol": "IBM"
@@ -61,7 +60,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetEarliestTimestamp",
   "intent": "Validate historical coverage for intraday crypto analysis",
   "params": {
     "symbol": "LTC/USD",

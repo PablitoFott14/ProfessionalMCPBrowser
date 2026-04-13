@@ -17,7 +17,6 @@ Two-letter state code used to retrieve the state tax information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_state_tax_info",
   "intent": "Get state income tax information for California",
   "params": {
     "stateCode": "CA"
@@ -27,7 +26,6 @@ Two-letter state code used to retrieve the state tax information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_state_tax_info",
   "intent": "Get state income tax information for Texas",
   "params": {
     "stateCode": "TX"

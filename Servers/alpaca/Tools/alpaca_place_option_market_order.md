@@ -44,7 +44,6 @@ Whether to allow execution during extended trading hours.
 
 ```json
 {
-  "tool": "alpaca_place_option_market_order",
   "intent": "Buy 1 Apple call option contract at market price",
   "params": {
     "legs": [
@@ -56,7 +55,6 @@ Whether to allow execution during extended trading hours.
 
 ```json
 {
-  "tool": "alpaca_place_option_market_order",
   "intent": "Place a bull call spread on Apple — buy lower strike, sell higher strike",
   "params": {
     "legs": [

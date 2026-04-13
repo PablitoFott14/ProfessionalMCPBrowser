@@ -22,7 +22,6 @@ Filing status used to retrieve the bracket schedule.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_tax_brackets",
   "intent": "Retrieve 2024 tax brackets for a single filer",
   "params": {
     "taxYear": 2024,
@@ -33,7 +32,6 @@ Filing status used to retrieve the bracket schedule.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_tax_brackets",
   "intent": "Retrieve 2025 tax brackets for a head of household filer",
   "params": {
     "taxYear": 2025,

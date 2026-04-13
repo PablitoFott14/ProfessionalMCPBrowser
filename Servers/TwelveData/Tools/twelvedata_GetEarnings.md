@@ -78,7 +78,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetEarnings",
   "intent": "Retrieve latest earnings for a US company",
   "params": {
     "symbol": "NVDA",
@@ -87,7 +86,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetEarnings",
   "intent": "Analyze earnings history within a defined time window",
   "params": {
     "symbol": "ASML",

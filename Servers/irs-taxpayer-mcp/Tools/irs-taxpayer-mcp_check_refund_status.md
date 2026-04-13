@@ -17,7 +17,6 @@ Flag indicating whether the return was e-filed.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_check_refund_status",
   "intent": "Get refund status instructions for an electronically filed return",
   "params": {
     "filedElectronically": true
@@ -27,7 +26,6 @@ Flag indicating whether the return was e-filed.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_check_refund_status",
   "intent": "Get general IRS refund status instructions",
   "params": {}
 }

@@ -25,7 +25,6 @@ Regulation identifier used to limit mappings to a specific regulation.
 
 ```json
 {
-  "tool": "us-regulations-mcp_map_controls",
   "intent": "Map NIST CSF controls to relevant regulations",
   "params": {
     "framework": "NIST_CSF"
@@ -35,7 +34,6 @@ Regulation identifier used to limit mappings to a specific regulation.
 
 ```json
 {
-  "tool": "us-regulations-mcp_map_controls",
   "intent": "Map a specific NIST 800-53 control to HIPAA sections",
   "params": {
     "framework": "NIST_800_53_R5",

@@ -30,13 +30,11 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetCryptocurrencyExchanges",
   "intent": "Retrieve list of available cryptocurrency exchanges",
   "params": {}
 }
 
 {
-  "tool": "twelvedata_GetCryptocurrencyExchanges",
   "intent": "Retrieve exchanges with extended result size for broader coverage",
   "params": {
     "outputsize": 100

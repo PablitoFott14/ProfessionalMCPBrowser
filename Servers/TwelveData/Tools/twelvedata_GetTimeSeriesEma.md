@@ -68,7 +68,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetTimeSeriesEma",
   "intent": "Short term trend check on a forex pair",
   "params": {
     "symbol": "GBP/JPY",
@@ -77,7 +76,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetTimeSeriesEma",
   "intent": "Crypto momentum analysis with custom EMA window and timeframe",
   "params": {
     "symbol": "ADA/USD",

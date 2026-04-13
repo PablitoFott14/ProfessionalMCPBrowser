@@ -21,7 +21,6 @@ List of ticker symbols to include in the watchlist.
 
 ```json
 {
-  "tool": "alpaca_create_watchlist",
   "intent": "Create a watchlist of tech stocks to monitor",
   "params": {
     "name": "Tech Watchlist",
@@ -32,7 +31,6 @@ List of ticker symbols to include in the watchlist.
 
 ```json
 {
-  "tool": "alpaca_create_watchlist",
   "intent": "Set up a watchlist for energy sector stocks",
   "params": {
     "name": "Energy Sector",

@@ -14,6 +14,7 @@ Company or individual name to look up.
 **(46) role - Optional**
 Default: null
 Filters results by litigation role.
+Allowed: plaintiff, defendant
 
 **(5) limit - Optional**
 Default: 25

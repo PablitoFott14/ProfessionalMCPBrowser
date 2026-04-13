@@ -42,7 +42,6 @@ Sort direction used for ordered results.
 
 ```json
 {
-  "tool": "fred-mcp-server_fred_browse",
   "intent": "Browse the top-level FRED categories",
   "params": {
     "browse_type": "categories"
@@ -52,7 +51,6 @@ Sort direction used for ordered results.
 
 ```json
 {
-  "tool": "fred-mcp-server_fred_browse",
   "intent": "Retrieve series in a specific FRED category",
   "params": {
     "browse_type": "category_series",

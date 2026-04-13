@@ -1,6 +1,6 @@
 ## irs-taxpayer-mcp
 
-The irs-taxpayer-mcp server covers the full range of US federal and state tax workflows: calculating liability, comparing filing options, planning deductions and credits, estimating withholding and quarterly payments, assessing audit risk, and projecting taxes across multiple years. It is the server to use when the goal is not just to look up a tax rule, but to apply it to a specific taxpayer situation and produce an actionable result.
+The `irs-taxpayer-mcp` server covers the full range of US federal and state tax workflows: calculating liability, comparing filing options, planning deductions and credits, estimating withholding and quarterly payments, assessing audit risk, and projecting taxes across multiple years. It is the server to use when the goal is not just to look up a tax rule, but to apply it to a specific taxpayer situation and produce an actionable result.
 
 ### How it works
 

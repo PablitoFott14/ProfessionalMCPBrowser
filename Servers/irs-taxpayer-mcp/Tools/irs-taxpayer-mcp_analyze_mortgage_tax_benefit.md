@@ -50,7 +50,6 @@ Mortgage interest rate.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
   "intent": "Analyze the tax benefit of itemizing for a single homeowner",
   "params": {
     "taxYear": 2024,
@@ -64,7 +63,6 @@ Mortgage interest rate.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_analyze_mortgage_tax_benefit",
   "intent": "Analyze the tax benefit of a larger mortgage for a joint filer with additional itemized deductions",
   "params": {
     "taxYear": 2025,

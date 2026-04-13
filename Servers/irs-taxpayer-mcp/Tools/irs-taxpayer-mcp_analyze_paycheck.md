@@ -59,7 +59,6 @@ Two-letter state code for state withholding context.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_analyze_paycheck",
   "intent": "Analyze withholding for a biweekly paycheck",
   "params": {
     "taxYear": 2025,
@@ -75,7 +74,6 @@ Two-letter state code for state withholding context.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_analyze_paycheck",
   "intent": "Analyze a paycheck including state withholding and pre-tax contributions",
   "params": {
     "taxYear": 2025,

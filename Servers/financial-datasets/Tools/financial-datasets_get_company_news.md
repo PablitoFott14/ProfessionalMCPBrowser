@@ -17,7 +17,6 @@ Ticker symbol of the company to retrieve news for (e.g., AAPL, GOOGL).
 
 ```json
 {
-  "tool": "financial-datasets_get_company_news",
   "intent": "Get the latest news for Microsoft",
   "params": {
     "ticker": "MSFT"

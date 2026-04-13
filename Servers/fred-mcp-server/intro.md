@@ -1,6 +1,6 @@
 ## fred-mcp-server
 
-The fred-mcp-server is an economic data research server centered on FRED series discovery, catalog browsing, and direct series retrieval. It is useful when the user needs to find relevant economic indicators, explore the structure of the FRED catalog, or pull observations for a known series.
+The `fred-mcp-server` is an economic data research server centered on FRED series discovery, catalog browsing, and direct series retrieval. It is useful when the user needs to find relevant economic indicators, explore the structure of the FRED catalog, or pull observations for a known series.
 
 ### How it works
 - The server supports three main workflows: keyword and filter-based series search, catalog browsing through categories, releases, or sources, and direct retrieval of series observations by `series_id`.

@@ -36,7 +36,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_historical_crypto_prices",
   "intent": "Get daily Bitcoin price history for the year 2023",
   "params": {
     "ticker": "BTC-USD",
@@ -48,7 +47,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_historical_crypto_prices",
   "intent": "Retrieve hourly Ethereum prices for a specific two-week window",
   "params": {
     "ticker": "ETH-USD",

@@ -117,7 +117,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetTimeSeriesSma",
   "intent": "Identify medium term trend for a forex pair",
   "params": {
     "symbol": "EUR/CHF",
@@ -127,7 +126,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetTimeSeriesSma",
   "intent": "Short term SMA analysis on a crypto asset with adjusted data",
   "params": {
     "symbol": "LINK/USD",

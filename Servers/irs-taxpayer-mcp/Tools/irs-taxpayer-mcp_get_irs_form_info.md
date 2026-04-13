@@ -17,7 +17,6 @@ IRS form number used to look up the form information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_irs_form_info",
   "intent": "Get information about Form 1040",
   "params": {
     "formNumber": "1040"
@@ -27,7 +26,6 @@ IRS form number used to look up the form information.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_irs_form_info",
   "intent": "Get information about Schedule C",
   "params": {
     "formNumber": "Schedule C"

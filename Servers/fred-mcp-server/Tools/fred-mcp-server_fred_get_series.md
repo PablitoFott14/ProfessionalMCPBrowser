@@ -62,7 +62,6 @@ Vintage date or dates used for vintage-aware retrieval.
 
 ```json
 {
-  "tool": "fred-mcp-server_fred_get_series",
   "intent": "Retrieve GDP observations from 2015 onward",
   "params": {
     "series_id": "GDP",
@@ -73,7 +72,6 @@ Vintage date or dates used for vintage-aware retrieval.
 
 ```json
 {
-  "tool": "fred-mcp-server_fred_get_series",
   "intent": "Retrieve recent CPI percent changes in descending date order",
   "params": {
     "series_id": "CPIAUCSL",

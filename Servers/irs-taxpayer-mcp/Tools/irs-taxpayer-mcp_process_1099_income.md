@@ -46,7 +46,6 @@ Flag indicating whether a 1099-B gain is long-term.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_process_1099_income",
   "intent": "Process freelance and interest income reported on 1099 forms",
   "params": {
     "taxYear": 2024,
@@ -69,7 +68,6 @@ Flag indicating whether a 1099-B gain is long-term.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_process_1099_income",
   "intent": "Process mixed 1099 income with W-2 context and investment income details",
   "params": {
     "taxYear": 2025,

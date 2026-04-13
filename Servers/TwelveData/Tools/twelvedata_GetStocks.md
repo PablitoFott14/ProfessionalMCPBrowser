@@ -70,7 +70,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetStocks",
   "intent": "Discover stocks listed on a specific exchange",
   "params": {
     "exchange": "NASDAQ",
@@ -79,7 +78,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetStocks",
   "intent": "Filter stocks by country including delisted instruments",
   "params": {
     "country": "United States",

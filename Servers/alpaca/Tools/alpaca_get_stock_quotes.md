@@ -63,7 +63,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_stock_quotes",
   "intent": "Get the last 30 minutes of bid/ask quotes for Apple",
   "params": {
     "symbol": "AAPL",
@@ -74,7 +73,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_stock_quotes",
   "intent": "Retrieve quote data for multiple stocks over a specific intraday window",
   "params": {
     "symbol": ["MSFT", "GOOGL"],

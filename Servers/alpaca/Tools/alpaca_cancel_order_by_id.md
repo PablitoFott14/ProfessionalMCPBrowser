@@ -17,7 +17,6 @@ UUID of the order to cancel.
 
 ```json
 {
-  "tool": "alpaca_cancel_order_by_id",
   "intent": "Cancel a specific order by its ID",
   "params": {
     "order_id": "a3f1c2e4-5678-4b9d-8abc-123456789def"

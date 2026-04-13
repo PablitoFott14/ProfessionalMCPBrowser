@@ -62,7 +62,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetFunds",
   "intent": "Discover funds available in the US",
   "params": {
     "country": "United States"
@@ -70,7 +69,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetFunds",
   "intent": "Retrieve funds from a specific exchange with pagination",
   "params": {
     "exchange": "NYSE",

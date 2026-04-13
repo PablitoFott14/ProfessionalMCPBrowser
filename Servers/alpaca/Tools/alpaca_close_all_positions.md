@@ -17,7 +17,6 @@ If true, cancels all open orders before liquidating positions.
 
 ```json
 {
-  "tool": "alpaca_close_all_positions",
   "intent": "Close all open positions immediately",
   "params": {}
 }
@@ -25,7 +24,6 @@ If true, cancels all open orders before liquidating positions.
 
 ```json
 {
-  "tool": "alpaca_close_all_positions",
   "intent": "Cancel all open orders and then close all positions",
   "params": {
     "cancel_orders": true

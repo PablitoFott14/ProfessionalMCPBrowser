@@ -117,7 +117,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetTimeSeriesRsi",
   "intent": "Check overbought or oversold conditions for a US equity",
   "params": {
     "symbol": "AAPL",
@@ -127,7 +126,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetTimeSeriesRsi",
   "intent": "Intraday RSI momentum analysis for a crypto asset with custom window",
   "params": {
     "symbol": "ETH/USD",

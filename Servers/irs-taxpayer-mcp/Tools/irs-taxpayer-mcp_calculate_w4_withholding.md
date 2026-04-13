@@ -51,7 +51,6 @@ Flag indicating whether the taxpayer holds multiple jobs simultaneously.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
   "intent": "Estimate W-4 withholding for a single salaried employee paid biweekly",
   "params": {
     "taxYear": 2024,
@@ -64,7 +63,6 @@ Flag indicating whether the taxpayer holds multiple jobs simultaneously.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_calculate_w4_withholding",
   "intent": "Estimate W-4 settings for a joint filer with dependents, other income, and a working spouse",
   "params": {
     "taxYear": 2025,

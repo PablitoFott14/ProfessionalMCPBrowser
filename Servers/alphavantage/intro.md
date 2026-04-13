@@ -1,6 +1,6 @@
 ## alphavantage
 
-The alphavantage server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.
+The `alphavantage` server is a schema-driven gateway for discovering, inspecting, and executing Alpha Vantage tools. It is useful when the user needs to explore what Alpha Vantage capabilities are available first, understand the required parameters for a specific tool, and then make the call in a structured way.
 
 ### How it works
 - The server follows a three-step interaction flow: list available tools, retrieve the full schema for the relevant tool, then execute it with the proper arguments.

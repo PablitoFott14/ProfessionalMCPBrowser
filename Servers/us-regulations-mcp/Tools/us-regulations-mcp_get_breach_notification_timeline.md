@@ -21,7 +21,6 @@ Regulation identifier used to filter the returned breach notification rules.
 
 ```json
 {
-  "tool": "us-regulations-mcp_get_breach_notification_timeline",
   "intent": "Get breach notification timelines across all supported jurisdictions",
   "params": {}
 }
@@ -29,7 +28,6 @@ Regulation identifier used to filter the returned breach notification rules.
 
 ```json
 {
-  "tool": "us-regulations-mcp_get_breach_notification_timeline",
   "intent": "Get California breach notification timelines for HIPAA-related rules",
   "params": {
     "state": "California",

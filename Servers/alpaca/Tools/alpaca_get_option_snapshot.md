@@ -24,7 +24,6 @@ Options data feed source. OPRA requires a subscription.
 
 ```json
 {
-  "tool": "alpaca_get_option_snapshot",
   "intent": "Get a full snapshot including Greeks and IV for a specific Apple put option",
   "params": {
     "symbol_or_symbols": "AAPL250613P00205000"
@@ -34,7 +33,6 @@ Options data feed source. OPRA requires a subscription.
 
 ```json
 {
-  "tool": "alpaca_get_option_snapshot",
   "intent": "Retrieve snapshots for multiple option contracts using the indicative feed",
   "params": {
     "symbol_or_symbols": ["AAPL250613P00205000", "MSFT250613C00400000"],

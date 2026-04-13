@@ -49,7 +49,6 @@ Either spouse contributing to an IRA.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
   "intent": "Compare MFJ and MFS for a married couple with straightforward income",
   "params": {
     "taxYear": 2024,
@@ -61,7 +60,6 @@ Either spouse contributing to an IRA.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_compare_mfj_vs_mfs",
   "intent": "Compare MFJ and MFS for a married couple with children, itemized deductions, and education-related restrictions",
   "params": {
     "taxYear": 2025,

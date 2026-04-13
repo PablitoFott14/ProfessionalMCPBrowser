@@ -1,6 +1,6 @@
 ## us-regulations-mcp
 
-The us-regulations-mcp server is a US regulatory research and compliance analysis server centered on supported federal and state regulations. It is useful for discovering relevant regulation text, inspecting regulation structure, retrieving exact sections, comparing requirements across regulations, checking sector applicability, mapping controls to regulations, and extracting compliance-oriented outputs from identified sections.
+The `us-regulations-mcp` server is a US regulatory research and compliance analysis server centered on supported federal and state regulations. It is useful for discovering relevant regulation text, inspecting regulation structure, retrieving exact sections, comparing requirements across regulations, checking sector applicability, mapping controls to regulations, and extracting compliance-oriented outputs from identified sections.
 
 ### How it works
 - The server supports both discovery and follow-up workflows: broad search and listing tools help identify relevant regulations or sections, while retrieval and analysis tools operate on specific regulations, sections, or section sets.

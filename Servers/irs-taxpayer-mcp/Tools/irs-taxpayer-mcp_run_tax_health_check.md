@@ -94,7 +94,6 @@ Flag indicating whether the taxpayer installed solar or renewable energy.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_run_tax_health_check",
   "intent": "Run a health check for a salaried filer with a mortgage, retirement savings, and withholding",
   "params": {
     "taxYear": 2025,
@@ -115,7 +114,6 @@ Flag indicating whether the taxpayer installed solar or renewable energy.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_run_tax_health_check",
   "intent": "Run a health check for a joint filer with business income, dependents, and tax-saving opportunities",
   "params": {
     "taxYear": 2025,

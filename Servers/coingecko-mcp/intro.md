@@ -1,6 +1,6 @@
 ## coingecko-mcp
 
-The coingecko-mcp server provides access to the full CoinGecko API through a code execution model. Rather than exposing individual endpoints as separate tools, it gives access to the entire API surface through a single execution tool backed by a documentation search tool. It is the right server when the goal is to query any CoinGecko data — prices, market caps, historical charts, trending assets, coin metadata, exchanges, or token details — with full control over what is retrieved and how results are shaped.
+The `coingecko-mcp` server provides access to the full CoinGecko API through a code execution model. Rather than exposing individual endpoints as separate tools, it gives access to the entire API surface through a single execution tool backed by a documentation search tool. It is the right server when the goal is to query any CoinGecko data — prices, market caps, historical charts, trending assets, coin metadata, exchanges, or token details — with full control over what is retrieved and how results are shaped.
 
 ### How it works
 

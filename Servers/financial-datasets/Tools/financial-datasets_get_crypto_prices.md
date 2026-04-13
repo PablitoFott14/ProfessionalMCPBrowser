@@ -34,7 +34,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_crypto_prices",
   "intent": "Get daily Solana prices for Q1 2024",
   "params": {
     "ticker": "SOL-USD",
@@ -46,7 +45,6 @@ Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-h
 
 ```json
 {
-  "tool": "financial-datasets_get_crypto_prices",
   "intent": "Retrieve 4-hour Ripple price bars for a specific month",
   "params": {
     "ticker": "XRP-USD",

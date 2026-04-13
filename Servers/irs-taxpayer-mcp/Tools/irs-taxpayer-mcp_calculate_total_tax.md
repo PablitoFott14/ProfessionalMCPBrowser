@@ -62,7 +62,6 @@ Number of qualifying child dependents.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_calculate_total_tax",
   "intent": "Calculate combined federal and California tax for a single wage earner",
   "params": {
     "taxYear": 2024,
@@ -76,7 +75,6 @@ Number of qualifying child dependents.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_calculate_total_tax",
   "intent": "Calculate combined federal and New York tax for a joint filer with business income and dependents",
   "params": {
     "taxYear": 2025,

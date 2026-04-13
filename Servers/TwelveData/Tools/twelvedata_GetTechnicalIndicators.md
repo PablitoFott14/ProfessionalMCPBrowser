@@ -21,13 +21,11 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetTechnicalIndicators",
   "intent": "Retrieve the full catalog of available technical indicators",
   "params": {}
 }
 
 {
-  "tool": "twelvedata_GetTechnicalIndicators",
   "intent": "Retrieve a limited set of technical indicator metadata",
   "params": {
     "outputsize": 50

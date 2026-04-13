@@ -29,7 +29,6 @@ Number of results to skip for pagination.
 
 ```json
 {
-  "tool": "us-regulations-mcp_search_regulations",
   "intent": "Search regulations for breach notification requirements",
   "params": {
     "query": "breach notification requirements"
@@ -39,7 +38,6 @@ Number of results to skip for pagination.
 
 ```json
 {
-  "tool": "us-regulations-mcp_search_regulations",
   "intent": "Search HIPAA and CCPA regulation text related to safeguards with pagination",
   "params": {
     "query": "safeguards",

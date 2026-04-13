@@ -14,6 +14,7 @@ Search terms for patent titles and abstracts.
 **(27) search_type - Optional**
 Default: any
 Controls the match type for this search.
+Allowed: any, all, phrase
 
 **(4) offset - Optional**
 Default: 0

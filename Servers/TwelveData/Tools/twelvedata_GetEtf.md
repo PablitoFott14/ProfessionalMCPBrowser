@@ -66,7 +66,6 @@ API authentication key.
 
 ```json
 {
-  "tool": "twelvedata_GetEtf",
   "intent": "Discover ETFs listed in the US",
   "params": {
     "country": "United States"
@@ -74,7 +73,6 @@ API authentication key.
 }
 
 {
-  "tool": "twelvedata_GetEtf",
   "intent": "Filter ETFs by exchange including delisted instruments",
   "params": {
     "exchange": "NYSE",

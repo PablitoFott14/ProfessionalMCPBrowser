@@ -22,7 +22,6 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
-  "tool": "alpaca_get_crypto_latest_trade",
   "intent": "Get the most recent trade execution for Bitcoin",
   "params": {
     "symbol": "BTC/USD"
@@ -32,7 +31,6 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
-  "tool": "alpaca_get_crypto_latest_trade",
   "intent": "Get the latest trades for Bitcoin, Ethereum, and Solana simultaneously",
   "params": {
     "symbol": ["BTC/USD", "ETH/USD", "SOL/USD"]

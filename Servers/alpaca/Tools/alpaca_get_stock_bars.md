@@ -67,7 +67,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_stock_bars",
   "intent": "Get the last 10 days of daily bars for Apple and Microsoft",
   "params": {
     "symbol": ["AAPL", "MSFT"],
@@ -79,7 +78,6 @@ Timezone for interpreting naive datetime strings (e.g., UTC, America/New_York).
 
 ```json
 {
-  "tool": "alpaca_get_stock_bars",
   "intent": "Retrieve 15-minute bars for Nvidia over a specific date range",
   "params": {
     "symbol": "NVDA",

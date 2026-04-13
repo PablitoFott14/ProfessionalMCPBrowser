@@ -1,6 +1,6 @@
 ## goldrush-mcp
 
-The goldrush-mcp server is a comprehensive on-chain data layer for EVM chains, Bitcoin, and NFTs. It covers wallet balances, transaction history, token transfers, event logs, block data, NFT ownership, DeFi pool prices, gas estimates, and historical snapshots — all accessible through a consistent set of address- and chain-scoped tools. It is the right server when the goal is to retrieve, inspect, or analyze blockchain state across one or many chains without writing direct RPC calls.
+The `goldrush-mcp` server is a comprehensive on-chain data layer for EVM chains, Bitcoin, and NFTs. It covers wallet balances, transaction history, token transfers, event logs, block data, NFT ownership, DeFi pool prices, gas estimates, and historical snapshots — all accessible through a consistent set of address- and chain-scoped tools. It is the right server when the goal is to retrieve, inspect, or analyze blockchain state across one or many chains without writing direct RPC calls.
 
 ### How it works
 

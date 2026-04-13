@@ -54,7 +54,6 @@ Target net gain or loss to realize.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_optimize_capital_gains",
   "intent": "Identify which lots to sell to realize losses for tax-loss harvesting",
   "params": {
     "taxYear": 2025,
@@ -83,7 +82,6 @@ Target net gain or loss to realize.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_optimize_capital_gains",
   "intent": "Review lots for a joint filer trying to realize gains efficiently",
   "params": {
     "taxYear": 2025,

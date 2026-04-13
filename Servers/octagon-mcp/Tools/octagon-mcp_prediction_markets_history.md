@@ -37,7 +37,6 @@ Flag indicating whether analysis columns should be included.
 
 ```json
 {
-  "tool": "octagon-mcp_prediction_markets_history",
   "intent": "Retrieve recent history for a specific prediction market event",
   "params": {
     "event_ticker": "KXBTCY-27JAN0100"
@@ -47,7 +46,6 @@ Flag indicating whether analysis columns should be included.
 
 ```json
 {
-  "tool": "octagon-mcp_prediction_markets_history",
   "intent": "Retrieve a bounded historical window for a prediction market event with analysis columns",
   "params": {
     "event_ticker": "KXBTCY-27JAN0100",

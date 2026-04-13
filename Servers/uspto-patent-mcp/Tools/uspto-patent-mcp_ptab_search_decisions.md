@@ -14,6 +14,7 @@ Full-text search query for PTAB decision text.
 **(22) decision_type - Optional**
 Default: null
 Filters results by decision type.
+Allowed: institution, final, termination
 
 **(20) proceeding_number - Optional**
 Default: null

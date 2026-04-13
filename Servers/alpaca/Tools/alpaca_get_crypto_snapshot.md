@@ -22,7 +22,6 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
-  "tool": "alpaca_get_crypto_snapshot",
   "intent": "Get a full market snapshot for Bitcoin including quote, trade, and bars",
   "params": {
     "symbol": "BTC/USD"
@@ -32,7 +31,6 @@ Crypto data feed to retrieve from. Currently only "us" is supported.
 
 ```json
 {
-  "tool": "alpaca_get_crypto_snapshot",
   "intent": "Retrieve snapshots for Bitcoin and Ethereum simultaneously",
   "params": {
     "symbol": ["BTC/USD", "ETH/USD"]

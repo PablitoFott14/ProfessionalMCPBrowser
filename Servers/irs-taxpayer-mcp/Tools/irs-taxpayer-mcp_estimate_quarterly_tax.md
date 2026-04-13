@@ -38,7 +38,6 @@ Expected other tax credits used in the estimate.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
   "intent": "Estimate quarterly taxes for a self-employed single filer",
   "params": {
     "taxYear": 2024,
@@ -51,7 +50,6 @@ Expected other tax credits used in the estimate.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_estimate_quarterly_tax",
   "intent": "Estimate quarterly taxes for a joint filer with withholding and credits",
   "params": {
     "taxYear": 2025,

@@ -93,7 +93,6 @@ Flag indicating whether the taxpayer installed solar or renewable energy.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
   "intent": "Generate a checklist for a salaried filer with investments, mortgage, and children",
   "params": {
     "hasW2": true,
@@ -109,7 +108,6 @@ Flag indicating whether the taxpayer installed solar or renewable energy.
 
 ```json
 {
-  "tool": "irs-taxpayer-mcp_get_tax_document_checklist",
   "intent": "Generate a checklist for a freelancer with rental property, student loans, and recent life events",
   "params": {
     "hasSelfEmployment": true,
