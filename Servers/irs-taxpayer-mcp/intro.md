@@ -15,3 +15,8 @@ The irs-taxpayer-mcp server covers the full range of US federal and state tax wo
 - **Run a filing-status or state-level comparison before committing:** Use `compare_filing_statuses` or `compare_mfj_vs_mfs` to find the most favorable federal status, `compare_state_taxes` or `analyze_relocation_taxes` to evaluate state-level impact, and `estimate_state_tax` or `get_state_tax_info` for a deeper look at a specific state.
 - **Build a multi-year or retirement-focused tax plan:** Combine `plan_multi_year_taxes`, `get_retirement_strategy`, `plan_retirement_withdrawals`, and `optimize_capital_gains` to project and optimize tax exposure across a longer horizon.
 - **Prepare for filing from scratch:** Use `get_tax_document_checklist` to identify what documents are needed, `get_tax_deadlines` to confirm relevant dates, `get_irs_form_info` or `get_form_filing_guide` for form-level guidance, and `run_tax_health_check` to surface risks before submitting.
+
+### Best practices
+
+- **Start with reference tools when the taxpayer situation is not fully defined:** Tools such as `get_tax_brackets`, `list_deductions`, `list_tax_credits`, and `lookup_tax_rule` provide the grounding needed before moving into calculation or planning tools that require specific inputs.
+- **Use computation tools in sequence rather than in isolation:** The server produces the most useful results when tools are layered — for example, running a liability estimate first, then refining it with deduction and credit tools, and only then generating a report or multi-year projection.

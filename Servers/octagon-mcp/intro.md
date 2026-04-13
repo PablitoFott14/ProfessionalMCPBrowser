@@ -14,4 +14,4 @@ The octagon-mcp server is a market intelligence and research server designed for
 
 ### Best practices
 - **Choose the agent by research depth and scope:** Use the broader agent for holistic market intelligence, the deep research agent for focused investment research, and the prediction-markets agent when the question is specifically about Kalshi-style event markets.
-- **Use historical event data before interpretive prediction-market analysis when specific event context matters:** `prediction_markets_history` helps ground the later research step in a concrete event and time window.
+- **Retrieve historical market data for a specific event before running prediction-market analysis:** Call `prediction_markets_history` with the `event_ticker` and relevant time window first, then pass that concrete market context into `octagon-prediction-markets-agent` — the analysis is more grounded when actual pricing and event history are part of the prompt.
