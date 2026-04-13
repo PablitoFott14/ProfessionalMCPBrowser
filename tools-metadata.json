@@ -47,6 +47,18 @@
     "irs-taxpayer-mcp": {
       "color": "#f43f5e",
       "domain": "Legal"
+    },
+    "coingecko-mcp": {
+      "color": "#22d3ee",
+      "domain": "Finance"
+    },
+    "goldrush-mcp": {
+      "color": "#fb923c",
+      "domain": "Finance"
+    },
+    "patent-mcp-server": {
+      "color": "#c084fc",
+      "domain": "Legal"
     }
   }
 }

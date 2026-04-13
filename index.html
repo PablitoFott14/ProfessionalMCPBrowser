@@ -101,6 +101,22 @@ body{
 }
 .icon-btn:hover{background:var(--card-hover);color:var(--text)}
 
+.zoom-ctrl{
+  display:flex;align-items:center;gap:0;
+  background:var(--surface);border:1px solid var(--border-md);border-radius:7px;overflow:hidden;
+}
+.zoom-btn{
+  width:28px;height:32px;display:flex;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:15px;
+  transition:background .15s,color .15s;
+}
+.zoom-btn:hover{background:var(--card-hover);color:var(--text)}
+.zoom-btn:disabled{opacity:.35;cursor:default}
+.zoom-label{
+  font-size:10.5px;font-weight:600;color:var(--text-dim);
+  min-width:34px;text-align:center;user-select:none;
+}
+
 /* ── SIDEBAR ─────────────────────────────────────────────────── */
 .sidebar{
   position:fixed;left:0;top:var(--header-h);bottom:0;width:var(--sidebar-w);
@@ -412,6 +428,11 @@ body{
 
   <div class="header-right">
     <div id="totalBadge" class="hdr-badge"></div>
+    <div class="zoom-ctrl">
+      <button id="zoomOut" class="zoom-btn" title="Zoom out">−</button>
+      <span id="zoomLabel" class="zoom-label">100%</span>
+      <button id="zoomIn" class="zoom-btn" title="Zoom in">+</button>
+    </div>
     <button id="themeToggle" class="icon-btn" title="Toggle theme">◑</button>
   </div>
 </header>
@@ -842,6 +863,27 @@ document.getElementById('themeToggle').addEventListener('click',()=>{
   applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
 });
 try{const t=localStorage.getItem('mcp-theme');if(t)applyTheme(t);}catch(e){}
+
+/* ── ZOOM ─────────────────────────────────────────────────── */
+const ZOOM_STEPS=[70,80,90,100,110,125,150];
+let zoomLevel=100;
+function applyZoom(z){
+  zoomLevel=z;
+  document.body.style.zoom=z+'%';
+  document.getElementById('zoomLabel').textContent=z+'%';
+  document.getElementById('zoomOut').disabled=z<=ZOOM_STEPS[0];
+  document.getElementById('zoomIn').disabled=z>=ZOOM_STEPS[ZOOM_STEPS.length-1];
+  try{localStorage.setItem('mcp-zoom',z)}catch(e){}
+}
+document.getElementById('zoomOut').addEventListener('click',()=>{
+  const i=ZOOM_STEPS.indexOf(zoomLevel);
+  if(i>0)applyZoom(ZOOM_STEPS[i-1]);
+});
+document.getElementById('zoomIn').addEventListener('click',()=>{
+  const i=ZOOM_STEPS.indexOf(zoomLevel);
+  if(i<ZOOM_STEPS.length-1)applyZoom(ZOOM_STEPS[i+1]);
+});
+try{const z=parseInt(localStorage.getItem('mcp-zoom'));if(ZOOM_STEPS.includes(z))applyZoom(z);else applyZoom(100);}catch(e){applyZoom(100);}
 
 /* ── INIT ─────────────────────────────────────────────────── */
 async function load(url){
