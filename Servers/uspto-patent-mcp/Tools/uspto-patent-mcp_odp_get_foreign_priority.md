@@ -7,7 +7,7 @@ Gets foreign priority claims for a patent application. Use it when you need to i
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this foreign priority request.
 

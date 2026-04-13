@@ -7,28 +7,28 @@ The exact Earned Income Tax Credit amount. Use this when the user needs a specif
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the EITC calculation.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the EITC calculation.
 
-**(51) earnedIncome - Required**  
+**(51) earnedIncome: Required**  
 Default: No default  
 Earned income used for the EITC calculation.
 
-**(33) agi - Required**  
+**(33) agi: Required**  
 Default: No default  
 Adjusted Gross Income used for the EITC calculation.
 
-**(52) qualifyingChildren - Required**  
+**(52) qualifyingChildren: Required**  
 Default: No default  
 Number of qualifying children used for the EITC calculation.
 
-**(53) investmentIncome - Optional**  
+**(53) investmentIncome: Optional**  
 Default: No default  
 Investment income used in EITC eligibility and amount calculation.
 

@@ -7,11 +7,11 @@ Key financial metrics derived from the three major financial statements. It is u
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve financial metrics for.
 
-**(9) recent_n — Optional**  
+**(9) recent_n: Optional**  
 Default: 10  
 Limits how many of the most recent metric records are returned.
 

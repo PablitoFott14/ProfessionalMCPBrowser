@@ -9,24 +9,24 @@ The available tickers can be discovered via the `get_available_crypto_tickers` t
 
 ### Used parameters
 
-**(1) ticker — Required**
+**(1) ticker: Required**
 Default: No default
 Ticker symbol of the cryptocurrency (e.g., BTC-USD, ETH-USD).
 
-**(4) start_date — Required**
+**(4) start_date: Required**
 Default: No default
 Start date of the price data range (e.g., 2020-01-01).
 
-**(5) end_date — Required**
+**(5) end_date: Required**
 Default: No default
 End date of the price data range (e.g., 2020-12-31).
 
-**(6) interval — Optional**
+**(6) interval: Optional**
 Default: day
 Allowed: minute, hour, day, week, month
 Granularity of each data point.
 
-**(7) interval_multiplier — Optional**
+**(7) interval_multiplier: Optional**
 Default: 1
 Multiplier applied to the interval unit (e.g., 2 with interval "hour" yields 2-hour bars).
 

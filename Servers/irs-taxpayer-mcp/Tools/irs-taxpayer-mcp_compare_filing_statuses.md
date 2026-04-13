@@ -7,19 +7,19 @@ Federal tax liability across filing statuses for the same income profile. Use th
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the comparison.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Total gross income used across the compared filing statuses.
 
-**(11) itemizedDeductions - Optional**  
+**(11) itemizedDeductions: Optional**  
 Default: No default  
 Itemized deductions applied in the comparison if applicable.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of qualifying dependents used in the comparison.
 

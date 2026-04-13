@@ -7,7 +7,7 @@ Gets patent application data from the USPTO Open Data Portal. Use it when you ne
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this Open Data Portal request.
 

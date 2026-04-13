@@ -7,7 +7,7 @@ Comprehensive stock data for a ticker, including company information, financial 
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock ticker symbol to retrieve data for.
 

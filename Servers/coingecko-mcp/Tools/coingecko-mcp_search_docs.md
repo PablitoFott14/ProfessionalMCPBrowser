@@ -7,16 +7,16 @@ Searches the CoinGecko SDK documentation to discover methods, parameters, and us
 
 ### Used parameters
 
-**(3) query — Required**
+**(3) query: Required**
 Default: No default
 The query to search for in the SDK documentation.
 
-**(4) language — Required**
+**(4) language: Required**
 Default: No default
 Allowed: http, python, go, typescript, javascript, terraform, ruby, java, kotlin
 The SDK language to search documentation for.
 
-**(5) detail — Optional**
+**(5) detail: Optional**
 Default: null
 Allowed: default, verbose
 The amount of detail to return in the documentation results.

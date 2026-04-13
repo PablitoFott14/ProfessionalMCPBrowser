@@ -7,24 +7,24 @@ Returns real-time information about API usage, including current request rate an
 
 ### Used parameters
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Output format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: null  
 Timezone used for the returned timestamp.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: null  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

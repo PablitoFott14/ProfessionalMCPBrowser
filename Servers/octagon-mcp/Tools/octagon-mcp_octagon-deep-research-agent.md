@@ -7,7 +7,7 @@ A deep research agent that aggregates and synthesizes investment research across
 
 ### Used parameters
 
-**(1) prompt - Required**  
+**(1) prompt: Required**  
 Default: No default  
 Natural language research request passed to the agent.
 

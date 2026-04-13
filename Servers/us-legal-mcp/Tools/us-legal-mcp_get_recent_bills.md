@@ -7,11 +7,11 @@ The most recently introduced bills in Congress. Use this when the user needs a c
 
 ### Used parameters
 
-**(2) congress — Optional**  
+**(2) congress: Optional**  
 Default: null  
 Congress number used to scope the results.
 
-**(3) limit — Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of results to return.
 

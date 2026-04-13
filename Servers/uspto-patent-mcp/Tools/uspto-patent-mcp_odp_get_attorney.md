@@ -7,7 +7,7 @@ Gets the attorney or agent of record for a patent application. Use it when you n
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this attorney request.
 

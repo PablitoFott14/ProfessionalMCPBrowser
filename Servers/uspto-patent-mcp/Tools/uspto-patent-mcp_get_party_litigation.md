@@ -7,16 +7,16 @@ Gets litigation history for a company or individual. Use it when you need to und
 
 ### Used parameters
 
-**(18) party_name - Required**
+**(18) party_name: Required**
 Default: No default
 Company or individual name to look up.
 
-**(46) role - Optional**
+**(46) role: Optional**
 Default: null
 Filters results by litigation role.
 Allowed: plaintiff, defendant
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of litigation results to return in this tool.
 

@@ -7,7 +7,7 @@ Instructions for checking IRS refund status, including the official path and req
 
 ### Used parameters
 
-**(34) filedElectronically - Optional**  
+**(34) filedElectronically: Optional**  
 Default: No default  
 Flag indicating whether the return was e-filed.
 

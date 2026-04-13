@@ -7,52 +7,52 @@ Combined federal and state tax liability in one call. Use this when the user nee
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the calculation.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the calculation.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Total gross income in USD.
 
-**(20) stateCode - Required**  
+**(20) stateCode: Required**  
 Default: No default  
 Two-letter state code used for the state tax calculation.
 
-**(4) w2Income - Optional**  
+**(4) w2Income: Optional**  
 Default: No default  
 W-2 wage income.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income.
 
-**(6) capitalGains - Optional**  
+**(6) capitalGains: Optional**  
 Default: No default  
 Long-term capital gains.
 
-**(7) capitalGainsLongTerm - Optional**  
+**(7) capitalGainsLongTerm: Optional**  
 Default: true  
 Flag indicating whether capital gains should be treated as long-term.
 
-**(9) qualifiedBusinessIncome - Optional**  
+**(9) qualifiedBusinessIncome: Optional**  
 Default: No default  
 Qualified Business Income used for the Section 199A deduction.
 
-**(10) aboveTheLineDeductions - Optional**  
+**(10) aboveTheLineDeductions: Optional**  
 Default: No default  
 Above-the-line deductions.
 
-**(11) itemizedDeductions - Optional**  
+**(11) itemizedDeductions: Optional**  
 Default: No default  
 Total itemized deductions.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of qualifying child dependents.
 

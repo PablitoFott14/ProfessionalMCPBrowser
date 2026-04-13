@@ -7,28 +7,28 @@ Returns the list of available commodity instruments, including their symbols, ca
 
 ### Used parameters
 
-**(1) symbol — Optional**  
+**(1) symbol: Optional**  
 Default: null  
 The ticker symbol of a commodity instrument.
 
-**(53) category — Optional**  
+**(53) category: Optional**  
 Default: null  
 Filters commodities by category (e.g., Precious Metal, Energy).
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: null  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

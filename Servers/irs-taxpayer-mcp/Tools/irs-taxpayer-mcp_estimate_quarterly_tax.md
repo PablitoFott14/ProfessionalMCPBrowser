@@ -7,28 +7,28 @@ Quarterly federal tax payments for taxpayers who need to make estimated payments
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the estimate.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the estimate.
 
-**(17) expectedAnnualIncome - Required**  
+**(17) expectedAnnualIncome: Required**  
 Default: No default  
 Expected total annual income used for the estimate.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Expected self-employment income included in the estimate.
 
-**(18) w2Withholding - Optional**  
+**(18) w2Withholding: Optional**  
 Default: No default  
 Expected W-2 withholding for the year.
 
-**(19) otherCredits - Optional**  
+**(19) otherCredits: Optional**  
 Default: No default  
 Expected other tax credits used in the estimate.
 

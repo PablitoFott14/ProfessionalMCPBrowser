@@ -7,7 +7,7 @@ The current or most recent price for a given stock. Use this when the user needs
 
 ### Used parameters
 
-**(1) ticker — Required**
+**(1) ticker: Required**
 Default: No default
 Ticker symbol of the company (e.g., AAPL, GOOGL).
 

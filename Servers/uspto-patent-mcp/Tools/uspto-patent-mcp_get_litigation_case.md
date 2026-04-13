@@ -7,7 +7,7 @@ Gets details of a specific litigation case. Use it when you already know the cas
 
 ### Used parameters
 
-**(47) case_id - Required**
+**(47) case_id: Required**
 Default: No default
 Case identifier to look up.
 

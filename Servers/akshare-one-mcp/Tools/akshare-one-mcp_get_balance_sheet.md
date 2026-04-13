@@ -7,11 +7,11 @@ Company balance sheet data for a stock. It is useful when the user needs a snaps
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve balance sheet data for.
 
-**(9) recent_n — Optional**  
+**(9) recent_n: Optional**  
 Default: 10  
 Limits how many of the most recent balance sheet records are returned.
 

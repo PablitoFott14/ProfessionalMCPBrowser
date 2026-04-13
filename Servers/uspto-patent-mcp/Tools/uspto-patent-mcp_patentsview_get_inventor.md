@@ -7,7 +7,7 @@ Gets detailed inventor information by disambiguated ID. The schema notes that th
 
 ### Used parameters
 
-**(31) inventor_id - Required**
+**(31) inventor_id: Required**
 Default: No default
 Disambiguated inventor ID to look up.
 

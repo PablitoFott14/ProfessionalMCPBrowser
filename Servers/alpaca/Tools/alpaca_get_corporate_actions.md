@@ -7,36 +7,36 @@ Corporate action announcements from Alpaca, such as splits, dividends, mergers, 
 
 ### Used parameters
 
-**(6) ca_types — Optional**
+**(6) ca_types: Optional**
 Default: null (all types)
 Allowed: reverse_split, forward_split, unit_split, cash_dividend, stock_dividend, spin_off, cash_merger, stock_merger, stock_and_cash_merger, redemption, name_change, worthless_removal, rights_distribution
 List of corporate action types to filter by.
 
-**(7) start — Optional**
+**(7) start: Optional**
 Default: null (current day)
 Start date for the announcements (e.g., 2024-01-01).
 
-**(8) end — Optional**
+**(8) end: Optional**
 Default: null (current day)
 End date for the announcements (e.g., 2024-12-31).
 
-**(9) symbols — Optional**
+**(9) symbols: Optional**
 Default: null
 List of ticker symbols to filter results by.
 
-**(10) cusips — Optional**
+**(10) cusips: Optional**
 Default: null
 List of CUSIP identifiers to filter results by.
 
-**(11) ids — Optional**
+**(11) ids: Optional**
 Default: null
 List of corporate action IDs to retrieve. Mutually exclusive with other filters.
 
-**(12) limit — Optional**
+**(12) limit: Optional**
 Default: 1000
 Maximum number of results to return.
 
-**(13) sort — Optional**
+**(13) sort: Optional**
 Default: asc
 Allowed: asc, desc
 Sort order of the results.

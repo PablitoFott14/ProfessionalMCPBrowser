@@ -7,16 +7,16 @@ Option chain data for a ticker, using the most recent available dates or a speci
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock ticker symbol to retrieve option chain data for.
 
-**(8) option_type — Optional**  
+**(8) option_type: Optional**  
 Default: both  
 Allowed: call, put, both  
 Type of options to retrieve.
 
-**(9) date — Optional**  
+**(9) date: Optional**  
 Default: null  
 Specific expiration date used to retrieve option chain data.
 

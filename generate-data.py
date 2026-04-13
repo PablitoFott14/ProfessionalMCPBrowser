@@ -46,7 +46,7 @@ def parse_tool(filepath):
         pt = m.group(1)
         if 'This tool takes no parameters' not in pt:
             for pm in re.finditer(
-                r'\*\*\((\d+)\)\s+(.+?)\s*(?:—|-)\s*(Required|Optional)\*\*[ \t]*\n'
+                r'\*\*\((\d+)\)\s+(.+?)\s*(?::|—|-)\s*(Required|Optional)\*\*[ \t]*\n'
                 r'Default:\s*([^\n]+?)[ \t]*\n'
                 r'(?:Allowed:\s*([^\n]+?)[ \t]*\n)?'
                 r'(.*?)(?=\n\*\*\(|\Z)',

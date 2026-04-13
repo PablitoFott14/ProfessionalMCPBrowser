@@ -7,7 +7,7 @@ The full schema for one or more Alpha Vantage tools, including their parameters.
 
 ### Used parameters
 
-**(1) tool_name — Required**  
+**(1) tool_name: Required**  
 Default: No default  
 Tool name or list of tool names to retrieve schema for.
 

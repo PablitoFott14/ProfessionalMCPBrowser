@@ -9,11 +9,11 @@ It can be used either to check a specific symbol or to pull broader real-time ma
 
 ### Used parameters
 
-**(1) symbol — Optional**  
+**(1) symbol: Optional**  
 Default: null  
 Stock symbol or ticker to retrieve real-time data for.
 
-**(7) source — Optional**  
+**(7) source: Optional**  
 Default: eastmoney_direct  
 Chooses which real-time market data source is used.
 

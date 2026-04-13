@@ -7,31 +7,31 @@ Searches citation records. The schema notes that this tool is temporarily unavai
 
 ### Used parameters
 
-**(41) citing_patent - Optional**
+**(41) citing_patent: Optional**
 Default: null
 Filters results by the patent that is citing another patent.
 
-**(42) cited_patent - Optional**
+**(42) cited_patent: Optional**
 Default: null
 Filters results by the patent being cited.
 
-**(43) assignee - Optional**
+**(43) assignee: Optional**
 Default: null
 Filters results by assignee name.
 
-**(44) date_from - Optional**
+**(44) date_from: Optional**
 Default: null
 Sets the date range start for this citation search.
 
-**(45) date_to - Optional**
+**(45) date_to: Optional**
 Default: null
 Sets the date range end for this citation search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this citation search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of citation records to return in this tool.
 

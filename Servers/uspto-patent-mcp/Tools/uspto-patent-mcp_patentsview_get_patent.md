@@ -7,7 +7,7 @@ Gets detailed patent information from PatentsView. The schema notes that the Pat
 
 ### Used parameters
 
-**(28) patent_id - Required**
+**(28) patent_id: Required**
 Default: No default
 Patent ID or number to look up.
 

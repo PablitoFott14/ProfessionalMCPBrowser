@@ -7,7 +7,7 @@ Details on retirement account types, including contribution limits, tax treatmen
 
 ### Used parameters
 
-**(49) accountType - Optional**  
+**(49) accountType: Optional**  
 Default: No default  
 Specific retirement account type used to narrow the returned information.
 

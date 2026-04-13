@@ -7,7 +7,7 @@ All open positions on the Alpaca account in a single call. Optionally cancels al
 
 ### Used parameters
 
-**(64) cancel_orders — Optional**
+**(64) cancel_orders: Optional**
 Default: false
 If true, cancels all open orders before liquidating positions.
 

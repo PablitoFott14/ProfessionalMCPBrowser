@@ -7,7 +7,7 @@ Gets detailed assignee information by disambiguated ID. The schema notes that th
 
 ### Used parameters
 
-**(30) assignee_id - Required**
+**(30) assignee_id: Required**
 Default: No default
 Disambiguated assignee ID to look up.
 

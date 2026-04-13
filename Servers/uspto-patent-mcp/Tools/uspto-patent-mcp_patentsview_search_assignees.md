@@ -7,11 +7,11 @@ Searches for assignees with disambiguation. The schema notes that the PatentsVie
 
 ### Used parameters
 
-**(29) name - Required**
+**(29) name: Required**
 Default: No default
 Assignee or company name to search for.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 100
 Maximum number of assignee results to return in this tool. The schema states a maximum of 1000.
 

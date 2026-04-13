@@ -7,11 +7,11 @@ The full text of a specific regulation section when the regulation and section a
 
 ### Used parameters
 
-**(5) regulation - Required**  
+**(5) regulation: Required**  
 Default: No default  
 Regulation identifier used to select the regulation.
 
-**(6) section - Required**  
+**(6) section: Required**  
 Default: No default  
 Section identifier used to retrieve the specific provision.
 

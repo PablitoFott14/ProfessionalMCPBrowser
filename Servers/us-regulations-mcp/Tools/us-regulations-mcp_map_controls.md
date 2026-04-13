@@ -7,15 +7,15 @@ Control framework objectives to relevant regulation sections for compliance mapp
 
 ### Used parameters
 
-**(10) framework - Required**  
+**(10) framework: Required**  
 Default: No default  
 Control framework used as the source for the mapping request.
 
-**(11) control - Optional**  
+**(11) control: Optional**  
 Default: null  
 Specific control identifier used to narrow the mapping results.
 
-**(5) regulation - Optional**  
+**(5) regulation: Optional**  
 Default: null  
 Regulation identifier used to limit mappings to a specific regulation.
 

@@ -7,7 +7,7 @@ Downloads the official USPTO PDF for a granted patent by patent number. Use it w
 
 ### Used parameters
 
-**(9) patent_number — Required**
+**(9) patent_number: Required**
 Default: No default
 Granted patent number to download as a PDF.
 

@@ -7,102 +7,102 @@ Returns the Average Directional Index (ADX) over time, a technical indicator use
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Symbol ticker of the instrument.
 
-**(35) isin — Optional**  
+**(35) isin: Optional**  
 Default: null  
 International Securities Identification Number.
 
-**(34) figi — Optional**  
+**(34) figi: Optional**  
 Default: null  
 Financial Instrument Global Identifier.
 
-**(36) cusip — Optional**  
+**(36) cusip: Optional**  
 Default: null  
 CUSIP identifier for the instrument.
 
-**(5) interval — Optional**  
+**(5) interval: Optional**  
 Default: 1day  
 Interval between data points.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10 (or max with date filters)  
 Number of data points to retrieve.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where instrument is traded.
 
-**(38) mic_code — Optional**  
+**(38) mic_code: Optional**  
 Default: null  
 Market Identifier Code under ISO 10383.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country where the instrument is traded.
 
-**(42) type — Optional**  
+**(42) type: Optional**  
 Default: null  
 Asset class of the instrument.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: Exchange  
 Timezone used for the returned datetime.
 
-**(12) start_date — Optional**  
+**(12) start_date: Optional**  
 Default: null  
 Start date for the time series.
 
-**(13) end_date — Optional**  
+**(13) end_date: Optional**  
 Default: null  
 End date for the time series.
 
-**(14) date — Optional**  
+**(14) date: Optional**  
 Default: null  
 Specific date to retrieve data for.
 
-**(15) order — Optional**  
+**(15) order: Optional**  
 Default: desc  
 Allowed: asc, desc  
 Sorting order of the output.
 
-**(43) prepost — Optional**  
+**(43) prepost: Optional**  
 Default: null  
 Includes pre and post market data.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(19) dp — Optional**  
+**(19) dp: Optional**  
 Default: null  
 Decimal precision for numeric values.
 
-**(44) previous_close — Optional**  
+**(44) previous_close: Optional**  
 Default: null  
 Includes previous closing price in the response.
 
-**(45) adjust — Optional**  
+**(45) adjust: Optional**  
 Default: null  
 Allowed: splits, dividends, all  
 Specifies whether data should be adjusted.
 
-**(31) time_period — Optional**  
+**(31) time_period: Optional**  
 Default: 14  
 Number of periods used to calculate ADX.
 
-**(26) include_ohlc — Optional**  
+**(26) include_ohlc: Optional**  
 Default: null  
 Adds OHLC values to the response.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

@@ -7,27 +7,27 @@ Returns the logo associated with a financial instrument, including stocks, crypt
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 The ticker symbol of the instrument.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where the instrument is traded.
 
-**(38) mic_code — Optional**  
+**(38) mic_code: Optional**  
 Default: null  
 Market Identifier Code under ISO 10383.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country where the instrument is traded.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: null  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

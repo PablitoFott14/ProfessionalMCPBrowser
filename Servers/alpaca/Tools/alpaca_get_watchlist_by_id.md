@@ -7,7 +7,7 @@ The details of a specific Alpaca watchlist by its UUID, including its name, ID, 
 
 ### Used parameters
 
-**(22) watchlist_id — Required**
+**(22) watchlist_id: Required**
 Default: No default
 UUID of the watchlist to retrieve.
 

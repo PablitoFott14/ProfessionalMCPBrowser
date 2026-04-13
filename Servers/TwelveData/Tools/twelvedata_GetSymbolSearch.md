@@ -7,19 +7,19 @@ Is used to find the correct instrument identifier based on partial inputs like c
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Search input, which can be a ticker, company name, ISIN, or FIGI.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of matches returned.
 
-**(41) show_plan — Optional**  
+**(41) show_plan: Optional**  
 Default: false  
 Includes information about plan availability for each symbol.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

@@ -7,41 +7,41 @@ Recommended W-4 withholding settings and estimates per-paycheck federal withhold
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the withholding estimate.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the withholding estimate.
 
-**(21) annualSalary - Required**  
+**(21) annualSalary: Required**  
 Default: No default  
 Annual salary from the job used for the withholding estimate.
 
-**(22) payFrequency - Required**  
+**(22) payFrequency: Required**  
 Default: No default  
 Allowed: weekly, biweekly, semimonthly, monthly  
 Pay frequency used to estimate per-paycheck withholding.
 
-**(23) otherIncome - Optional**  
+**(23) otherIncome: Optional**  
 Default: No default  
 Other annual income included in the estimate.
 
-**(24) deductions - Optional**  
+**(24) deductions: Optional**  
 Default: No default  
 Expected deductions used in the estimate if greater than the standard deduction.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of qualifying child dependents.
 
-**(25) spouseWorks - Optional**  
+**(25) spouseWorks: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer's spouse also works.
 
-**(26) multipleJobs - Optional**  
+**(26) multipleJobs: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer holds multiple jobs simultaneously.
 

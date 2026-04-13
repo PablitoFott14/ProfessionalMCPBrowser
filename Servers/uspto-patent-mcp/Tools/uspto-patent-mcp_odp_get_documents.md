@@ -7,7 +7,7 @@ Gets the list of documents in a patent application file wrapper. Use it when you
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this document-list request.
 

@@ -12,42 +12,42 @@ Key constraints:
 
 ### Used parameters
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Crypto symbol to trade (e.g., BTC/USD, ETH/USD).
 
-**(44) side — Required**
+**(44) side: Required**
 Default: No default
 Allowed: buy, sell
 Order side.
 
-**(58) order_type — Optional**
+**(58) order_type: Optional**
 Default: market
 Allowed: market, limit, stop_limit
 Order type.
 
-**(47) time_in_force — Optional**
+**(47) time_in_force: Optional**
 Default: gtc
 Allowed: gtc, ioc
 How long the order remains active.
 
-**(59) qty — Optional**
+**(59) qty: Optional**
 Default: null
 Quantity of the asset to trade. Required for limit and stop_limit orders.
 
-**(60) notional — Optional**
+**(60) notional: Optional**
 Default: null
 Notional value in USD. Supported for market orders only.
 
-**(49) limit_price — Optional**
+**(49) limit_price: Optional**
 Default: null
 Limit price. Required for limit and stop_limit order types.
 
-**(50) stop_price — Optional**
+**(50) stop_price: Optional**
 Default: null
 Stop price. Required for stop_limit orders.
 
-**(53) client_order_id — Optional**
+**(53) client_order_id: Optional**
 Default: null
 Custom identifier for the order.
 

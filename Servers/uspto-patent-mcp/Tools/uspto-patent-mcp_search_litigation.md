@@ -7,39 +7,39 @@ Searches patent litigation cases. Use it when you need to research patent enforc
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 Full-text search query for litigation cases.
 
-**(9) patent_number - Optional**
+**(9) patent_number: Optional**
 Default: null
 Filters results by patent number.
 
-**(48) plaintiff - Optional**
+**(48) plaintiff: Optional**
 Default: null
 Filters results by plaintiff name.
 
-**(49) defendant - Optional**
+**(49) defendant: Optional**
 Default: null
 Filters results by defendant name.
 
-**(50) court - Optional**
+**(50) court: Optional**
 Default: null
 Filters results by court or district.
 
-**(14) filing_date_from - Optional**
+**(14) filing_date_from: Optional**
 Default: null
 Sets the filing date range start for this litigation search.
 
-**(15) filing_date_to - Optional**
+**(15) filing_date_to: Optional**
 Default: null
 Sets the filing date range end for this litigation search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this litigation search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of litigation results to return in this tool.
 

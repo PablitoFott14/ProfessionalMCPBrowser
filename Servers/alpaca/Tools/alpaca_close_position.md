@@ -7,15 +7,15 @@ An open position for a specific symbol, either fully or partially by quantity or
 
 ### Used parameters
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Ticker symbol of the position to close (e.g., AAPL, BTC/USD).
 
-**(59) qty — Optional**
+**(59) qty: Optional**
 Default: null
 Number of shares or units to liquidate. If omitted alongside percentage, the full position is closed.
 
-**(63) percentage — Optional**
+**(63) percentage: Optional**
 Default: null
 Percentage of the position to liquidate (e.g., "50" for 50%). Must result in at least 1 share.
 

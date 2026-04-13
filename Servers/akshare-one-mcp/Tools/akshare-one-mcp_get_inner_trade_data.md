@@ -7,7 +7,7 @@ Insider trading data for a company. It is useful when the user wants to review d
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve insider trading data for.
 

@@ -7,52 +7,52 @@ Returns the list of available funds, including metadata such as identifiers, exc
 
 ### Used parameters
 
-**(1) symbol — Optional**  
+**(1) symbol: Optional**  
 Default: null  
 The ticker symbol of an instrument.
 
-**(34) figi — Optional**  
+**(34) figi: Optional**  
 Default: null  
 Financial Instrument Global Identifier.
 
-**(35) isin — Optional**  
+**(35) isin: Optional**  
 Default: null  
 International Securities Identification Number.
 
-**(36) cusip — Optional**  
+**(36) cusip: Optional**  
 Default: null  
 CUSIP identifier for the instrument.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where the fund is traded.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country where the fund is located.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(41) show_plan — Optional**  
+**(41) show_plan: Optional**  
 Default: false  
 Includes plan availability information.
 
-**(54) page — Optional**  
+**(54) page: Optional**  
 Default: 1  
 Page number of the results to fetch.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

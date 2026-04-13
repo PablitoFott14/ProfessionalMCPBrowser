@@ -7,11 +7,11 @@ For financial market data API endpoints and local finance functions by natural l
 
 ### Used parameters
 
-**(1) query - Required**  
+**(1) query: Required**  
 Default: No default  
 Natural language search query used to find relevant endpoints or functions.
 
-**(2) scope - Optional**  
+**(2) scope: Optional**  
 Default: null  
 Allowed: endpoints, functions  
 Search scope used to limit results to endpoints or functions (null for both).

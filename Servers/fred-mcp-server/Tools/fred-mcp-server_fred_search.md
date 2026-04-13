@@ -7,44 +7,44 @@ For FRED economic data series by keywords, tags, identifiers, or filters. Use th
 
 ### Used parameters
 
-**(1) search_text - Optional**  
+**(1) search_text: Optional**  
 Default: null  
 Text used to search for matching series.
 
-**(2) search_type - Optional**  
+**(2) search_type: Optional**  
 Default: null  
 Search mode used to search by full text or series ID.
 
-**(3) tag_names - Optional**  
+**(3) tag_names: Optional**  
 Default: null  
 Comma-separated list of tag names used to filter results.
 
-**(4) exclude_tag_names - Optional**  
+**(4) exclude_tag_names: Optional**  
 Default: null  
 Comma-separated list of tag names used to exclude results.
 
-**(5) limit - Optional**  
+**(5) limit: Optional**  
 Default: 25  
 Maximum number of results to return.
 
-**(6) offset - Optional**  
+**(6) offset: Optional**  
 Default: 0  
 Number of results to skip for pagination.
 
-**(7) order_by - Optional**  
+**(7) order_by: Optional**  
 Default: null  
 Field used to order the results.
 
-**(8) sort_order - Optional**  
+**(8) sort_order: Optional**  
 Default: null  
 Allowed: asc, desc  
 Sort direction used for ordered results.
 
-**(9) filter_variable - Optional**  
+**(9) filter_variable: Optional**  
 Default: null  
 Variable used to filter the results.
 
-**(10) filter_value - Optional**  
+**(10) filter_value: Optional**  
 Default: null  
 Value used for the selected filter variable.
 

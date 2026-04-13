@@ -7,11 +7,11 @@ Across multiple US legal sources, including Congress, the Federal Register, and 
 
 ### Used parameters
 
-**(1) query — Required**  
+**(1) query: Required**  
 Default: No default  
 Search query used across legal sources.
 
-**(3) limit — Optional**  
+**(3) limit: Optional**  
 Default: 10  
 Number of results to return per source.
 

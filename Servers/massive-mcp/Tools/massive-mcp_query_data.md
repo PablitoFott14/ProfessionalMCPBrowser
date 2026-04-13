@@ -7,11 +7,11 @@ Stored financial data tables using SQL and can optionally post-process the query
 
 ### Used parameters
 
-**(10) sql - Required**  
+**(10) sql: Required**  
 Default: No default  
 SQL query or special command used to analyze stored tables.
 
-**(8) apply - Optional**  
+**(8) apply: Optional**  
 Default: null  
 List of post-processing function steps to apply to the query results.
 

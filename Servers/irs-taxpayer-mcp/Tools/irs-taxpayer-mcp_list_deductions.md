@@ -7,7 +7,7 @@ Available tax deductions along with eligibility rules and limits. Use this when 
 
 ### Used parameters
 
-**(27) category - Optional**  
+**(27) category: Optional**  
 Default: all  
 Deduction category used to filter the listed deductions.
 

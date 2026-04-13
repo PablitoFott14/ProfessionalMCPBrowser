@@ -7,39 +7,39 @@ Searches patent applications in the USPTO Open Data Portal. Use it when you need
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 General search query string for this Open Data Portal application search.
 
-**(11) application_number - Optional**
+**(11) application_number: Optional**
 Default: null
 Filters results by application number.
 
-**(9) patent_number - Optional**
+**(9) patent_number: Optional**
 Default: null
 Filters results by patent number.
 
-**(12) inventor_name - Optional**
+**(12) inventor_name: Optional**
 Default: null
 Filters results by inventor name.
 
-**(13) assignee_name - Optional**
+**(13) assignee_name: Optional**
 Default: null
 Filters results by assignee or applicant name.
 
-**(14) filing_date_from - Optional**
+**(14) filing_date_from: Optional**
 Default: null
 Sets the filing date range start for this search.
 
-**(15) filing_date_to - Optional**
+**(15) filing_date_to: Optional**
 Default: null
 Sets the filing date range end for this search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this Open Data Portal search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of application results to return in this tool.
 

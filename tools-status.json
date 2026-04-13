@@ -298,5 +298,50 @@
     "uspto-patent-mcp_get_patent_litigation": "active",
     "uspto-patent-mcp_get_litigation_case": "active",
     "uspto-patent-mcp_search_litigation": "active"
+  },
+  "sec-edgar-mcp": {
+    "sec-edgar-mcp_get_cik_by_ticker": "active",
+    "sec-edgar-mcp_get_company_info": "active",
+    "sec-edgar-mcp_search_companies": "active",
+    "sec-edgar-mcp_get_company_facts": "active",
+    "sec-edgar-mcp_get_filing_content": "active",
+    "sec-edgar-mcp_get_recent_filings": "active",
+    "sec-edgar-mcp_analyze_8k": "active",
+    "sec-edgar-mcp_get_filing_sections": "active",
+    "sec-edgar-mcp_get_financials": "active",
+    "sec-edgar-mcp_get_segment_data": "active",
+    "sec-edgar-mcp_get_key_metrics": "active",
+    "sec-edgar-mcp_compare_periods": "active",
+    "sec-edgar-mcp_discover_company_metrics": "active",
+    "sec-edgar-mcp_discover_xbrl_concepts": "active",
+    "sec-edgar-mcp_get_insider_transactions": "active",
+    "sec-edgar-mcp_get_insider_summary": "active",
+    "sec-edgar-mcp_get_form4_details": "active",
+    "sec-edgar-mcp_analyze_form4_transactions": "active",
+    "sec-edgar-mcp_analyze_insider_sentiment": "active",
+    "sec-edgar-mcp_get_recommended_tools": "active"
+  },
+  "courtlistener-mcp": {
+    "courtlistener-mcp_status": "active",
+    "courtlistener-mcp_citation_batch_lookup_citations": "active",
+    "courtlistener-mcp_citation_enhanced_citation_lookup": "active",
+    "courtlistener-mcp_citation_extract_citations_from_text": "active",
+    "courtlistener-mcp_citation_lookup_citation": "active",
+    "courtlistener-mcp_citation_parse_citation_with_citeurl": "active",
+    "courtlistener-mcp_citation_verify_citation_format": "active",
+    "courtlistener-mcp_get_audio": "active",
+    "courtlistener-mcp_get_cluster": "active",
+    "courtlistener-mcp_get_court": "active",
+    "courtlistener-mcp_get_docket": "active",
+    "courtlistener-mcp_get_opinion": "active",
+    "courtlistener-mcp_get_person": "active",
+    "courtlistener-mcp_search_audio": "active",
+    "courtlistener-mcp_search_dockets": "active",
+    "courtlistener-mcp_search_opinions": "active",
+    "courtlistener-mcp_search_people": "active",
+    "courtlistener-mcp_search_recap_documents": "active"
+  },
+  "open-legal-compliance-mcp": {
+    "open-legal-compliance-mcp_search_us_code": "active"
   }
 }

@@ -7,15 +7,15 @@ For bills and resolutions in Congress.gov. Use this when the user needs to find 
 
 ### Used parameters
 
-**(1) query — Required**  
+**(1) query: Required**  
 Default: No default  
 Search query used to find bills or resolutions.
 
-**(2) congress — Optional**  
+**(2) congress: Optional**  
 Default: null  
 Congress number used to scope the search.
 
-**(3) limit — Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of results to return.
 

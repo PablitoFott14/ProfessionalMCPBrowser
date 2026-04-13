@@ -7,65 +7,65 @@ A what-if tax scenario by comparing a current baseline against a hypothetical ch
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the scenario comparison.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Current filing status used as the baseline.
 
-**(120) currentIncome - Required**  
+**(120) currentIncome: Required**  
 Default: No default  
 Current gross income used as the baseline.
 
-**(121) currentState - Optional**  
+**(121) currentState: Optional**  
 Default: No default  
 Current state code used as the baseline location.
 
-**(122) currentSelfEmployment - Optional**  
+**(122) currentSelfEmployment: Optional**  
 Default: No default  
 Current self-employment income used as the baseline.
 
-**(123) currentCapitalGains - Optional**  
+**(123) currentCapitalGains: Optional**  
 Default: No default  
 Current capital gains used as the baseline.
 
-**(124) currentItemizedDeductions - Optional**  
+**(124) currentItemizedDeductions: Optional**  
 Default: No default  
 Current itemized deductions used as the baseline.
 
-**(125) currentDependents - Optional**  
+**(125) currentDependents: Optional**  
 Default: No default  
 Current number of dependents used as the baseline.
 
-**(126) whatIfIncomeChange - Optional**  
+**(126) whatIfIncomeChange: Optional**  
 Default: No default  
 Hypothetical change in income.
 
-**(127) whatIfNewState - Optional**  
+**(127) whatIfNewState: Optional**  
 Default: No default  
 Hypothetical new state code.
 
-**(128) whatIfFilingStatus - Optional**  
+**(128) whatIfFilingStatus: Optional**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Hypothetical new filing status.
 
-**(129) whatIfRothConversion - Optional**  
+**(129) whatIfRothConversion: Optional**  
 Default: No default  
 Hypothetical Roth conversion amount.
 
-**(130) whatIfAdditional401k - Optional**  
+**(130) whatIfAdditional401k: Optional**  
 Default: No default  
 Hypothetical additional 401(k) contribution.
 
-**(131) whatIfNewDependents - Optional**  
+**(131) whatIfNewDependents: Optional**  
 Default: No default  
 Hypothetical new number of dependents.
 
-**(132) whatIfItemizedChange - Optional**  
+**(132) whatIfItemizedChange: Optional**  
 Default: No default  
 Hypothetical change in itemized deductions.
 

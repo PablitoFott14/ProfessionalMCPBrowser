@@ -7,35 +7,35 @@ Searches office actions across applications. The schema notes that this tool is 
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 Full-text search query for office actions.
 
-**(11) application_number - Optional**
+**(11) application_number: Optional**
 Default: null
 Filters results by application number.
 
-**(35) examiner_name - Optional**
+**(35) examiner_name: Optional**
 Default: null
 Filters results by examiner name.
 
-**(36) art_unit - Optional**
+**(36) art_unit: Optional**
 Default: null
 Filters results by art unit number.
 
-**(37) mail_date_from - Optional**
+**(37) mail_date_from: Optional**
 Default: null
 Sets the mail date range start for this office action search.
 
-**(38) mail_date_to - Optional**
+**(38) mail_date_to: Optional**
 Default: null
 Sets the mail date range end for this office action search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this office action search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of office action results to return in this tool.
 

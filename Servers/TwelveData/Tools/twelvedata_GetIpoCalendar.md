@@ -7,31 +7,31 @@ Returns past, current, or upcoming IPO events, including company details and pri
 
 ### Used parameters
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where the company is listed.
 
-**(38) mic_code — Optional**  
+**(38) mic_code: Optional**  
 Default: null  
 Market Identifier Code under ISO 10383.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country where the IPO is taking place.
 
-**(12) start_date — Optional**  
+**(12) start_date: Optional**  
 Default: null  
 The earliest IPO date to include.
 
-**(13) end_date — Optional**  
+**(13) end_date: Optional**  
 Default: null  
 The latest IPO date to include.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

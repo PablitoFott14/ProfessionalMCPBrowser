@@ -7,7 +7,7 @@ Looks up IPC classification code details. The schema notes that the PatentsView 
 
 ### Used parameters
 
-**(33) ipc_code - Required**
+**(33) ipc_code: Required**
 Default: No default
 IPC code to look up.
 

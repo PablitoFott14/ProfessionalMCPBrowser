@@ -7,11 +7,11 @@ For documents in the Federal Register, including regulations, executive orders, 
 
 ### Used parameters
 
-**(1) query — Required**  
+**(1) query: Required**  
 Default: No default  
 Search query used to find federal register documents.
 
-**(3) limit — Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of results to return.
 

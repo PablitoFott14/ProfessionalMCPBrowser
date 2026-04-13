@@ -7,15 +7,15 @@ Searches USPTO bulk data products and datasets. Use it when you need to find bul
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 Search query for dataset names or descriptions.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this dataset search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of dataset results to return in this tool.
 

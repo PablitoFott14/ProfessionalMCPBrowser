@@ -7,15 +7,15 @@ Gets enriched citation data for a patent. The schema notes that the legacy Enric
 
 ### Used parameters
 
-**(9) patent_number - Required**
+**(9) patent_number: Required**
 Default: No default
 Patent number to retrieve enriched citation data for.
 
-**(39) include_forward - Optional**
+**(39) include_forward: Optional**
 Default: true
 Controls whether forward citations are included in this request.
 
-**(40) include_backward - Optional**
+**(40) include_backward: Optional**
 Default: true
 Controls whether backward citations are included in this request.
 

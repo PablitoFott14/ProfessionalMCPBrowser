@@ -7,44 +7,44 @@ The standard deduction against itemized deductions to determine which is more be
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the comparison.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the comparison.
 
-**(28) medicalExpenses - Optional**  
+**(28) medicalExpenses: Optional**  
 Default: No default  
 Unreimbursed medical expenses included in the itemized total.
 
-**(29) stateLocalTaxes - Optional**  
+**(29) stateLocalTaxes: Optional**  
 Default: No default  
 State and local taxes included in the itemized total.
 
-**(30) mortgageInterest - Optional**  
+**(30) mortgageInterest: Optional**  
 Default: No default  
 Mortgage interest included in the itemized total.
 
-**(31) charitableDonations - Optional**  
+**(31) charitableDonations: Optional**  
 Default: No default  
 Charitable contributions included in the itemized total.
 
-**(32) otherItemized - Optional**  
+**(32) otherItemized: Optional**  
 Default: No default  
 Other itemized deductions included in the comparison.
 
-**(33) agi - Required**  
+**(33) agi: Required**  
 Default: No default  
 Adjusted Gross Income used for the medical expense threshold.
 
-**(13) age65OrOlder - Optional**  
+**(13) age65OrOlder: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is age 65 or older.
 
-**(14) blind - Optional**  
+**(14) blind: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is blind.
 

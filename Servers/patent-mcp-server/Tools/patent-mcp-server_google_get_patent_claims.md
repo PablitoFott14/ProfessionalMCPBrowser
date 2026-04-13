@@ -7,7 +7,7 @@ Retrieves all claims for a specific patent from Google Patents by publication nu
 
 ### Used parameters
 
-**(40) publication_number — Required**
+**(40) publication_number: Required**
 Default: No default
 Patent publication number (e.g., US-9876543-B2).
 

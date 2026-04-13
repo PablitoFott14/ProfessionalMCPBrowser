@@ -7,64 +7,64 @@ An IRS audit-risk profile based on a taxpayer's return characteristics. Use this
 
 ### Used parameters
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used in the audit-risk profile.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Total gross income.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income.
 
-**(133) cashBusiness - Optional**  
+**(133) cashBusiness: Optional**  
 Default: No default  
 Flag indicating whether the business is cash-intensive.
 
-**(134) homeOfficeDeduction - Optional**  
+**(134) homeOfficeDeduction: Optional**  
 Default: No default  
 Flag indicating whether a home office deduction is being claimed.
 
-**(31) charitableDonations - Optional**  
+**(31) charitableDonations: Optional**  
 Default: No default  
 Total charitable donations.
 
-**(135) charitableNonCash - Optional**  
+**(135) charitableNonCash: Optional**  
 Default: No default  
 Non-cash charitable donations.
 
-**(136) businessMeals - Optional**  
+**(136) businessMeals: Optional**  
 Default: No default  
 Business meal deductions.
 
-**(137) vehicleDeduction - Optional**  
+**(137) vehicleDeduction: Optional**  
 Default: No default  
 Vehicle or mileage deduction.
 
-**(138) rentalLosses - Optional**  
+**(138) rentalLosses: Optional**  
 Default: No default  
 Rental property losses claimed.
 
-**(139) cryptoTransactions - Optional**  
+**(139) cryptoTransactions: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer had cryptocurrency transactions.
 
-**(140) foreignAccounts - Optional**  
+**(140) foreignAccounts: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has foreign bank accounts or assets.
 
-**(141) largeRefund - Optional**  
+**(141) largeRefund: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer expects a very large refund.
 
-**(142) eitcClaimed - Optional**  
+**(142) eitcClaimed: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is claiming EITC.
 
-**(143) roundNumbers - Optional**  
+**(143) roundNumbers: Optional**  
 Default: No default  
 Flag indicating whether most deductions are reported as round numbers.
 

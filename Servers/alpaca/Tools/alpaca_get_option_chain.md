@@ -7,7 +7,7 @@ The full option chain for an underlying symbol, including latest quote, trade, i
 
 ### Used parameters
 
-**(43) underlying_symbol — Required**
+**(43) underlying_symbol: Required**
 Default: No default
 Single underlying asset symbol to retrieve the option chain for (e.g., AAPL, SPY).
 
@@ -16,36 +16,36 @@ Default: null (opra if subscribed, indicative otherwise)
 Allowed: opra, indicative
 Options data feed source. OPRA requires a subscription.
 
-**(40) contract_type — Optional**
+**(40) contract_type: Optional**
 Default: null
 Allowed: call, put
 Filters by contract type (null for both).
 
-**(38) strike_price_gte — Optional**
+**(38) strike_price_gte: Optional**
 Default: null
 Minimum strike price to include in results.
 
-**(39) strike_price_lte — Optional**
+**(39) strike_price_lte: Optional**
 Default: null
 Maximum strike price to include in results.
 
-**(34) expiration_date — Optional**
+**(34) expiration_date: Optional**
 Default: null
 Filters to a specific expiration date (YYYY-MM-DD).
 
-**(35) expiration_date_gte — Optional**
+**(35) expiration_date_gte: Optional**
 Default: null
 Minimum expiration date for the filter range (YYYY-MM-DD).
 
-**(36) expiration_date_lte — Optional**
+**(36) expiration_date_lte: Optional**
 Default: null
 Maximum expiration date for the filter range (YYYY-MM-DD).
 
-**(41) root_symbol — Optional**
+**(41) root_symbol: Optional**
 Default: null
 Filters contracts by root symbol.
 
-**(12) limit — Optional**
+**(12) limit: Optional**
 Default: null (max 1000)
 Maximum number of contract snapshots to return.
 

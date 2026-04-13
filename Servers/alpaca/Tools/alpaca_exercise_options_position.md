@@ -7,7 +7,7 @@ A held option contract, converting it into the underlying asset position. Use th
 
 ### Used parameters
 
-**(65) symbol_or_contract_id — Required**
+**(65) symbol_or_contract_id: Required**
 Default: No default
 Option contract symbol in OCC format (e.g., NVDA250919C001680) or the contract UUID.
 

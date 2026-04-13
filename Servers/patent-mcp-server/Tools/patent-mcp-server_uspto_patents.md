@@ -32,147 +32,147 @@ Available methods:
 
 ### Used parameters
 
-**(1) method — Required**
+**(1) method: Required**
 Default: No default
 The operation to perform. See available methods above.
 
-**(2) query — Optional**
+**(2) query: Optional**
 Default: null
 Search query string using USPTO Public Search syntax. Used by `ppubs_search_*` methods.
 
-**(3) start — Optional**
+**(3) start: Optional**
 Default: 0
 Starting position for results. Used by `ppubs_search_*` methods.
 
-**(4) limit — Optional**
+**(4) limit: Optional**
 Default: 100
 Maximum number of results to return. Used by `ppubs_search_*` and `search_*` methods.
 
-**(5) sort — Optional**
+**(5) sort: Optional**
 Default: date_publ desc
 Sort order for results.
 
-**(6) default_operator — Optional**
+**(6) default_operator: Optional**
 Default: OR
 Default boolean operator between search terms. Used by `ppubs_search_*` methods.
 
-**(7) expand_plurals — Optional**
+**(7) expand_plurals: Optional**
 Default: true
 If true, includes plural forms of search terms. Used by `ppubs_search_*` methods.
 
-**(8) british_equivalents — Optional**
+**(8) british_equivalents: Optional**
 Default: true
 If true, includes British spelling equivalents. Used by `ppubs_search_*` methods.
 
-**(9) guid — Optional**
+**(9) guid: Optional**
 Default: null
 Document unique identifier. Used by `ppubs_get_full_document`.
 
-**(10) source_type — Optional**
+**(10) source_type: Optional**
 Default: null
 Document type to retrieve. Used by `ppubs_get_full_document`. Accepts USPAT or US-PGPUB.
 
-**(11) patent_number — Optional**
+**(11) patent_number: Optional**
 Default: null
 Patent number to retrieve or download. Used by `ppubs_get_patent_by_number` and `ppubs_download_patent_pdf`.
 
-**(12) app_num — Optional**
+**(12) app_num: Optional**
 Default: null
 U.S. Patent Application Number (e.g., 14412875). Used by `get_app_*` methods.
 
-**(13) q — Optional**
+**(13) q: Optional**
 Default: null
 Search query string. Used by `search_*` and `download_*` methods.
 
-**(14) offset — Optional**
+**(14) offset: Optional**
 Default: 0
 Starting position for results. Used by `search_*` and `download_*` methods.
 
-**(15) facets — Optional**
+**(15) facets: Optional**
 Default: null
 Comma-separated fields to facet upon. Used by `search_*` and `download_*` methods.
 
-**(16) fields — Optional**
+**(16) fields: Optional**
 Default: null
 Comma-separated fields to include in the response. Used by `search_*` and `download_*` methods.
 
-**(17) filters — Optional**
+**(17) filters: Optional**
 Default: null
 Filter conditions to apply. Used by `search_*` and `download_*` methods.
 
-**(18) range_filters — Optional**
+**(18) range_filters: Optional**
 Default: null
 Range filter conditions to apply. Used by `search_*` and `download_*` methods.
 
-**(19) format — Optional**
+**(19) format: Optional**
 Default: json
 Download format. Used by `download_*` methods. Accepts json or csv.
 
-**(20) filters_list — Optional**
+**(20) filters_list: Optional**
 Default: null
 List of filter objects. Used by `*_post` methods.
 
-**(21) range_filters_list — Optional**
+**(21) range_filters_list: Optional**
 Default: null
 List of range filter objects. Used by `*_post` methods.
 
-**(22) sort_list — Optional**
+**(22) sort_list: Optional**
 Default: null
 List of sort objects. Used by `*_post` methods.
 
-**(23) fields_list — Optional**
+**(23) fields_list: Optional**
 Default: null
 List of field names to include in the response. Used by `*_post` methods.
 
-**(24) facets_list — Optional**
+**(24) facets_list: Optional**
 Default: null
 List of facet field names. Used by `*_post` methods.
 
-**(25) product_title — Optional**
+**(25) product_title: Optional**
 Default: null
 Specific product title to filter by. Used by `search_datasets`.
 
-**(26) product_description — Optional**
+**(26) product_description: Optional**
 Default: null
 Specific product description to filter by. Used by `search_datasets`.
 
-**(27) product_short_name — Optional**
+**(27) product_short_name: Optional**
 Default: null
 Product identifier short name. Used by `search_datasets`.
 
-**(28) include_files — Optional**
+**(28) include_files: Optional**
 Default: true
 If true, includes file listings in the dataset response. Used by `search_datasets` and `get_dataset_product`.
 
-**(29) latest — Optional**
+**(29) latest: Optional**
 Default: false
 If true, returns only the latest dataset product. Used by `search_datasets` and `get_dataset_product`.
 
-**(30) labels — Optional**
+**(30) labels: Optional**
 Default: null
 Filter datasets by labels. Used by `search_datasets`.
 
-**(31) categories — Optional**
+**(31) categories: Optional**
 Default: null
 Filter datasets by categories. Used by `search_datasets`.
 
-**(32) datasets — Optional**
+**(32) datasets: Optional**
 Default: null
 Filter by dataset names. Used by `search_datasets`.
 
-**(33) file_types — Optional**
+**(33) file_types: Optional**
 Default: null
 Filter datasets by file types. Used by `search_datasets`.
 
-**(34) product_id — Optional**
+**(34) product_id: Optional**
 Default: null
 Product identifier. Used by `get_dataset_product`.
 
-**(35) file_data_from_date — Optional**
+**(35) file_data_from_date: Optional**
 Default: null
 Filter dataset files from this date (YYYY-MM-DD). Used by `get_dataset_product`.
 
-**(36) file_data_to_date — Optional**
+**(36) file_data_to_date: Optional**
 Default: null
 Filter dataset files to this date (YYYY-MM-DD). Used by `get_dataset_product`.
 

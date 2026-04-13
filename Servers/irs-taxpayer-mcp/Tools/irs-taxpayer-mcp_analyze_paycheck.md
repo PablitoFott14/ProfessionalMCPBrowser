@@ -7,49 +7,49 @@ A paycheck to assess withholding accuracy using pay stub figures. Use this when 
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the analysis.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the analysis.
 
-**(22) payFrequency - Required**  
+**(22) payFrequency: Required**  
 Default: No default  
 Allowed: weekly, biweekly, semimonthly, monthly  
 Pay frequency for the paycheck being analyzed.
 
-**(115) grossPay - Required**  
+**(115) grossPay: Required**  
 Default: No default  
 Gross pay for the current pay period.
 
-**(103) federalWithheld - Required**  
+**(103) federalWithheld: Required**  
 Default: No default  
 Federal tax withheld for the current pay period.
 
-**(104) stateWithheld - Optional**  
+**(104) stateWithheld: Optional**  
 Default: No default  
 State tax withheld for the current pay period.
 
-**(116) socialSecurityWithheld - Optional**  
+**(116) socialSecurityWithheld: Optional**  
 Default: No default  
 Social Security tax withheld for the current pay period.
 
-**(117) medicareWithheld - Optional**  
+**(117) medicareWithheld: Optional**  
 Default: No default  
 Medicare tax withheld for the current pay period.
 
-**(118) retirement401k - Optional**  
+**(118) retirement401k: Optional**  
 Default: No default  
 401(k) or 403(b) pre-tax contribution for the current pay period.
 
-**(119) hsaContribution - Optional**  
+**(119) hsaContribution: Optional**  
 Default: No default  
 HSA contribution for the current pay period.
 
-**(20) stateCode - Optional**  
+**(20) stateCode: Optional**  
 Default: No default  
 Two-letter state code for state withholding context.
 

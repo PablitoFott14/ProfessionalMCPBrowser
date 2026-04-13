@@ -7,11 +7,11 @@ Breach notification timelines across supported federal and state jurisdictions. 
 
 ### Used parameters
 
-**(13) state - Optional**  
+**(13) state: Optional**  
 Default: null  
 State or jurisdiction name used to narrow the results.
 
-**(5) regulation - Optional**  
+**(5) regulation: Optional**  
 Default: null  
 Regulation identifier used to filter the returned breach notification rules.
 

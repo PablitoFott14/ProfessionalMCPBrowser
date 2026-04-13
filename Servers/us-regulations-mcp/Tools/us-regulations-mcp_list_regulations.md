@@ -7,7 +7,7 @@ The available regulations or returns the structure of a specific regulation. Use
 
 ### Used parameters
 
-**(5) regulation - Optional**  
+**(5) regulation: Optional**  
 Default: null  
 Regulation identifier used to return the structure of a specific regulation.
 

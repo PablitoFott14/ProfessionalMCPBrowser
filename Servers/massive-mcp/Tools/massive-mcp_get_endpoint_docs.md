@@ -7,7 +7,7 @@ Parameter documentation for a financial data API endpoint from its documentation
 
 ### Used parameters
 
-**(3) url - Required**  
+**(3) url: Required**  
 Default: No default  
 Documentation URL used to retrieve endpoint details.
 

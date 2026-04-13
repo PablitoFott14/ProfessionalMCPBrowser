@@ -7,31 +7,31 @@ Searches ex parte appeal decisions. Use it when you need to find appeal outcomes
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 Full-text search query for appeal decisions.
 
-**(11) application_number - Optional**
+**(11) application_number: Optional**
 Default: null
 Filters results by application number.
 
-**(9) patent_number - Optional**
+**(9) patent_number: Optional**
 Default: null
 Filters results by patent number.
 
-**(23) decision_date_from - Optional**
+**(23) decision_date_from: Optional**
 Default: null
 Sets the decision date range start for this appeal search.
 
-**(24) decision_date_to - Optional**
+**(24) decision_date_to: Optional**
 Default: null
 Sets the decision date range end for this appeal search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this appeal search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of appeal decision results to return in this tool.
 

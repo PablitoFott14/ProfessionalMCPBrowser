@@ -7,11 +7,11 @@ A new watchlist on Alpaca with a given name and a list of symbols. Use this when
 
 ### Used parameters
 
-**(21) name — Required**
+**(21) name: Required**
 Default: No default
 Name to assign to the new watchlist.
 
-**(9) symbols — Required**
+**(9) symbols: Required**
 Default: No default
 List of ticker symbols to include in the watchlist.
 

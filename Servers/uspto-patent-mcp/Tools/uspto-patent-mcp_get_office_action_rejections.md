@@ -7,11 +7,11 @@ Gets rejection data from office actions. The schema notes that this tool is temp
 
 ### Used parameters
 
-**(11) application_number - Required**
+**(11) application_number: Required**
 Default: No default
 Application number to retrieve office action rejection data for.
 
-**(34) mail_date - Optional**
+**(34) mail_date: Optional**
 Default: null
 Filters office action rejection data by mail date.
 

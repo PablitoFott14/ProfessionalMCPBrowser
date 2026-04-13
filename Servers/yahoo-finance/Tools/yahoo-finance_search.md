@@ -7,11 +7,11 @@ Yahoo Finance for stocks, ETFs, and other financial instruments. Use this when t
 
 ### Used parameters
 
-**(3) query — Required**  
+**(3) query: Required**  
 Default: No default  
 Search query used to find matching instruments.
 
-**(2) count — Optional**  
+**(2) count: Optional**  
 Default: 10  
 Number of search results to return.
 

@@ -7,40 +7,40 @@ The account's portfolio history, including equity value and P/L over a specified
 
 ### Used parameters
 
-**(14) timeframe — Optional**
+**(14) timeframe: Optional**
 Default: null
 Resolution of each data point (e.g., 1Min, 5Min, 15Min, 1H, 1D).
 
-**(15) period — Optional**
+**(15) period: Optional**
 Default: null
 Length of the time window to retrieve (e.g., 1W, 1M, 3M, 6M, 1Y, all).
 
-**(7) start — Optional**
+**(7) start: Optional**
 Default: null
 Start time in ISO format (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS).
 
-**(8) end — Optional**
+**(8) end: Optional**
 Default: null
 End time in ISO format (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS).
 
-**(16) date_end — Optional**
+**(16) date_end: Optional**
 Default: null
 Alternative end date for the range, as ISO date or datetime.
 
-**(17) intraday_reporting — Optional**
+**(17) intraday_reporting: Optional**
 Default: null
 Allowed: market_hours, extended_hours, continuous
 Controls which hours are included in intraday data.
 
-**(18) pnl_reset — Optional**
+**(18) pnl_reset: Optional**
 Default: null
 Defines when P/L resets within the period (e.g., daily, weekly, no_reset).
 
-**(19) extended_hours — Optional**
+**(19) extended_hours: Optional**
 Default: null
 Whether to include extended trading hours data where applicable.
 
-**(20) cashflow_types — Optional**
+**(20) cashflow_types: Optional**
 Default: null
 List of cashflow categories to include in the response.
 

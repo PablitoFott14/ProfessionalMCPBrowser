@@ -7,32 +7,32 @@ Returns a paginated list of current or historical holders for a specified ERC-20
 
 ### Used parameters
 
-**(12) chainName — Required**
+**(12) chainName: Required**
 Default: No default
 Allowed: eth-mainnet, eth-sepolia, eth-holesky, matic-mainnet, avalanche-mainnet, avalanche-testnet, bsc-mainnet, bsc-testnet, moonbeam-mainnet, moonbeam-moonriver, arbitrum-mainnet, arbitrum-nova-mainnet, arbitrum-sepolia, fantom-mainnet, fantom-testnet, btc-mainnet, solana-mainnet, axie-mainnet, optimism-mainnet, optimism-sepolia, cronos-zkevm-mainnet, emerald-paratime-mainnet, monad-testnet, monad-mainnet, megaeth-mainnet, berachain-mainnet, berachain-testnet, hypercore-mainnet, plasma-mainnet, unichain-mainnet, plasma-testnet, arc-testnet, adi-testnet, canto-mainnet, linea-mainnet, linea-sepolia-testnet, polygon-amoy-testnet, mantle-mainnet, base-mainnet, base-sepolia-testnet, oasis-sapphire-mainnet, celo-mainnet, hyperevm-mainnet, adi-mainnet, redstone-mainnet, sei-mainnet, apechain-mainnet, unichain-sepolia-testnet, sonic-mainnet, world-mainnet, world-sepolia-testnet, manta-sepolia-testnet, ink-sepolia-testnet, ink-mainnet, zksync-mainnet, bnb-opbnb-mainnet, zetachain-mainnet, gnosis-mainnet, gnosis-testnet, viction-mainnet, taiko-mainnet, blast-mainnet, scroll-mainnet
 The name of the chain to query.
 
-**(27) tokenAddress — Required**
+**(27) tokenAddress: Required**
 Default: No default
 The token contract address to retrieve holders for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically.
 
-**(28) noSnapshot — Optional**
+**(28) noSnapshot: Optional**
 Default: null
 If true, bypasses the last snapshot and returns the latest token holders list in real time.
 
-**(14) blockHeight — Optional**
+**(14) blockHeight: Optional**
 Default: null
 Block height to use as the upper bound for the holders snapshot. Defaults to the latest block if omitted. Accepts a block number or string.
 
-**(25) date — Optional**
+**(25) date: Optional**
 Default: null
 Date in YYYY-MM-DD format to use as the upper bound for the holders snapshot. Defaults to the current date if omitted.
 
-**(17) pageSize — Optional**
+**(17) pageSize: Optional**
 Default: null
 Number of holders to return per page. Only values of 100 and 1000 are supported. Defaults to 100 if omitted.
 
-**(18) pageNumber — Optional**
+**(18) pageNumber: Optional**
 Default: null
 0-indexed page number to begin pagination.
 

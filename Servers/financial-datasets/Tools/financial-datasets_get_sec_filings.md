@@ -7,15 +7,15 @@ SEC filings submitted by a company to the U.S. Securities and Exchange Commissio
 
 ### Used parameters
 
-**(1) ticker — Required**
+**(1) ticker: Required**
 Default: No default
 Ticker symbol of the company whose filings are being retrieved.
 
-**(2) limit — Optional**
+**(2) limit: Optional**
 Default: 10
 Controls how many filings are returned.
 
-**(3) filing_type — Optional**
+**(3) filing_type: Optional**
 Default: null
 Allowed: 10-K, 10-Q, 8-K, 4, DEF 14A, S-1
 Filters results to a specific filing type.

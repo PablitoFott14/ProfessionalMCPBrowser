@@ -7,7 +7,7 @@ Up IRS tax rules, definitions, and common tax questions by topic. Use this when 
 
 ### Used parameters
 
-**(183) topic - Required**  
+**(183) topic: Required**  
 Default: No default  
 Tax topic to look up.
 

@@ -7,11 +7,11 @@ Retrieves a full patent document from USPTO Patent Public Search by GUID. Use it
 
 ### Used parameters
 
-**(7) guid — Required**
+**(7) guid: Required**
 Default: No default
 Document GUID for the patent or published application to retrieve.
 
-**(8) source_type — Required**
+**(8) source_type: Required**
 Default: No default
 Allowed: USPAT, US-PGPUB
 Selects whether the GUID belongs to a granted patent (`USPAT`) or a published application (`US-PGPUB`).

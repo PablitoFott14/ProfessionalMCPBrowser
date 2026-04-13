@@ -7,27 +7,27 @@ Historical data for a prediction market event by its event ticker. Use this when
 
 ### Used parameters
 
-**(2) event_ticker - Required**  
+**(2) event_ticker: Required**  
 Default: No default  
 Event ticker used to identify the prediction market event.
 
-**(3) limit - Optional**  
+**(3) limit: Optional**  
 Default: null  
 Maximum number of history records to return.
 
-**(4) cursor - Optional**  
+**(4) cursor: Optional**  
 Default: null  
 Pagination cursor used to continue from a previous response.
 
-**(5) captured_from - Optional**  
+**(5) captured_from: Optional**  
 Default: null  
 Start of the historical window used to filter records.
 
-**(6) captured_to - Optional**  
+**(6) captured_to: Optional**  
 Default: null  
 End of the historical window used to filter records.
 
-**(7) include_analysis - Optional**  
+**(7) include_analysis: Optional**  
 Default: null  
 Flag indicating whether analysis columns should be included.
 

@@ -7,7 +7,7 @@ Details for a specific open position in the Alpaca portfolio by symbol. Use this
 
 ### Used parameters
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Ticker symbol of the asset to retrieve the position for (e.g., AAPL, MSFT).
 

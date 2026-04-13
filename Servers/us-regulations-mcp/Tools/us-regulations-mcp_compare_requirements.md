@@ -7,11 +7,11 @@ How multiple regulations address the same topic across their relevant sections. 
 
 ### Used parameters
 
-**(7) topic - Required**  
+**(7) topic: Required**  
 Default: No default  
 Topic used to compare regulatory treatment across multiple regulations.
 
-**(2) regulations - Required**  
+**(2) regulations: Required**  
 Default: No default  
 List of regulation identifiers to include in the comparison.
 

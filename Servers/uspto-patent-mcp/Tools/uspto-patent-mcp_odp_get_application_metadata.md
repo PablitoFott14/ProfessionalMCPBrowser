@@ -7,7 +7,7 @@ Gets detailed metadata for a patent application. Use it when you need comprehens
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this metadata request.
 

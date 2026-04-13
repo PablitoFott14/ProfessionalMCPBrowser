@@ -7,20 +7,20 @@ Returns the list of supported cryptocurrency exchanges. It is used when the user
 
 ### Used parameters
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

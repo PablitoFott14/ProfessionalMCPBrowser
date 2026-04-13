@@ -7,11 +7,11 @@ Returns an array of objects with available technical indicators. It is used when
 
 ### Used parameters
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

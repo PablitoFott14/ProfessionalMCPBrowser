@@ -7,16 +7,16 @@ Top entities in a sector, including ETFs, mutual funds, companies, growth compan
 
 ### Used parameters
 
-**(4) entity_type — Required**  
+**(4) entity_type: Required**  
 Default: No default  
 Allowed: etfs, mutual_funds, companies, growth_companies, performing_companies  
 Type of entities to retrieve.
 
-**(5) sector — Optional**  
+**(5) sector: Optional**  
 Default: ""  
 Sector name used to filter the returned entities.
 
-**(2) count — Optional**  
+**(2) count: Optional**  
 Default: 10  
 Number of entities to return.
 

@@ -7,7 +7,7 @@ A step-by-step guide for completing a specific IRS form or schedule. Use this wh
 
 ### Used parameters
 
-**(35) formNumber - Required**  
+**(35) formNumber: Required**  
 Default: No default  
 IRS form or schedule to explain.
 

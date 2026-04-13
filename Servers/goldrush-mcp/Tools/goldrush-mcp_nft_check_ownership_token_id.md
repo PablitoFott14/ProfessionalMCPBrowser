@@ -7,20 +7,20 @@ Verifies whether a wallet address owns a specific token ID within an NFT collect
 
 ### Used parameters
 
-**(12) chainName — Required**
+**(12) chainName: Required**
 Default: No default
 Allowed: eth-mainnet, eth-sepolia, eth-holesky, matic-mainnet, avalanche-mainnet, avalanche-testnet, bsc-mainnet, bsc-testnet, moonbeam-mainnet, moonbeam-moonriver, arbitrum-mainnet, arbitrum-nova-mainnet, arbitrum-sepolia, fantom-mainnet, fantom-testnet, btc-mainnet, solana-mainnet, axie-mainnet, optimism-mainnet, optimism-sepolia, cronos-zkevm-mainnet, emerald-paratime-mainnet, monad-testnet, monad-mainnet, megaeth-mainnet, berachain-mainnet, berachain-testnet, hypercore-mainnet, plasma-mainnet, unichain-mainnet, plasma-testnet, arc-testnet, adi-testnet, canto-mainnet, linea-mainnet, linea-sepolia-testnet, polygon-amoy-testnet, mantle-mainnet, base-mainnet, base-sepolia-testnet, oasis-sapphire-mainnet, celo-mainnet, hyperevm-mainnet, adi-mainnet, redstone-mainnet, sei-mainnet, apechain-mainnet, unichain-sepolia-testnet, sonic-mainnet, world-mainnet, world-sepolia-testnet, manta-sepolia-testnet, ink-sepolia-testnet, ink-mainnet, zksync-mainnet, bnb-opbnb-mainnet, zetachain-mainnet, gnosis-mainnet, gnosis-testnet, viction-mainnet, taiko-mainnet, blast-mainnet, scroll-mainnet
 The name of the chain to query.
 
-**(9) walletAddress — Required**
+**(9) walletAddress: Required**
 Default: No default
 The wallet address to verify ownership for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically.
 
-**(38) collectionContract — Required**
+**(38) collectionContract: Required**
 Default: No default
 The NFT collection contract address. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically.
 
-**(42) tokenId — Required**
+**(42) tokenId: Required**
 Default: No default
 The specific token ID to verify ownership of within the collection.
 

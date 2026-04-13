@@ -7,7 +7,7 @@ Gets patent detailed description text. The schema notes that the PatentsView API
 
 ### Used parameters
 
-**(28) patent_id - Required**
+**(28) patent_id: Required**
 Default: No default
 Patent ID or number to look up.
 

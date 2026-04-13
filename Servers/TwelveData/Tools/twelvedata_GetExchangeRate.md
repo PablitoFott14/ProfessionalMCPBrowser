@@ -7,36 +7,36 @@ Retrieves the real-time exchange rate for a currency pair, including both forex 
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Currency pair in BASE/QUOTE format (e.g., EUR/USD, BTC/ETH).
 
-**(14) date — Optional**  
+**(14) date: Optional**  
 Default: null  
 Retrieves the exchange rate at a specific date or time.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used when requesting CSV output.
 
-**(19) dp — Optional**  
+**(19) dp: Optional**  
 Default: 5  
 Decimal precision for the returned rate.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: null  
 Controls how datetime is interpreted and returned.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10 (or max with date filters)  
 Number of data points returned.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

@@ -7,11 +7,11 @@ Identifies which chains a given address has been active on, using a single API c
 
 ### Used parameters
 
-**(9) walletAddress — Required**
+**(9) walletAddress: Required**
 Default: No default
 The wallet address to check for activity. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically.
 
-**(11) testnets — Optional**
+**(11) testnets: Optional**
 Default: false
 Set to true to include testnet chains with activity in the response. By default only mainnet activity is returned.
 

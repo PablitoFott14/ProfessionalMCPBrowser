@@ -7,11 +7,11 @@ An Alpha Vantage tool by name using the provided arguments. It is useful after `
 
 ### Used parameters
 
-**(1) tool_name — Required**  
+**(1) tool_name: Required**  
 Default: No default  
 The name of the tool to execute.
 
-**(2) arguments — Required**  
+**(2) arguments: Required**  
 Default: No default  
 Dictionary of arguments matching the selected tool's parameter schema.
 

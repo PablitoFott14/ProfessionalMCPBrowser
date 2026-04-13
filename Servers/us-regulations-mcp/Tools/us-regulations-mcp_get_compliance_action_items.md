@@ -7,11 +7,11 @@ Prioritized compliance action items from one or more regulation sections. Use th
 
 ### Used parameters
 
-**(5) regulation - Required**  
+**(5) regulation: Required**  
 Default: No default  
 Regulation identifier used to select the regulation.
 
-**(12) sections - Required**  
+**(12) sections: Required**  
 Default: No default  
 List of section identifiers used to generate action items.
 

@@ -7,7 +7,7 @@ Looks up the meaning of a USPTO application status code. Use it when a status co
 
 ### Used parameters
 
-**(2) code — Required**
+**(2) code: Required**
 Default: No default
 Status code number to look up.
 

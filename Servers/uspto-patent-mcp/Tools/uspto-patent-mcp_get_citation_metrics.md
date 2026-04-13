@@ -7,7 +7,7 @@ Gets citation metrics for a patent. The schema notes that this tool is temporari
 
 ### Used parameters
 
-**(9) patent_number - Required**
+**(9) patent_number: Required**
 Default: No default
 Patent number to retrieve citation metrics for.
 

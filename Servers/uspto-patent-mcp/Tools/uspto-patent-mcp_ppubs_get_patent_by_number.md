@@ -7,7 +7,7 @@ Retrieves a granted patent from USPTO Patent Public Search by patent number. Use
 
 ### Used parameters
 
-**(9) patent_number — Required**
+**(9) patent_number: Required**
 Default: No default
 Granted patent number to retrieve.
 

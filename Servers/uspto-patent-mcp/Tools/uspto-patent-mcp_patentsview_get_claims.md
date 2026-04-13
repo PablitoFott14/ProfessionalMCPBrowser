@@ -7,7 +7,7 @@ Gets all claims text for a patent. The schema notes that the PatentsView API was
 
 ### Used parameters
 
-**(28) patent_id - Required**
+**(28) patent_id: Required**
 Default: No default
 Patent ID or number to look up.
 

@@ -7,7 +7,7 @@ Looks up CPC classification code details. The schema notes that the PatentsView 
 
 ### Used parameters
 
-**(1) cpc_code - Required**
+**(1) cpc_code: Required**
 Default: No default
 CPC code to look up.
 

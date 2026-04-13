@@ -7,7 +7,7 @@ Gets details of a specific PTAB proceeding. Use it when you already know the pro
 
 ### Used parameters
 
-**(20) proceeding_number - Required**
+**(20) proceeding_number: Required**
 Default: No default
 Proceeding number to look up.
 

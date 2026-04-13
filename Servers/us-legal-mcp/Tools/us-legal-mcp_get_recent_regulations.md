@@ -7,7 +7,7 @@ The most recently published Federal Register documents. Use this when the user n
 
 ### Used parameters
 
-**(3) limit — Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of results to return.
 

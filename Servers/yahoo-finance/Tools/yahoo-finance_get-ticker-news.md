@@ -7,11 +7,11 @@ Recent news articles related to a specific stock symbol, including title, conten
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock ticker symbol to retrieve news for.
 
-**(2) count — Optional**  
+**(2) count: Optional**  
 Default: 10  
 Number of news articles to fetch.
 

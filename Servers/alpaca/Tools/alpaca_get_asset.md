@@ -7,7 +7,7 @@ Detailed information about a specific asset on Alpaca, including its name, excha
 
 ### Used parameters
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Ticker symbol of the asset to look up (e.g., AAPL, TSLA).
 

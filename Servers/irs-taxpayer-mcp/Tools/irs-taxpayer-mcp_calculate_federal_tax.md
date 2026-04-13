@@ -7,68 +7,68 @@ Federal income tax for an individual taxpayer for TY2024 or TY2025. Use this whe
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the calculation.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the calculation.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Total gross income in USD.
 
-**(4) w2Income - Optional**  
+**(4) w2Income: Optional**  
 Default: No default  
 W-2 wage income.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income.
 
-**(6) capitalGains - Optional**  
+**(6) capitalGains: Optional**  
 Default: No default  
 Long-term capital gains or losses.
 
-**(7) capitalGainsLongTerm - Optional**  
+**(7) capitalGainsLongTerm: Optional**  
 Default: true  
 Flag indicating whether capital gains should be treated as long-term.
 
-**(8) shortTermCapitalGains - Optional**  
+**(8) shortTermCapitalGains: Optional**  
 Default: No default  
 Short-term capital gains taxed as ordinary income.
 
-**(9) qualifiedBusinessIncome - Optional**  
+**(9) qualifiedBusinessIncome: Optional**  
 Default: No default  
 Qualified Business Income used for the Section 199A deduction.
 
-**(10) aboveTheLineDeductions - Optional**  
+**(10) aboveTheLineDeductions: Optional**  
 Default: No default  
 Above-the-line deductions.
 
-**(11) itemizedDeductions - Optional**  
+**(11) itemizedDeductions: Optional**  
 Default: No default  
 Itemized deductions used if greater than the standard deduction.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of qualifying child dependents.
 
-**(13) age65OrOlder - Optional**  
+**(13) age65OrOlder: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is age 65 or older.
 
-**(14) blind - Optional**  
+**(14) blind: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is blind.
 
-**(15) isoExerciseSpread - Optional**  
+**(15) isoExerciseSpread: Optional**  
 Default: No default  
 ISO exercise spread used for AMT calculation.
 
-**(16) stateTaxDeducted - Optional**  
+**(16) stateTaxDeducted: Optional**  
 Default: No default  
 State or local taxes included in itemized deductions for AMT-related calculation.
 

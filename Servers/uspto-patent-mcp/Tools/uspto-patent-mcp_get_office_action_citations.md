@@ -7,11 +7,11 @@ Gets prior art citations from office actions. The schema notes that this tool is
 
 ### Used parameters
 
-**(11) application_number - Required**
+**(11) application_number: Required**
 Default: No default
 Application number to retrieve office action citations for.
 
-**(34) mail_date - Optional**
+**(34) mail_date: Optional**
 Default: null
 Filters office action citations by mail date.
 

@@ -7,44 +7,44 @@ Tax-efficient retirement withdrawals across traditional, Roth, and taxable accou
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the withdrawal plan.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the withdrawal plan.
 
-**(90) age - Required**  
+**(90) age: Required**  
 Default: No default  
 Current age used in the withdrawal plan.
 
-**(163) traditionalBalance - Required**  
+**(163) traditionalBalance: Required**  
 Default: No default  
 Traditional IRA or 401(k) balance.
 
-**(164) rothBalance - Required**  
+**(164) rothBalance: Required**  
 Default: No default  
 Roth IRA or Roth 401(k) balance.
 
-**(165) taxableBalance - Required**  
+**(165) taxableBalance: Required**  
 Default: No default  
 Taxable brokerage account balance.
 
-**(166) socialSecurityIncome - Optional**  
+**(166) socialSecurityIncome: Optional**  
 Default: No default  
 Annual Social Security income.
 
-**(167) pensionIncome - Optional**  
+**(167) pensionIncome: Optional**  
 Default: No default  
 Annual pension income.
 
-**(168) annualSpending - Required**  
+**(168) annualSpending: Required**  
 Default: No default  
 Annual pre-tax spending need.
 
-**(169) rothConversionInterest - Optional**  
+**(169) rothConversionInterest: Optional**  
 Default: No default  
 Flag indicating whether Roth conversion strategy should be considered.
 

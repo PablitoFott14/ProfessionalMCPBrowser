@@ -7,11 +7,11 @@ Fetches the Bitcoin balance for a single non-HD address, including spot prices a
 
 ### Used parameters
 
-**(9) walletAddress — Required**
+**(9) walletAddress: Required**
 Default: No default
 The Bitcoin non-HD address to retrieve the balance for.
 
-**(8) quoteCurrency — Optional**
+**(8) quoteCurrency: Optional**
 Default: null
 Allowed: USD, CAD, EUR, SGD, INR, JPY, VND, CNY, KRW, RUB, TRY, NGN, ARS, AUD, CHF, GBP
 Currency used for spot price conversions in the response.

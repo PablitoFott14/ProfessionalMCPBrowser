@@ -7,11 +7,11 @@ A specialized prediction markets research agent for Kalshi events. Use this when
 
 ### Used parameters
 
-**(1) prompt - Required**  
+**(1) prompt: Required**  
 Default: No default  
 Natural language research request passed to the agent.
 
-**(8) cache - Optional**  
+**(8) cache: Optional**  
 Default: null  
 Flag indicating whether the response should be cached.
 

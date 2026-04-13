@@ -7,28 +7,28 @@ Searches patent titles and abstracts using Google Patents Public Datasets via Bi
 
 ### Used parameters
 
-**(2) query — Required**
+**(2) query: Required**
 Default: No default
 Search query string. Searches patent titles and abstracts.
 
-**(37) country — Optional**
+**(37) country: Optional**
 Default: US
 Allowed: US, EP, WO, JP, CN, KR, GB, DE, FR, CA, AU
 Country code to scope the patent search.
 
-**(4) limit — Optional**
+**(4) limit: Optional**
 Default: 100
 Maximum number of results to return. Maximum allowed value is 500.
 
-**(14) offset — Optional**
+**(14) offset: Optional**
 Default: 0
 Number of results to skip for pagination.
 
-**(38) start_date — Optional**
+**(38) start_date: Optional**
 Default: null
 Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101).
 
-**(39) end_date — Optional**
+**(39) end_date: Optional**
 Default: null
 End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231).
 

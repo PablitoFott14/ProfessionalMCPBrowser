@@ -7,11 +7,11 @@ Searches patents by IPC classification code. The schema notes that the PatentsVi
 
 ### Used parameters
 
-**(33) ipc_code - Required**
+**(33) ipc_code: Required**
 Default: No default
 IPC code to search for.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 100
 Maximum number of patent results to return in this tool. The schema states a maximum of 1000.
 

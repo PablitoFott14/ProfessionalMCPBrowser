@@ -7,11 +7,11 @@ Fetches balances for each active child address derived from a Bitcoin HD wallet.
 
 ### Used parameters
 
-**(9) walletAddress — Required**
+**(9) walletAddress: Required**
 Default: No default
 The extended public key of the Bitcoin HD wallet. Accepts xPub, yPub, or zPub formats.
 
-**(8) quoteCurrency — Optional**
+**(8) quoteCurrency: Optional**
 Default: null
 Allowed: USD, CAD, EUR, SGD, INR, JPY, VND, CNY, KRW, RUB, TRY, NGN, ARS, AUD, CHF, GBP
 Currency used for balance value conversions in the response.

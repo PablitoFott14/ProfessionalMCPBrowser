@@ -7,23 +7,23 @@ Returns the current status of stock exchanges, including whether they are open o
 
 ### Used parameters
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Name of the exchange to filter results.
 
-**(40) code — Optional**  
+**(40) code: Optional**  
 Default: null  
 Market Identifier Code (MIC) of the exchange.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country where the exchange is located.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10 (or max with date filters)  
 Number of data points returned.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

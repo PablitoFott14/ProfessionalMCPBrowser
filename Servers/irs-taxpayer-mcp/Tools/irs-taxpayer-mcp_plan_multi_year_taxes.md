@@ -7,48 +7,48 @@ A multi-year tax projection across a three- to five-year planning horizon. Use t
 
 ### Used parameters
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used throughout the projection.
 
-**(170) currentAge - Required**  
+**(170) currentAge: Required**  
 Default: No default  
 Current age used as the starting point for the projection.
 
-**(171) years - Required**  
+**(171) years: Required**  
 Default: No default  
 Array of year-by-year projection entries.
 
-**(172) year - Required**  
+**(172) year: Required**  
 Default: No default  
 Tax year within a projection entry.
 
-**(173) expectedIncome - Required**  
+**(173) expectedIncome: Required**  
 Default: No default  
 Expected gross income within a projection entry.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income within a projection entry.
 
-**(174) plannedRothConversion - Optional**  
+**(174) plannedRothConversion: Optional**  
 Default: No default  
 Planned Roth conversion amount within a projection entry.
 
-**(175) planned401k - Optional**  
+**(175) planned401k: Optional**  
 Default: No default  
 Planned 401(k) contribution within a projection entry.
 
-**(176) plannedIRA - Optional**  
+**(176) plannedIRA: Optional**  
 Default: No default  
 Planned IRA contribution within a projection entry.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of dependents within a projection entry.
 
-**(20) stateCode - Optional**  
+**(20) stateCode: Optional**  
 Default: No default  
 State code within a projection entry.
 

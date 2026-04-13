@@ -7,11 +7,11 @@ Available federal tax credits along with eligibility, amounts, and phase-out rul
 
 ### Used parameters
 
-**(27) category - Optional**  
+**(27) category: Optional**  
 Default: all  
 Category used to filter the listed tax credits.
 
-**(36) refundableOnly - Optional**  
+**(36) refundableOnly: Optional**  
 Default: No default  
 Flag indicating whether only refundable credits should be shown.
 

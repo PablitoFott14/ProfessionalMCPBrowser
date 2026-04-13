@@ -7,20 +7,20 @@ Searches US patents with PatentsView full-text search. The schema notes that the
 
 ### Used parameters
 
-**(3) query - Required**
+**(3) query: Required**
 Default: No default
 Search terms for patent titles and abstracts.
 
-**(27) search_type - Optional**
+**(27) search_type: Optional**
 Default: any
 Controls the match type for this search.
 Allowed: any, all, phrase
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this PatentsView search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 100
 Maximum number of patent results to return in this tool. The schema states a maximum of 1000.
 

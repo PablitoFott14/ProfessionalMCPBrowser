@@ -7,81 +7,81 @@ Returns time series data for a cross between two instruments, including OHLC val
 
 ### Used parameters
 
-**(55) base — Required**  
+**(55) base: Required**  
 Default: No default  
 Base instrument or currency.
 
-**(56) quote — Required**  
+**(56) quote: Required**  
 Default: No default  
 Quote instrument or currency.
 
-**(57) base_type — Optional**  
+**(57) base_type: Optional**  
 Default: null  
 Type of the base instrument.
 
-**(58) base_exchange — Optional**  
+**(58) base_exchange: Optional**  
 Default: null  
 Exchange of the base instrument.
 
-**(59) base_mic_code — Optional**  
+**(59) base_mic_code: Optional**  
 Default: null  
 MIC code of the base instrument.
 
-**(60) quote_type — Optional**  
+**(60) quote_type: Optional**  
 Default: null  
 Type of the quote instrument.
 
-**(61) quote_exchange — Optional**  
+**(61) quote_exchange: Optional**  
 Default: null  
 Exchange of the quote instrument.
 
-**(62) quote_mic_code — Optional**  
+**(62) quote_mic_code: Optional**  
 Default: null  
 MIC code of the quote instrument.
 
-**(5) interval — Optional**  
+**(5) interval: Optional**  
 Default: 1day  
 Interval between data points.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10 (or max with date filters)  
 Number of data points to retrieve.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(43) prepost — Optional**  
+**(43) prepost: Optional**  
 Default: null  
 Includes pre and post market data.
 
-**(12) start_date — Optional**  
+**(12) start_date: Optional**  
 Default: null  
 Start date for the time series.
 
-**(13) end_date — Optional**  
+**(13) end_date: Optional**  
 Default: null  
 End date for the time series.
 
-**(45) adjust — Optional**  
+**(45) adjust: Optional**  
 Default: null  
 Allowed: splits, dividends, all  
 Specifies whether data should be adjusted.
 
-**(19) dp — Optional**  
+**(19) dp: Optional**  
 Default: null  
 Decimal precision for numeric values.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: Exchange  
 Timezone used for the returned datetime.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

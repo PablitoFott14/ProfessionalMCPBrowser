@@ -7,19 +7,19 @@ Gets documents filed in a PTAB proceeding. Use it when you need to review petiti
 
 ### Used parameters
 
-**(20) proceeding_number - Required**
+**(20) proceeding_number: Required**
 Default: No default
 Proceeding number to retrieve documents for.
 
-**(21) document_type - Optional**
+**(21) document_type: Optional**
 Default: null
 Filters the document list by document type.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this PTAB document list.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of PTAB documents to return in this tool.
 

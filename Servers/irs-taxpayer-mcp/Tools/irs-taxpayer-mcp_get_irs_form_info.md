@@ -7,7 +7,7 @@ Information about common IRS tax forms, including what they are, who typically n
 
 ### Used parameters
 
-**(35) formNumber - Required**  
+**(35) formNumber: Required**  
 Default: No default  
 IRS form number used to look up the form information.
 

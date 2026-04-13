@@ -7,92 +7,92 @@ A full tax estimate report that combines federal tax, state tax, FICA, credits, 
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the report.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the report.
 
-**(4) w2Income - Optional**  
+**(4) w2Income: Optional**  
 Default: No default  
 W-2 wages.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment net profit.
 
-**(98) interestIncome - Optional**  
+**(98) interestIncome: Optional**  
 Default: No default  
 Interest income.
 
-**(99) dividendIncome - Optional**  
+**(99) dividendIncome: Optional**  
 Default: No default  
 Ordinary dividend income.
 
-**(100) qualifiedDividends - Optional**  
+**(100) qualifiedDividends: Optional**  
 Default: No default  
 Qualified dividends.
 
-**(101) longTermCapitalGains - Optional**  
+**(101) longTermCapitalGains: Optional**  
 Default: No default  
 Long-term capital gains or losses.
 
-**(8) shortTermCapitalGains - Optional**  
+**(8) shortTermCapitalGains: Optional**  
 Default: No default  
 Short-term capital gains or losses.
 
-**(23) otherIncome - Optional**  
+**(23) otherIncome: Optional**  
 Default: No default  
 Other income.
 
-**(10) aboveTheLineDeductions - Optional**  
+**(10) aboveTheLineDeductions: Optional**  
 Default: No default  
 Above-the-line deductions.
 
-**(30) mortgageInterest - Optional**  
+**(30) mortgageInterest: Optional**  
 Default: No default  
 Mortgage interest.
 
-**(102) stateLocalTaxesPaid - Optional**  
+**(102) stateLocalTaxesPaid: Optional**  
 Default: No default  
 State, local, or property taxes paid.
 
-**(31) charitableDonations - Optional**  
+**(31) charitableDonations: Optional**  
 Default: No default  
 Charitable contributions.
 
-**(28) medicalExpenses - Optional**  
+**(28) medicalExpenses: Optional**  
 Default: No default  
 Unreimbursed medical expenses.
 
-**(32) otherItemized - Optional**  
+**(32) otherItemized: Optional**  
 Default: No default  
 Other itemized deductions.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Qualifying children under 17.
 
-**(9) qualifiedBusinessIncome - Optional**  
+**(9) qualifiedBusinessIncome: Optional**  
 Default: No default  
 Qualified Business Income used for the Section 199A deduction.
 
-**(20) stateCode - Optional**  
+**(20) stateCode: Optional**  
 Default: No default  
 State code used for the state tax estimate.
 
-**(103) federalWithheld - Optional**  
+**(103) federalWithheld: Optional**  
 Default: No default  
 Federal tax already withheld year to date.
 
-**(104) stateWithheld - Optional**  
+**(104) stateWithheld: Optional**  
 Default: No default  
 State tax already withheld year to date.
 
-**(105) estimatedPaymentsMade - Optional**  
+**(105) estimatedPaymentsMade: Optional**  
 Default: No default  
 Estimated tax payments already made.
 

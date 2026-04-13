@@ -7,28 +7,28 @@ Financial market data from a selected API endpoint path and optionally stores or
 
 ### Used parameters
 
-**(4) method - Required**  
+**(4) method: Required**  
 Default: No default  
 Allowed: GET  
 HTTP method used for the request.
 
-**(5) path - Required**  
+**(5) path: Required**  
 Default: No default  
 API endpoint path used to request data.
 
-**(6) params - Optional**  
+**(6) params: Optional**  
 Default: null  
 Query parameters passed with the API request.
 
-**(7) store_as - Optional**  
+**(7) store_as: Optional**  
 Default: null  
 Table name used to store the results for later querying.
 
-**(8) apply - Optional**  
+**(8) apply: Optional**  
 Default: null  
 List of post-processing function steps to apply to the returned results.
 
-**(9) api_key - Optional**  
+**(9) api_key: Optional**  
 Default: null  
 API key override used for this request.
 

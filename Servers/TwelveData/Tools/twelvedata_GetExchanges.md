@@ -7,40 +7,40 @@ Returns the list of available stock and ETF exchanges, including metadata such a
 
 ### Used parameters
 
-**(42) type — Optional**  
+**(42) type: Optional**  
 Default: null  
 Filters exchanges by asset class (e.g., ETF, Common Stock).
 
-**(51) name — Optional**  
+**(51) name: Optional**  
 Default: null  
 Filters results by exchange name.
 
-**(40) code — Optional**  
+**(40) code: Optional**  
 Default: null  
 Market Identifier Code (MIC) of the exchange.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Filters exchanges by country.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(41) show_plan — Optional**  
+**(41) show_plan: Optional**  
 Default: false  
 Includes plan availability information.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points returned.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

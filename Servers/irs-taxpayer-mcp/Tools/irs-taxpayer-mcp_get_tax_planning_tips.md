@@ -7,64 +7,64 @@ Year-end tax optimization strategies based on the taxpayer's income, withholding
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the planning recommendations.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the planning recommendations.
 
-**(56) estimatedIncome - Required**  
+**(56) estimatedIncome: Required**  
 Default: No default  
 Expected total income for the year.
 
-**(57) currentWithholding - Optional**  
+**(57) currentWithholding: Optional**  
 Default: No default  
 Total tax already withheld or paid year to date.
 
-**(58) hasRetirementPlan - Optional**  
+**(58) hasRetirementPlan: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has access to a workplace retirement plan.
 
-**(59) currentRetirementContributions - Optional**  
+**(59) currentRetirementContributions: Optional**  
 Default: No default  
 Year-to-date retirement contributions.
 
-**(60) hasHSA - Optional**  
+**(60) hasHSA: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has an HSA-eligible plan.
 
-**(61) currentHSAContributions - Optional**  
+**(61) currentHSAContributions: Optional**  
 Default: No default  
 Year-to-date HSA contributions.
 
-**(62) hasMortgage - Optional**  
+**(62) hasMortgage: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has a mortgage.
 
-**(63) estimatedItemizedDeductions - Optional**  
+**(63) estimatedItemizedDeductions: Optional**  
 Default: No default  
 Estimated total itemized deductions.
 
-**(64) hasCapitalGains - Optional**  
+**(64) hasCapitalGains: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer expects capital gains.
 
-**(65) estimatedCapitalGains - Optional**  
+**(65) estimatedCapitalGains: Optional**  
 Default: No default  
 Estimated capital gains.
 
-**(66) hasCapitalLosses - Optional**  
+**(66) hasCapitalLosses: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer expects capital losses.
 
-**(67) isSelfEmployed - Optional**  
+**(67) isSelfEmployed: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is self-employed.
 
-**(68) charitableGiving - Optional**  
+**(68) charitableGiving: Optional**  
 Default: No default  
 Year-to-date charitable donations.
 

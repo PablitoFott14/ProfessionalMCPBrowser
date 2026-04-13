@@ -7,7 +7,7 @@ Gets detailed attorney information by ID. The schema notes that the PatentsView 
 
 ### Used parameters
 
-**(32) attorney_id - Required**
+**(32) attorney_id: Required**
 Default: No default
 Attorney ID to look up.
 

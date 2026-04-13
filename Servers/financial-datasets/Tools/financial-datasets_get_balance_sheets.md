@@ -7,16 +7,16 @@ Balance sheets for a company, covering assets, liabilities, and shareholders' eq
 
 ### Used parameters
 
-**(1) ticker — Required**
+**(1) ticker: Required**
 Default: No default
 Ticker symbol of the company (e.g., AAPL, GOOGL).
 
-**(8) period — Optional**
+**(8) period: Optional**
 Default: annual
 Allowed: annual, quarterly, ttm
 Reporting period for the statements.
 
-**(2) limit — Optional**
+**(2) limit: Optional**
 Default: 4
 Number of balance sheets to return.
 

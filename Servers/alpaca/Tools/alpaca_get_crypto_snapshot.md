@@ -7,11 +7,11 @@ A comprehensive snapshot for one or more cryptocurrency symbols in a single call
 
 ### Used parameters
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Crypto symbol or list of symbols (e.g., BTC/USD or ["BTC/USD", "ETH/USD"]).
 
-**(28) feed — Optional**
+**(28) feed: Optional**
 Default: us
 Allowed: us
 Crypto data feed to retrieve from. Currently only "us" is supported.

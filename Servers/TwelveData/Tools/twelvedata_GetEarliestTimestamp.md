@@ -7,43 +7,43 @@ Returns the first available datetime for an instrument at a given interval. It i
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Symbol ticker of the instrument.
 
-**(34) figi — Optional**  
+**(34) figi: Optional**  
 Default: null  
 Financial Instrument Global Identifier.
 
-**(35) isin — Optional**  
+**(35) isin: Optional**  
 Default: null  
 International Securities Identification Number.
 
-**(36) cusip — Optional**  
+**(36) cusip: Optional**  
 Default: null  
 CUSIP identifier for the instrument.
 
-**(5) interval — Optional**  
+**(5) interval: Optional**  
 Default: 1day  
 Interval between data points.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where the instrument is traded.
 
-**(38) mic_code — Optional**  
+**(38) mic_code: Optional**  
 Default: null  
 Market Identifier Code under ISO 10383.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: Exchange  
 Timezone used for the returned datetime.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: null  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

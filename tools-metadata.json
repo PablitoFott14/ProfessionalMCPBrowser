@@ -63,6 +63,18 @@
     "uspto-patent-mcp": {
       "color": "#22c55e",
       "domain": "Legal"
+    },
+    "sec-edgar-mcp": {
+      "color": "#a855f7",
+      "domain": "Finance"
+    },
+    "courtlistener-mcp": {
+      "color": "#0ea5e9",
+      "domain": "Legal"
+    },
+    "open-legal-compliance-mcp": {
+      "color": "#a855f7",
+      "domain": "General"
     }
   }
 }

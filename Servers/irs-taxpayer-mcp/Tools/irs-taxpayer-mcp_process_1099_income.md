@@ -7,36 +7,36 @@ Multiple 1099 forms and estimates the tax impact of each income type. Use this w
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the analysis.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the analysis.
 
-**(4) w2Income - Optional**  
+**(4) w2Income: Optional**  
 Default: No default  
 W-2 income included for context.
 
-**(106) forms - Required**  
+**(106) forms: Required**  
 Default: No default  
 Array of 1099 form entries used in the analysis.
 
-**(107) payer - Optional**  
+**(107) payer: Optional**  
 Default: No default  
 Payer name within a form entry.
 
-**(108) amount - Required**  
+**(108) amount: Required**  
 Default: No default  
 Total amount within a form entry.
 
-**(109) qualifiedDividendsForm - Optional**  
+**(109) qualifiedDividendsForm: Optional**  
 Default: No default  
 Qualified dividends amount within a 1099-DIV entry.
 
-**(110) longTerm - Optional**  
+**(110) longTerm: Optional**  
 Default: No default  
 Flag indicating whether a 1099-B gain is long-term.
 

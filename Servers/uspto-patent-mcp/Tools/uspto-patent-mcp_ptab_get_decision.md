@@ -7,7 +7,7 @@ Gets details of a specific PTAB decision. Use it when you already know the decis
 
 ### Used parameters
 
-**(25) decision_id - Required**
+**(25) decision_id: Required**
 Default: No default
 Decision identifier to look up.
 

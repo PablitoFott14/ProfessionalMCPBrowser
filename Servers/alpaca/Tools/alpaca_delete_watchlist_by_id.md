@@ -7,7 +7,7 @@ Deletes a specific Alpaca watchlist by its UUID. Use this when the user wants to
 
 ### Used parameters
 
-**(22) watchlist_id — Required**
+**(22) watchlist_id: Required**
 Default: No default
 UUID of the watchlist to delete.
 

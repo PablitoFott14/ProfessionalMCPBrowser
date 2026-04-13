@@ -7,15 +7,15 @@ Court opinions and decisions from CourtListener across federal and state courts.
 
 ### Used parameters
 
-**(1) query - Required**  
+**(1) query: Required**  
 Default: No default  
 Search query used to find relevant court opinions.
 
-**(4) court - Optional**  
+**(4) court: Optional**  
 Default: null  
 Court identifier used to limit the search to a specific court.
 
-**(3) limit - Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of court opinion results to return.
 

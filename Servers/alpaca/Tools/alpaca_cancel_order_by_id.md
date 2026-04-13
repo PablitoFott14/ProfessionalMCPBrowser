@@ -7,7 +7,7 @@ A specific open order by its UUID. Use this when the user wants to cancel a sing
 
 ### Used parameters
 
-**(62) order_id — Required**
+**(62) order_id: Required**
 Default: No default
 UUID of the order to cancel.
 

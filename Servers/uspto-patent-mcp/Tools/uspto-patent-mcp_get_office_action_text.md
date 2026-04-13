@@ -7,11 +7,11 @@ Gets full text of office actions for an application. The schema notes that the l
 
 ### Used parameters
 
-**(11) application_number - Required**
+**(11) application_number: Required**
 Default: No default
 Application number to retrieve office action text for.
 
-**(34) mail_date - Optional**
+**(34) mail_date: Optional**
 Default: null
 Filters office action text by mail date.
 

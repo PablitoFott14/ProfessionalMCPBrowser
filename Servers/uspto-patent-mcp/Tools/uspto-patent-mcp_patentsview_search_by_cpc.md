@@ -7,11 +7,11 @@ Searches patents by CPC classification code. The schema notes that the PatentsVi
 
 ### Used parameters
 
-**(1) cpc_code - Required**
+**(1) cpc_code: Required**
 Default: No default
 CPC code to search for.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 100
 Maximum number of patent results to return in this tool. The schema states a maximum of 1000.
 

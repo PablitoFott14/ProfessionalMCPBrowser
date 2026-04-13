@@ -7589,6 +7589,885 @@
       ]
     },
     {
+      "name": "courtlistener-mcp",
+      "intro": "The `courtlistener-mcp` server provides access to the CourtListener legal research database, covering opinion and case law search, citation parsing and validation, PACER docket and document access via the RECAP archive, oral argument audio, judge and court records, and server status. It is useful when the user needs to research precedent, resolve citations, investigate federal litigation, or look up court and judge information from a single server.\n\n### How it works\n- The server is split across several functional groups: opinion search and retrieval (`search_opinions`, `get_opinion`, `get_cluster`), citation tools (`citation_lookup_citation`, `citation_batch_lookup_citations`, `citation_enhanced_citation_lookup`, `citation_parse_citation_with_citeurl`, `citation_verify_citation_format`, `citation_extract_citations_from_text`), RECAP archive tools (`search_dockets`, `get_docket`, `search_recap_documents`), audio tools (`search_audio`, `get_audio`), and entity lookup tools (`get_court`, `get_person`, `search_people`).\n- Citation tools combine two sources: the citeurl library for local parsing, validation, and URL generation, and the CourtListener API for case record lookup. The enhanced lookup tool uses both together.\n- Search tools across opinions, dockets, documents, audio, and people all share a common query-plus-filter pattern, accepting a full-text query alongside optional field-level filters and sort order.\n- Get-by-ID tools (`get_opinion`, `get_cluster`, `get_docket`, `get_audio`, `get_person`) require IDs that are typically returned by the corresponding search tools first. `get_court` accepts well-known court identifiers directly (e.g., \"scotus\", \"ca9\") without a prior search step.\n\n### Potential resolution paths\n- **Research case law on a topic:** Use `search_opinions` with a full-text query and optional court, judge, or date filters, then follow with `get_cluster` or `get_opinion` once a relevant result is identified.\n- **Resolve a citation to a case record:** Use `citation_lookup_citation` for a single citation or `citation_batch_lookup_citations` for multiple citations. Use `citation_enhanced_citation_lookup` when both parsed structure and CourtListener record data are needed together.\n- **Validate or parse a citation string:** Use `citation_verify_citation_format` to check whether a citation is well-formed, or `citation_parse_citation_with_citeurl` to decompose it into tokens and generate a URL.\n- **Extract citations from a document:** Use `citation_extract_citations_from_text` to identify all citations within a block of text before looking them up individually or in batch.\n- **Investigate federal litigation:** Use `search_dockets` to find cases by party, court, or docket number, then `get_docket` for the full record and `search_recap_documents` to retrieve specific filed documents.\n- **Research a judge:** Use `search_people` to find a judge by name, appointment, or school, then `get_person` for the full biographical and appointment record.\n- **Find oral argument recordings:** Use `search_audio` with topic and court filters, then `get_audio` for the specific recording record.\n\n### Best practices\n- **Use search tools to obtain IDs before calling get-by-ID tools:** `get_opinion`, `get_cluster`, `get_docket`, `get_audio`, and `get_person` all require a known ID returned by the corresponding search tool. `get_court` is the exception — court IDs such as \"scotus\" or \"ca9\" are well-known and can be passed directly.\n- **Use `citation_verify_citation_format` before lookup when citation quality is uncertain:** Validating the format locally with citeurl before calling the CourtListener API avoids failed lookups from malformed citation strings.\n- **Prefer `citation_batch_lookup_citations` when resolving multiple citations:** It handles up to 100 citations in a single request, which is more efficient than calling `citation_lookup_citation` repeatedly.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "courtlistener-mcp_citation_batch_lookup_citations",
+          "purpose": "Looks up multiple legal citations in a single request against the CourtListener API. Use it when a list of citations needs to be resolved at once rather than making individual calls per citation. Accepts up to 100 citations per request.",
+          "parameters": [
+            {
+              "number": 14,
+              "name": "citations",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "List of legal citation strings to look up. Minimum 1, maximum 100."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Look up multiple case citations in a single batch request",
+              "params": {
+                "citations": [
+                  "410 U.S. 113",
+                  "347 U.S. 483",
+                  "384 U.S. 436"
+                ]
+              }
+            },
+            {
+              "intent": "Resolve a set of citations extracted from a document",
+              "params": {
+                "citations": [
+                  "530 U.S. 428",
+                  "542 U.S. 507",
+                  "556 U.S. 662"
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_citation_enhanced_citation_lookup",
+          "purpose": "Performs an enhanced citation lookup by combining citeurl parsing with CourtListener API data. Use it when a citation string needs to be validated and enriched with case information from both local parsing and CourtListener records.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "citation",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Legal citation string to look up and analyze (e.g., \"410 U.S. 113\")."
+            },
+            {
+              "number": 11,
+              "name": "include_courtlistener",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Controls whether a CourtListener API lookup is performed in addition to local citeurl parsing."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Look up and enrich a citation using both citeurl and CourtListener",
+              "params": {
+                "citation": "410 U.S. 113"
+              }
+            },
+            {
+              "intent": "Parse and validate a citation locally without a CourtListener API call",
+              "params": {
+                "citation": "347 U.S. 483",
+                "include_courtlistener": false
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_citation_extract_citations_from_text",
+          "purpose": "Extracts and parses all legal citations from a block of text using citeurl. Use it when processing a document, brief, or opinion to identify every citation it contains, including both long-form and short-form references such as \"id.\" citations.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "text",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Block of text containing the legal citations to extract."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Extract all citations from a legal document or opinion text",
+              "params": {
+                "text": "The Court held in Brown v. Board of Education, 347 U.S. 483 (1954), that segregation was unconstitutional. Id. at 495."
+              }
+            },
+            {
+              "intent": "Extract citations from a brief to identify all cited authorities",
+              "params": {
+                "text": "As established in Miranda v. Arizona, 384 U.S. 436 (1966), and reaffirmed in Dickerson v. United States, 530 U.S. 428 (2000), the warnings are constitutionally required."
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_citation_lookup_citation",
+          "purpose": "Looks up a single legal citation in CourtListener to find the opinion it references. Use it when a citation string needs to be resolved to a case record. Supports U.S. Reporter, Federal Reporter, WestLaw, and state reporter citation formats.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "citation",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Legal citation string to look up (e.g., \"410 U.S. 113\", \"123 F.3d 456\", \"2023 WL 12345\")."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Resolve a U.S. Reporter citation to its CourtListener opinion record",
+              "params": {
+                "citation": "410 U.S. 113"
+              }
+            },
+            {
+              "intent": "Resolve a Federal Reporter citation to its CourtListener opinion record",
+              "params": {
+                "citation": "123 F.3d 456"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_citation_parse_citation_with_citeurl",
+          "purpose": "Parses a legal citation using the citeurl library to extract structured token data, a normalized citation format, and a generated URL. Use it when a citation string needs to be decomposed into its components — volume, reporter, page — or when a canonical URL for the cited source is needed.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "citation",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Legal citation string to parse (e.g., \"410 U.S. 113\", \"42 USC § 1988\")."
+            },
+            {
+              "number": 13,
+              "name": "broad",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Controls whether broad matching is used for more flexible parsing of ambiguous or non-standard citation formats."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Parse a case citation to extract its structured components and URL",
+              "params": {
+                "citation": "410 U.S. 113"
+              }
+            },
+            {
+              "intent": "Parse a statutory citation with strict matching only",
+              "params": {
+                "citation": "42 USC § 1988",
+                "broad": false
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_citation_verify_citation_format",
+          "purpose": "Verifies whether a citation string is in a recognized legal citation format using citeurl's citation templates. Use it to validate a citation before passing it to lookup or parsing tools, or to surface any formatting issues in a citation string.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "citation",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Legal citation string to verify."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Verify that a citation string is in a valid recognized format",
+              "params": {
+                "citation": "410 U.S. 113"
+              }
+            },
+            {
+              "intent": "Check whether a citation string has formatting issues before lookup",
+              "params": {
+                "citation": "42 USC 1983"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_audio",
+          "purpose": "Retrieves oral argument audio information by ID from CourtListener. Use it when details or metadata about a specific oral argument recording are needed.",
+          "parameters": [
+            {
+              "number": 18,
+              "name": "audio_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener oral argument audio recording ID to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve oral argument audio information by recording ID",
+              "params": {
+                "audio_id": "12345"
+              }
+            },
+            {
+              "intent": "Fetch metadata for a known oral argument audio recording",
+              "params": {
+                "audio_id": "67890"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_cluster",
+          "purpose": "Retrieves an opinion cluster by ID from CourtListener. Use it when a cluster ID is already known and the full cluster record — including its nested opinions — is needed.",
+          "parameters": [
+            {
+              "number": 17,
+              "name": "cluster_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener opinion cluster ID to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve an opinion cluster by its CourtListener ID",
+              "params": {
+                "cluster_id": "108713"
+              }
+            },
+            {
+              "intent": "Fetch a specific opinion cluster to access its nested opinion documents",
+              "params": {
+                "cluster_id": "2812209"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_court",
+          "purpose": "Retrieves court information by court ID from CourtListener. Use it when details about a specific court are needed, such as its full name, jurisdiction, or metadata.",
+          "parameters": [
+            {
+              "number": 15,
+              "name": "court_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener court identifier to retrieve (e.g., \"scotus\", \"ca9\")."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve information about the Supreme Court",
+              "params": {
+                "court_id": "scotus"
+              }
+            },
+            {
+              "intent": "Retrieve information about the Ninth Circuit",
+              "params": {
+                "court_id": "ca9"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_docket",
+          "purpose": "Retrieves a specific court docket by ID from CourtListener. Use it when a docket ID is already known and the full docket record is needed.",
+          "parameters": [
+            {
+              "number": 19,
+              "name": "docket_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener docket ID to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve a court docket by its CourtListener ID",
+              "params": {
+                "docket_id": "4214664"
+              }
+            },
+            {
+              "intent": "Fetch a known docket record to review its entries and filings",
+              "params": {
+                "docket_id": "9876543"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_opinion",
+          "purpose": "Retrieves a specific court opinion by ID from CourtListener. Use it when an opinion ID is already known and the full opinion text or metadata is needed.",
+          "parameters": [
+            {
+              "number": 20,
+              "name": "opinion_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener opinion ID to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the full text of a court opinion by its CourtListener ID",
+              "params": {
+                "opinion_id": "108713"
+              }
+            },
+            {
+              "intent": "Fetch a specific opinion document from a known cluster",
+              "params": {
+                "opinion_id": "2345678"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_get_person",
+          "purpose": "Retrieves judge or legal professional information by ID from CourtListener. Use it when biographical or appointment details about a specific judge or person are needed.",
+          "parameters": [
+            {
+              "number": 16,
+              "name": "person_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CourtListener person ID for the judge or legal professional to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve biographical information for a judge by their CourtListener ID",
+              "params": {
+                "person_id": "1234"
+              }
+            },
+            {
+              "intent": "Look up appointment and career details for a federal judge",
+              "params": {
+                "person_id": "5678"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_search_audio",
+          "purpose": "Searches oral argument audio recordings in CourtListener. Use it when researching how a case was argued, finding recordings from a specific court or judge, or filtering arguments by date range.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "q",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Full-text search query for oral argument audio."
+            },
+            {
+              "number": 2,
+              "name": "court",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific court by court ID (e.g., \"scotus\", \"ca9\")."
+            },
+            {
+              "number": 3,
+              "name": "case_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by case name."
+            },
+            {
+              "number": 4,
+              "name": "judge",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by judge name."
+            },
+            {
+              "number": 27,
+              "name": "argued_after",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to arguments heard after this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 28,
+              "name": "argued_before",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to arguments heard before this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 9,
+              "name": "order_by",
+              "required": false,
+              "default": "score desc",
+              "allowed": [],
+              "description": "Sort order for results. Accepted values: score desc, dateArgued desc, dateArgued asc."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for oral arguments on a topic from the Supreme Court",
+              "params": {
+                "q": "affirmative action",
+                "court": "scotus",
+                "order_by": "dateArgued desc"
+              }
+            },
+            {
+              "intent": "Find oral arguments argued within a specific date range",
+              "params": {
+                "q": "fourth amendment",
+                "argued_after": "2020-01-01",
+                "argued_before": "2023-12-31",
+                "order_by": "dateArgued asc"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_search_dockets",
+          "purpose": "Searches federal case dockets from PACER via CourtListener. Use it when researching litigation by case name, docket number, party, or court, or when a docket ID is needed for use with other tools.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "q",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Full-text search query for docket text."
+            },
+            {
+              "number": 2,
+              "name": "court",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific court by court ID (e.g., \"scotus\", \"ca9\")."
+            },
+            {
+              "number": 3,
+              "name": "case_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by case name."
+            },
+            {
+              "number": 29,
+              "name": "docket_number",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific docket number."
+            },
+            {
+              "number": 33,
+              "name": "date_filed_after",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to dockets filed after this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 34,
+              "name": "date_filed_before",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to dockets filed before this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 32,
+              "name": "party_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by party name."
+            },
+            {
+              "number": 9,
+              "name": "order_by",
+              "required": false,
+              "default": "score desc",
+              "allowed": [],
+              "description": "Sort order for results. Accepted values: score desc, dateFiled desc, dateFiled asc."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for dockets involving a named party in a specific court",
+              "params": {
+                "q": "patent infringement",
+                "court": "dcd",
+                "party_name": "Apple",
+                "order_by": "dateFiled desc"
+              }
+            },
+            {
+              "intent": "Find dockets by case name filed within a date range",
+              "params": {
+                "q": "securities fraud",
+                "case_name": "United States v.",
+                "date_filed_after": "2022-01-01",
+                "date_filed_before": "2023-12-31"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_search_opinions",
+          "purpose": "Searches case law opinion clusters with nested Opinion documents in CourtListener. Use it when researching precedent, finding opinions by court or judge, or filtering by citation frequency or date range.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "q",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Full-text search query for opinion content."
+            },
+            {
+              "number": 2,
+              "name": "court",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific court by court ID (e.g., \"scotus\", \"ca9\")."
+            },
+            {
+              "number": 3,
+              "name": "case_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by case name."
+            },
+            {
+              "number": 4,
+              "name": "judge",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by judge name."
+            },
+            {
+              "number": 5,
+              "name": "filed_after",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to opinions filed after this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 6,
+              "name": "filed_before",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to opinions filed before this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 7,
+              "name": "cited_gt",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Filters to opinions cited more than this number of times."
+            },
+            {
+              "number": 8,
+              "name": "cited_lt",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Filters to opinions cited fewer than this number of times."
+            },
+            {
+              "number": 9,
+              "name": "order_by",
+              "required": false,
+              "default": "score desc",
+              "allowed": [],
+              "description": "Sort order for results. Accepted values: score desc, dateFiled desc, dateFiled asc."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for opinions on a legal topic from a specific court, sorted by relevance",
+              "params": {
+                "q": "qualified immunity excessive force",
+                "court": "ca9",
+                "order_by": "score desc"
+              }
+            },
+            {
+              "intent": "Find highly cited opinions on a topic filed within a date range",
+              "params": {
+                "q": "fourth amendment warrant",
+                "filed_after": "2015-01-01",
+                "filed_before": "2023-12-31",
+                "cited_gt": 50,
+                "order_by": "dateFiled desc"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_search_people",
+          "purpose": "Searches judges and legal professionals in the CourtListener database. Use it when researching a judge's background, appointment history, political affiliation, or education, or when finding a person ID for use with other tools.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "q",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Full-text search query for judges and legal professionals."
+            },
+            {
+              "number": 21,
+              "name": "name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by the person's name."
+            },
+            {
+              "number": 22,
+              "name": "position_type",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by position type (e.g., \"jud\" for judge)."
+            },
+            {
+              "number": 23,
+              "name": "political_affiliation",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by political affiliation."
+            },
+            {
+              "number": 24,
+              "name": "school",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by school attended."
+            },
+            {
+              "number": 25,
+              "name": "appointed_by",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by appointing authority."
+            },
+            {
+              "number": 26,
+              "name": "selection_method",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by selection method."
+            },
+            {
+              "number": 9,
+              "name": "order_by",
+              "required": false,
+              "default": "score desc",
+              "allowed": [],
+              "description": "Sort order for results. Accepted values: score desc, name asc."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for federal judges appointed by a specific authority",
+              "params": {
+                "q": "federal judge",
+                "appointed_by": "Obama",
+                "position_type": "jud"
+              }
+            },
+            {
+              "intent": "Find judges who attended a specific law school, sorted by name",
+              "params": {
+                "q": "judge",
+                "school": "Harvard Law School",
+                "order_by": "name asc"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_search_recap_documents",
+          "purpose": "Searches federal filing documents from the PACER system via the RECAP archive. Use it when researching filed documents in federal litigation, filtering by court, docket number, party, or date range.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "q",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Full-text search query for RECAP filing documents."
+            },
+            {
+              "number": 2,
+              "name": "court",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific court by court ID (e.g., \"scotus\", \"ca9\")."
+            },
+            {
+              "number": 3,
+              "name": "case_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by case name."
+            },
+            {
+              "number": 29,
+              "name": "docket_number",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific docket number."
+            },
+            {
+              "number": 30,
+              "name": "document_number",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific document number within a docket."
+            },
+            {
+              "number": 31,
+              "name": "attachment_number",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results to a specific attachment number."
+            },
+            {
+              "number": 5,
+              "name": "filed_after",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to documents filed after this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 6,
+              "name": "filed_before",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Restricts results to documents filed before this date (YYYY-MM-DD)."
+            },
+            {
+              "number": 32,
+              "name": "party_name",
+              "required": false,
+              "default": "\"\"",
+              "allowed": [],
+              "description": "Filters results by party name."
+            },
+            {
+              "number": 9,
+              "name": "order_by",
+              "required": false,
+              "default": "score desc",
+              "allowed": [],
+              "description": "Sort order for results. Accepted values: score desc, dateFiled desc, dateFiled asc."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search RECAP documents for a case by party name and court",
+              "params": {
+                "q": "motion to dismiss",
+                "court": "dcd",
+                "party_name": "United States",
+                "order_by": "dateFiled desc"
+              }
+            },
+            {
+              "intent": "Find documents filed in a specific docket within a date range",
+              "params": {
+                "q": "summary judgment",
+                "docket_number": "1:23-cv-01234",
+                "filed_after": "2023-01-01",
+                "filed_before": "2023-12-31"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "courtlistener-mcp_status",
+          "purpose": "Checks the status of the CourtListener MCP server. Use it to confirm the server is reachable and retrieve system metrics and service information before making other requests.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "Check server status and retrieve system metrics",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "financial-datasets",
       "intro": "The `financial-datasets` server is designed for research-heavy workflows. It brings together company financial statements, SEC filings, market prices, company news, and crypto price history so users can move from a quick market question into a more complete fundamental or event-driven analysis without leaving the same server context.\n\n### How it works\n- The server covers both fundamentals and market behavior, making it useful for linking financial performance, disclosures, headlines, and price movement.\n- It supports equity research workflows especially well, since statements, filings, news, and historical prices can be combined around the same company.\n- Inputs are generally simple, but the real strength is in combining several tools to answer broader investment or research questions.\n\n### Potential resolution paths\n- **Run a full company research pass:** Combine `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to understand profitability, financial position, and cash generation together.\n- **Link narrative to numbers:** Use `get_company_news` and `get_sec_filings` to identify important developments, then review the related statements or price history to see how those events connect to fundamentals and market reaction.\n- **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices`, `get_crypto_prices`, or `get_historical_crypto_prices` when the user needs trend, volatility, or event-window analysis.\n\n### Best practices\n- **Treat the server as a research bundle, not a set of isolated endpoints:** Its value increases when `get_sec_filings`, `get_company_news`, `get_income_statements`, `get_balance_sheets`, `get_cash_flow_statements`, `get_current_stock_price`, and `get_historical_stock_prices` are read together.\n- **Match the tool to the depth of the question:** Use `get_current_stock_price` or `get_crypto_prices` for quick checks, `get_historical_stock_prices` or `get_historical_crypto_prices` for trend analysis, and `get_income_statements`, `get_balance_sheets`, `get_cash_flow_statements`, or `get_sec_filings` when the user is really asking about business quality or disclosure.",
       "paramsWrapped": false,
@@ -16464,6 +17343,52 @@
       ]
     },
     {
+      "name": "open-legal-compliance-mcp",
+      "intro": "",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "open-legal-compliance-mcp_search_us_code",
+          "purpose": "Searches the US Code (Federal Law) by query string with an optional title filter. Use it when researching federal statutory law or locating provisions within a specific US Code title.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for US Code content."
+            },
+            {
+              "number": 2,
+              "name": "title",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Restricts the search to a specific US Code title (e.g., \"Title 15\")."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search federal law for provisions related to a topic",
+              "params": {
+                "query": "data privacy consumer protection"
+              }
+            },
+            {
+              "intent": "Search within a specific US Code title for relevant provisions",
+              "params": {
+                "query": "antitrust monopoly",
+                "title": "Title 15"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "patent-mcp-server",
       "intro": "The patent-mcp-server provides access to two distinct patent data sources: the USPTO database via a unified method-routing tool, and Google Patents Public Datasets via a set of targeted search and retrieval tools. Together they cover patent discovery by keyword, inventor, assignee, or classification code; full document retrieval including claims and descriptions; application-level data such as continuity, assignments, and transaction history; and bulk dataset access — all scoped to US or international patents depending on the source.\n\n### How it works\n\n- **USPTO data** is accessed through a single tool, `uspto_patents`, which routes to 23 different endpoints via the `method` parameter. Methods span full-text patent and application search using USPTO Public Search syntax, application lookup by number, PDF download, and administrative data (continuity, assignments, attorney, transactions, documents).\n- **Google Patents data** is split across seven tools. The four search tools (`google_search_patents`, `google_search_by_inventor`, `google_search_by_assignee`, `google_search_by_cpc`) return discovery results including publication numbers. The three retrieval tools (`google_get_patent`, `google_get_patent_claims`, `google_get_patent_description`) each take a publication number and return a specific section of the full patent document.\n- All Google search tools accept `country`, `limit`, `offset`, `start_date`, and `end_date` for scoping and pagination. Allowed country codes are: US, EP, WO, JP, CN, KR, GB, DE, FR, CA, AU.\n- USPTO `ppubs_search_*` methods use USPTO Public Search field-code syntax and boolean operators; Google search tools accept natural language or keyword queries.\n\n### Potential resolution paths\n\n- **Discover patents by topic across multiple countries:** Use `google_search_patents` with a natural language or keyword query scoped to the relevant country and date range.\n- **Research a company's full patent portfolio:** Use `google_search_by_assignee` to retrieve all patents assigned to a company, optionally filtered by country and date range.\n- **Track an inventor's filing history:** Use `google_search_by_inventor` to find all patents listing a specific inventor across one or more countries.\n- **Explore a technology area by classification:** Use `google_search_by_cpc` with the relevant CPC code to find patents in a defined technology domain without relying on keyword matching.\n- **Read a full patent document once the publication number is known:** Call `google_get_patent` for the complete record, `google_get_patent_claims` for the legal claims, and `google_get_patent_description` for the detailed description — each returns a distinct section.\n- **Search and retrieve US patents using USPTO syntax:** Use `uspto_patents` with `ppubs_search_patents` or `ppubs_search_applications` for field-level queries, then `ppubs_get_patent_by_number` or `ppubs_get_full_document` to retrieve the full text.\n- **Look up application-level administrative data:** Use `uspto_patents` with `get_app_continuity`, `get_app_assignment`, `get_app_transactions`, or related `get_app_*` methods when the application number is known.\n- **Download a patent as PDF:** Use `uspto_patents` with `ppubs_download_patent_pdf` and the patent number.\n\n### Best practices\n\n- **Use Google search tools to get publication numbers before calling the retrieval tools:** `google_get_patent`, `google_get_patent_claims`, and `google_get_patent_description` all require a publication number. If the user doesn't already have one, run a search first to obtain it.\n- **Choose the right search tool based on query type:** USPTO `ppubs_search_*` methods require structured field-code syntax (e.g., `TTL/battery AND ISD/20220101->20251231`); Google search tools accept plain keywords or natural language. Using Google syntax against USPTO or vice versa will produce poor results.\n- **Retrieve claims and description as separate calls when both are needed:** `google_get_patent_claims` and `google_get_patent_description` are distinct endpoints — neither is a subset of `google_get_patent`. If the full document content is required, all three tools may need to be called.",
       "paramsWrapped": false,
@@ -17226,6 +18151,857 @@
                 "filters": "applicationFilingDate:[2020-01-01 TO *]",
                 "limit": 50,
                 "offset": 0
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "sec-edgar-mcp",
+      "intro": "The `sec-edgar-mcp` server provides structured access to SEC EDGAR data, covering company identification, filing discovery and retrieval, financial statement extraction, XBRL concept and metric discovery, segment analysis, insider trading records, and form-type guidance. It is useful when the user needs to move from a company name or ticker through to specific filing content, financial data, or insider activity in a single server.\n\n### How it works\n- Company lookups start with `get_cik_by_ticker`, `get_company_info`, or `search_companies` to resolve the entity, then filing tools like `get_recent_filings` and `get_filing_content` retrieve the actual documents.\n- Financial data tools (`get_financials`, `get_key_metrics`, `get_company_facts`, `get_segment_data`, `compare_periods`) operate against XBRL-structured data from SEC filings and accept a ticker or CIK as the primary identifier.\n- XBRL discovery tools (`discover_company_metrics`, `discover_xbrl_concepts`) enumerate what data is available before extraction, which is useful when the metric name is not known in advance.\n- Insider trading tools (`get_insider_transactions`, `get_insider_summary`, `get_form4_details`, `analyze_form4_transactions`, `analyze_insider_sentiment`) are all Form 4 focused and share the same company identifier pattern.\n- `get_recommended_tools` provides guidance on which tools to use for a given SEC form type, useful when starting research on an unfamiliar form.\n\n### Potential resolution paths\n- **Research a company's financial position:** Use `get_company_info` to confirm the entity, then `get_financials` for income, balance sheet, or cash flow data, and `get_key_metrics` or `compare_periods` for specific metric trends.\n- **Drill into a specific filing:** Use `get_recent_filings` to find the accession number, then `get_filing_content` for the full document or `get_filing_sections` to extract a specific section such as risk factors or MD&A.\n- **Analyze an 8-K event:** Use `get_recent_filings` filtered to 8-K, then `analyze_8k` to extract the event type and items from the filing.\n- **Research insider trading activity:** Use `get_insider_transactions` or `get_insider_summary` for a company-level view, then `get_form4_details` or `analyze_form4_transactions` for a specific filing, and `analyze_insider_sentiment` for trend analysis.\n- **Discover available metrics before extraction:** Use `discover_company_metrics` or `discover_xbrl_concepts` to enumerate what is reported in EDGAR before calling `get_key_metrics` or `compare_periods`.\n- **Get oriented on an unfamiliar form type:** Use `get_recommended_tools` with the form type to receive tool selection guidance before starting.\n\n### Best practices\n- **Resolve the company identifier first:** Most tools accept either a ticker or CIK. When starting from a name, use `search_companies` or `get_cik_by_ticker` to confirm the identifier before calling financial or filing tools.\n- **Use discovery tools before metric extraction:** `discover_company_metrics` and `discover_xbrl_concepts` reveal what XBRL data a company actually reports, which prevents failed calls to `get_key_metrics` or `compare_periods` when a metric is not available for that company.\n- **Use accession number for targeted filing access:** Once `get_recent_filings` returns an accession number, pass it directly to `get_filing_content`, `get_filing_sections`, or `get_form4_details` rather than searching again.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "sec-edgar-mcp_analyze_8k",
+          "purpose": "Analyzes an 8-K filing for specific events and items.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 5,
+              "name": "accession_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Accession number of the 8-K filing to analyze."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze a specific 8-K filing for NVIDIA",
+              "params": {
+                "identifier": "NVDA",
+                "accession_number": "0001045810-24-000123"
+              }
+            },
+            {
+              "intent": "Analyze a specific 8-K filing using a company CIK and accession number",
+              "params": {
+                "identifier": "0001045810",
+                "accession_number": "0001045810-24-000123"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_analyze_form4_transactions",
+          "purpose": "Analyzes Form 4 filings and extracts detailed transaction data including insider names, transaction amounts, share counts, prices, and ownership details.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 7,
+              "name": "days",
+              "required": false,
+              "default": "90",
+              "allowed": [],
+              "description": "Number of days to look back for Form 4 filings in this tool."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "50",
+              "allowed": [],
+              "description": "Maximum number of filings to analyze in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze recent Form 4 transactions for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Analyze Form 4 transactions for a company over the last month",
+              "params": {
+                "identifier": "AAPL",
+                "days": 30,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_analyze_insider_sentiment",
+          "purpose": "Analyzes insider trading sentiment and trends over time.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 17,
+              "name": "months",
+              "required": false,
+              "default": "6",
+              "allowed": [],
+              "description": "Number of months of insider trading activity to analyze."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze insider trading sentiment for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Analyze insider trading sentiment for a company over the last year",
+              "params": {
+                "identifier": "AAPL",
+                "months": 12
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_compare_periods",
+          "purpose": "Compares a financial metric across different time periods.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 11,
+              "name": "metric",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Financial metric to compare across periods."
+            },
+            {
+              "number": 12,
+              "name": "start_year",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Starting year for the comparison range."
+            },
+            {
+              "number": 13,
+              "name": "end_year",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Ending year for the comparison range."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Compare NVIDIA revenue across multiple years",
+              "params": {
+                "identifier": "NVDA",
+                "metric": "Revenues",
+                "start_year": 2021,
+                "end_year": 2024
+              }
+            },
+            {
+              "intent": "Compare net income across a date range for a company using its CIK",
+              "params": {
+                "identifier": "0001045810",
+                "metric": "NetIncomeLoss",
+                "start_year": 2020,
+                "end_year": 2023
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_discover_company_metrics",
+          "purpose": "Discovers available financial metrics for a company.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 14,
+              "name": "search_term",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Search term used to filter the available metrics."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Discover available financial metrics for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Discover available company metrics related to revenue",
+              "params": {
+                "identifier": "AAPL",
+                "search_term": "revenue"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_discover_xbrl_concepts",
+          "purpose": "Discovers all available XBRL concepts in a filing, including company-specific concepts.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 5,
+              "name": "accession_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Specific filing accession number to inspect for XBRL concepts."
+            },
+            {
+              "number": 6,
+              "name": "form_type",
+              "required": false,
+              "default": "10-K",
+              "allowed": [],
+              "description": "Form type to use when no accession number is provided."
+            },
+            {
+              "number": 15,
+              "name": "namespace_filter",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter to show only concepts from a specific namespace."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Discover all XBRL concepts in a specific filing for NVIDIA",
+              "params": {
+                "identifier": "NVDA",
+                "accession_number": "0001045810-24-000123"
+              }
+            },
+            {
+              "intent": "Discover XBRL concepts from a recent 10-Q filing and filter by namespace",
+              "params": {
+                "identifier": "AAPL",
+                "form_type": "10-Q",
+                "namespace_filter": "us-gaap"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_cik_by_ticker",
+          "purpose": "Gets the CIK (Central Index Key) for a company based on its ticker symbol.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "ticker",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Ticker symbol of the company to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find the SEC CIK for NVIDIA",
+              "params": {
+                "ticker": "NVDA"
+              }
+            },
+            {
+              "intent": "Look up the SEC CIK for Apple",
+              "params": {
+                "ticker": "AAPL"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_company_facts",
+          "purpose": "Gets company facts and key financial metrics.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number to use for retrieving company facts."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve company facts and financial metrics for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve company facts and financial metrics using a CIK number",
+              "params": {
+                "identifier": "0001045810"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_company_info",
+          "purpose": "Gets detailed company information from SEC records using a ticker symbol or CIK number.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number to look up in SEC records."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve SEC company information for NVIDIA using its ticker",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve SEC company information for a company using its CIK",
+              "params": {
+                "identifier": "0001045810"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_filing_content",
+          "purpose": "Gets the content of a specific SEC filing.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 5,
+              "name": "accession_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Accession number of the SEC filing to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the content of a specific SEC filing for NVIDIA",
+              "params": {
+                "identifier": "NVDA",
+                "accession_number": "0001045810-24-000123"
+              }
+            },
+            {
+              "intent": "Retrieve a specific SEC filing using a company CIK and accession number",
+              "params": {
+                "identifier": "0001045810",
+                "accession_number": "0001045810-24-000123"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_filing_sections",
+          "purpose": "Gets specific sections from a filing, such as the business description, risk factors, or MD&A.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 5,
+              "name": "accession_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Accession number of the filing to retrieve sections from."
+            },
+            {
+              "number": 6,
+              "name": "form_type",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Type of SEC form for the filing."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve sections from a specific NVIDIA 10-K filing",
+              "params": {
+                "identifier": "NVDA",
+                "accession_number": "0001045810-24-000123",
+                "form_type": "10-K"
+              }
+            },
+            {
+              "intent": "Retrieve sections from a specific filing using a company CIK and form type",
+              "params": {
+                "identifier": "0001045810",
+                "accession_number": "0001045810-24-000123",
+                "form_type": "10-Q"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_financials",
+          "purpose": "Gets financial statements for a company from SEC EDGAR filings, including income statement, balance sheet, cash flow statement, or all available statements.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 8,
+              "name": "statement_type",
+              "required": false,
+              "default": "all",
+              "allowed": [],
+              "description": "Type of financial statement to retrieve from the SEC filing. Allowed: income, balance, cash, all"
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve all available financial statements for NVIDIA from SEC filings",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve the cash flow statement for a company from SEC filings",
+              "params": {
+                "identifier": "AAPL",
+                "statement_type": "cash"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_form4_details",
+          "purpose": "Gets detailed information from a specific Form 4 filing.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 5,
+              "name": "accession_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Accession number of the Form 4 filing to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details from a specific Form 4 filing for NVIDIA",
+              "params": {
+                "identifier": "NVDA",
+                "accession_number": "0001045810-24-000123"
+              }
+            },
+            {
+              "intent": "Retrieve details from a specific Form 4 filing using a company CIK",
+              "params": {
+                "identifier": "0001045810",
+                "accession_number": "0001045810-24-000123"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_insider_summary",
+          "purpose": "Gets a summary of insider trading activity for a company from SEC filings.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 7,
+              "name": "days",
+              "required": false,
+              "default": "180",
+              "allowed": [],
+              "description": "Number of days of insider trading activity to analyze in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve an insider trading summary for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve an insider trading summary for a company over the last year",
+              "params": {
+                "identifier": "AAPL",
+                "days": 365
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_insider_transactions",
+          "purpose": "Gets insider trading transactions for a company from SEC filings.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 16,
+              "name": "form_types",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of insider filing form types to include."
+            },
+            {
+              "number": 7,
+              "name": "days",
+              "required": false,
+              "default": "90",
+              "allowed": [],
+              "description": "Number of days to look back for insider transactions in this tool."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "50",
+              "allowed": [],
+              "description": "Maximum number of insider transactions to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve recent insider transactions for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve recent Form 4 insider transactions for a company",
+              "params": {
+                "identifier": "AAPL",
+                "form_types": [
+                  "4"
+                ],
+                "days": 30
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_key_metrics",
+          "purpose": "Gets key financial metrics for a company.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 10,
+              "name": "metrics",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of specific metrics to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve key financial metrics for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve specific key financial metrics for a company",
+              "params": {
+                "identifier": "AAPL",
+                "metrics": [
+                  "revenue",
+                  "net_income",
+                  "operating_income"
+                ]
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_recent_filings",
+          "purpose": "Gets recent SEC filings for a company or across all companies.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number to scope the recent filings to one company. If omitted, this tool returns recent filings across all companies."
+            },
+            {
+              "number": 6,
+              "name": "form_type",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Specific SEC form type to filter by."
+            },
+            {
+              "number": 7,
+              "name": "days",
+              "required": false,
+              "default": "30",
+              "allowed": [],
+              "description": "Number of days to look back for recent filings."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "40",
+              "allowed": [],
+              "description": "Maximum number of filings to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve recent SEC filings across all companies from the last month",
+              "params": {}
+            },
+            {
+              "intent": "Retrieve recent 10-K filings for NVIDIA from the last two weeks",
+              "params": {
+                "identifier": "NVDA",
+                "form_type": "10-K",
+                "days": 14
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_recommended_tools",
+          "purpose": "Gets recommended tools for analyzing specific SEC form types.",
+          "parameters": [
+            {
+              "number": 6,
+              "name": "form_type",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "SEC form type to get recommended tools for."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get recommended tools for analyzing a 10-K filing",
+              "params": {
+                "form_type": "10-K"
+              }
+            },
+            {
+              "intent": "Get recommended tools for analyzing insider filing forms",
+              "params": {
+                "form_type": "4"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_get_segment_data",
+          "purpose": "Gets revenue breakdown by segments, such as geographic or product segments.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "identifier",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company ticker symbol or CIK number used to identify the company."
+            },
+            {
+              "number": 9,
+              "name": "segment_type",
+              "required": false,
+              "default": "geographic",
+              "allowed": [],
+              "description": "Type of segment analysis to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve geographic segment revenue data for NVIDIA",
+              "params": {
+                "identifier": "NVDA"
+              }
+            },
+            {
+              "intent": "Retrieve product segment revenue data for a company",
+              "params": {
+                "identifier": "AAPL",
+                "segment_type": "product"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "sec-edgar-mcp_search_companies",
+          "purpose": "Searches for companies by name.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query used to find matching company names."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Maximum number of matching companies to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for companies matching NVIDIA",
+              "params": {
+                "query": "NVIDIA"
+              }
+            },
+            {
+              "intent": "Search for Apple-related companies and return more matches",
+              "params": {
+                "query": "Apple",
+                "limit": 25
               }
             }
           ],

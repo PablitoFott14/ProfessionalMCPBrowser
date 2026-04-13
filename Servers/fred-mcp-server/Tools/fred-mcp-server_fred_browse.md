@@ -7,31 +7,31 @@ The FRED catalog through categories, releases, sources, or series collections. U
 
 ### Used parameters
 
-**(19) browse_type - Required**  
+**(19) browse_type: Required**  
 Default: No default  
 Browse mode used to determine what part of the FRED catalog to explore.
 
-**(20) category_id - Optional**  
+**(20) category_id: Optional**  
 Default: No default  
 Category identifier used for category-based browsing.
 
-**(21) release_id - Optional**  
+**(21) release_id: Optional**  
 Default: No default  
 Release identifier used for release-based browsing.
 
-**(5) limit - Optional**  
+**(5) limit: Optional**  
 Default: 50  
 Maximum number of results to return.
 
-**(6) offset - Optional**  
+**(6) offset: Optional**  
 Default: 0  
 Number of results to skip.
 
-**(7) order_by - Optional**  
+**(7) order_by: Optional**  
 Default: No default  
 Field used to order the results.
 
-**(8) sort_order - Optional**  
+**(8) sort_order: Optional**  
 Default: No default  
 Allowed: asc, desc  
 Sort direction used for ordered results.

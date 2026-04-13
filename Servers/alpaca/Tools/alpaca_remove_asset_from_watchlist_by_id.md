@@ -7,11 +7,11 @@ A single asset from an existing Alpaca watchlist identified by its UUID. Use thi
 
 ### Used parameters
 
-**(22) watchlist_id — Required**
+**(22) watchlist_id: Required**
 Default: No default
 UUID of the watchlist to remove the asset from.
 
-**(1) symbol — Required**
+**(1) symbol: Required**
 Default: No default
 Ticker symbol of the asset to remove (e.g., AAPL, TSLA).
 

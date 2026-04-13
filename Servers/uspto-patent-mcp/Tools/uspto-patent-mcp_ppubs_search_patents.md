@@ -7,19 +7,19 @@ Searches granted US patents in USPTO Patent Public Search (ppubs.uspto.gov) usin
 
 ### Used parameters
 
-**(3) query — Required**
+**(3) query: Required**
 Default: No default
 Search query using USPTO syntax. Supports field codes (e.g., TTL/ for title, IN/ for inventor, AN/ for assignee, CPC/ for classification), phrase search with quotes, and boolean operators (AND, OR). Example: `TTL/"neural network" AND CPC/G06N3/08`.
 
-**(4) offset — Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination through granted-patent results.
 
-**(5) limit — Optional**
+**(5) limit: Optional**
 Default: 100
 Maximum number of granted-patent results to return. Maximum allowed value is 500.
 
-**(6) sort — Optional**
+**(6) sort: Optional**
 Default: date_publ desc
 Sort order for granted-patent results.
 

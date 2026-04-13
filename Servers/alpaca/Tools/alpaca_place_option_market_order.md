@@ -13,28 +13,28 @@ Key constraints:
 
 ### Used parameters
 
-**(61) legs — Required**
+**(61) legs: Required**
 Default: No default
 List of option legs. Each leg is a dictionary with:
 - `symbol` (str): OCC option contract symbol (e.g., AAPL230616C00150000)
 - `side` (str): buy or sell
 - `ratio_qty` (int): Quantity ratio for the leg (1–4)
 
-**(48) order_class — Optional**
+**(48) order_class: Optional**
 Default: null (simple for single-leg, mleg for multi-leg)
 Allowed: simple, mleg
 Order class.
 
-**(45) quantity — Optional**
+**(45) quantity: Optional**
 Default: 1
 Base quantity multiplied by each leg's ratio_qty.
 
-**(47) time_in_force — Optional**
+**(47) time_in_force: Optional**
 Default: day
 Allowed: day
 Time in force. Only day is supported for options orders.
 
-**(19) extended_hours — Optional**
+**(19) extended_hours: Optional**
 Default: false
 Whether to allow execution during extended trading hours.
 

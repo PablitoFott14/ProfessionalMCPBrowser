@@ -7,44 +7,44 @@ The tax impact of relocating from one state to another. Use this when the user w
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the relocation analysis.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the relocation analysis.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Annual gross income.
 
-**(177) fromState - Required**  
+**(177) fromState: Required**  
 Default: No default  
 Current state code.
 
-**(178) toState - Required**  
+**(178) toState: Required**  
 Default: No default  
 Target state code.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income included in the comparison.
 
-**(6) capitalGains - Optional**  
+**(6) capitalGains: Optional**  
 Default: No default  
 Capital gains included in the comparison.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of dependents included in the comparison.
 
-**(179) yearsToProject - Optional**  
+**(179) yearsToProject: Optional**  
 Default: No default  
 Number of years used to project savings.
 
-**(180) incomeGrowthRate - Optional**  
+**(180) incomeGrowthRate: Optional**  
 Default: No default  
 Annual income growth rate used in the projection.
 

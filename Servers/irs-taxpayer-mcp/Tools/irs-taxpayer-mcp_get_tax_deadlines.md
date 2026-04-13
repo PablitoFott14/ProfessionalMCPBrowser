@@ -7,7 +7,7 @@ Important IRS tax deadlines and due dates for a given tax year. Use this when th
 
 ### Used parameters
 
-**(1) taxYear - Optional**  
+**(1) taxYear: Optional**  
 Default: 2025  
 Tax year used to retrieve the relevant IRS deadlines.
 

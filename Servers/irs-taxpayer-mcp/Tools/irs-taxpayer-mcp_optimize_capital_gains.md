@@ -7,44 +7,44 @@ Investment lots and suggests which positions to sell to reduce tax impact. Use t
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the optimization analysis.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the optimization analysis.
 
-**(155) ordinaryIncome - Required**  
+**(155) ordinaryIncome: Required**  
 Default: No default  
 Ordinary income before investment sales.
 
-**(156) lots - Required**  
+**(156) lots: Required**  
 Default: No default  
 Array of investment lots to analyze.
 
-**(157) name - Required**  
+**(157) name: Required**  
 Default: No default  
 Investment name within a lot entry.
 
-**(158) shares - Required**  
+**(158) shares: Required**  
 Default: No default  
 Number of shares within a lot entry.
 
-**(159) costBasis - Required**  
+**(159) costBasis: Required**  
 Default: No default  
 Total cost basis within a lot entry.
 
-**(160) currentValue - Required**  
+**(160) currentValue: Required**  
 Default: No default  
 Current market value within a lot entry.
 
-**(161) holdingMonths - Required**  
+**(161) holdingMonths: Required**  
 Default: No default  
 Number of months the lot has been held.
 
-**(162) targetGainOrLoss - Optional**  
+**(162) targetGainOrLoss: Optional**  
 Default: No default  
 Target net gain or loss to realize.
 

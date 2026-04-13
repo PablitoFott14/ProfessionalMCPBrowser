@@ -7,36 +7,36 @@ A detailed self-employment tax estimate, including Schedule C profit, self-emplo
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the estimate.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the estimate.
 
-**(69) grossRevenue - Required**  
+**(69) grossRevenue: Required**  
 Default: No default  
 Total business revenue used for the estimate.
 
-**(70) businessExpenses - Required**  
+**(70) businessExpenses: Required**  
 Default: No default  
 Total business expenses used for the estimate.
 
-**(71) otherW2Income - Optional**  
+**(71) otherW2Income: Optional**  
 Default: No default  
 W-2 income from other jobs.
 
-**(72) retirementContributions - Optional**  
+**(72) retirementContributions: Optional**  
 Default: No default  
 SEP IRA or Solo 401(k) contributions included in the estimate.
 
-**(73) healthInsurancePremiums - Optional**  
+**(73) healthInsurancePremiums: Optional**  
 Default: No default  
 Self-employed health insurance premiums included in the estimate.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of qualifying dependents used in the estimate.
 

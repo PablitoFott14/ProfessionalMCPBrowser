@@ -7,11 +7,11 @@ Runs TypeScript code against an initialized CoinGecko SDK client. It is used whe
 
 ### Used parameters
 
-**(1) code — Required**
+**(1) code: Required**
 Default: No default
 TypeScript async function named `run` that accepts the initialized SDK client and interacts with the CoinGecko API. Anything returned or logged by the function is included in the response.
 
-**(2) intent — Optional**
+**(2) intent: Optional**
 Default: null
 Natural language description of the task being performed. Used for improving the service.
 

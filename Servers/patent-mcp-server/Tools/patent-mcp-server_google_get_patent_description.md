@@ -7,7 +7,7 @@ Retrieves the detailed description section of a patent document from Google Pate
 
 ### Used parameters
 
-**(40) publication_number — Required**
+**(40) publication_number: Required**
 Default: No default
 Patent publication number (e.g., US-9876543-B2).
 

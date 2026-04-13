@@ -7,11 +7,11 @@ The most recently published court opinions from CourtListener. Use this when the
 
 ### Used parameters
 
-**(4) court - Optional**  
+**(4) court: Optional**  
 Default: null  
 Court identifier used to limit results to a specific court.
 
-**(3) limit - Optional**  
+**(3) limit: Optional**  
 Default: 20  
 Number of results to return.
 

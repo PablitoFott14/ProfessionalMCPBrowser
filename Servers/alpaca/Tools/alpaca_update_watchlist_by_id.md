@@ -7,15 +7,15 @@ An existing Alpaca watchlist by its UUID. Allows renaming the watchlist, replaci
 
 ### Used parameters
 
-**(22) watchlist_id — Required**
+**(22) watchlist_id: Required**
 Default: No default
 UUID of the watchlist to update.
 
-**(21) name — Optional**
+**(21) name: Optional**
 Default: null
 New name to assign to the watchlist.
 
-**(9) symbols — Optional**
+**(9) symbols: Optional**
 Default: null
 New list of ticker symbols to replace the current watchlist contents.
 

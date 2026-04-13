@@ -7,84 +7,84 @@ A broad tax health check across income, withholding, deductions, credits, retire
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the health check.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the health check.
 
-**(90) age - Optional**  
+**(90) age: Optional**  
 Default: No default  
 Age used in the health check.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Gross income used in the health check.
 
-**(4) w2Income - Optional**  
+**(4) w2Income: Optional**  
 Default: No default  
 W-2 income.
 
-**(5) selfEmploymentIncome - Optional**  
+**(5) selfEmploymentIncome: Optional**  
 Default: No default  
 Self-employment income.
 
-**(6) capitalGains - Optional**  
+**(6) capitalGains: Optional**  
 Default: No default  
 Capital gains.
 
-**(20) stateCode - Optional**  
+**(20) stateCode: Optional**  
 Default: No default  
 State code used for the health check.
 
-**(12) dependents - Optional**  
+**(12) dependents: Optional**  
 Default: No default  
 Number of dependents.
 
-**(30) mortgageInterest - Optional**  
+**(30) mortgageInterest: Optional**  
 Default: No default  
 Mortgage interest.
 
-**(29) stateLocalTaxes - Optional**  
+**(29) stateLocalTaxes: Optional**  
 Default: No default  
 State and local taxes.
 
-**(31) charitableDonations - Optional**  
+**(31) charitableDonations: Optional**  
 Default: No default  
 Charitable donations.
 
-**(118) retirement401k - Optional**  
+**(118) retirement401k: Optional**  
 Default: No default  
 401(k) or 403(b) contribution amount.
 
-**(181) retirementIRA - Optional**  
+**(181) retirementIRA: Optional**  
 Default: No default  
 IRA contribution amount.
 
-**(182) hsaContributions - Optional**  
+**(182) hsaContributions: Optional**  
 Default: No default  
 HSA contribution amount.
 
-**(103) federalWithheld - Optional**  
+**(103) federalWithheld: Optional**  
 Default: No default  
 Federal tax withheld.
 
-**(148) hasHealthInsurance - Optional**  
+**(148) hasHealthInsurance: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has health insurance relevant to filing.
 
-**(40) isStudent - Optional**  
+**(40) isStudent: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer is currently enrolled in post-secondary education.
 
-**(42) boughtEV - Optional**  
+**(42) boughtEV: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer bought an electric vehicle.
 
-**(44) installedSolar - Optional**  
+**(44) installedSolar: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer installed solar or renewable energy.
 

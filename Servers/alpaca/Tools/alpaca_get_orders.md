@@ -7,38 +7,38 @@ A filtered list of orders from the Alpaca account, including status, fill inform
 
 ### Used parameters
 
-**(2) status — Optional**
+**(2) status: Optional**
 Default: all
 Allowed: open, closed, all
 Filters orders by status.
 
-**(12) limit — Optional**
+**(12) limit: Optional**
 Default: 10
 Maximum number of orders to return (max: 500).
 
-**(54) after — Optional**
+**(54) after: Optional**
 Default: null
 Returns orders submitted after this timestamp (ISO format).
 
-**(55) until — Optional**
+**(55) until: Optional**
 Default: null
 Returns orders submitted up until this timestamp (ISO format).
 
-**(56) direction — Optional**
+**(56) direction: Optional**
 Default: null
 Allowed: asc, desc
 Sort direction of results.
 
-**(57) nested — Optional**
+**(57) nested: Optional**
 Default: null
 Whether to roll up multi-leg orders under a legs field.
 
-**(44) side — Optional**
+**(44) side: Optional**
 Default: null
 Allowed: buy, sell
 Filters orders by side.
 
-**(9) symbols — Optional**
+**(9) symbols: Optional**
 Default: null
 Filters orders by a list of ticker symbols.
 

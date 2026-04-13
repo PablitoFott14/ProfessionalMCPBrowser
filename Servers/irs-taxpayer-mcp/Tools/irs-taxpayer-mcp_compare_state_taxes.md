@@ -7,11 +7,11 @@ State income tax across multiple states for the same taxable income. Use this wh
 
 ### Used parameters
 
-**(55) states - Required**  
+**(55) states: Required**  
 Default: No default  
 List of state codes used in the comparison.
 
-**(54) taxableIncome - Required**  
+**(54) taxableIncome: Required**  
 Default: No default  
 Taxable income used across the state comparison.
 

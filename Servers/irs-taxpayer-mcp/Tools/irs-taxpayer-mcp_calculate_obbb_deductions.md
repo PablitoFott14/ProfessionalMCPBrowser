@@ -7,40 +7,40 @@ OBBB deductions for TY2025 and later, including tips income, overtime pay, senio
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the calculation.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the calculation.
 
-**(33) agi - Required**  
+**(33) agi: Required**  
 Default: No default  
 Adjusted Gross Income used to evaluate OBBB deduction eligibility.
 
-**(90) age - Optional**  
+**(90) age: Optional**  
 Default: No default  
 Taxpayer age used for senior bonus analysis.
 
-**(91) spouseAge - Optional**  
+**(91) spouseAge: Optional**  
 Default: No default  
 Spouse age used for senior bonus analysis when filing jointly.
 
-**(92) tipIncome - Optional**  
+**(92) tipIncome: Optional**  
 Default: No default  
 Annual tip income from a qualifying occupation.
 
-**(93) overtimePay - Optional**  
+**(93) overtimePay: Optional**  
 Default: No default  
 Annual overtime premium pay.
 
-**(94) autoLoanInterest - Optional**  
+**(94) autoLoanInterest: Optional**  
 Default: No default  
 Interest paid on a qualifying auto loan.
 
-**(95) marginalRate - Optional**  
+**(95) marginalRate: Optional**  
 Default: No default  
 Marginal tax rate used for tax savings estimates.
 

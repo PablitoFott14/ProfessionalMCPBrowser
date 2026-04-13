@@ -7,27 +7,27 @@ A personalized tax calendar based on the taxpayer's situation. Use this when the
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the calendar.
 
-**(67) isSelfEmployed - Optional**  
+**(67) isSelfEmployed: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has self-employment income.
 
-**(111) filedExtension - Optional**  
+**(111) filedExtension: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer filed an extension.
 
-**(112) hasEmployer - Optional**  
+**(112) hasEmployer: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has W-2 employment.
 
-**(113) hasInvestments - Optional**  
+**(113) hasInvestments: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has investment accounts.
 
-**(114) hasRentalIncome - Optional**  
+**(114) hasRentalIncome: Optional**  
 Default: No default  
 Flag indicating whether the taxpayer has rental property income.
 

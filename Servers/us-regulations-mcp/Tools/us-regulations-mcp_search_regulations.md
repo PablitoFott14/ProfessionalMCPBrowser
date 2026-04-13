@@ -7,19 +7,19 @@ Across supported US federal and state regulations to find relevant regulation te
 
 ### Used parameters
 
-**(1) query - Required**  
+**(1) query: Required**  
 Default: No default  
 Search query used to find relevant regulation text.
 
-**(2) regulations - Optional**  
+**(2) regulations: Optional**  
 Default: null  
 List of regulation identifiers used to limit the search scope.
 
-**(3) limit - Optional**  
+**(3) limit: Optional**  
 Default: 10  
 Maximum number of results to return.
 
-**(4) offset - Optional**  
+**(4) offset: Optional**  
 Default: 0  
 Number of results to skip for pagination.
 

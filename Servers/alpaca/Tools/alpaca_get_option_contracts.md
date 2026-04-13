@@ -7,49 +7,49 @@ Option contracts for one or more underlying assets, with flexible filtering by e
 
 ### Used parameters
 
-**(33) underlying_symbols — Required**
+**(33) underlying_symbols: Required**
 Default: No default
 Underlying asset symbol or list of symbols (e.g., SPY or ["SPY", "AAPL"]).
 
-**(34) expiration_date — Optional**
+**(34) expiration_date: Optional**
 Default: null
 Filters to a specific expiration date (YYYY-MM-DD).
 
-**(35) expiration_date_gte — Optional**
+**(35) expiration_date_gte: Optional**
 Default: null
 Minimum expiration date for the filter range (YYYY-MM-DD).
 
-**(36) expiration_date_lte — Optional**
+**(36) expiration_date_lte: Optional**
 Default: null
 Maximum expiration date for the filter range (YYYY-MM-DD).
 
-**(37) expiration_expression — Optional**
+**(37) expiration_expression: Optional**
 Default: null
 Natural language expiration expression (e.g., "week of September 2, 2025").
 
-**(38) strike_price_gte — Optional**
+**(38) strike_price_gte: Optional**
 Default: null
 Minimum strike price to include in results.
 
-**(39) strike_price_lte — Optional**
+**(39) strike_price_lte: Optional**
 Default: null
 Maximum strike price to include in results.
 
-**(40) contract_type — Optional**
+**(40) contract_type: Optional**
 Default: null
 Allowed: call, put
 Filters by contract type.
 
-**(2) status — Optional**
+**(2) status: Optional**
 Default: null
 Allowed: active, inactive
 Filters by asset status.
 
-**(41) root_symbol — Optional**
+**(41) root_symbol: Optional**
 Default: null
 Filters contracts by root symbol.
 
-**(12) limit — Optional**
+**(12) limit: Optional**
 Default: null
 Maximum number of contracts to return.
 

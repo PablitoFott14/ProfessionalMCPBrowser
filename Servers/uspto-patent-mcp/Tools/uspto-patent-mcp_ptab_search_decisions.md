@@ -7,36 +7,36 @@ Searches PTAB trial decisions. Use it when you need to find institution decision
 
 ### Used parameters
 
-**(3) query - Optional**
+**(3) query: Optional**
 Default: null
 Full-text search query for PTAB decision text.
 
-**(22) decision_type - Optional**
+**(22) decision_type: Optional**
 Default: null
 Filters results by decision type.
 Allowed: institution, final, termination
 
-**(20) proceeding_number - Optional**
+**(20) proceeding_number: Optional**
 Default: null
 Filters results by proceeding number.
 
-**(9) patent_number - Optional**
+**(9) patent_number: Optional**
 Default: null
 Filters results by patent number.
 
-**(23) decision_date_from - Optional**
+**(23) decision_date_from: Optional**
 Default: null
 Sets the decision date range start for this PTAB decision search.
 
-**(24) decision_date_to - Optional**
+**(24) decision_date_to: Optional**
 Default: null
 Sets the decision date range end for this PTAB decision search.
 
-**(4) offset - Optional**
+**(4) offset: Optional**
 Default: 0
 Starting position for pagination in this PTAB decision search.
 
-**(5) limit - Optional**
+**(5) limit: Optional**
 Default: 25
 Maximum number of PTAB decision results to return in this tool.
 

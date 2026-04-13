@@ -7,11 +7,11 @@ Audit evidence requirements from a specific regulation section. Use this after i
 
 ### Used parameters
 
-**(5) regulation - Required**  
+**(5) regulation: Required**  
 Default: No default  
 Regulation identifier used to select the regulation.
 
-**(6) section - Required**  
+**(6) section: Required**  
 Default: No default  
 Section identifier used to retrieve and analyze the specific provision.
 

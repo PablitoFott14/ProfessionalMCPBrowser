@@ -7,7 +7,7 @@ Gets patent family and continuity data for an application. Use it when you need 
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this continuity request.
 

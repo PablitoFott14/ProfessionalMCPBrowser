@@ -7,11 +7,11 @@ The market calendar for a specified date range, showing trading days, market ope
 
 ### Used parameters
 
-**(23) start_date — Required**
+**(23) start_date: Required**
 Default: No default
 Start date of the calendar range in YYYY-MM-DD format.
 
-**(24) end_date — Required**
+**(24) end_date: Required**
 Default: No default
 End date of the calendar range in YYYY-MM-DD format.
 

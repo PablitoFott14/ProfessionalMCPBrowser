@@ -7,40 +7,40 @@ The tax benefit of mortgage interest and property taxes by comparing itemizing a
 
 ### Used parameters
 
-**(1) taxYear - Required**  
+**(1) taxYear: Required**  
 Default: No default  
 Tax year used for the analysis.
 
-**(2) filingStatus - Required**  
+**(2) filingStatus: Required**  
 Default: No default  
 Allowed: single, married_filing_jointly, married_filing_separately, head_of_household, qualifying_surviving_spouse  
 Filing status used for the analysis.
 
-**(3) grossIncome - Required**  
+**(3) grossIncome: Required**  
 Default: No default  
 Gross income used in the analysis.
 
-**(30) mortgageInterest - Required**  
+**(30) mortgageInterest: Required**  
 Default: No default  
 Annual mortgage interest paid.
 
-**(74) propertyTaxes - Required**  
+**(74) propertyTaxes: Required**  
 Default: No default  
 Annual property taxes paid.
 
-**(75) stateIncomeTaxes - Optional**  
+**(75) stateIncomeTaxes: Optional**  
 Default: No default  
 State or local income taxes paid.
 
-**(32) otherItemized - Optional**  
+**(32) otherItemized: Optional**  
 Default: No default  
 Other itemized deductions included in the analysis.
 
-**(76) mortgageBalance - Optional**  
+**(76) mortgageBalance: Optional**  
 Default: No default  
 Current mortgage balance.
 
-**(77) interestRate - Optional**  
+**(77) interestRate: Optional**  
 Default: No default  
 Mortgage interest rate.
 

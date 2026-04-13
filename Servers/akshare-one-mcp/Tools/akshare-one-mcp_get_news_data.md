@@ -7,11 +7,11 @@ Recent news related to a stock. It is useful when the user wants quick visibilit
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve news for.
 
-**(9) recent_n — Optional**  
+**(9) recent_n: Optional**  
 Default: 10  
 Limits how many of the most recent news records are returned.
 

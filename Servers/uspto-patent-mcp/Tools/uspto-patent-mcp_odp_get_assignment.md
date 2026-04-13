@@ -7,7 +7,7 @@ Gets patent assignment and ownership records for an application. Use it when you
 
 ### Used parameters
 
-**(10) app_num - Required**
+**(10) app_num: Required**
 Default: No default
 Application number to look up for this assignment request.
 

@@ -7,7 +7,7 @@ Gets all litigation involving a specific patent. Use it when you need to see the
 
 ### Used parameters
 
-**(9) patent_number - Required**
+**(9) patent_number: Required**
 Default: No default
 Patent number to look up.
 

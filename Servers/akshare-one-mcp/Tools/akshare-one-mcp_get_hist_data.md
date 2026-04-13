@@ -9,41 +9,41 @@ It is also the main history tool for switching between supported data sources, i
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve history for.
 
-**(2) interval — Optional**  
+**(2) interval: Optional**  
 Default: day  
 Allowed: minute, hour, day, week, month  
 Sets the time resolution of the returned series.
 
-**(3) interval_multiplier — Optional**  
+**(3) interval_multiplier: Optional**  
 Default: 1  
 Expands the selected interval into larger bars.
 
-**(4) start_date — Optional**  
+**(4) start_date: Optional**  
 Default: 1970-01-01  
 Defines the beginning of the requested date range.
 
-**(5) end_date — Optional**  
+**(5) end_date: Optional**  
 Default: 2030-12-31  
 Defines the end of the requested date range.
 
-**(6) adjust — Optional**  
+**(6) adjust: Optional**  
 Default: none  
 Allowed: none, qfq, hfq  
 Controls whether the series uses adjusted prices.
 
-**(7) source — Optional**  
+**(7) source: Optional**  
 Default: eastmoney  
 Chooses which market data source is used.
 
-**(8) indicators_list — Optional**  
+**(8) indicators_list: Optional**  
 Default: null  
 Adds selected technical indicators to the historical series.
 
-**(9) recent_n — Optional**  
+**(9) recent_n: Optional**  
 Default: 100  
 Limits the output to the most recent records.
 

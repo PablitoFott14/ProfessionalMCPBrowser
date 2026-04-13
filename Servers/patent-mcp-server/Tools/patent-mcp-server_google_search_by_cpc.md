@@ -7,28 +7,28 @@ Searches Google Patents for patents classified under a specific Cooperative Pate
 
 ### Used parameters
 
-**(43) cpc_code — Required**
+**(43) cpc_code: Required**
 Default: No default
 Cooperative Patent Classification (CPC) code to search for (e.g., G06N3/08 for neural networks).
 
-**(37) country — Optional**
+**(37) country: Optional**
 Default: US
 Allowed: US, EP, WO, JP, CN, KR, GB, DE, FR, CA, AU
 Country code to scope the patent search.
 
-**(4) limit — Optional**
+**(4) limit: Optional**
 Default: 100
 Maximum number of results to return. Maximum allowed value is 500.
 
-**(14) offset — Optional**
+**(14) offset: Optional**
 Default: 0
 Number of results to skip for pagination.
 
-**(38) start_date — Optional**
+**(38) start_date: Optional**
 Default: null
 Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101).
 
-**(39) end_date — Optional**
+**(39) end_date: Optional**
 Default: null
 End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231).
 

@@ -7,36 +7,36 @@ Returns the list of available cryptocurrency pairs and their supported exchanges
 
 ### Used parameters
 
-**(1) symbol — Optional**  
+**(1) symbol: Optional**  
 Default: null  
 Specific cryptocurrency pair to filter results.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Filters results by exchange (e.g., Binance, Coinbase).
 
-**(46) currency_base — Optional**  
+**(46) currency_base: Optional**  
 Default: null  
 Filters results by base currency.
 
-**(47) currency_quote — Optional**  
+**(47) currency_quote: Optional**  
 Default: null  
 Filters results by quote currency.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Response format.
 
-**(18) delimiter — Optional**  
+**(18) delimiter: Optional**  
 Default: ;  
 Separator used for CSV output.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points returned.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

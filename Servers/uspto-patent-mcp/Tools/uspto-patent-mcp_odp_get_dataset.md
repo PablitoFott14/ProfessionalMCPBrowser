@@ -7,7 +7,7 @@ Gets details of a specific USPTO bulk dataset product. Use it when you need meta
 
 ### Used parameters
 
-**(16) product_id - Required**
+**(16) product_id: Required**
 Default: No default
 Dataset product identifier to look up.
 

@@ -7,66 +7,66 @@ Retrieves the MACD indicator over time for a given instrument. It is used when t
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Core identifier of the instrument.
 
-**(5) interval — Optional**  
+**(5) interval: Optional**  
 Default: 1day  
 Defines the timeframe for MACD calculation.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10 (or max with date filters)  
 Controls how many indicator points are returned.
 
-**(11) timezone — Optional**  
+**(11) timezone: Optional**  
 Default: Exchange  
 Controls datetime output.
 
-**(12) start_date — Optional**  
+**(12) start_date: Optional**  
 Default: null  
 Defines the beginning of the analysis window.
 
-**(13) end_date — Optional**  
+**(13) end_date: Optional**  
 Default: null  
 Defines the end of the analysis window.
 
-**(15) order — Optional**  
+**(15) order: Optional**  
 Default: desc  
 Allowed: asc, desc  
 Controls sorting of results.
 
-**(17) format — Optional**  
+**(17) format: Optional**  
 Default: JSON  
 Allowed: JSON, CSV  
 Defines response format.
 
-**(19) dp — Optional**  
+**(19) dp: Optional**  
 Default: -1  
 Controls decimal precision.
 
-**(22) series_type — Optional**  
+**(22) series_type: Optional**  
 Default: close  
 Allowed: close, open, high, low  
 Defines which price field is used for MACD calculation.
 
-**(23) fast_period — Optional**  
+**(23) fast_period: Optional**  
 Default: 12  
 Fast moving average period.
 
-**(24) slow_period — Optional**  
+**(24) slow_period: Optional**  
 Default: 26  
 Slow moving average period.
 
-**(25) signal_period — Optional**  
+**(25) signal_period: Optional**  
 Default: 9  
 Signal line period.
 
-**(26) include_ohlc — Optional**  
+**(26) include_ohlc: Optional**  
 Default: false  
 Adds OHLC values alongside indicator output.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

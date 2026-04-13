@@ -7,7 +7,7 @@ Detailed information on tax-advantaged retirement strategies. Use this when the 
 
 ### Used parameters
 
-**(50) strategyId - Optional**  
+**(50) strategyId: Optional**  
 Default: No default  
 Specific retirement strategy identifier used to narrow the returned information.
 

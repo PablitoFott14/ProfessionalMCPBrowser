@@ -7,7 +7,7 @@ Gets details of a specific ex parte appeal decision. Use it when you already kno
 
 ### Used parameters
 
-**(26) appeal_number - Required**
+**(26) appeal_number: Required**
 Default: No default
 Appeal number to look up.
 

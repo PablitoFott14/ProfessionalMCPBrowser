@@ -7,7 +7,7 @@ State income tax information, including rates, brackets, and key details for a g
 
 ### Used parameters
 
-**(20) stateCode - Required**  
+**(20) stateCode: Required**  
 Default: No default  
 Two-letter state code used to retrieve the state tax information.
 

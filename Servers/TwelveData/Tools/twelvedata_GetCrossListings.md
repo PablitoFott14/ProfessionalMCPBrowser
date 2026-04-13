@@ -7,27 +7,27 @@ Returns all cross-listed versions of a given instrument across different exchang
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 The ticker symbol of the instrument.
 
-**(37) exchange — Optional**  
+**(37) exchange: Optional**  
 Default: null  
 Exchange where the instrument is traded.
 
-**(38) mic_code — Optional**  
+**(38) mic_code: Optional**  
 Default: null  
 Market Identifier Code under ISO 10383.
 
-**(39) country — Optional**  
+**(39) country: Optional**  
 Default: null  
 Country of the exchange.
 
-**(6) outputsize — Optional**  
+**(6) outputsize: Optional**  
 Default: 10  
 Number of data points to retrieve.
 
-**(27) apikey — Optional**  
+**(27) apikey: Optional**  
 Default: demo  
 API authentication key.
 

@@ -9,7 +9,7 @@ Option contract symbols follow the OCC format (e.g., AAPL230616C00150000). Use `
 
 ### Used parameters
 
-**(32) symbol_or_symbols — Required**
+**(32) symbol_or_symbols: Required**
 Default: No default
 Option contract symbol or list of symbols (e.g., AAPL230616C00150000 or ["AAPL230616C00150000", "MSFT230616P00300000"]).
 

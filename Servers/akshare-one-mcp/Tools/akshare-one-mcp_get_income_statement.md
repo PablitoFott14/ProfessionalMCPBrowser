@@ -7,11 +7,11 @@ Company income statement data for a stock. It is useful when the user needs reve
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock symbol or ticker to retrieve income statement data for.
 
-**(9) recent_n — Optional**  
+**(9) recent_n: Optional**  
 Default: 10  
 Limits how many of the most recent income statement records are returned.
 

@@ -7,16 +7,16 @@ Earnings data for a ticker, including annual or quarterly data and upcoming earn
 
 ### Used parameters
 
-**(1) symbol — Required**  
+**(1) symbol: Required**  
 Default: No default  
 Stock ticker symbol to retrieve earnings data for.
 
-**(6) period — Optional**  
+**(6) period: Optional**  
 Default: annual  
 Allowed: annual, quarterly  
 Earnings period to retrieve.
 
-**(9) date — Optional**  
+**(9) date: Optional**  
 Default: null  
 Specific date used to retrieve earnings data when supported.
 

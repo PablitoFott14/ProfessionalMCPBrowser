@@ -7,7 +7,7 @@ Recent news articles for a given company. Use this when the user wants to stay i
 
 ### Used parameters
 
-**(1) ticker — Required**
+**(1) ticker: Required**
 Default: No default
 Ticker symbol of the company to retrieve news for (e.g., AAPL, GOOGL).
 
