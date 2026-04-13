@@ -342,6 +342,41 @@
     "courtlistener-mcp_search_recap_documents": "active"
   },
   "open-legal-compliance-mcp": {
-    "open-legal-compliance-mcp_search_us_code": "active"
+    "open-legal-compliance-mcp_search_us_code": "active",
+    "open-legal-compliance-mcp_get_sec_filings": "active",
+    "open-legal-compliance-mcp_search_canlii_cases": "active",
+    "open-legal-compliance-mcp_search_case_law": "active",
+    "open-legal-compliance-mcp_search_cfr": "active",
+    "open-legal-compliance-mcp_search_congress_bills": "active",
+    "open-legal-compliance-mcp_search_data_gov": "active",
+    "open-legal-compliance-mcp_search_eu_regulations": "active",
+    "open-legal-compliance-mcp_search_fda_events": "active",
+    "open-legal-compliance-mcp_search_federal_register": "active",
+    "open-legal-compliance-mcp_search_open_states": "active",
+    "open-legal-compliance-mcp_search_state_law": "active",
+    "open-legal-compliance-mcp_search_uk_legislation": "active"
+  },
+  "propublica-mcp": {
+    "propublica-mcp_analyze_nonprofit_financials": "active",
+    "propublica-mcp_export_nonprofit_data": "active",
+    "propublica-mcp_get_most_recent_pdf": "active",
+    "propublica-mcp_get_organization": "active",
+    "propublica-mcp_get_organization_filings": "active",
+    "propublica-mcp_search_nonprofits": "active",
+    "propublica-mcp_search_nonprofits_with_pdfs": "active",
+    "propublica-mcp_search_similar_nonprofits": "active"
+  },
+  "tradingview-mcp": {
+    "tradingview-mcp_advanced_candle_pattern": "active",
+    "tradingview-mcp_bollinger_scan": "active",
+    "tradingview-mcp_coin_analysis": "active",
+    "tradingview-mcp_consecutive_candles_scan": "active",
+    "tradingview-mcp_multi_agent_analysis": "active",
+    "tradingview-mcp_rating_filter": "active",
+    "tradingview-mcp_smart_volume_scanner": "active",
+    "tradingview-mcp_top_gainers": "active",
+    "tradingview-mcp_top_losers": "active",
+    "tradingview-mcp_volume_breakout_scanner": "active",
+    "tradingview-mcp_volume_confirmation_analysis": "active"
   }
 }

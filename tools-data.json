@@ -17344,9 +17344,452 @@
     },
     {
       "name": "open-legal-compliance-mcp",
-      "intro": "",
+      "intro": "The `open-legal-compliance-mcp` server is a broad legal and regulatory research server spanning US federal and state law, EU and UK legislation, Canadian case law, congressional activity, FDA enforcement, SEC filings, and open government data. It is useful when the user needs to research legal or compliance requirements across multiple jurisdictions or source types from a single server.\n\n### How it works\n- The server aggregates multiple legal and regulatory data sources under a unified search interface. Each tool targets a distinct source: US Code, CFR, case law via CourtListener, Federal Register, EU regulations via EUR-Lex, UK legislation, state law for CA/NY/IL, state legislation across all 50 states via OpenStates, Canadian case law via CanLII, FDA adverse event and enforcement data, SEC filings via EDGAR, and the Data.gov catalog.\n- Most tools follow a simple query-plus-optional-filter pattern. The main filters vary by source: title for US Code and CFR, court for case law, language for EU regulations, state or jurisdiction for state-level searches, congress number for bills, database for CanLII, and type for FDA searches.\n- `get_sec_filings` is the only tool that does not accept a query string — it retrieves filings directly by CIK number.\n- `search_state_law` covers only CA, NY, and IL, while `search_open_states` covers all 50 states via OpenStates. Both serve state-level research but with different scope and source.\n\n### Potential resolution paths\n- **Research a US federal compliance requirement:** Use `search_us_code` for statutory text, `search_cfr` for regulatory requirements, and `search_federal_register` for proposed or final rules and agency notices.\n- **Research a legal topic across case law:** Use `search_case_law` for US federal and circuit court opinions, `search_canlii_cases` for Canadian precedent, or combine both for cross-jurisdictional research.\n- **Research EU or UK regulatory requirements:** Use `search_eu_regulations` with a query or CELEX number for EU law, and `search_uk_legislation` for British statutory instruments and Acts of Parliament.\n- **Research state-level requirements:** Use `search_state_law` for deep statutory research in CA, NY, or IL, and `search_open_states` when coverage beyond those three states is needed or when tracking active legislative activity.\n- **Track pending legislation:** Use `search_congress_bills` for federal bills, optionally filtered by Congress number, and `search_open_states` for state-level bills across all jurisdictions.\n- **Research FDA compliance or enforcement history:** Use `search_fda_events` with the appropriate type (drug, device, or food) to find adverse event reports or enforcement actions.\n- **Access SEC filings for a company:** Use `get_sec_filings` with the company's CIK number to retrieve its full EDGAR filing history.\n- **Find government datasets for a topic:** Use `search_data_gov` to locate relevant public datasets from the Data.gov catalog.\n\n### Best practices\n- **Use `search_open_states` instead of `search_state_law` when the target state is outside CA, NY, or IL:** `search_state_law` is limited to those three states by its enum constraint, while `search_open_states` covers all 50 states.\n- **Use a CELEX number in `search_eu_regulations` when the specific regulation is known:** Passing a CELEX number directly retrieves the exact regulation rather than running a broad query.\n- **Resolve a company CIK before calling `get_sec_filings`:** The tool requires a 10-digit CIK. If the CIK is not already known, use `sec-edgar-mcp`'s `get_cik_by_ticker` or `search_companies` tools to look it up first.",
       "paramsWrapped": false,
       "tools": [
+        {
+          "name": "open-legal-compliance-mcp_get_sec_filings",
+          "purpose": "Retrieves SEC filings for a company by its Central Index Key (CIK). Use it when accessing a company's full filing history from EDGAR using a known CIK number.",
+          "parameters": [
+            {
+              "number": 8,
+              "name": "cik",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "SEC Central Index Key for the company to retrieve filings for (10 digits)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve SEC filings for a company by CIK",
+              "params": {
+                "cik": "0000320193"
+              }
+            },
+            {
+              "intent": "Fetch the filing history for a known company from EDGAR",
+              "params": {
+                "cik": "0001018724"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_canlii_cases",
+          "purpose": "Searches Canadian case law via CanLII by query string with an optional database filter. Use it when researching Canadian legal precedent or locating decisions from a specific court or tribunal database.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for Canadian case law content."
+            },
+            {
+              "number": 10,
+              "name": "databaseId",
+              "required": false,
+              "default": "csc-scc",
+              "allowed": [],
+              "description": "CanLII database identifier to restrict the search to a specific court or tribunal."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search Canadian case law on a legal topic using the default Supreme Court database",
+              "params": {
+                "query": "reasonable expectation of privacy"
+              }
+            },
+            {
+              "intent": "Search a specific CanLII database for cases on a topic",
+              "params": {
+                "query": "wrongful dismissal",
+                "databaseId": "onca"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_case_law",
+          "purpose": "Searches US case law via CourtListener by query string with an optional court filter. Use it when researching legal precedent or locating opinions from a specific court.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for case law content."
+            },
+            {
+              "number": 3,
+              "name": "court",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Filters results to a specific court by court ID (e.g., \"scotus\", \"ca9\")."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search case law on a legal topic across all courts",
+              "params": {
+                "query": "fourth amendment unreasonable search"
+              }
+            },
+            {
+              "intent": "Search case law on a topic from a specific court",
+              "params": {
+                "query": "qualified immunity",
+                "court": "ca9"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_cfr",
+          "purpose": "Searches the Code of Federal Regulations (CFR) by query string with an optional title filter. Use it when researching federal regulatory requirements or locating provisions within a specific CFR title.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for CFR content."
+            },
+            {
+              "number": 2,
+              "name": "title",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Restricts the search to a specific CFR title."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search federal regulations for provisions related to a topic",
+              "params": {
+                "query": "environmental impact assessment"
+              }
+            },
+            {
+              "intent": "Search within a specific CFR title for relevant regulatory provisions",
+              "params": {
+                "query": "hazardous waste disposal",
+                "title": "Title 40"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_congress_bills",
+          "purpose": "Searches US Congress bills by query string with an optional congress number filter. Use it when researching pending or enacted legislation or tracking bills relevant to a compliance topic.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for congressional bill content."
+            },
+            {
+              "number": 6,
+              "name": "congress",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Filters results to a specific Congress number (e.g., 118)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search congressional bills on a legislative topic",
+              "params": {
+                "query": "artificial intelligence regulation"
+              }
+            },
+            {
+              "intent": "Search bills from a specific Congress on a topic",
+              "params": {
+                "query": "data privacy",
+                "congress": 118
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_data_gov",
+          "purpose": "Searches the Data.gov catalog by query string. Use it when looking for government datasets relevant to a research or compliance topic.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for Data.gov catalog content."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search Data.gov for datasets on a regulatory topic",
+              "params": {
+                "query": "air quality emissions monitoring"
+              }
+            },
+            {
+              "intent": "Find government datasets related to a compliance area",
+              "params": {
+                "query": "financial institution enforcement actions"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_eu_regulations",
+          "purpose": "Searches EU Regulations via EUR-Lex by query string or CELEX number with an optional language filter. Use it when researching European Union regulatory requirements or locating a specific EU regulation by its identifier.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for EU regulation content, or a CELEX number to retrieve a specific regulation directly."
+            },
+            {
+              "number": 4,
+              "name": "language",
+              "required": false,
+              "default": "en",
+              "allowed": [],
+              "description": "Language code for the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search EU regulations on a compliance topic",
+              "params": {
+                "query": "data protection personal data processing"
+              }
+            },
+            {
+              "intent": "Retrieve a specific EU regulation by CELEX number in a given language",
+              "params": {
+                "query": "32016R0679",
+                "language": "fr"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_fda_events",
+          "purpose": "Searches FDA adverse events or food enforcement records by type and query string. Use it when researching drug or device adverse event reports, or food enforcement actions from the FDA.",
+          "parameters": [
+            {
+              "number": 11,
+              "name": "type",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Category of FDA data to search. Allowed: drug, device, food"
+            },
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for FDA event or enforcement content."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search FDA adverse event reports for a specific drug",
+              "params": {
+                "type": "drug",
+                "query": "ibuprofen gastrointestinal bleeding"
+              }
+            },
+            {
+              "intent": "Search FDA food enforcement actions for a product",
+              "params": {
+                "type": "food",
+                "query": "listeria contamination recall"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_federal_register",
+          "purpose": "Searches Federal Register documents by query string with an optional result count. Use it when researching proposed or final rules, agency notices, and other regulatory actions published in the Federal Register.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for Federal Register document content."
+            },
+            {
+              "number": 7,
+              "name": "perPage",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Number of results to return per page."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search the Federal Register for documents on a regulatory topic",
+              "params": {
+                "query": "financial institution reporting requirements"
+              }
+            },
+            {
+              "intent": "Search the Federal Register with a limited result count",
+              "params": {
+                "query": "workplace safety standards",
+                "perPage": 10
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_open_states",
+          "purpose": "Searches state legislation across all 50 states via OpenStates with an optional jurisdiction filter. Use it when researching bills or legislative activity in any US state, not limited to the three states supported by the dedicated state law search.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for state legislation content."
+            },
+            {
+              "number": 9,
+              "name": "jurisdiction",
+              "required": false,
+              "default": "No default",
+              "allowed": [],
+              "description": "Filters results to a specific state by abbreviation (e.g., \"ca\")."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search state legislation on a topic across all states",
+              "params": {
+                "query": "minimum wage increase"
+              }
+            },
+            {
+              "intent": "Search legislation in a specific state on a topic",
+              "params": {
+                "query": "electric vehicle incentives",
+                "jurisdiction": "ca"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_state_law",
+          "purpose": "Searches state law for California, New York, or Illinois by query string. Use it when researching state-level statutory requirements or compliance obligations in one of the supported states.",
+          "parameters": [
+            {
+              "number": 5,
+              "name": "state",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "State to search within. Allowed: ca, ny, il"
+            },
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for state law content."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search California law for provisions on a compliance topic",
+              "params": {
+                "state": "ca",
+                "query": "consumer privacy rights"
+              }
+            },
+            {
+              "intent": "Search New York law for provisions on a business topic",
+              "params": {
+                "state": "ny",
+                "query": "limited liability company formation"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "open-legal-compliance-mcp_search_uk_legislation",
+          "purpose": "Searches UK legislation by query string. Use it when researching British statutory law or locating Acts of Parliament and statutory instruments relevant to a compliance topic.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query for UK legislation content."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search UK legislation for provisions on a compliance topic",
+              "params": {
+                "query": "data protection personal data"
+              }
+            },
+            {
+              "intent": "Search UK legislation for employment law provisions",
+              "params": {
+                "query": "employee rights unfair dismissal"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
         {
           "name": "open-legal-compliance-mcp_search_us_code",
           "purpose": "Searches the US Code (Federal Law) by query string with an optional title filter. Use it when researching federal statutory law or locating provisions within a specific US Code title.",
@@ -18151,6 +18594,410 @@
                 "filters": "applicationFilingDate:[2020-01-01 TO *]",
                 "limit": 50,
                 "offset": 0
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "propublica-mcp",
+      "intro": "The `propublica-mcp` server provides access to ProPublica's Nonprofit Explorer database, covering nonprofit search and discovery, detailed organization records, Form 990 filing retrieval, financial trend analysis, peer comparison, and bulk data export. It is useful when researching nonprofit organizations, evaluating their financial health, accessing their tax filings, or comparing them against similar entities.\n\n### How it works\n- The server is organized around two entry points: search tools (`search_nonprofits`, `search_nonprofits_with_pdfs`, `search_similar_nonprofits`) for discovery, and EIN-based tools (`get_organization`, `get_organization_filings`, `get_most_recent_pdf`, `analyze_nonprofit_financials`) for deep lookup once an organization is identified.\n- All EIN-based tools require a 9-digit EIN, which can be provided with or without a hyphen. EINs are typically returned by search tools.\n- `search_nonprofits` supports filters for state, NTEE category code, and 501(c) subsection, making it the primary discovery tool when the organization name is not known.\n- `search_similar_nonprofits` uses a reference EIN to find peer organizations, with optional filters for geographic radius, revenue range, and NTEE category matching.\n- `export_nonprofit_data` accepts a list of up to 10 EINs and produces a consolidated JSON or CSV output, optionally enriched with financial analysis and filing history.\n\n### Potential resolution paths\n- **Find and profile a nonprofit:** Use `search_nonprofits` to locate the organization and retrieve its EIN, then `get_organization` for the full record and `analyze_nonprofit_financials` for a trend summary.\n- **Access Form 990 filings:** Use `get_organization_filings` for structured filing data, or `get_most_recent_pdf` when the latest PDF version is specifically needed. Use `search_nonprofits_with_pdfs` when PDF availability is a requirement before selecting an organization.\n- **Benchmark against peers:** Use `search_similar_nonprofits` with the reference EIN to find comparable organizations, then call `get_organization` or `analyze_nonprofit_financials` on individual results for comparison.\n- **Export data for multiple organizations:** Collect EINs through search tools, then pass them to `export_nonprofit_data` to produce a consolidated output suitable for analysis or CRM import.\n\n### Best practices\n- **Retrieve the EIN from search before calling lookup tools:** `get_organization`, `get_organization_filings`, `get_most_recent_pdf`, `analyze_nonprofit_financials`, and `search_similar_nonprofits` all require a known EIN. Use `search_nonprofits` first if the EIN is not already available.\n- **Use `search_nonprofits_with_pdfs` when PDF access is required:** Not all organizations have PDF filings available. This tool filters the search to only return organizations with PDFs, avoiding a failed `get_most_recent_pdf` call on an organization without them.\n- **Keep export batches to 10 or fewer EINs:** `export_nonprofit_data` accepts a maximum of 10 EINs per call. For larger sets, split into multiple export calls.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "propublica-mcp_analyze_nonprofit_financials",
+          "purpose": "Analyzes financial trends and key metrics for a nonprofit organization over a specified number of recent years. Use it when evaluating the financial health, revenue trajectory, or spending patterns of a specific nonprofit.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "ein",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Employer Identification Number of the nonprofit to analyze (9 digits, with or without hyphen)."
+            },
+            {
+              "number": 8,
+              "name": "years",
+              "required": false,
+              "default": "3",
+              "allowed": [],
+              "description": "Number of recent years to include in the analysis. Maximum: 10."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze the financial trends for a nonprofit over the default 3-year period",
+              "params": {
+                "ein": "131655952"
+              }
+            },
+            {
+              "intent": "Analyze a nonprofit's financial history over a longer period",
+              "params": {
+                "ein": "131655952",
+                "years": 7
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_export_nonprofit_data",
+          "purpose": "Exports comprehensive data for multiple nonprofit organizations in JSON or CSV format, optionally including financial analysis and filing history. Use it when consolidating data across several nonprofits for analysis or CRM integration.",
+          "parameters": [
+            {
+              "number": 14,
+              "name": "eins",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "List of EINs to export. Maximum: 10 organizations."
+            },
+            {
+              "number": 15,
+              "name": "format",
+              "required": false,
+              "default": "json",
+              "allowed": [],
+              "description": "Output format for the export. Allowed: json, csv"
+            },
+            {
+              "number": 16,
+              "name": "include_financials",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Whether to include financial analysis for each organization in the export."
+            },
+            {
+              "number": 17,
+              "name": "include_filings",
+              "required": false,
+              "default": "false",
+              "allowed": [],
+              "description": "Whether to include recent Form 990 filings for each organization in the export."
+            },
+            {
+              "number": 18,
+              "name": "max_filings_per_org",
+              "required": false,
+              "default": "3",
+              "allowed": [],
+              "description": "Maximum number of filings to include per organization when include_filings is true."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Export financial data for a set of nonprofits in JSON format",
+              "params": {
+                "eins": [
+                  "131655952",
+                  "530196605",
+                  "941156365"
+                ]
+              }
+            },
+            {
+              "intent": "Export nonprofit data including filings in CSV format for CRM import",
+              "params": {
+                "eins": [
+                  "131655952",
+                  "530196605"
+                ],
+                "format": "csv",
+                "include_financials": true,
+                "include_filings": true,
+                "max_filings_per_org": 5
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_get_most_recent_pdf",
+          "purpose": "Retrieves the most recent Form 990 PDF filing available for a specific nonprofit by searching backwards through its filing history. Use it when the latest available PDF of a nonprofit's tax return is needed directly.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "ein",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Employer Identification Number of the nonprofit (9 digits, with or without hyphen)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the most recent Form 990 PDF for a nonprofit by EIN",
+              "params": {
+                "ein": "131655952"
+              }
+            },
+            {
+              "intent": "Retrieve the latest available PDF filing for a known nonprofit",
+              "params": {
+                "ein": "13-1655952"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_get_organization",
+          "purpose": "Retrieves detailed information about a specific nonprofit organization by its EIN from the ProPublica Nonprofit Explorer. Use it when the EIN is already known and full organization details are needed.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "ein",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Employer Identification Number of the nonprofit to retrieve (9 digits, with or without hyphen)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed information for a nonprofit by EIN",
+              "params": {
+                "ein": "131655952"
+              }
+            },
+            {
+              "intent": "Look up a nonprofit organization using its hyphenated EIN",
+              "params": {
+                "ein": "13-1655952"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_get_organization_filings",
+          "purpose": "Retrieves Form 990 filings for a specific nonprofit organization from ProPublica. Use it when accessing a nonprofit's tax filing history and the financial data contained within each filing.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "ein",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Employer Identification Number of the nonprofit (9 digits, with or without hyphen)."
+            },
+            {
+              "number": 9,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Maximum number of filings to retrieve. Maximum: 100 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the most recent Form 990 filings for a nonprofit",
+              "params": {
+                "ein": "131655952"
+              }
+            },
+            {
+              "intent": "Retrieve a larger set of historical Form 990 filings for a nonprofit",
+              "params": {
+                "ein": "131655952",
+                "limit": 50
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_search_nonprofits",
+          "purpose": "Searches for nonprofit organizations in the ProPublica Nonprofit Explorer database by name or keyword, with optional filters for state, NTEE category, and 501(c) subsection. Use it when researching nonprofits or locating an organization's EIN for further lookup.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search term such as an organization name or keyword."
+            },
+            {
+              "number": 2,
+              "name": "state",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results to a specific state by two-letter code (e.g., \"CA\", \"NY\")."
+            },
+            {
+              "number": 3,
+              "name": "ntee_code",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by NTEE category code (e.g., \"A01\", \"B20\")."
+            },
+            {
+              "number": 4,
+              "name": "subsection_code",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by 501(c) subsection code (e.g., \"3\", \"4\", \"6\")."
+            },
+            {
+              "number": 5,
+              "name": "page",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Page number for paginating through results."
+            },
+            {
+              "number": 6,
+              "name": "per_page",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Number of results to return per page. Maximum: 25."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for nonprofits by name or keyword",
+              "params": {
+                "query": "environmental conservation"
+              }
+            },
+            {
+              "intent": "Search for 501(c)(3) nonprofits in California with a specific NTEE code",
+              "params": {
+                "query": "education foundation",
+                "state": "CA",
+                "subsection_code": "3",
+                "ntee_code": "B20"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_search_nonprofits_with_pdfs",
+          "purpose": "Searches for nonprofit organizations that have PDF Form 990 filings available in ProPublica. Use it when PDF access to tax filings is specifically required, rather than structured data alone.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search term such as an organization name or keyword."
+            },
+            {
+              "number": 9,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Maximum number of organizations to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for nonprofits with PDF Form 990 filings available by keyword",
+              "params": {
+                "query": "community health foundation"
+              }
+            },
+            {
+              "intent": "Search for a specific nonprofit and retrieve more results with PDF filings",
+              "params": {
+                "query": "arts education",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "propublica-mcp_search_similar_nonprofits",
+          "purpose": "Finds nonprofits similar to a reference organization based on NTEE category, geographic proximity, and revenue range. Use it when benchmarking an organization against peers or identifying comparable nonprofits in the same sector or region.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "ein",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "EIN of the reference nonprofit to find similar organizations for (9 digits, with or without hyphen)."
+            },
+            {
+              "number": 10,
+              "name": "radius_miles",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Limits results to organizations within this distance in miles from the reference organization."
+            },
+            {
+              "number": 11,
+              "name": "same_ntee",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Whether to restrict results to nonprofits in the same NTEE category as the reference organization."
+            },
+            {
+              "number": 12,
+              "name": "min_revenue",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters out organizations with annual revenue below this amount."
+            },
+            {
+              "number": 13,
+              "name": "max_revenue",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters out organizations with annual revenue above this amount."
+            },
+            {
+              "number": 9,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Maximum number of similar organizations to return. Maximum: 25 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find nonprofits similar to a reference organization in the same NTEE category",
+              "params": {
+                "ein": "131655952"
+              }
+            },
+            {
+              "intent": "Find nearby nonprofits in the same category within a revenue range",
+              "params": {
+                "ein": "131655952",
+                "radius_miles": 50,
+                "min_revenue": 1000000,
+                "max_revenue": 10000000,
+                "limit": 20
               }
             }
           ],
@@ -19002,6 +19849,658 @@
               "params": {
                 "query": "Apple",
                 "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "tradingview-mcp",
+      "intro": "",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "tradingview-mcp_advanced_candle_pattern",
+          "purpose": "Analyzes multi-timeframe candle data to detect instruments showing a progressive increase in candle size across consecutive periods. Use it when identifying coins with accelerating momentum indicated by expanding candle bodies.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan (e.g., \"KUCOIN\", \"BINANCE\")."
+            },
+            {
+              "number": 10,
+              "name": "base_timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Base timeframe for the candle size analysis. Allowed: 5m, 15m, 1h, 4h"
+            },
+            {
+              "number": 11,
+              "name": "pattern_length",
+              "required": false,
+              "default": "3",
+              "allowed": [],
+              "description": "Number of consecutive periods to analyze. Range: 2 to 4."
+            },
+            {
+              "number": 12,
+              "name": "min_size_increase",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Minimum percentage increase in candle size between consecutive periods."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "15",
+              "allowed": [],
+              "description": "Maximum number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Scan Binance for coins with accelerating candle size over 3 periods on the 1-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "base_timeframe": "1h",
+                "pattern_length": 3
+              }
+            },
+            {
+              "intent": "Scan for coins with aggressive candle expansion over 4 periods with a higher size threshold",
+              "params": {
+                "exchange": "KUCOIN",
+                "base_timeframe": "4h",
+                "pattern_length": 4,
+                "min_size_increase": 20,
+                "limit": 10
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_bollinger_scan",
+          "purpose": "Scans for instruments with low Bollinger Band Width to detect volatility squeezes. Use it when identifying coins that are consolidating and may be approaching a breakout, filtered by a maximum BBW threshold.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan (e.g., \"KUCOIN\", \"BINANCE\", \"BYBIT\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "4h",
+              "allowed": [],
+              "description": "Timeframe for the Bollinger Band Width scan. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            },
+            {
+              "number": 4,
+              "name": "bbw_threshold",
+              "required": false,
+              "default": "0.04",
+              "allowed": [],
+              "description": "Maximum Bollinger Band Width value to include in results. Lower values return only tighter squeezes."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "50",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 100."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Scan Binance for coins in a volatility squeeze on the 4-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "4h"
+              }
+            },
+            {
+              "intent": "Scan KuCoin for tight squeezes on the daily timeframe with a stricter threshold",
+              "params": {
+                "exchange": "KUCOIN",
+                "timeframe": "1D",
+                "bbw_threshold": 0.02,
+                "limit": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_coin_analysis",
+          "purpose": "Returns detailed analysis for a specific trading pair on a given exchange and timeframe, including all indicators and metrics. Use it when a deep look at a single instrument is needed after identifying it through a scan or filter tool.",
+          "parameters": [
+            {
+              "number": 6,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Trading pair symbol to analyze (e.g., \"BTCUSDT\", \"ACEUSDT\")."
+            },
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange where the symbol is listed (e.g., \"BINANCE\", \"KUCOIN\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the analysis. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get detailed analysis for Bitcoin on Binance on the 1-hour timeframe",
+              "params": {
+                "symbol": "BTCUSDT",
+                "exchange": "BINANCE",
+                "timeframe": "1h"
+              }
+            },
+            {
+              "intent": "Get full indicator analysis for a trading pair on the daily timeframe",
+              "params": {
+                "symbol": "ETHUSDT",
+                "exchange": "BYBIT",
+                "timeframe": "1D"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_consecutive_candles_scan",
+          "purpose": "Scans for instruments showing a pattern of consecutive growing or shrinking candles on a given exchange and timeframe. Use it when identifying instruments with sustained directional momentum across a sequence of candles.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan (e.g., \"KUCOIN\", \"BINANCE\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the candle pattern scan. Allowed: 5m, 15m, 1h, 4h"
+            },
+            {
+              "number": 7,
+              "name": "pattern_type",
+              "required": false,
+              "default": "bullish",
+              "allowed": [],
+              "description": "Direction of the consecutive candle pattern to detect. Allowed: bullish, bearish"
+            },
+            {
+              "number": 8,
+              "name": "candle_count",
+              "required": false,
+              "default": "3",
+              "allowed": [],
+              "description": "Number of consecutive candles to check. Range: 2 to 5."
+            },
+            {
+              "number": 9,
+              "name": "min_growth",
+              "required": false,
+              "default": "2",
+              "allowed": [],
+              "description": "Minimum growth percentage required for each candle in the pattern."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "allowed": [],
+              "description": "Maximum number of results to return."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Scan Binance for coins with 3 consecutive bullish candles on the 1-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "1h",
+                "pattern_type": "bullish",
+                "candle_count": 3
+              }
+            },
+            {
+              "intent": "Scan KuCoin for bearish consecutive candle patterns with a stricter growth threshold",
+              "params": {
+                "exchange": "KUCOIN",
+                "timeframe": "4h",
+                "pattern_type": "bearish",
+                "candle_count": 4,
+                "min_growth": 3
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_multi_agent_analysis",
+          "purpose": "Runs a multi-agent debate across Technical, Sentiment, and Risk perspectives for a specific trading pair, producing a structured final trading decision. Use it when a comprehensive, multi-dimensional assessment of a specific instrument is needed beyond standard indicator output.",
+          "parameters": [
+            {
+              "number": 6,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Trading pair symbol to analyze (e.g., \"BTCUSDT\")."
+            },
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange where the symbol is listed."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the analysis. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Run a multi-agent debate analysis for Bitcoin on Binance on the 4-hour timeframe",
+              "params": {
+                "symbol": "BTCUSDT",
+                "exchange": "BINANCE",
+                "timeframe": "4h"
+              }
+            },
+            {
+              "intent": "Get a structured multi-agent trading decision for a specific coin on the daily timeframe",
+              "params": {
+                "symbol": "ETHUSDT",
+                "exchange": "BYBIT",
+                "timeframe": "1D"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_rating_filter",
+          "purpose": "Filters instruments by their Bollinger Band rating on a given exchange and timeframe. Use it when scanning for coins that meet a specific signal strength, from strong sell to strong buy.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan (e.g., \"KUCOIN\", \"BINANCE\", \"BYBIT\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "5m",
+              "allowed": [],
+              "description": "Timeframe for the Bollinger Band rating. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            },
+            {
+              "number": 5,
+              "name": "rating",
+              "required": false,
+              "default": "2",
+              "allowed": [],
+              "description": "Bollinger Band rating to filter by. Range: -3 to +3. -3 = Strong Sell, -2 = Sell, -1 = Weak Sell, 1 = Weak Buy, 2 = Buy, 3 = Strong Buy."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 50 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find strong buy signals on Binance on the 1-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "1h",
+                "rating": 3
+              }
+            },
+            {
+              "intent": "Find sell signals on KuCoin on the daily timeframe",
+              "params": {
+                "exchange": "KUCOIN",
+                "timeframe": "1D",
+                "rating": -2,
+                "limit": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_smart_volume_scanner",
+          "purpose": "Combines volume analysis with technical indicators to scan for instruments meeting both volume and price conditions, filtered by RSI state. Use it when identifying setups where volume strength aligns with a specific market condition such as oversold or overbought.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan."
+            },
+            {
+              "number": 15,
+              "name": "min_volume_ratio",
+              "required": false,
+              "default": "2",
+              "allowed": [],
+              "description": "Minimum multiple by which current volume must exceed the normal level."
+            },
+            {
+              "number": 16,
+              "name": "min_price_change",
+              "required": false,
+              "default": "2",
+              "allowed": [],
+              "description": "Minimum price change percentage required to include a result."
+            },
+            {
+              "number": 17,
+              "name": "rsi_range",
+              "required": false,
+              "default": "any",
+              "allowed": [],
+              "description": "RSI condition to filter by. Allowed: oversold, overbought, neutral, any"
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "20",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 30 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Scan Binance for high-volume moves in oversold RSI territory",
+              "params": {
+                "exchange": "BINANCE",
+                "rsi_range": "oversold",
+                "min_volume_ratio": 2
+              }
+            },
+            {
+              "intent": "Scan for overbought coins with strong volume and a larger price move",
+              "params": {
+                "exchange": "BYBIT",
+                "rsi_range": "overbought",
+                "min_volume_ratio": 3,
+                "min_price_change": 5,
+                "limit": 10
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_top_gainers",
+          "purpose": "Returns the top gaining instruments for a given exchange and timeframe using Bollinger Band analysis. Use it when scanning for the strongest upside movers on a specific exchange across different timeframes.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan for top gainers (e.g., \"KUCOIN\", \"BINANCE\", \"BYBIT\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the Bollinger Band analysis. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 50 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get top gainers on Binance over a 1-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "1h"
+              }
+            },
+            {
+              "intent": "Get the top 10 gainers on Bybit over a daily timeframe",
+              "params": {
+                "exchange": "BYBIT",
+                "timeframe": "1D",
+                "limit": 10
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_top_losers",
+          "purpose": "Returns the top losing instruments for a given exchange and timeframe using Bollinger Band analysis. Use it when scanning for the weakest or most oversold instruments on a specific exchange across different timeframes.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan for top losers (e.g., \"KUCOIN\", \"BINANCE\", \"BYBIT\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the Bollinger Band analysis. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 50 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get top losers on Binance over a 4-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "4h"
+              }
+            },
+            {
+              "intent": "Get the top 10 losers on KuCoin over a weekly timeframe",
+              "params": {
+                "exchange": "KUCOIN",
+                "timeframe": "1W",
+                "limit": 10
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_volume_breakout_scanner",
+          "purpose": "Detects instruments showing simultaneous volume and price breakouts on a given exchange and timeframe. Use it when scanning for coins where an abnormal volume spike accompanies a significant price move, indicating a potential high-conviction breakout.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange to scan (e.g., \"KUCOIN\", \"BINANCE\", \"BYBIT\")."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the breakout scan. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            },
+            {
+              "number": 13,
+              "name": "volume_multiplier",
+              "required": false,
+              "default": "2",
+              "allowed": [],
+              "description": "Minimum multiple by which current volume must exceed the normal level to qualify."
+            },
+            {
+              "number": 14,
+              "name": "price_change_min",
+              "required": false,
+              "default": "3",
+              "allowed": [],
+              "description": "Minimum price change percentage required for a result to be included."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed: 50 for this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Scan Binance for volume and price breakouts on the 1-hour timeframe",
+              "params": {
+                "exchange": "BINANCE",
+                "timeframe": "1h"
+              }
+            },
+            {
+              "intent": "Scan for high-conviction breakouts with stricter volume and price thresholds",
+              "params": {
+                "exchange": "BYBIT",
+                "timeframe": "4h",
+                "volume_multiplier": 3,
+                "price_change_min": 5,
+                "limit": 15
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "tradingview-mcp_volume_confirmation_analysis",
+          "purpose": "Performs detailed volume confirmation analysis for a specific trading pair on a given exchange and timeframe. Use it when evaluating whether a price move for a specific instrument is supported by volume, after identifying it through a scan.",
+          "parameters": [
+            {
+              "number": 6,
+              "name": "symbol",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Trading pair symbol to analyze (e.g., \"BTCUSDT\")."
+            },
+            {
+              "number": 1,
+              "name": "exchange",
+              "required": false,
+              "default": "KUCOIN",
+              "allowed": [],
+              "description": "Exchange where the symbol is listed."
+            },
+            {
+              "number": 2,
+              "name": "timeframe",
+              "required": false,
+              "default": "15m",
+              "allowed": [],
+              "description": "Timeframe for the volume confirmation analysis. Allowed: 5m, 15m, 1h, 4h, 1D, 1W, 1M"
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Analyze volume confirmation for Bitcoin on Binance on the 1-hour timeframe",
+              "params": {
+                "symbol": "BTCUSDT",
+                "exchange": "BINANCE",
+                "timeframe": "1h"
+              }
+            },
+            {
+              "intent": "Check volume confirmation for a specific coin on the daily timeframe",
+              "params": {
+                "symbol": "SOLUSDT",
+                "exchange": "BYBIT",
+                "timeframe": "1D"
               }
             }
           ],

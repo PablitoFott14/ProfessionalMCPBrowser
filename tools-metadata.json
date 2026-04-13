@@ -73,8 +73,16 @@
       "domain": "Legal"
     },
     "open-legal-compliance-mcp": {
-      "color": "#a855f7",
-      "domain": "General"
+      "color": "#e879f9",
+      "domain": "Legal"
+    },
+    "propublica-mcp": {
+      "color": "#fb7185",
+      "domain": "Legal"
+    },
+    "tradingview-mcp": {
+      "color": "#34d399",
+      "domain": "Finance"
     }
   }
 }
