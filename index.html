@@ -216,12 +216,28 @@ body{
 .intro-card.ic-practice .sec-body{font-size:11.5px}
 
 /* section card accents */
-.intro-card.ic-how{border-top:2px solid #3b82f6;background:rgba(59,130,246,.04)}
-.intro-card.ic-how .ic-label{color:#3b82f6}
-.intro-card.ic-paths{border-top:2px solid #10b981;background:rgba(16,185,129,.04)}
-.intro-card.ic-paths .ic-label{color:#10b981}
-.intro-card.ic-practice{border-top:2px solid #f59e0b;background:rgba(245,158,11,.04)}
-.intro-card.ic-practice .ic-label{color:#f59e0b}
+.intro-card.ic-how,
+.intro-card.ic-paths,
+.intro-card.ic-practice{padding-left:15px}
+
+.intro-card.ic-how{border-left:3px solid #3b82f6;background:rgba(59,130,246,.05)}
+.intro-card.ic-how .ic-label{
+  display:inline-block;color:#93c5fd;
+  background:rgba(59,130,246,.16);
+  padding:2px 7px;border-radius:4px;letter-spacing:1.2px;margin-bottom:10px;
+}
+.intro-card.ic-paths{border-left:3px solid #10b981;background:rgba(16,185,129,.05)}
+.intro-card.ic-paths .ic-label{
+  display:inline-block;color:#6ee7b7;
+  background:rgba(16,185,129,.15);
+  padding:2px 7px;border-radius:4px;letter-spacing:1.2px;margin-bottom:10px;
+}
+.intro-card.ic-practice{border-left:3px solid #f59e0b;background:rgba(245,158,11,.05)}
+.intro-card.ic-practice .ic-label{
+  display:inline-block;color:#fcd34d;
+  background:rgba(245,158,11,.14);
+  padding:2px 7px;border-radius:4px;letter-spacing:1.2px;margin-bottom:10px;
+}
 
 .sec-body{font-size:12px;color:var(--text-dim);line-height:1.7}
 .sec-body ul{list-style:none;display:flex;flex-direction:column;gap:4px}
