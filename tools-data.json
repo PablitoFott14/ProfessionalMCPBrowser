@@ -18245,6 +18245,2248 @@
       ]
     },
     {
+      "name": "uspto-patent-mcp",
+      "intro": "The `uspto-patent-mcp` server is a USPTO-focused legal and patent research server centered on patent search, application and prosecution data, PTAB proceedings and appeals, litigation history, CPC lookup, and dataset discovery. It is useful when the user needs to move between granted patents, published applications, prosecution records, PTAB matters, litigation records, and bulk data discovery within one server.\n\n### How it works\n- The server is split across several data families: PPUBS tools for patent and application search and document retrieval, ODP tools for application and dataset records, PTAB tools for proceedings and decisions, PatentsView compatibility tools, and litigation or citation tools.\n- Some tools are live retrieval tools, while others are documented as temporarily unavailable because legacy USPTO endpoints were decommissioned and have not yet been migrated to the Open Data Portal.\n- Search-oriented tools generally use shared filters such as `query`, `patent_number`, `application_number`, `cpc_code`, date ranges, pagination fields, or party-name filters depending on the source being queried.\n- Several PatentsView tools remain documented for compatibility, but their schemas explicitly note that the PatentsView API was shut down on March 20, 2026, and they point users to PPUBS or ODP alternatives where available.\n\n### Potential resolution paths\n- **Find and open a patent or application:** Start with `ppubs_search_patents` or `ppubs_search_applications`, then follow with `ppubs_get_full_document`, `ppubs_get_patent_by_number`, or `ppubs_download_patent_pdf` once the target document is identified.\n- **Investigate prosecution history for an application:** Use ODP application tools such as `odp_get_application`, `odp_get_application_metadata`, `odp_get_transactions`, `odp_get_documents`, `odp_get_continuity`, `odp_get_assignment`, `odp_get_adjustment`, `odp_get_attorney`, or `odp_get_foreign_priority` depending on whether the user needs status, metadata, continuity, ownership, term adjustment, representatives, or file-wrapper records.\n- **Research PTAB activity:** Use `ptab_search_proceedings`, `ptab_get_proceeding`, `ptab_get_documents`, `ptab_search_decisions`, `ptab_get_decision`, `ptab_search_appeals`, or `ptab_get_appeal` to move from broad PTAB discovery into a specific proceeding, decision, document set, or appeal.\n- **Research litigation exposure:** Use `search_litigation`, `get_patent_litigation`, `get_party_litigation`, or `get_litigation_case` depending on whether the user starts from a patent, a party, or a known case identifier.\n- **Use fallback paths for retired APIs:** When a PatentsView or legacy USPTO endpoint is marked unavailable, follow the tool-level guidance to pivot to PPUBS or ODP tools instead of continuing down a retired path.\n\n### Best practices\n- **Prefer PPUBS for current patent and application retrieval:** The schemas explicitly position `ppubs_search_patents`, `ppubs_search_applications`, and PPUBS document tools as the active alternatives when older PatentsView search and detail endpoints are retired.\n- **Use ODP for prosecution and application-level records:** Application metadata, transactions, file-wrapper document lists, continuity, assignments, attorney records, and adjustment data are all grouped under the ODP tool family, so those tools are the best fit when the user is working from an application number rather than a patent number.\n- **Treat legacy office action and citation tools as constrained:** Several schemas explicitly say those endpoints are temporarily unavailable because legacy services were decommissioned and ODP migration is still pending, so route users toward the listed alternatives such as `odp_get_documents`, `odp_get_transactions`, or PPUBS and ODP discovery tools.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "uspto-patent-mcp_check_api_status",
+          "purpose": "Checks the status of the USPTO data sources used by this server. Use it before starting research or when troubleshooting tool failures.",
+          "parameters": [],
+          "examples": [
+            {
+              "intent": "Verify the server's data sources before starting patent research",
+              "params": {}
+            },
+            {
+              "intent": "Check source availability after a patent lookup fails",
+              "params": {}
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_citation_metrics",
+          "purpose": "Gets citation metrics for a patent. The schema notes that this tool is temporarily unavailable because legacy endpoints were decommissioned and ODP migration is pending.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent number to retrieve citation metrics for."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to retrieve citation metrics for a known patent",
+              "params": {
+                "patent_number": "7861317"
+              }
+            },
+            {
+              "intent": "Attempt to retrieve citation metrics for another patent",
+              "params": {
+                "patent_number": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_cpc_info",
+          "purpose": "Looks up the details of a CPC (Cooperative Patent Classification) code, returning the section, title, and description of the technology area it represents. For top-level section codes (A–H, Y) it also returns a list of subsections. Use when identifying what technology area a CPC code covers or when finding related classification codes to broaden or narrow a patent search.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "cpc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CPC code to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find out what technology area the CPC code G06N covers",
+              "params": {
+                "cpc_code": "G06N"
+              }
+            },
+            {
+              "intent": "Look up a more specific neural network classification",
+              "params": {
+                "cpc_code": "G06N3/08"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_enriched_citations",
+          "purpose": "Gets enriched citation data for a patent. The schema notes that the legacy Enriched Citation API was decommissioned in early 2026, has not yet been migrated to the ODP, and that this tool is temporarily unavailable. It points users to `patentsview_get_patent` for basic citation data instead.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent number to retrieve enriched citation data for."
+            },
+            {
+              "number": 39,
+              "name": "include_forward",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Controls whether forward citations are included in this request."
+            },
+            {
+              "number": 40,
+              "name": "include_backward",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "Controls whether backward citations are included in this request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to retrieve both forward and backward enriched citations for a patent",
+              "params": {
+                "patent_number": "7861317"
+              }
+            },
+            {
+              "intent": "Attempt to retrieve only backward enriched citations for a patent",
+              "params": {
+                "patent_number": "7861317",
+                "include_forward": false
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_litigation_case",
+          "purpose": "Gets details of a specific litigation case. Use it when you already know the case identifier and need the case record.",
+          "parameters": [
+            {
+              "number": 47,
+              "name": "case_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Case identifier to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details for a known litigation case",
+              "params": {
+                "case_id": "CASE-2024-0001"
+              }
+            },
+            {
+              "intent": "Look up another litigation case by identifier",
+              "params": {
+                "case_id": "CASE-2023-0456"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_office_action_citations",
+          "purpose": "Gets prior art citations from office actions. The schema notes that this tool is temporarily unavailable because legacy endpoints were decommissioned and ODP migration is pending, and it points users to `get_enriched_citations` as an alternative.",
+          "parameters": [
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to retrieve office action citations for."
+            },
+            {
+              "number": 34,
+              "name": "mail_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters office action citations by mail date."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to retrieve prior art citations for a known application",
+              "params": {
+                "application_number": "16123456"
+              }
+            },
+            {
+              "intent": "Attempt to retrieve prior art citations for a specific mailed office action",
+              "params": {
+                "application_number": "16123456",
+                "mail_date": "2024-06-15"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_office_action_rejections",
+          "purpose": "Gets rejection data from office actions. The schema notes that this tool is temporarily unavailable because legacy endpoints were decommissioned and ODP migration is pending, and it points users to `odp_get_documents` to find office actions.",
+          "parameters": [
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to retrieve office action rejection data for."
+            },
+            {
+              "number": 34,
+              "name": "mail_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters office action rejection data by mail date."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to retrieve rejection data for a known application",
+              "params": {
+                "application_number": "16123456"
+              }
+            },
+            {
+              "intent": "Attempt to retrieve rejection data for a specific mailed office action",
+              "params": {
+                "application_number": "16123456",
+                "mail_date": "2024-06-15"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_office_action_text",
+          "purpose": "Gets full text of office actions for an application. The schema notes that the legacy Office Action text APIs were decommissioned in early 2026, have not yet been migrated to the ODP, and that this tool is temporarily unavailable. It points users to `odp_get_documents` to list file wrapper documents, including office actions, and download them instead.",
+          "parameters": [
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to retrieve office action text for."
+            },
+            {
+              "number": 34,
+              "name": "mail_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters office action text by mail date."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to retrieve office action text for a known application",
+              "params": {
+                "application_number": "16123456"
+              }
+            },
+            {
+              "intent": "Attempt to retrieve office action text for a specific mailed office action",
+              "params": {
+                "application_number": "16123456",
+                "mail_date": "2024-06-15"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_party_litigation",
+          "purpose": "Gets litigation history for a company or individual. Use it when you need to understand a party's patent litigation profile as a plaintiff, defendant, or both.",
+          "parameters": [
+            {
+              "number": 18,
+              "name": "party_name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Company or individual name to look up."
+            },
+            {
+              "number": 46,
+              "name": "role",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by litigation role."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of litigation results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve patent litigation history for a company in any role",
+              "params": {
+                "party_name": "IBM",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Retrieve patent litigation history where a company appears as a defendant",
+              "params": {
+                "party_name": "Apple",
+                "role": "defendant",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_patent_litigation",
+          "purpose": "Gets all litigation involving a specific patent. Use it when you need to see the complete litigation history of a patent, including all cases where it was asserted.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the litigation history for a known patent",
+              "params": {
+                "patent_number": "7861317"
+              }
+            },
+            {
+              "intent": "Look up litigation history for another patent",
+              "params": {
+                "patent_number": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_get_status_code",
+          "purpose": "Looks up the meaning of a USPTO application status code. Use it when a status code appears in application data and needs to be interpreted.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Status code number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find out what USPTO status code 30 means",
+              "params": {
+                "code": "30"
+              }
+            },
+            {
+              "intent": "Look up another USPTO application status code",
+              "params": {
+                "code": "161"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_adjustment",
+          "purpose": "Gets patent term adjustment data for an application. Use it when you need to calculate the actual expiration timing of a patent while accounting for USPTO delays.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this patent term adjustment request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve patent term adjustment data for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check USPTO delay adjustment data for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_application",
+          "purpose": "Gets patent application data from the USPTO Open Data Portal. Use it when you need application-level prosecution data including status, dates, and basic metadata.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this Open Data Portal request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve application data for a known patent application number",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check prosecution data and status for another patent application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_application_metadata",
+          "purpose": "Gets detailed metadata for a patent application. Use it when you need comprehensive application metadata including examiner information, art unit, and detailed status.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this metadata request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed metadata for a known patent application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check examiner and art unit details for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_assignment",
+          "purpose": "Gets patent assignment and ownership records for an application. Use it when you need current or historical ownership information.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this assignment request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve assignment and ownership records for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check historical ownership records for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_attorney",
+          "purpose": "Gets the attorney or agent of record for a patent application. Use it when you need the representative information associated with an application.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this attorney request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the attorney or agent of record for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check representative information for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_continuity",
+          "purpose": "Gets patent family and continuity data for an application. Use it when you need to understand parent and child application relationships, including continuations, divisionals, and continuations-in-part.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this continuity request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve patent family continuity data for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check parent and child application relationships for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_dataset",
+          "purpose": "Gets details of a specific USPTO bulk dataset product. Use it when you need metadata for one dataset after identifying its product identifier.",
+          "parameters": [
+            {
+              "number": 16,
+              "name": "product_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Dataset product identifier to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details for a specific USPTO bulk dataset product",
+              "params": {
+                "product_id": "PTBL2024"
+              }
+            },
+            {
+              "intent": "Look up another USPTO dataset product by identifier",
+              "params": {
+                "product_id": "ASSIGNMENT-BULK"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_documents",
+          "purpose": "Gets the list of documents in a patent application file wrapper. Use it when you need to see which documents are available for an application.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this document-list request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the file wrapper document list for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check available file wrapper documents for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_foreign_priority",
+          "purpose": "Gets foreign priority claims for a patent application. Use it when you need to identify priority claims to foreign applications that may affect the effective filing date.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this foreign priority request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve foreign priority claims for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check foreign priority claims for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_get_transactions",
+          "purpose": "Gets prosecution transaction history for a patent application. Use it when you need the timeline of prosecution events, including office actions, responses, and fee payments.",
+          "parameters": [
+            {
+              "number": 10,
+              "name": "app_num",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Application number to look up for this transaction-history request."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve prosecution transaction history for a known application",
+              "params": {
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Check the prosecution timeline for another application",
+              "params": {
+                "app_num": "16987654"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_search_applications",
+          "purpose": "Searches patent applications in the USPTO Open Data Portal. Use it when you need application search filters based on applicant metadata, filing dates, or related identifiers.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "General search query string for this Open Data Portal application search."
+            },
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by application number."
+            },
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by patent number."
+            },
+            {
+              "number": 12,
+              "name": "inventor_name",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by inventor name."
+            },
+            {
+              "number": 13,
+              "name": "assignee_name",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by assignee or applicant name."
+            },
+            {
+              "number": 14,
+              "name": "filing_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range start for this search."
+            },
+            {
+              "number": 15,
+              "name": "filing_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range end for this search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this Open Data Portal search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of application results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for applications by inventor name within a filing date range",
+              "params": {
+                "inventor_name": "Smith",
+                "filing_date_from": "2020-01-01",
+                "filing_date_to": "2020-12-31",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Search for applications for a specific assignee and continue to a later page",
+              "params": {
+                "assignee_name": "IBM",
+                "offset": 25,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_odp_search_datasets",
+          "purpose": "Searches USPTO bulk data products and datasets. Use it when you need to find bulk download datasets for large-scale analysis.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Search query for dataset names or descriptions."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this dataset search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of dataset results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for USPTO bulk datasets related to patent assignments",
+              "params": {
+                "query": "assignment",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Continue browsing bulk datasets related to prosecution data",
+              "params": {
+                "query": "prosecution",
+                "offset": 25,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_assignee",
+          "purpose": "Gets detailed assignee information by disambiguated ID. The schema notes that the PatentsView API was shut down on March 20, 2026, that no direct replacement exists for disambiguated assignee lookups, and that `odp_search_datasets` can be used to find PatentsView bulk datasets.",
+          "parameters": [
+            {
+              "number": 30,
+              "name": "assignee_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Disambiguated assignee ID to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed information for a disambiguated assignee ID",
+              "params": {
+                "assignee_id": "org_123456"
+              }
+            },
+            {
+              "intent": "Look up another assignee record by disambiguated ID",
+              "params": {
+                "assignee_id": "org_789012"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_attorney",
+          "purpose": "Gets detailed attorney information by ID. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `odp_get_attorney` with a specific application number to look up attorney information per application.",
+          "parameters": [
+            {
+              "number": 32,
+              "name": "attorney_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Attorney ID to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed information for an attorney by ID",
+              "params": {
+                "attorney_id": "att_123456"
+              }
+            },
+            {
+              "intent": "Look up another attorney record by ID",
+              "params": {
+                "attorney_id": "att_789012"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_claims",
+          "purpose": "Gets all claims text for a patent. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `ppubs_get_full_document` to retrieve patent text including claims.",
+          "parameters": [
+            {
+              "number": 28,
+              "name": "patent_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent ID or number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve all claims text for a known patent",
+              "params": {
+                "patent_id": "7861317"
+              }
+            },
+            {
+              "intent": "Look up claims text for another patent by PatentsView patent ID",
+              "params": {
+                "patent_id": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_description",
+          "purpose": "Gets patent detailed description text. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `ppubs_get_full_document` to retrieve the full patent specification.",
+          "parameters": [
+            {
+              "number": 28,
+              "name": "patent_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent ID or number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the detailed description text for a known patent",
+              "params": {
+                "patent_id": "7861317"
+              }
+            },
+            {
+              "intent": "Look up specification text for another patent by PatentsView patent ID",
+              "params": {
+                "patent_id": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_inventor",
+          "purpose": "Gets detailed inventor information by disambiguated ID. The schema notes that the PatentsView API was shut down on March 20, 2026, that no direct replacement exists for disambiguated inventor lookups, and that `odp_search_datasets` can be used to find PatentsView bulk datasets.",
+          "parameters": [
+            {
+              "number": 31,
+              "name": "inventor_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Disambiguated inventor ID to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed information for a disambiguated inventor ID",
+              "params": {
+                "inventor_id": "inv_123456"
+              }
+            },
+            {
+              "intent": "Look up another inventor record by disambiguated ID",
+              "params": {
+                "inventor_id": "inv_789012"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_get_patent",
+          "purpose": "Gets detailed patent information from PatentsView. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `ppubs_get_patent_by_number` for patent details.",
+          "parameters": [
+            {
+              "number": 28,
+              "name": "patent_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent ID or number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve detailed information for a known patent by PatentsView patent ID",
+              "params": {
+                "patent_id": "7861317"
+              }
+            },
+            {
+              "intent": "Look up another patent record by PatentsView patent ID",
+              "params": {
+                "patent_id": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_lookup_cpc",
+          "purpose": "Looks up CPC classification code details. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `get_cpc_info` for CPC code descriptions.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "cpc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CPC code to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Look up details for a CPC class code",
+              "params": {
+                "cpc_code": "G06"
+              }
+            },
+            {
+              "intent": "Look up details for a more specific CPC group code",
+              "params": {
+                "cpc_code": "G06N3/08"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_lookup_ipc",
+          "purpose": "Looks up IPC classification code details. The schema notes that the PatentsView API was shut down on March 20, 2026, that no direct replacement exists for IPC lookups, and that `odp_search_datasets` can be used to find PatentsView bulk datasets containing IPC data.",
+          "parameters": [
+            {
+              "number": 33,
+              "name": "ipc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "IPC code to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Look up details for an IPC code",
+              "params": {
+                "ipc_code": "G06F"
+              }
+            },
+            {
+              "intent": "Look up details for another IPC classification code",
+              "params": {
+                "ipc_code": "H04L"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_assignees",
+          "purpose": "Searches for assignees with disambiguation. The schema notes that the PatentsView API was shut down on March 20, 2026, and suggests `ppubs_search_patents` with an assignee name query such as `AN/\"company name\"` as a workaround.",
+          "parameters": [
+            {
+              "number": 29,
+              "name": "name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Assignee or company name to search for."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of assignee results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for assignees matching a company name",
+              "params": {
+                "name": "IBM",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search for assignees matching a longer organization name",
+              "params": {
+                "name": "International Business Machines",
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_attorneys",
+          "purpose": "Searches for patent attorneys or agents. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `odp_get_attorney` with a specific application number to look up attorney information per application.",
+          "parameters": [
+            {
+              "number": 29,
+              "name": "name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Attorney, agent, or firm name to search for."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of attorney results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for patent attorneys by last name",
+              "params": {
+                "name": "Smith",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search for a patent law firm by name",
+              "params": {
+                "name": "Wilson Sonsini",
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_by_cpc",
+          "purpose": "Searches patents by CPC classification code. The schema notes that the PatentsView API was shut down on March 20, 2026, and suggests `ppubs_search_patents` with a CPC query such as `CPC/\"G06N3/08\"` as a workaround.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "cpc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "CPC code to search for."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of patent results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search patents for a specific neural network CPC code",
+              "params": {
+                "cpc_code": "G06N3/08",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search patents for a broader CPC code",
+              "params": {
+                "cpc_code": "G06N",
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_by_ipc",
+          "purpose": "Searches patents by IPC classification code. The schema notes that the PatentsView API was shut down on March 20, 2026, and suggests using `ppubs_search_patents` with an IPC query as a workaround.",
+          "parameters": [
+            {
+              "number": 33,
+              "name": "ipc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "IPC code to search for."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of patent results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search patents for a specific IPC code",
+              "params": {
+                "ipc_code": "G06F",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search patents for another IPC classification code",
+              "params": {
+                "ipc_code": "H04L",
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_inventors",
+          "purpose": "Searches for inventors with disambiguation. The schema notes that the PatentsView API was shut down on March 20, 2026, and suggests `ppubs_search_patents` with an inventor name query such as `IN/\"last name\"` as a workaround.",
+          "parameters": [
+            {
+              "number": 29,
+              "name": "name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Inventor name to search for."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of inventor results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search for inventors by last name",
+              "params": {
+                "name": "Smith",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search for inventors by full name",
+              "params": {
+                "name": "John Smith",
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_patentsview_search_patents",
+          "purpose": "Searches US patents with PatentsView full-text search. The schema notes that the PatentsView API was shut down on March 20, 2026, and points users to `ppubs_search_patents` for full-text patent search and `odp_search_datasets` for PatentsView bulk datasets on the USPTO Open Data Portal.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search terms for patent titles and abstracts."
+            },
+            {
+              "number": 27,
+              "name": "search_type",
+              "required": false,
+              "default": "any",
+              "allowed": [],
+              "description": "Controls the match type for this search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this PatentsView search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of patent results to return in this tool. The schema states a maximum of 1000."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search patents by title and abstract terms using phrase matching",
+              "params": {
+                "query": "neural network accelerator",
+                "search_type": "phrase",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Search patents using all terms and continue to a later page",
+              "params": {
+                "query": "battery thermal management",
+                "search_type": "all",
+                "offset": 100,
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ppubs_download_patent_pdf",
+          "purpose": "Downloads the official USPTO PDF for a granted patent by patent number. Use it when the PDF version is needed instead of the text document.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Granted patent number to download as a PDF."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Download the official PDF for a granted patent",
+              "params": {
+                "patent_number": "7123456"
+              }
+            },
+            {
+              "intent": "Download the official PDF for another granted patent",
+              "params": {
+                "patent_number": "11500000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ppubs_get_full_document",
+          "purpose": "Retrieves a full patent document from USPTO Patent Public Search by GUID. Use it when a search result already provides the GUID and you need the complete document.",
+          "parameters": [
+            {
+              "number": 7,
+              "name": "guid",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Document GUID for the patent or published application to retrieve."
+            },
+            {
+              "number": 8,
+              "name": "source_type",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "USPAT",
+                "US-PGPUB"
+              ],
+              "description": "Selects whether the GUID belongs to a granted patent (`USPAT`) or a published application (`US-PGPUB`)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the full document for a granted patent from its GUID",
+              "params": {
+                "guid": "US-9876543-B2",
+                "source_type": "USPAT"
+              }
+            },
+            {
+              "intent": "Retrieve the full document for a published application from its GUID",
+              "params": {
+                "guid": "US-20220123456-A1",
+                "source_type": "US-PGPUB"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ppubs_get_patent_by_number",
+          "purpose": "Retrieves a granted patent from USPTO Patent Public Search by patent number. Use it when the patent number is already known and you want the full document without searching first.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Granted patent number to retrieve."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve a granted patent by patent number",
+              "params": {
+                "patent_number": "7123456"
+              }
+            },
+            {
+              "intent": "Retrieve another granted patent by patent number",
+              "params": {
+                "patent_number": "10000000"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ppubs_search_applications",
+          "purpose": "Searches published US patent applications in USPTO Patent Public Search using USPTO query syntax. Use it when research needs to include published applications rather than only granted patents.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query using USPTO syntax. Supports field codes (e.g., TTL/ for title, IN/ for inventor, AN/ for assignee, CPC/ for classification), phrase search with quotes, and boolean operators (AND, OR)."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination through published-application results."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of published-application results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 6,
+              "name": "sort",
+              "required": false,
+              "default": "date_publ desc",
+              "allowed": [],
+              "description": "Sort order for published-application results."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search published applications mentioning transformer architecture in the title",
+              "params": {
+                "query": "TTL/\"transformer architecture\"",
+                "limit": 50
+              }
+            },
+            {
+              "intent": "Find published applications assigned to Google in the G06N CPC class",
+              "params": {
+                "query": "AN/\"Google LLC\" AND CPC/G06N",
+                "offset": 50,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ppubs_search_patents",
+          "purpose": "Searches granted US patents in USPTO Patent Public Search (ppubs.uspto.gov) using full-text USPTO query syntax. Returns normalized results including GUID, title, abstract, dates, inventors, and classification codes. Use when full-text search with daily-updated data is needed, or when the most recent patent filings must be included — PPUBS updates daily versus the periodic update cycle of PatentsView.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query using USPTO syntax. Supports field codes (e.g., TTL/ for title, IN/ for inventor, AN/ for assignee, CPC/ for classification), phrase search with quotes, and boolean operators (AND, OR). Example: `TTL/\"neural network\" AND CPC/G06N3/08`."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination through granted-patent results."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of granted-patent results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 6,
+              "name": "sort",
+              "required": false,
+              "default": "date_publ desc",
+              "allowed": [],
+              "description": "Sort order for granted-patent results."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search granted patents with neural network in the title",
+              "params": {
+                "query": "TTL/\"neural network\"",
+                "limit": 50
+              }
+            },
+            {
+              "intent": "Find granted patents by inventor Smith at IBM in the G06N CPC class",
+              "params": {
+                "query": "IN/Smith AND AN/IBM AND CPC/G06N",
+                "offset": 25,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_get_appeal",
+          "purpose": "Gets details of a specific ex parte appeal decision. Use it when you already know the appeal number and need the appeal record.",
+          "parameters": [
+            {
+              "number": 26,
+              "name": "appeal_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Appeal number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details for a known ex parte appeal",
+              "params": {
+                "appeal_number": "2023-006789"
+              }
+            },
+            {
+              "intent": "Look up another ex parte appeal by appeal number",
+              "params": {
+                "appeal_number": "2024-001234"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_get_decision",
+          "purpose": "Gets details of a specific PTAB decision. Use it when you already know the decision identifier and need the decision record.",
+          "parameters": [
+            {
+              "number": 25,
+              "name": "decision_id",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Decision identifier to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details for a known PTAB decision",
+              "params": {
+                "decision_id": "DEC-2024-00001"
+              }
+            },
+            {
+              "intent": "Look up another PTAB decision by identifier",
+              "params": {
+                "decision_id": "DEC-2023-01542"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_get_documents",
+          "purpose": "Gets documents filed in a PTAB proceeding. Use it when you need to review petitions, responses, declarations, or other PTAB case documents.",
+          "parameters": [
+            {
+              "number": 20,
+              "name": "proceeding_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Proceeding number to retrieve documents for."
+            },
+            {
+              "number": 21,
+              "name": "document_type",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters the document list by document type."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this PTAB document list."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of PTAB documents to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve documents filed in a known PTAB proceeding",
+              "params": {
+                "proceeding_number": "IPR2023-00001",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Retrieve declaration documents from a PTAB proceeding and continue to a later page",
+              "params": {
+                "proceeding_number": "IPR2023-00001",
+                "document_type": "declaration",
+                "offset": 25,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_get_proceeding",
+          "purpose": "Gets details of a specific PTAB proceeding. Use it when you already know the proceeding number and need the proceeding details.",
+          "parameters": [
+            {
+              "number": 20,
+              "name": "proceeding_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Proceeding number to look up."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve details for a known PTAB proceeding",
+              "params": {
+                "proceeding_number": "IPR2023-00001"
+              }
+            },
+            {
+              "intent": "Look up another PTAB proceeding by its proceeding number",
+              "params": {
+                "proceeding_number": "PGR2024-00005"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_search_appeals",
+          "purpose": "Searches ex parte appeal decisions. Use it when you need to find appeal outcomes where applicants appealed examiner rejections to the PTAB.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Full-text search query for appeal decisions."
+            },
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by application number."
+            },
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by patent number."
+            },
+            {
+              "number": 23,
+              "name": "decision_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the decision date range start for this appeal search."
+            },
+            {
+              "number": 24,
+              "name": "decision_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the decision date range end for this appeal search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this appeal search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of appeal decision results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search appeal decisions for a specific application number",
+              "params": {
+                "application_number": "14412875",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Search appeal decisions within a date range for a patent",
+              "params": {
+                "patent_number": "7123456",
+                "decision_date_from": "2023-01-01",
+                "decision_date_to": "2023-12-31",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_search_decisions",
+          "purpose": "Searches PTAB trial decisions. Use it when you need to find institution decisions, final written decisions, or termination orders.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Full-text search query for PTAB decision text."
+            },
+            {
+              "number": 22,
+              "name": "decision_type",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by decision type."
+            },
+            {
+              "number": 20,
+              "name": "proceeding_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by proceeding number."
+            },
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by patent number."
+            },
+            {
+              "number": 23,
+              "name": "decision_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the decision date range start for this PTAB decision search."
+            },
+            {
+              "number": 24,
+              "name": "decision_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the decision date range end for this PTAB decision search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this PTAB decision search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of PTAB decision results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search final PTAB decisions for a specific patent",
+              "params": {
+                "decision_type": "final",
+                "patent_number": "7123456",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Search PTAB decisions within a date range for a known proceeding",
+              "params": {
+                "proceeding_number": "IPR2023-00001",
+                "decision_date_from": "2024-01-01",
+                "decision_date_to": "2024-12-31",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_ptab_search_proceedings",
+          "purpose": "Searches PTAB trial proceedings. Use it when you need to find patent validity challenges at the Patent Trial and Appeal Board.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Full-text search query for PTAB proceedings."
+            },
+            {
+              "number": 17,
+              "name": "trial_type",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by trial type."
+            },
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by patent number being challenged."
+            },
+            {
+              "number": 18,
+              "name": "party_name",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by petitioner or patent owner name."
+            },
+            {
+              "number": 14,
+              "name": "filing_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range start for this PTAB search."
+            },
+            {
+              "number": 15,
+              "name": "filing_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range end for this PTAB search."
+            },
+            {
+              "number": 19,
+              "name": "status",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by proceeding status."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this PTAB proceeding search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of proceeding results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search PTAB proceedings involving a specific patent and party",
+              "params": {
+                "patent_number": "7123456",
+                "party_name": "IBM",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Find PTAB proceedings filed within a date range and continue to a later page",
+              "params": {
+                "filing_date_from": "2023-01-01",
+                "filing_date_to": "2023-12-31",
+                "offset": 25,
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_search_citations",
+          "purpose": "Searches citation records. The schema notes that this tool is temporarily unavailable because legacy endpoints were decommissioned and ODP migration is pending, and it points users to `patentsview_search_patents` instead.",
+          "parameters": [
+            {
+              "number": 41,
+              "name": "citing_patent",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by the patent that is citing another patent."
+            },
+            {
+              "number": 42,
+              "name": "cited_patent",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by the patent being cited."
+            },
+            {
+              "number": 43,
+              "name": "assignee",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by assignee name."
+            },
+            {
+              "number": 44,
+              "name": "date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the date range start for this citation search."
+            },
+            {
+              "number": 45,
+              "name": "date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the date range end for this citation search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this citation search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of citation records to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to search for records citing a specific patent",
+              "params": {
+                "cited_patent": "7861317",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Attempt to search citation records for an assignee within a date range",
+              "params": {
+                "assignee": "IBM",
+                "date_from": "2023-01-01",
+                "date_to": "2023-12-31",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_search_litigation",
+          "purpose": "Searches patent litigation cases. Use it when you need to research patent enforcement history or find litigation involving specific patents or parties.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Full-text search query for litigation cases."
+            },
+            {
+              "number": 9,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by patent number."
+            },
+            {
+              "number": 48,
+              "name": "plaintiff",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by plaintiff name."
+            },
+            {
+              "number": 49,
+              "name": "defendant",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by defendant name."
+            },
+            {
+              "number": 50,
+              "name": "court",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by court or district."
+            },
+            {
+              "number": 14,
+              "name": "filing_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range start for this litigation search."
+            },
+            {
+              "number": 15,
+              "name": "filing_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the filing date range end for this litigation search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this litigation search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of litigation results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search litigation involving a specific patent",
+              "params": {
+                "patent_number": "7861317",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Search litigation between named parties within a filing date range",
+              "params": {
+                "plaintiff": "IBM",
+                "defendant": "Apple",
+                "filing_date_from": "2023-01-01",
+                "filing_date_to": "2023-12-31",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "uspto-patent-mcp_search_office_actions",
+          "purpose": "Searches office actions across applications. The schema notes that this tool is temporarily unavailable because legacy endpoints were decommissioned and ODP migration is pending, and it points users to `odp_get_documents` or `odp_get_transactions` instead.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Full-text search query for office actions."
+            },
+            {
+              "number": 11,
+              "name": "application_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by application number."
+            },
+            {
+              "number": 35,
+              "name": "examiner_name",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by examiner name."
+            },
+            {
+              "number": 36,
+              "name": "art_unit",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results by art unit number."
+            },
+            {
+              "number": 37,
+              "name": "mail_date_from",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the mail date range start for this office action search."
+            },
+            {
+              "number": 38,
+              "name": "mail_date_to",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Sets the mail date range end for this office action search."
+            },
+            {
+              "number": 4,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for pagination in this office action search."
+            },
+            {
+              "number": 5,
+              "name": "limit",
+              "required": false,
+              "default": "25",
+              "allowed": [],
+              "description": "Maximum number of office action results to return in this tool."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Attempt to search office actions for a specific application",
+              "params": {
+                "application_number": "16123456",
+                "limit": 10
+              }
+            },
+            {
+              "intent": "Attempt to search office actions by examiner and mail date range",
+              "params": {
+                "examiner_name": "Smith",
+                "mail_date_from": "2024-01-01",
+                "mail_date_to": "2024-12-31",
+                "limit": 25
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "yahoo-finance",
       "intro": "The yahoo-finance server is a market research server centered on ticker discovery, company snapshots, recent news, historical price data, option chains, earnings data, and sector-level entity lists. It is useful when the user needs to move between symbol discovery, ticker-specific context, and broader market browsing within the same server.\n\n### How it works\n- The server supports both discovery workflows and ticker-specific retrieval, depending on whether the user starts from a free-text search, a sector view, or a known symbol.\n- Most tools center on a `symbol`, while broader discovery tools use inputs such as `query`, `entity_type`, `sector`, `period`, `interval`, `option_type`, or `date` when applicable.\n- The server combines current company context, recent news, historical pricing, options data, and earnings data, so different views of the same ticker can be retrieved without switching servers.\n\n### Potential resolution paths\n- **Find a symbol, then inspect it:** Start with `search` when the user has a company name or broad query, then move into `get-ticker-info` or `get-ticker-news` once the correct symbol is identified.\n- **Move from a company snapshot into market history:** Use `get-ticker-info` for a broad ticker overview, then follow with `get-price-history` when the user needs to review how that company has traded over time.\n- **Expand from a stock into derivatives or event context:** Pull `ticker-option-chain` when the user needs option chain data for the same symbol, or `ticker-earning` when the focus shifts to annual or quarterly earnings context.\n- **Explore a sector before narrowing to a ticker:** Use `get-top-entities` to review leading entities within a sector, then choose a symbol from those results for ticker-level data such as `get-ticker-info`, `get-price-history`, or `get-ticker-news`.\n\n### Best practices\n- **Use discovery tools before ticker tools when the symbol is uncertain:** `search` and `get-top-entities` are better starting points than guessing a ticker and calling a symbol-specific endpoint directly.\n- **Match the tool to the type of context needed:** Use `get-ticker-info` for a broad company view, `get-ticker-news` for recent developments, `get-price-history` for past market behavior, `ticker-option-chain` for options data, and `ticker-earning` for earnings context.",
       "paramsWrapped": false,

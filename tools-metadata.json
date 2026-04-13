@@ -59,6 +59,10 @@
     "patent-mcp-server": {
       "color": "#c084fc",
       "domain": "Legal"
+    },
+    "uspto-patent-mcp": {
+      "color": "#22c55e",
+      "domain": "Legal"
     }
   }
 }
