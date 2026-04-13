@@ -1,7 +1,7 @@
 ## goldrush-mcp_log_events_by_topic
 
 ### What this tool is used for
-Log_events_by_topic retrieves all event logs matching a given topic hash across all contracts on a chain. It is used when the user needs cross-sectional analysis of a specific event type — such as all ERC-20 Transfer events or all Uniswap Swap events — regardless of which contract emitted them.
+Retrieves all event logs matching a given topic hash across all contracts on a chain. It is used when the user needs cross-sectional analysis of a specific event type — such as all ERC-20 Transfer events or all Uniswap Swap events — regardless of which contract emitted them.
 
 ---
 

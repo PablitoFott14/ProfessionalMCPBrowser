@@ -1,7 +1,7 @@
 ## goldrush-mcp_nft_for_address
 
 ### What this tool is used for
-Nft_for_address retrieves the ERC-721 and ERC-1155 NFTs held by a wallet address on a given chain. It is used when the user needs to render or inspect an NFT portfolio, with options to strip spam tokens and control the level of metadata detail returned.
+Retrieves the ERC-721 and ERC-1155 NFTs held by a wallet address on a given chain. It is used when the user needs to render or inspect an NFT portfolio, with options to strip spam tokens and control the level of metadata detail returned.
 
 ---
 

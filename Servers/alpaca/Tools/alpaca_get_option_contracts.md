@@ -1,7 +1,7 @@
 ## alpaca_get_option_contracts
 
 ### What this tool is for
-Retrieves option contracts for one or more underlying assets, with flexible filtering by expiration date, strike price range, and contract type. Use this when the user needs to discover available options chains or find specific contracts before placing an options trade.
+Option contracts for one or more underlying assets, with flexible filtering by expiration date, strike price range, and contract type. Use this when the user needs to discover available options chains or find specific contracts before placing an options trade.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_token_holders
 
 ### What this tool is used for
-Token_holders returns a paginated list of current or historical holders for a specified ERC-20 or ERC-721 token. It is used when the user needs to analyze token ownership distribution, track holder counts over time, or retrieve a snapshot of holders at a specific block or date.
+Returns a paginated list of current or historical holders for a specified ERC-20 or ERC-721 token. It is used when the user needs to analyze token ownership distribution, track holder counts over time, or retrieve a snapshot of holders at a specific block or date.
 
 ---
 

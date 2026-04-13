@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_snapshot
 
 ### What this tool is for
-Returns a comprehensive snapshot for one or more cryptocurrency symbols in a single call, combining the latest quote, latest trade, current minute bar, current daily bar, and previous daily bar. Use this when the user needs a full picture of a crypto pair's current market state without making multiple separate requests.
+A comprehensive snapshot for one or more cryptocurrency symbols in a single call, combining the latest quote, latest trade, current minute bar, current daily bar, and previous daily bar. Use this when the user needs a full picture of a crypto pair's current market state without making multiple separate requests.
 
 ---
 

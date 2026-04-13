@@ -1,7 +1,7 @@
 ## twelvedata_GetTechnicalIndicators
 
 ### What this tool is for
-GetTechnicalIndicators returns an array of objects with available technical indicators. It is used when the user needs to discover which indicators are supported, explore their parameters and output values, or build an abstract interface to make more convenient API calls from the application.
+Returns an array of objects with available technical indicators. It is used when the user needs to discover which indicators are supported, explore their parameters and output values, or build an abstract interface to make more convenient API calls from the application.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_bitcoin_transactions
 
 ### What this tool is used for
-Bitcoin_transactions fetches the full paginated transaction history for a single Bitcoin non-HD wallet address. It is used when the user needs to review or analyze the on-chain activity of a specific Bitcoin address.
+Fetches the full paginated transaction history for a single Bitcoin non-HD wallet address. It is used when the user needs to review or analyze the on-chain activity of a specific Bitcoin address.
 
 ---
 

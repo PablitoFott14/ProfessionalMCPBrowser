@@ -1,7 +1,7 @@
 ## alpaca_exercise_options_position
 
 ### What this tool is for
-Exercises a held option contract, converting it into the underlying asset position. Use this when the user wants to exercise an in-the-money option rather than selling it on the market.
+A held option contract, converting it into the underlying asset position. Use this when the user wants to exercise an in-the-money option rather than selling it on the market.
 
 ---
 

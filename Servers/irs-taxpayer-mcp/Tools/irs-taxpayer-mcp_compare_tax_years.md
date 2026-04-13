@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_compare_tax_years
 
 ### What this tool is for
-Compares tax liability across tax years for the same income profile. Use this when the user wants to see how bracket changes and inflation adjustments affect tax outcomes over time.
+Tax liability across tax years for the same income profile. Use this when the user wants to see how bracket changes and inflation adjustments affect tax outcomes over time.
 
 ---
 

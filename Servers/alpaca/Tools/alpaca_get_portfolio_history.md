@@ -1,7 +1,7 @@
 ## alpaca_get_portfolio_history
 
 ### What this tool is for
-Retrieves the account's portfolio history, including equity value and P/L over a specified time window and resolution. Use this when the user wants to review how their portfolio has performed over time, analyze drawdowns, or visualize equity curves.
+The account's portfolio history, including equity value and P/L over a specified time window and resolution. Use this when the user wants to review how their portfolio has performed over time, analyze drawdowns, or visualize equity curves.
 
 ---
 

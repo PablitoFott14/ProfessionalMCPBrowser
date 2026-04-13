@@ -1,7 +1,7 @@
 ## us-legal-mcp_get_recent_regulations
 
 ### What this tool is for
-Gets the most recently published Federal Register documents. Use this when the user needs a current view of newly published federal register material rather than a keyword search.
+The most recently published Federal Register documents. Use this when the user needs a current view of newly published federal register material rather than a keyword search.
 
 ---
 

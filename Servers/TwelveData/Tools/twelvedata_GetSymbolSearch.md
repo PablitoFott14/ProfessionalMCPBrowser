@@ -1,7 +1,7 @@
 ## twelvedata_GetSymbolSearch
 
 ### What this tool is for
-GetSymbolSearch is used to find the correct instrument identifier based on partial inputs like company name, ticker, ISIN, or FIGI. It returns the most relevant matches first, making it useful as a discovery or validation step before calling other tools.
+Is used to find the correct instrument identifier based on partial inputs like company name, ticker, ISIN, or FIGI. It returns the most relevant matches first, making it useful as a discovery or validation step before calling other tools.
 
 ---
 

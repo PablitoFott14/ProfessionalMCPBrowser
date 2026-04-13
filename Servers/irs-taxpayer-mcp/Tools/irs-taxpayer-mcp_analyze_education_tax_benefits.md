@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_analyze_education_tax_benefits
 
 ### What this tool is for
-Compares education-related tax benefits such as the AOTC, Lifetime Learning Credit, student loan interest deduction, and 529 plan advantages. Use this when the user needs to evaluate which education tax benefits may be most favorable for their situation.
+Education-related tax benefits such as the AOTC, Lifetime Learning Credit, student loan interest deduction, and 529 plan advantages. Use this when the user needs to evaluate which education tax benefits may be most favorable for their situation.
 
 ---
 

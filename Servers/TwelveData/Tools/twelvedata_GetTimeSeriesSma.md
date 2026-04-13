@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesSma
 
 ### What this tool is for
-GetTimeSeriesSma retrieves the Simple Moving Average over time for a given instrument. It is used to identify trend direction and potential support or resistance levels by smoothing price data over a defined period.
+Retrieves the Simple Moving Average over time for a given instrument. It is used to identify trend direction and potential support or resistance levels by smoothing price data over a defined period.
 
 ---
 

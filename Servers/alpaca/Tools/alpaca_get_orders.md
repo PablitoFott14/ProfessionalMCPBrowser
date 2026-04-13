@@ -1,7 +1,7 @@
 ## alpaca_get_orders
 
 ### What this tool is for
-Retrieves a filtered list of orders from the Alpaca account, including status, fill information, and order details. Use this when the user wants to review pending, completed, or all orders, optionally filtered by symbol, side, or time range.
+A filtered list of orders from the Alpaca account, including status, fill information, and order details. Use this when the user wants to review pending, completed, or all orders, optionally filtered by symbol, side, or time range.
 
 ---
 

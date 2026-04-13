@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_lookup_tax_rule
 
 ### What this tool is for
-Looks up IRS tax rules, definitions, and common tax questions by topic. Use this when the user needs a topic-level explanation or rule lookup rather than a numeric tax calculation.
+Up IRS tax rules, definitions, and common tax questions by topic. Use this when the user needs a topic-level explanation or rule lookup rather than a numeric tax calculation.
 
 ---
 

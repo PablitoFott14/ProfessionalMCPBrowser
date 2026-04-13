@@ -1,7 +1,7 @@
 ## us-legal-mcp_search_congress_bills
 
 ### What this tool is for
-Searches for bills and resolutions in Congress.gov. Use this when the user needs to find congressional legislation by topic or keyword.
+For bills and resolutions in Congress.gov. Use this when the user needs to find congressional legislation by topic or keyword.
 
 ---
 

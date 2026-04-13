@@ -1,7 +1,7 @@
 ## goldrush-mcp_block
 
 ### What this tool is used for
-Block fetches a single block by height for a given chain. It is used when the user needs to inspect or render the details of a specific block, such as for a block explorer view, or to check the state of the latest block on a network.
+Fetches a single block by height for a given chain. It is used when the user needs to inspect or render the details of a specific block, such as for a block explorer view, or to check the state of the latest block on a network.
 
 ---
 

@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_search_by_cpc
 
 ### What this tool is used for
-Google_search_by_cpc searches Google Patents for patents classified under a specific Cooperative Patent Classification (CPC) code. It is used when the user wants to explore a defined technology area by its classification code rather than by keyword, making it useful for structured prior art searches or technology landscape analysis.
+Searches Google Patents for patents classified under a specific Cooperative Patent Classification (CPC) code. It is used when the user wants to explore a defined technology area by its classification code rather than by keyword, making it useful for structured prior art searches or technology landscape analysis.
 
 ---
 

@@ -1,7 +1,7 @@
 ## financial-datasets_get_company_news
 
 ### What this tool is for
-Retrieves recent news articles for a given company. Use this when the user wants to stay informed about a company's latest developments, press releases, or market-moving events.
+Recent news articles for a given company. Use this when the user wants to stay informed about a company's latest developments, press releases, or market-moving events.
 
 ---
 

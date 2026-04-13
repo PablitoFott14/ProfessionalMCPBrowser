@@ -1,7 +1,7 @@
 ## octagon-mcp_octagon-agent
 
 ### What this tool is for
-Runs a comprehensive market intelligence agent that combines multiple data sources into a broader research analysis. Use this when the user needs a more holistic market intelligence view spanning multiple research domains across public and private markets.
+A comprehensive market intelligence agent that combines multiple data sources into a broader research analysis. Use this when the user needs a more holistic market intelligence view spanning multiple research domains across public and private markets.
 
 ---
 

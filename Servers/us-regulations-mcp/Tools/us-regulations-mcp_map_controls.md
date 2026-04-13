@@ -1,7 +1,7 @@
 ## us-regulations-mcp_map_controls
 
 ### What this tool is for
-Maps control framework objectives to relevant regulation sections for compliance mapping and gap analysis. Use this when the user needs to connect a control framework to specific regulatory requirements.
+Control framework objectives to relevant regulation sections for compliance mapping and gap analysis. Use this when the user needs to connect a control framework to specific regulatory requirements.
 
 ---
 

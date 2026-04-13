@@ -1,7 +1,7 @@
 ## goldrush-mcp_transactions_for_block
 
 ### What this tool is used for
-Transactions_for_block fetches all transactions in a given block on a specific chain, including their decoded log events. It is used when the user needs to inspect the full contents of a block — for example, to flag interesting wallets or transactions, analyze block-level activity, or build a block explorer view.
+Fetches all transactions in a given block on a specific chain, including their decoded log events. It is used when the user needs to inspect the full contents of a block — for example, to flag interesting wallets or transactions, analyze block-level activity, or build a block explorer view.
 
 ---
 

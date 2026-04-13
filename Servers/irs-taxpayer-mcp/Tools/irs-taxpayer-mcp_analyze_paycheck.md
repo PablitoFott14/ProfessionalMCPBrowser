@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_analyze_paycheck
 
 ### What this tool is for
-Analyzes a paycheck to assess withholding accuracy using pay stub figures. Use this when the user wants to check whether current federal and state withholding looks aligned with the pay period details.
+A paycheck to assess withholding accuracy using pay stub figures. Use this when the user wants to check whether current federal and state withholding looks aligned with the pay period details.
 
 ---
 

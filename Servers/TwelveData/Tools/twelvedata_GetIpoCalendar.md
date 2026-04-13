@@ -1,7 +1,7 @@
 ## twelvedata_GetIpoCalendar
 
 ### What this tool is for
-GetIpoCalendar returns past, current, or upcoming IPO events, including company details and pricing ranges. It is used when the user needs to track new market listings, analyze IPO pipelines, or review historical IPO activity.
+Returns past, current, or upcoming IPO events, including company details and pricing ranges. It is used when the user needs to track new market listings, analyze IPO pipelines, or review historical IPO activity.
 
 ---
 

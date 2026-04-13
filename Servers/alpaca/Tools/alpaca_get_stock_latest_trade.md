@@ -1,7 +1,7 @@
 ## alpaca_get_stock_latest_trade
 
 ### What this tool is for
-Retrieves the latest individual trade execution for one or more stocks, including price, size, and timestamp. Use this when the user needs the most recent transaction price rather than a quote or aggregated bar.
+The latest individual trade execution for one or more stocks, including price, size, and timestamp. Use this when the user needs the most recent transaction price rather than a quote or aggregated bar.
 
 ---
 

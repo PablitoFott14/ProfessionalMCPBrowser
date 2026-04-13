@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_list_tax_credits
 
 ### What this tool is for
-Lists available federal tax credits along with eligibility, amounts, and phase-out rules. Use this when the user needs to review credit options rather than calculate a specific tax result.
+Available federal tax credits along with eligibility, amounts, and phase-out rules. Use this when the user needs to review credit options rather than calculate a specific tax result.
 
 ---
 

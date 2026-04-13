@@ -1,7 +1,7 @@
 ## alpaca_get_clock
 
 ### What this tool is for
-Returns the current market status, including the current time, whether the market is open or closed, and the next scheduled open and close times. Use this when the user needs to know if trading is currently active or when the next session begins.
+The current market status, including the current time, whether the market is open or closed, and the next scheduled open and close times. Use this when the user needs to know if trading is currently active or when the next session begins.
 
 ---
 

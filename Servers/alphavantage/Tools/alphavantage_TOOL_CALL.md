@@ -1,7 +1,7 @@
 ## alphavantage_TOOL_CALL
 
 ### What this tool is for
-Executes an Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.
+An Alpha Vantage tool by name using the provided arguments. It is useful after `TOOL_GET` when the user already knows the exact schema and is ready to make the actual tool call.
 
 ---
 

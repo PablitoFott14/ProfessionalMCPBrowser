@@ -1,7 +1,7 @@
 ## goldrush-mcp_token_balances
 
 ### What this tool is used for
-Token_balances fetches the native and ERC-20 token holdings for a wallet address on a specific chain, including spot prices and token metadata. It is used when the user needs a single-chain portfolio snapshot with enriched token data rather than a cross-chain view.
+Fetches the native and ERC-20 token holdings for a wallet address on a specific chain, including spot prices and token metadata. It is used when the user needs a single-chain portfolio snapshot with enriched token data rather than a cross-chain view.
 
 ---
 

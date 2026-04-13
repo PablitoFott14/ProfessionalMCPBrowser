@@ -1,7 +1,7 @@
 ## octagon-mcp_octagon-prediction-markets-agent
 
 ### What this tool is for
-Runs a specialized prediction markets research agent for Kalshi events. Use this when the user needs a focused research report on what may be driving a market, how market and model probabilities compare, or where potential mispricings may exist.
+A specialized prediction markets research agent for Kalshi events. Use this when the user needs a focused research report on what may be driving a market, how market and model probabilities compare, or where potential mispricings may exist.
 
 ---
 

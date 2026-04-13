@@ -1,7 +1,7 @@
 ## twelvedata_GetPrice
 
 ### What this tool is for
-GetPrice returns the real-time price of a single instrument. It is a lightweight endpoint used when the user needs just the latest price without any additional time series or indicator data, making it ideal for dashboards, quick checks, or triggering logic.
+Returns the real-time price of a single instrument. It is a lightweight endpoint used when the user needs just the latest price without any additional time series or indicator data, making it ideal for dashboards, quick checks, or triggering logic.
 
 ---
 

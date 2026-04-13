@@ -1,7 +1,7 @@
 ## twelvedata_GetCryptocurrencyExchanges
 
 ### What this tool is for
-GetCryptocurrencyExchanges returns the list of supported cryptocurrency exchanges. It is used when the user needs to discover which exchanges are available before querying crypto pairs, prices, or indicators tied to specific platforms.
+Returns the list of supported cryptocurrency exchanges. It is used when the user needs to discover which exchanges are available before querying crypto pairs, prices, or indicators tied to specific platforms.
 
 ---
 

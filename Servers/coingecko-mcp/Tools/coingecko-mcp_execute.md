@@ -1,7 +1,7 @@
 ## coingecko-mcp_execute
 
 ### What this tool is used for
-Execute runs TypeScript code against an initialized CoinGecko SDK client. It is used when the user needs to query any part of the CoinGecko API — prices, market data, coin metadata, exchanges, trending assets, or historical data — by writing a short async function that calls the relevant SDK method and returns or logs the result.
+Runs TypeScript code against an initialized CoinGecko SDK client. It is used when the user needs to query any part of the CoinGecko API — prices, market data, coin metadata, exchanges, trending assets, or historical data — by writing a short async function that calls the relevant SDK method and returns or logs the result.
 
 ---
 

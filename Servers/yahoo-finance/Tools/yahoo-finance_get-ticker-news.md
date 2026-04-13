@@ -1,7 +1,7 @@
 ## yahoo-finance_get-ticker-news
 
 ### What this tool is for
-Fetches recent news articles related to a specific stock symbol, including title, content, and source details. Use this when the user needs recent company-specific news rather than a broader company snapshot.
+Recent news articles related to a specific stock symbol, including title, content, and source details. Use this when the user needs recent company-specific news rather than a broader company snapshot.
 
 ---
 

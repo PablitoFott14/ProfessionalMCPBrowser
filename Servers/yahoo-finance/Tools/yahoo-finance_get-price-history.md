@@ -1,7 +1,7 @@
 ## yahoo-finance_get-price-history
 
 ### What this tool is for
-Fetches historical price data for a stock symbol over a specified period and interval. Use this when the user needs past price movement rather than a current snapshot.
+Historical price data for a stock symbol over a specified period and interval. Use this when the user needs past price movement rather than a current snapshot.
 
 ---
 

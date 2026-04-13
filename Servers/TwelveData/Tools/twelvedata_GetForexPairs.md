@@ -1,7 +1,7 @@
 ## twelvedata_GetForexPairs
 
 ### What this tool is for
-GetForexPairs returns the list of available forex pairs, including their base and quote currencies. It is used when the user needs to discover available currency pairs or filter them based on specific currencies before performing further analysis.
+Returns the list of available forex pairs, including their base and quote currencies. It is used when the user needs to discover available currency pairs or filter them based on specific currencies before performing further analysis.
 
 ---
 

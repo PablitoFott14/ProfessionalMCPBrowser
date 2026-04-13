@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_check_refund_status
 
 ### What this tool is for
-Provides instructions for checking IRS refund status, including the official path and required information. Use this when the user needs guidance on how to check refund status rather than account access or direct refund data.
+Instructions for checking IRS refund status, including the official path and required information. Use this when the user needs guidance on how to check refund status rather than account access or direct refund data.
 
 ---
 

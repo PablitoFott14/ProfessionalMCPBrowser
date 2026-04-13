@@ -1,7 +1,7 @@
 ## octagon-mcp_octagon-deep-research-agent
 
 ### What this tool is for
-Runs a deep research agent that aggregates and synthesizes investment research across multiple sources. Use this when the user needs a broad, up-to-date research answer rather than a narrow lookup from a single data source.
+A deep research agent that aggregates and synthesizes investment research across multiple sources. Use this when the user needs a broad, up-to-date research answer rather than a narrow lookup from a single data source.
 
 ---
 

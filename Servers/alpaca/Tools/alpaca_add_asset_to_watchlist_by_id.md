@@ -1,7 +1,7 @@
 ## alpaca_add_asset_to_watchlist_by_id
 
 ### What this tool is for
-Adds a single asset to an existing Alpaca watchlist identified by its UUID. Use this when the user wants to append one symbol to a watchlist without replacing its existing contents.
+A single asset to an existing Alpaca watchlist identified by its UUID. Use this when the user wants to append one symbol to a watchlist without replacing its existing contents.
 
 ---
 

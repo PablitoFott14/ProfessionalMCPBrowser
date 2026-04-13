@@ -1,7 +1,7 @@
 ## goldrush-mcp_historical_portfolio_value
 
 ### What this tool is used for
-Historical_portfolio_value renders a daily portfolio balance broken down by token for a wallet address over a configurable time window. It is used when the user needs to visualize or analyze how a portfolio's value has changed over time on a specific chain, with per-token granularity.
+Renders a daily portfolio balance broken down by token for a wallet address over a configurable time window. It is used when the user needs to visualize or analyze how a portfolio's value has changed over time on a specific chain, with per-token granularity.
 
 ---
 

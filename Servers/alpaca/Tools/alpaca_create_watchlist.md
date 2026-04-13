@@ -1,7 +1,7 @@
 ## alpaca_create_watchlist
 
 ### What this tool is for
-Creates a new watchlist on Alpaca with a given name and a list of symbols. Use this when the user wants to group a set of instruments for ongoing monitoring without placing trades.
+A new watchlist on Alpaca with a given name and a list of symbols. Use this when the user wants to group a set of instruments for ongoing monitoring without placing trades.
 
 ---
 

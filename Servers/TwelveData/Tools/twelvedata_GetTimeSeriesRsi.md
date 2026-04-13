@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesRsi
 
 ### What this tool is for
-GetTimeSeriesRsi retrieves the Relative Strength Index (RSI) over time for a given instrument. It is a momentum oscillator that measures the speed and change of price movements, helping traders identify potential overbought or oversold conditions and trend reversals.
+Retrieves the Relative Strength Index (RSI) over time for a given instrument. It is a momentum oscillator that measures the speed and change of price movements, helping traders identify potential overbought or oversold conditions and trend reversals.
 
 ---
 

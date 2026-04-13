@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_calculate_eitc
 
 ### What this tool is for
-Calculates the exact Earned Income Tax Credit amount. Use this when the user needs a specific EITC result rather than a broader credit eligibility screen.
+The exact Earned Income Tax Credit amount. Use this when the user needs a specific EITC result rather than a broader credit eligibility screen.
 
 ---
 

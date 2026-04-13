@@ -1,7 +1,7 @@
 ## alpaca_place_crypto_order
 
 ### What this tool is for
-Places a cryptocurrency order on Alpaca supporting market, limit, and stop_limit order types. Use this when the user wants to buy or sell a crypto pair with control over execution type and sizing.
+A cryptocurrency order on Alpaca supporting market, limit, and stop_limit order types. Use this when the user wants to buy or sell a crypto pair with control over execution type and sizing.
 
 Key constraints:
 - Market orders require either `qty` or `notional` (not both).

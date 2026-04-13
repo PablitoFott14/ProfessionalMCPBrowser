@@ -1,7 +1,7 @@
 ## goldrush-mcp_log_events_by_address
 
 ### What this tool is used for
-Log_events_by_address retrieves all event logs emitted from a specific contract address on a given chain. It is used when the user needs to examine on-chain interactions for a contract, such as tracking transfers, swaps, mints, or other contract-level activity within a block range.
+Retrieves all event logs emitted from a specific contract address on a given chain. It is used when the user needs to examine on-chain interactions for a contract, such as tracking transfers, swaps, mints, or other contract-level activity within a block range.
 
 ---
 

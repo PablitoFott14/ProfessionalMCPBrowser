@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_get_patent_description
 
 ### What this tool is used for
-Google_get_patent_description retrieves the detailed description section of a patent document from Google Patents by publication number. It is used when the user needs the full technical disclosure narrative of a known patent, separate from its claims or abstract.
+Retrieves the detailed description section of a patent document from Google Patents by publication number. It is used when the user needs the full technical disclosure narrative of a known patent, separate from its claims or abstract.
 
 ---
 

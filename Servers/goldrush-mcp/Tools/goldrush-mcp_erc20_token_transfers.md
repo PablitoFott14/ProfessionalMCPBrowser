@@ -1,7 +1,7 @@
 ## goldrush-mcp_erc20_token_transfers
 
 ### What this tool is used for
-Erc20_token_transfers retrieves the inbound and outbound ERC-20 token transfer history for a wallet address on a specific chain, including historical prices at the time of each transfer. It is used when the user needs a token-level transaction history for a wallet, optionally scoped to a specific token contract.
+Retrieves the inbound and outbound ERC-20 token transfer history for a wallet address on a specific chain, including historical prices at the time of each transfer. It is used when the user needs a token-level transaction history for a wallet, optionally scoped to a specific token contract.
 
 ---
 

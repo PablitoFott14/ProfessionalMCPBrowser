@@ -1,7 +1,7 @@
 ## twelvedata_GetStatistics
 
 ### What this tool is for
-GetStatistics returns a snapshot of a company's key financial and valuation metrics, including profitability, margins, debt, valuation ratios, and stock-level statistics. It is used when the user needs a fundamental overview of a company, rather than price movements or technical indicators.
+Returns a snapshot of a company's key financial and valuation metrics, including profitability, margins, debt, valuation ratios, and stock-level statistics. It is used when the user needs a fundamental overview of a company, rather than price movements or technical indicators.
 
 ---
 

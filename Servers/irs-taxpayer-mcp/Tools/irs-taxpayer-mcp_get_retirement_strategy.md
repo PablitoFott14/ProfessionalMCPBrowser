@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_retirement_strategy
 
 ### What this tool is for
-Returns detailed information on tax-advantaged retirement strategies. Use this when the user needs strategy-level guidance rather than account-type reference information or a direct tax calculation.
+Detailed information on tax-advantaged retirement strategies. Use this when the user needs strategy-level guidance rather than account-type reference information or a direct tax calculation.
 
 ---
 

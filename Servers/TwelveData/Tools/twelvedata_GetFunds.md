@@ -1,7 +1,7 @@
 ## twelvedata_GetFunds
 
 ### What this tool is for
-GetFunds returns the list of available funds, including metadata such as identifiers, exchange, and classification. It is used when the user needs to discover funds or filter them based on identifiers, geography, or exchange before deeper financial analysis.
+Returns the list of available funds, including metadata such as identifiers, exchange, and classification. It is used when the user needs to discover funds or filter them based on identifiers, geography, or exchange before deeper financial analysis.
 
 ---
 

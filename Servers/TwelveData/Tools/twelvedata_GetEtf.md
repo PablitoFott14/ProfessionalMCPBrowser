@@ -1,7 +1,7 @@
 ## twelvedata_GetEtf
 
 ### What this tool is for
-GetEtf returns the list of available ETFs along with their metadata, including identifiers, exchange, and classification. It is used when the user needs to discover ETFs or filter them based on identifiers, exchange, or geography before deeper analysis.
+Returns the list of available ETFs along with their metadata, including identifiers, exchange, and classification. It is used when the user needs to discover ETFs or filter them based on identifiers, exchange, or geography before deeper analysis.
 
 ---
 

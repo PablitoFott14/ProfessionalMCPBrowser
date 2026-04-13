@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_compare_filing_statuses
 
 ### What this tool is for
-Compares federal tax liability across filing statuses for the same income profile. Use this when the user wants to see how tax outcomes differ by filing status without manually recalculating each case.
+Federal tax liability across filing statuses for the same income profile. Use this when the user wants to see how tax outcomes differ by filing status without manually recalculating each case.
 
 ---
 

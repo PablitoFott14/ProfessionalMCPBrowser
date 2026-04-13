@@ -1,7 +1,7 @@
 ## alpaca_get_stock_quotes
 
 ### What this tool is for
-Retrieves historical level 1 bid/ask quote data for one or more stocks. Use this when the user needs to analyze spread dynamics, quote activity, or intraday bid/ask behavior over a short time window.
+Historical level 1 bid/ask quote data for one or more stocks. Use this when the user needs to analyze spread dynamics, quote activity, or intraday bid/ask behavior over a short time window.
 
 ---
 

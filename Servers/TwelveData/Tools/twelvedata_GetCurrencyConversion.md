@@ -1,7 +1,7 @@
 ## twelvedata_GetCurrencyConversion
 
 ### What this tool is for
-GetCurrencyConversion returns the real-time exchange rate along with the converted amount for a given currency pair. It is used when the user needs to directly convert a specific amount between currencies, rather than just retrieving the rate.
+Returns the real-time exchange rate along with the converted amount for a given currency pair. It is used when the user needs to directly convert a specific amount between currencies, rather than just retrieving the rate.
 
 ---
 

@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_personalized_tax_calendar
 
 ### What this tool is for
-Generates a personalized tax calendar based on the taxpayer's situation. Use this when the user needs a tailored schedule of deadlines, estimated payments, extensions, and other tax-related actions.
+A personalized tax calendar based on the taxpayer's situation. Use this when the user needs a tailored schedule of deadlines, estimated payments, extensions, and other tax-related actions.
 
 ---
 

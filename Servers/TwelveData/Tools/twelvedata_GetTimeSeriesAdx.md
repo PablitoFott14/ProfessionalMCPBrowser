@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesAdx
 
 ### What this tool is for
-GetTimeSeriesAdx returns the Average Directional Index (ADX) over time, a technical indicator used to measure the strength of a trend regardless of direction. It is commonly used to determine whether a market is trending or ranging before applying directional strategies.
+Returns the Average Directional Index (ADX) over time, a technical indicator used to measure the strength of a trend regardless of direction. It is commonly used to determine whether a market is trending or ranging before applying directional strategies.
 
 ---
 

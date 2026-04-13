@@ -1,7 +1,7 @@
 ## yahoo-finance_get-ticker-info
 
 ### What this tool is for
-Retrieves comprehensive stock data for a ticker, including company information, financial data, trading metrics, and governance-related fields. Use this when the user needs a broad company snapshot rather than a single price or narrowly scoped metric.
+Comprehensive stock data for a ticker, including company information, financial data, trading metrics, and governance-related fields. Use this when the user needs a broad company snapshot rather than a single price or narrowly scoped metric.
 
 ---
 

@@ -1,7 +1,7 @@
 ## alpaca_get_stock_snapshot
 
 ### What this tool is for
-Retrieves a comprehensive market snapshot for one or more stocks in a single call, combining the latest quote, latest trade, current minute bar, current daily bar, and previous daily bar. Use this when the user needs a full picture of a stock's current market state without making multiple separate requests.
+A comprehensive market snapshot for one or more stocks in a single call, combining the latest quote, latest trade, current minute bar, current daily bar, and previous daily bar. Use this when the user needs a full picture of a stock's current market state without making multiple separate requests.
 
 ---
 

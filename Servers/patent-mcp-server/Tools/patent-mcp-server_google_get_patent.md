@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_get_patent
 
 ### What this tool is used for
-Google_get_patent retrieves complete patent details from Google Patents by publication number. It returns the full record including title, abstract, publication and filing dates, inventors, assignees, and classification codes. It is used when the user already has a specific patent publication number and needs the full structured data for that patent from Google's dataset.
+Retrieves complete patent details from Google Patents by publication number. It returns the full record including title, abstract, publication and filing dates, inventors, assignees, and classification codes. It is used when the user already has a specific patent publication number and needs the full structured data for that patent from Google's dataset.
 
 ---
 

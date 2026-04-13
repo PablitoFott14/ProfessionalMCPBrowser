@@ -1,7 +1,7 @@
 ## alpaca_get_calendar
 
 ### What this tool is for
-Retrieves the market calendar for a specified date range, showing trading days, market open and close times. Use this when the user needs to verify which days markets are open, plan around holidays, or determine session times for a given period.
+The market calendar for a specified date range, showing trading days, market open and close times. Use this when the user needs to verify which days markets are open, plan around holidays, or determine session times for a given period.
 
 ---
 

@@ -1,7 +1,7 @@
 ## alpaca_remove_asset_from_watchlist_by_id
 
 ### What this tool is for
-Removes a single asset from an existing Alpaca watchlist identified by its UUID. Use this when the user wants to delete one symbol from a watchlist without affecting the rest of its contents.
+A single asset from an existing Alpaca watchlist identified by its UUID. Use this when the user wants to delete one symbol from a watchlist without affecting the rest of its contents.
 
 ---
 

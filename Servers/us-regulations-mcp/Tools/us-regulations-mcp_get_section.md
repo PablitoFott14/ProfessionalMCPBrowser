@@ -1,7 +1,7 @@
 ## us-regulations-mcp_get_section
 
 ### What this tool is for
-Retrieves the full text of a specific regulation section when the regulation and section are already known. Use this after discovery, when the user needs the actual section text rather than search results.
+The full text of a specific regulation section when the regulation and section are already known. Use this after discovery, when the user needs the actual section text rather than search results.
 
 ---
 

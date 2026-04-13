@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_compare_state_taxes
 
 ### What this tool is for
-Compares state income tax across multiple states for the same taxable income. Use this when the user needs a location-based comparison rather than a single-state estimate.
+State income tax across multiple states for the same taxable income. Use this when the user needs a location-based comparison rather than a single-state estimate.
 
 ---
 

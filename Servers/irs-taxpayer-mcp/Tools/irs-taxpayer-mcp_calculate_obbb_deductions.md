@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_calculate_obbb_deductions
 
 ### What this tool is for
-Calculates OBBB deductions for TY2025 and later, including tips income, overtime pay, senior bonus, and auto loan interest deductions. Use this when the user needs to see which of the new OBBB deductions may apply and how much tax savings they may generate.
+OBBB deductions for TY2025 and later, including tips income, overtime pay, senior bonus, and auto loan interest deductions. Use this when the user needs to see which of the new OBBB deductions may apply and how much tax savings they may generate.
 
 ---
 

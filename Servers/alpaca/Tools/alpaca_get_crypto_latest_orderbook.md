@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_latest_orderbook
 
 ### What this tool is for
-Returns the latest orderbook (depth of market) for one or more cryptocurrency symbols, showing current bid and ask levels with sizes. Use this when the user needs to assess market depth or liquidity for a crypto pair beyond a single best bid/ask quote.
+The latest orderbook (depth of market) for one or more cryptocurrency symbols, showing current bid and ask levels with sizes. Use this when the user needs to assess market depth or liquidity for a crypto pair beyond a single best bid/ask quote.
 
 ---
 

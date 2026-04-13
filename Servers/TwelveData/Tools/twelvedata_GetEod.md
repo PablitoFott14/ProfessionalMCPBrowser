@@ -1,7 +1,7 @@
 ## twelvedata_GetEod
 
 ### What this tool is for
-GetEod returns the latest end-of-day (EOD) price for an instrument. It is used when the user needs the most recent official closing price, typically for reporting, valuation, or daily performance tracking.
+Returns the latest end-of-day (EOD) price for an instrument. It is used when the user needs the most recent official closing price, typically for reporting, valuation, or daily performance tracking.
 
 ---
 

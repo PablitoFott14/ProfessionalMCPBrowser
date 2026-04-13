@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_optimize_capital_gains
 
 ### What this tool is for
-Analyzes investment lots and suggests which positions to sell to reduce tax impact. Use this when the user wants to compare lot-level sale choices around long-term versus short-term treatment, gain realization, or loss harvesting.
+Investment lots and suggests which positions to sell to reduce tax impact. Use this when the user wants to compare lot-level sale choices around long-term versus short-term treatment, gain realization, or loss harvesting.
 
 ---
 

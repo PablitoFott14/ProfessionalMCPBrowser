@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_what_changed_between_tax_years
 
 ### What this tool is for
-Shows what changed between two tax years, including bracket shifts, deduction and credit changes, and new provisions. Use this when the user wants a rule-change comparison rather than a taxpayer-specific liability comparison.
+What changed between two tax years, including bracket shifts, deduction and credit changes, and new provisions. Use this when the user wants a rule-change comparison rather than a taxpayer-specific liability comparison.
 
 ---
 

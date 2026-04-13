@@ -1,7 +1,7 @@
 ## twelvedata_GetEarliestTimestamp
 
 ### What this tool is for
-GetEarliestTimestamp returns the first available datetime for an instrument at a given interval. It is used when the user needs to understand how far back data is available, which is especially useful before running time series or indicator analysis.
+Returns the first available datetime for an instrument at a given interval. It is used when the user needs to understand how far back data is available, which is especially useful before running time series or indicator analysis.
 
 ---
 

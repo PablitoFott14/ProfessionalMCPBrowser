@@ -1,7 +1,7 @@
 ## us-regulations-mcp_get_compliance_action_items
 
 ### What this tool is for
-Generates prioritized compliance action items from one or more regulation sections. Use this after relevant sections have been identified, when the user needs concrete compliance follow-up items tied to those sections.
+Prioritized compliance action items from one or more regulation sections. Use this after relevant sections have been identified, when the user needs concrete compliance follow-up items tied to those sections.
 
 ---
 

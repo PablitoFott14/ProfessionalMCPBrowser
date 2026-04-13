@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_estimate_self_employment_tax
 
 ### What this tool is for
-Provides a detailed self-employment tax estimate, including Schedule C profit, self-employment tax, QBI deduction, and recommended quarterly payments. Use this when the user needs a business-income-focused estimate rather than a general tax calculation.
+A detailed self-employment tax estimate, including Schedule C profit, self-employment tax, QBI deduction, and recommended quarterly payments. Use this when the user needs a business-income-focused estimate rather than a general tax calculation.
 
 ---
 

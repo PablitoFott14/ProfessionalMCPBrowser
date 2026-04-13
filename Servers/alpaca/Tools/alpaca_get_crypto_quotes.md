@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_quotes
 
 ### What this tool is for
-Retrieves historical bid/ask quote data for one or more cryptocurrencies over a configurable time window. Use this when the user needs to analyze spread dynamics or quote activity for a crypto pair rather than aggregated price bars.
+Historical bid/ask quote data for one or more cryptocurrencies over a configurable time window. Use this when the user needs to analyze spread dynamics or quote activity for a crypto pair rather than aggregated price bars.
 
 ---
 

@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_run_tax_health_check
 
 ### What this tool is for
-Runs a broad tax health check across income, withholding, deductions, credits, retirement savings, and common risk areas. Use this when the user wants a single high-level diagnostic rather than running several separate tax tools.
+A broad tax health check across income, withholding, deductions, credits, retirement savings, and common risk areas. Use this when the user wants a single high-level diagnostic rather than running several separate tax tools.
 
 ---
 

@@ -1,7 +1,7 @@
 ## akshare-one-mcp_get_balance_sheet
 
 ### What this tool is for
-Retrieves company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.
+Company balance sheet data for a stock. It is useful when the user needs a snapshot of assets, liabilities, and equity to understand financial position and capital structure.
 
 ---
 

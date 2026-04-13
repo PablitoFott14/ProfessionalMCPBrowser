@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_calculate_w4_withholding
 
 ### What this tool is for
-Calculates recommended W-4 withholding settings and estimates per-paycheck federal withholding. Use this when the user wants guidance on paycheck withholding configuration rather than an annual tax liability result alone.
+Recommended W-4 withholding settings and estimates per-paycheck federal withholding. Use this when the user wants guidance on paycheck withholding configuration rather than an annual tax liability result alone.
 
 ---
 

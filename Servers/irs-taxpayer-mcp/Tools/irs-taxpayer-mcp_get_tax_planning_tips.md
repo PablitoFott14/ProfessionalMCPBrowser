@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_tax_planning_tips
 
 ### What this tool is for
-Provides year-end tax optimization strategies based on the taxpayer's income, withholding, deductions, and overall situation. Use this when the user wants planning ideas to reduce tax liability before year-end rather than a static calculation alone.
+Year-end tax optimization strategies based on the taxpayer's income, withholding, deductions, and overall situation. Use this when the user wants planning ideas to reduce tax liability before year-end rather than a static calculation alone.
 
 ---
 

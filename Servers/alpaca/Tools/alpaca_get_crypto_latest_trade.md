@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_latest_trade
 
 ### What this tool is for
-Returns the latest trade execution for one or more cryptocurrency symbols, including price, size, and timestamp. Use this when the user needs the most recent transaction price for a crypto pair rather than a quote or aggregated bar.
+The latest trade execution for one or more cryptocurrency symbols, including price, size, and timestamp. Use this when the user needs the most recent transaction price for a crypto pair rather than a quote or aggregated bar.
 
 ---
 

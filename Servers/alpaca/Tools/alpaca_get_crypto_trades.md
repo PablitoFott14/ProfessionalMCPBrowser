@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_trades
 
 ### What this tool is for
-Retrieves historical trade prints for one or more cryptocurrencies, including individual execution price, size, and timestamp. Use this when the user needs tick-level crypto trade activity rather than aggregated bars or quotes.
+Historical trade prints for one or more cryptocurrencies, including individual execution price, size, and timestamp. Use this when the user needs tick-level crypto trade activity rather than aggregated bars or quotes.
 
 ---
 

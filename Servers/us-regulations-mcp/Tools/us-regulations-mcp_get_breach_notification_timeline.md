@@ -1,7 +1,7 @@
 ## us-regulations-mcp_get_breach_notification_timeline
 
 ### What this tool is for
-Retrieves breach notification timelines across supported federal and state jurisdictions. Use this when the user needs to review notification deadlines, recipients, penalties, or thresholds by jurisdiction or regulation.
+Breach notification timelines across supported federal and state jurisdictions. Use this when the user needs to review notification deadlines, recipients, penalties, or thresholds by jurisdiction or regulation.
 
 ---
 

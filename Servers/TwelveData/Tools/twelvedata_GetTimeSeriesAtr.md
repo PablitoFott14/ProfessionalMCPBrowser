@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesAtr
 
 ### What this tool is for
-GetTimeSeriesAtr retrieves the Average True Range (ATR) over time, a volatility indicator that measures the average range of price movement. It is used to assess market volatility, helping identify periods of expansion or contraction in price activity.
+Retrieves the Average True Range (ATR) over time, a volatility indicator that measures the average range of price movement. It is used to assess market volatility, helping identify periods of expansion or contraction in price activity.
 
 ---
 

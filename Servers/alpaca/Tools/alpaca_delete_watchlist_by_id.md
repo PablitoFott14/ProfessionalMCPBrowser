@@ -1,7 +1,7 @@
 ## alpaca_delete_watchlist_by_id
 
 ### What this tool is for
-Permanently deletes a specific Alpaca watchlist by its UUID. Use this when the user wants to remove a watchlist entirely from the account.
+Deletes a specific Alpaca watchlist by its UUID. Use this when the user wants to remove a watchlist entirely from the account.
 
 ---
 

@@ -1,7 +1,7 @@
 ## financial-datasets_get_crypto_prices
 
 ### What this tool is for
-Retrieves historical price data for a cryptocurrency over a specified date range. Functionally equivalent to `get_historical_crypto_prices` — use this as the standard tool for fetching crypto OHLC data when no special discovery step is needed.
+Historical price data for a cryptocurrency over a specified date range. Functionally equivalent to `get_historical_crypto_prices` — use this as the standard tool for fetching crypto OHLC data when no special discovery step is needed.
 
 ---
 

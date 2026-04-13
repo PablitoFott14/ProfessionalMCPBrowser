@@ -1,7 +1,7 @@
 ## goldrush-mcp_resolve_address
 
 ### What this tool is used for
-Resolve_address resolves a registered domain name — ENS, RNS, or Unstoppable Domain — to its underlying wallet address on a given chain. It is used when the user has a human-readable domain and needs the corresponding on-chain address before querying balances, transactions, or other address-specific data.
+Resolves a registered domain name — ENS, RNS, or Unstoppable Domain — to its underlying wallet address on a given chain. It is used when the user has a human-readable domain and needs the corresponding on-chain address before querying balances, transactions, or other address-specific data.
 
 ---
 

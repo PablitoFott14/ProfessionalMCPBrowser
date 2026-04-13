@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_tax_deadlines
 
 ### What this tool is for
-Returns important IRS tax deadlines and due dates for a given tax year. Use this when the user needs a deadline reference rather than a tax calculation or deduction analysis.
+Important IRS tax deadlines and due dates for a given tax year. Use this when the user needs a deadline reference rather than a tax calculation or deduction analysis.
 
 ---
 

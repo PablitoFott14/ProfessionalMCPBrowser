@@ -1,7 +1,7 @@
 ## massive-mcp_search_endpoints
 
 ### What this tool is for
-Searches for financial market data API endpoints and local finance functions by natural language query. Use this as the starting point when the user needs to discover where to get specific market data or which finance functions are available for a given task.
+For financial market data API endpoints and local finance functions by natural language query. Use this as the starting point when the user needs to discover where to get specific market data or which finance functions are available for a given task.
 
 ---
 

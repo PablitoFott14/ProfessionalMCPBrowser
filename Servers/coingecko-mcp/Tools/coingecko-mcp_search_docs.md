@@ -1,7 +1,7 @@
 ## coingecko-mcp_search_docs
 
 ### What this tool is used for
-Search_docs searches the CoinGecko SDK documentation to discover methods, parameters, and usage examples for a given topic. It is used before writing code when the right SDK method or its exact parameter structure is not already known.
+Searches the CoinGecko SDK documentation to discover methods, parameters, and usage examples for a given topic. It is used before writing code when the right SDK method or its exact parameter structure is not already known.
 
 ---
 

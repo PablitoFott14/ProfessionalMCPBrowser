@@ -1,7 +1,7 @@
 ## akshare-one-mcp_get_realtime_data
 
 ### What this tool is for
-Retrieves live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.
+Live market data for stocks from the supported real-time sources. It is useful when the user needs a current market snapshot instead of historical bars.
 
 It can be used either to check a specific symbol or to pull broader real-time market coverage, depending on how the server implements the optional `symbol` filter.
 

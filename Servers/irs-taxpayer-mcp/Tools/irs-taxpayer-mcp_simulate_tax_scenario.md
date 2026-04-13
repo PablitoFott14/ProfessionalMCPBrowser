@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_simulate_tax_scenario
 
 ### What this tool is for
-Simulates a what-if tax scenario by comparing a current baseline against a hypothetical change. Use this when the user wants to see the tax impact of changes such as income shifts, relocation, Roth conversions, filing-status changes, or deduction changes.
+A what-if tax scenario by comparing a current baseline against a hypothetical change. Use this when the user wants to see the tax impact of changes such as income shifts, relocation, Roth conversions, filing-status changes, or deduction changes.
 
 ---
 

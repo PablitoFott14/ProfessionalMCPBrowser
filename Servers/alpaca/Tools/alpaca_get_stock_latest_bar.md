@@ -1,7 +1,7 @@
 ## alpaca_get_stock_latest_bar
 
 ### What this tool is for
-Retrieves the latest minute bar for one or more stocks, returning the most recent OHLCV data point available. Use this when the user needs a real-time or near-real-time snapshot of price activity without pulling a full history.
+The latest minute bar for one or more stocks, returning the most recent OHLCV data point available. Use this when the user needs a real-time or near-real-time snapshot of price activity without pulling a full history.
 
 ---
 

@@ -1,7 +1,7 @@
 ## twelvedata_GetSplits
 
 ### What this tool is for
-GetSplits returns historical stock split events, including split ratios and dates. It is used when the user needs to understand how share structure has changed over time, which is key for adjusting historical price analysis or interpreting long term performance.
+Returns historical stock split events, including split ratios and dates. It is used when the user needs to understand how share structure has changed over time, which is key for adjusting historical price analysis or interpreting long term performance.
 
 ---
 

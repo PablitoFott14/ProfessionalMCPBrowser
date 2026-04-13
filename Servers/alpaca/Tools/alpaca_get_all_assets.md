@@ -1,7 +1,7 @@
 ## alpaca_get_all_assets
 
 ### What this tool is for
-Returns the full list of assets available on Alpaca with optional filtering by status, asset class, exchange, or specific attributes. Use this when the user needs to discover tradable instruments or check availability across different markets and asset classes.
+The full list of assets available on Alpaca with optional filtering by status, asset class, exchange, or specific attributes. Use this when the user needs to discover tradable instruments or check availability across different markets and asset classes.
 
 ---
 

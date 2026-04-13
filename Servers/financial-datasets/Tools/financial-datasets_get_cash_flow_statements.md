@@ -1,7 +1,7 @@
 ## financial-datasets_get_cash_flow_statements
 
 ### What this tool is for
-Retrieves cash flow statements for a company, covering operating, investing, and financing activities. Use this when the user needs to assess a company's liquidity, capital allocation, or free cash flow generation over time.
+Cash flow statements for a company, covering operating, investing, and financing activities. Use this when the user needs to assess a company's liquidity, capital allocation, or free cash flow generation over time.
 
 ---
 

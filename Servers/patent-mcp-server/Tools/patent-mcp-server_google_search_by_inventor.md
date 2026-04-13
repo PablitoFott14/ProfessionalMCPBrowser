@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_search_by_inventor
 
 ### What this tool is used for
-Google_search_by_inventor searches Google Patents for patents where a specified inventor is listed. It is used when the user wants to find all patents associated with a particular inventor, track an inventor's portfolio, or research their patenting activity within a country or date range.
+Searches Google Patents for patents where a specified inventor is listed. It is used when the user wants to find all patents associated with a particular inventor, track an inventor's portfolio, or research their patenting activity within a country or date range.
 
 ---
 

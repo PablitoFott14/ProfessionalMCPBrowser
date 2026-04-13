@@ -1,7 +1,7 @@
 ## goldrush-mcp_nft_check_ownership_token_id
 
 ### What this tool is used for
-Nft_check_ownership_token_id verifies whether a wallet address owns a specific token ID within an NFT collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a precise token rather than any NFT within a collection.
+Verifies whether a wallet address owns a specific token ID within an NFT collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a precise token rather than any NFT within a collection.
 
 ---
 

@@ -1,7 +1,7 @@
 ## twelvedata_GetEarnings
 
 ### What this tool is for
-GetEarnings returns historical and upcoming earnings data, including EPS estimates and actual results. It is used when the user needs to analyze company performance, earnings surprises, or upcoming earnings events.
+Returns historical and upcoming earnings data, including EPS estimates and actual results. It is used when the user needs to analyze company performance, earnings surprises, or upcoming earnings events.
 
 ---
 

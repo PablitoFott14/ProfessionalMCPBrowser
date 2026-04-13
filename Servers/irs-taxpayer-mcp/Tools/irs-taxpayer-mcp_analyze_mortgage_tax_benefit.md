@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_analyze_mortgage_tax_benefit
 
 ### What this tool is for
-Analyzes the tax benefit of mortgage interest and property taxes by comparing itemizing against the standard deduction. Use this when the user wants to understand whether homeownership-related deductions are providing a tax advantage.
+The tax benefit of mortgage interest and property taxes by comparing itemizing against the standard deduction. Use this when the user wants to understand whether homeownership-related deductions are providing a tax advantage.
 
 ---
 

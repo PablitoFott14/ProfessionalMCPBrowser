@@ -1,7 +1,7 @@
 ## twelvedata_GetProfile
 
 ### What this tool is for
-GetProfile returns general company information, including sector, industry, leadership, and business description. It is used when the user needs a qualitative overview of a company, rather than financial metrics or price data.
+Returns general company information, including sector, industry, leadership, and business description. It is used when the user needs a qualitative overview of a company, rather than financial metrics or price data.
 
 ---
 

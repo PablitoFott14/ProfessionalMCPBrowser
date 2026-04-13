@@ -1,7 +1,7 @@
 ## us-legal-mcp_search_court_opinions
 
 ### What this tool is for
-Searches court opinions and decisions from CourtListener across federal and state courts. Use this when the user needs case law results rather than legislative or regulatory materials.
+Court opinions and decisions from CourtListener across federal and state courts. Use this when the user needs case law results rather than legislative or regulatory materials.
 
 ---
 

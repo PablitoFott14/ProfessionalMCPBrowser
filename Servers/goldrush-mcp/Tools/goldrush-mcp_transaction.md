@@ -1,7 +1,7 @@
 ## goldrush-mcp_transaction
 
 ### What this tool is used for
-Transaction fetches and renders a single transaction by hash on a given chain, including its decoded event logs. For foundational chains it can also return internal transactions, state changes, and the method ID where available. It is used when the user needs to inspect or display the full details of a specific on-chain transaction.
+Fetches and renders a single transaction by hash on a given chain, including its decoded event logs. For foundational chains it can also return internal transactions, state changes, and the method ID where available. It is used when the user needs to inspect or display the full details of a specific on-chain transaction.
 
 ---
 

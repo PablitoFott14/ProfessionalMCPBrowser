@@ -1,7 +1,7 @@
 ## us-regulations-mcp_check_applicability
 
 ### What this tool is for
-Determines which regulations may apply to a given industry sector. Use this as a starting point when the user needs a regulation applicability view before moving into specific regulation text or section-level research.
+Which regulations may apply to a given industry sector. Use this as a starting point when the user needs a regulation applicability view before moving into specific regulation text or section-level research.
 
 ---
 

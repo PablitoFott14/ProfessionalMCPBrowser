@@ -1,7 +1,7 @@
 ## alpaca_update_watchlist_by_id
 
 ### What this tool is for
-Updates an existing Alpaca watchlist by its UUID. Allows renaming the watchlist, replacing its symbols, or both. Use this when the user wants to modify the contents or label of a specific watchlist.
+An existing Alpaca watchlist by its UUID. Allows renaming the watchlist, replacing its symbols, or both. Use this when the user wants to modify the contents or label of a specific watchlist.
 
 ---
 

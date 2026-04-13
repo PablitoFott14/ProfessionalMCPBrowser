@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_form_filing_guide
 
 ### What this tool is for
-Provides a step-by-step guide for completing a specific IRS form or schedule. Use this when the user needs form-by-form filing guidance rather than a short form summary.
+A step-by-step guide for completing a specific IRS form or schedule. Use this when the user needs form-by-form filing guidance rather than a short form summary.
 
 ---
 

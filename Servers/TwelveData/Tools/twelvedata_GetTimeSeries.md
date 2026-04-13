@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeries
 
 ### What this tool is for
-GetTimeSeries retrieves historical OHLC data over time for a given instrument. It is used when the user needs price evolution across a period, not just the latest value.
+Retrieves historical OHLC data over time for a given instrument. It is used when the user needs price evolution across a period, not just the latest value.
 
 ---
 

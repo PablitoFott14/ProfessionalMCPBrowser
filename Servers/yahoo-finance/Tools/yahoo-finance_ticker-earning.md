@@ -1,7 +1,7 @@
 ## yahoo-finance_ticker-earning
 
 ### What this tool is for
-Gets earnings data for a ticker, including annual or quarterly data and upcoming earnings dates when available. Use this when the user needs reported earnings context rather than price or news data.
+Earnings data for a ticker, including annual or quarterly data and upcoming earnings dates when available. Use this when the user needs reported earnings context rather than price or news data.
 
 ---
 

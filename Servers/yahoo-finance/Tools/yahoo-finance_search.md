@@ -1,7 +1,7 @@
 ## yahoo-finance_search
 
 ### What this tool is for
-Searches Yahoo Finance for stocks, ETFs, and other financial instruments. Use this when the user needs to discover possible symbols or instruments before requesting ticker-specific data.
+Yahoo Finance for stocks, ETFs, and other financial instruments. Use this when the user needs to discover possible symbols or instruments before requesting ticker-specific data.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_historical_token_balances
 
 ### What this tool is used for
-Historical_token_balances fetches the native and ERC-20 token holdings for a wallet address at a specific historical point in time, defined by either a block height or a date. It is used when the user needs to reconstruct a past portfolio snapshot rather than the current state, including daily prices and token metadata at that point.
+Fetches the native and ERC-20 token holdings for a wallet address at a specific historical point in time, defined by either a block height or a date. It is used when the user needs to reconstruct a past portfolio snapshot rather than the current state, including daily prices and token metadata at that point.
 
 ---
 

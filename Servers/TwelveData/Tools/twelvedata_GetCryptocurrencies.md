@@ -1,7 +1,7 @@
 ## twelvedata_GetCryptocurrencies
 
 ### What this tool is for
-GetCryptocurrencies returns the list of available cryptocurrency pairs and their supported exchanges. It is used when the user needs to discover available crypto instruments or filter them by base, quote, or exchange before performing further analysis.
+Returns the list of available cryptocurrency pairs and their supported exchanges. It is used when the user needs to discover available crypto instruments or filter them by base, quote, or exchange before performing further analysis.
 
 ---
 

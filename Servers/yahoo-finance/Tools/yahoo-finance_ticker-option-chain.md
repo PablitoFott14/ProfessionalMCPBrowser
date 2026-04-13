@@ -1,7 +1,7 @@
 ## yahoo-finance_ticker-option-chain
 
 ### What this tool is for
-Gets option chain data for a ticker, using the most recent available dates or a specific expiration date when provided. Use this when the user needs call, put, or combined option chain data for a stock.
+Option chain data for a ticker, using the most recent available dates or a specific expiration date when provided. Use this when the user needs call, put, or combined option chain data for a stock.
 
 ---
 

@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_state_tax_info
 
 ### What this tool is for
-Returns state income tax information, including rates, brackets, and key details for a given US state. Use this when the user needs state tax reference information rather than a combined tax calculation.
+State income tax information, including rates, brackets, and key details for a given US state. Use this when the user needs state tax reference information rather than a combined tax calculation.
 
 ---
 

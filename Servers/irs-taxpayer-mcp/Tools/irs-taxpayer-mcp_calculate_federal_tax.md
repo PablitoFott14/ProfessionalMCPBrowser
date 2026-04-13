@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_calculate_federal_tax
 
 ### What this tool is for
-Calculates federal income tax for an individual taxpayer for TY2024 or TY2025. Use this when the user needs a local tax calculation that can incorporate filing status, income mix, deductions, credits, self-employment tax, capital gains, and related tax components.
+Federal income tax for an individual taxpayer for TY2024 or TY2025. Use this when the user needs a local tax calculation that can incorporate filing status, income mix, deductions, credits, self-employment tax, capital gains, and related tax components.
 
 ---
 

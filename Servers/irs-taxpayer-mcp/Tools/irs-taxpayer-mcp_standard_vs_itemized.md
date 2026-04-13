@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_standard_vs_itemized
 
 ### What this tool is for
-Compares the standard deduction against itemized deductions to determine which is more beneficial. Use this when the user needs to evaluate whether itemizing deductions is likely to produce a better tax outcome.
+The standard deduction against itemized deductions to determine which is more beneficial. Use this when the user needs to evaluate whether itemizing deductions is likely to produce a better tax outcome.
 
 ---
 

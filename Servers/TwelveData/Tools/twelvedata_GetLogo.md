@@ -1,7 +1,7 @@
 ## twelvedata_GetLogo
 
 ### What this tool is for
-GetLogo returns the logo associated with a financial instrument, including stocks, cryptocurrencies, or forex pairs. It is used when the user needs to visually represent an asset, for example in dashboards, reports, or UI components tied to financial data.
+Returns the logo associated with a financial instrument, including stocks, cryptocurrencies, or forex pairs. It is used when the user needs to visually represent an asset, for example in dashboards, reports, or UI components tied to financial data.
 
 ---
 

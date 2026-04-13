@@ -1,7 +1,7 @@
 ## goldrush-mcp_nft_check_ownership
 
 ### What this tool is used for
-Nft_check_ownership verifies whether a wallet address owns any NFTs within a specific collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a collection, optionally filtered down to NFTs with a particular trait and value.
+Verifies whether a wallet address owns any NFTs within a specific collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a collection, optionally filtered down to NFTs with a particular trait and value.
 
 ---
 

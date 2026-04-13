@@ -1,7 +1,7 @@
 ## twelvedata_GetCrossListings
 
 ### What this tool is for
-GetCrossListings returns all cross-listed versions of a given instrument across different exchanges. It is used when the user needs to identify where the same security is traded globally, which is useful for liquidity analysis, arbitrage opportunities, or regional access considerations.
+Returns all cross-listed versions of a given instrument across different exchanges. It is used when the user needs to identify where the same security is traded globally, which is useful for liquidity analysis, arbitrage opportunities, or regional access considerations.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_multichain_address_activity
 
 ### What this tool is used for
-Multichain_address_activity identifies which chains a given address has been active on, using a single API call. It is used when the starting point is an address and the goal is to discover which networks to query further, before pulling balances or transactions.
+Identifies which chains a given address has been active on, using a single API call. It is used when the starting point is an address and the goal is to discover which networks to query further, before pulling balances or transactions.
 
 ---
 

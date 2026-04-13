@@ -1,7 +1,7 @@
 ## fred-mcp-server_fred_get_series
 
 ### What this tool is for
-Retrieves data for a specific FRED series by its ID, with optional date ranges, transformations, frequency changes, and output settings. Use this when the user already knows the series ID and needs the actual observations.
+Data for a specific FRED series by its ID, with optional date ranges, transformations, frequency changes, and output settings. Use this when the user already knows the series ID and needs the actual observations.
 
 ---
 

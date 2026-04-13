@@ -1,7 +1,7 @@
 ## yahoo-finance_get-top-entities
 
 ### What this tool is for
-Gets top entities in a sector, including ETFs, mutual funds, companies, growth companies, or performing companies. Use this when the user wants a sector-level view of leading instruments or organizations rather than a single ticker lookup.
+Top entities in a sector, including ETFs, mutual funds, companies, growth companies, or performing companies. Use this when the user wants a sector-level view of leading instruments or organizations rather than a single ticker lookup.
 
 ---
 

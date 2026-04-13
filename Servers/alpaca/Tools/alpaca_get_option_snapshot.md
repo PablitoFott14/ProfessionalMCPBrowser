@@ -1,7 +1,7 @@
 ## alpaca_get_option_snapshot
 
 ### What this tool is for
-Retrieves a comprehensive snapshot for one or more option contracts, combining the latest quote, latest trade, implied volatility, and Greeks (delta, gamma, theta, vega, rho) in a single call. Use this when the user needs a full picture of an option contract's current market state and risk metrics.
+A comprehensive snapshot for one or more option contracts, combining the latest quote, latest trade, implied volatility, and Greeks (delta, gamma, theta, vega, rho) in a single call. Use this when the user needs a full picture of an option contract's current market state and risk metrics.
 
 Option contract symbols follow the OCC format (e.g., AAPL250613P00205000). Use `get_option_contracts` first to discover available contract symbols.
 

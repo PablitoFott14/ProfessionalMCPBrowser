@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_search_by_assignee
 
 ### What this tool is used for
-Google_search_by_assignee searches Google Patents for patents assigned to a specific company or organization. It is used when the user wants to analyze a company's patent portfolio, track filings by a particular assignee, or research patent ownership within a country or date range.
+Searches Google Patents for patents assigned to a specific company or organization. It is used when the user wants to analyze a company's patent portfolio, track filings by a particular assignee, or research patent ownership within a country or date range.
 
 ---
 

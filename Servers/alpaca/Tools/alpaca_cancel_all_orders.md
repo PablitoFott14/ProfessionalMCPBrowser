@@ -1,7 +1,7 @@
 ## alpaca_cancel_all_orders
 
 ### What this tool is for
-Cancels all currently open orders on the Alpaca account in a single call. Use this when the user wants to clear all pending orders at once, such as before market close or in response to a strategy change.
+All currently open orders on the Alpaca account in a single call. Use this when the user wants to clear all pending orders at once, such as before market close or in response to a strategy change.
 
 ---
 

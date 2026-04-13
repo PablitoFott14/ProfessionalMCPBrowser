@@ -1,7 +1,7 @@
 ## us-regulations-mcp_compare_requirements
 
 ### What this tool is for
-Compares how multiple regulations address the same topic across their relevant sections. Use this when the user needs a cross-regulation view of the same requirement area rather than a search within a single regulation.
+How multiple regulations address the same topic across their relevant sections. Use this when the user needs a cross-regulation view of the same requirement area rather than a search within a single regulation.
 
 ---
 

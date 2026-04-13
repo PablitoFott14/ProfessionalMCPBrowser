@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_search_patents
 
 ### What this tool is used for
-Google_search_patents searches patent titles and abstracts using Google Patents Public Datasets via BigQuery. It returns publication numbers, titles, abstracts, dates, inventors, assignees, and classification codes. It is used when the user needs broad patent discovery across multiple countries using natural language or keyword queries, rather than USPTO-specific search syntax.
+Searches patent titles and abstracts using Google Patents Public Datasets via BigQuery. It returns publication numbers, titles, abstracts, dates, inventors, assignees, and classification codes. It is used when the user needs broad patent discovery across multiple countries using natural language or keyword queries, rather than USPTO-specific search syntax.
 
 ---
 

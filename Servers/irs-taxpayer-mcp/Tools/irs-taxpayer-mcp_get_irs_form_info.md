@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_irs_form_info
 
 ### What this tool is for
-Returns information about common IRS tax forms, including what they are, who typically needs them, and where to find them. Use this when the user needs form guidance rather than a tax calculation.
+Information about common IRS tax forms, including what they are, who typically needs them, and where to find them. Use this when the user needs form guidance rather than a tax calculation.
 
 ---
 

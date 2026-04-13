@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_check_credit_eligibility
 
 ### What this tool is for
-Checks which federal tax credits a taxpayer may be eligible for based on their situation. Use this when the user needs an eligibility screen across possible credits before looking at a specific credit in detail.
+Which federal tax credits a taxpayer may be eligible for based on their situation. Use this when the user needs an eligibility screen across possible credits before looking at a specific credit in detail.
 
 ---
 

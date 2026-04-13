@@ -1,7 +1,7 @@
 ## alpaca_cancel_order_by_id
 
 ### What this tool is for
-Cancels a specific open order by its UUID. Use this when the user wants to cancel a single order without affecting other open orders on the account.
+A specific open order by its UUID. Use this when the user wants to cancel a single order without affecting other open orders on the account.
 
 ---
 

@@ -1,7 +1,7 @@
 ## fred-mcp-server_fred_browse
 
 ### What this tool is for
-Browses the FRED catalog through categories, releases, sources, or series collections. Use this when the user needs to explore the overall FRED structure rather than search directly by keywords or series ID.
+The FRED catalog through categories, releases, sources, or series collections. Use this when the user needs to explore the overall FRED structure rather than search directly by keywords or series ID.
 
 ---
 

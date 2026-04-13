@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_assess_audit_risk
 
 ### What this tool is for
-Evaluates an IRS audit-risk profile based on a taxpayer's return characteristics. Use this when the user wants to identify potential audit red flags, gauge relative risk, and review factors that may increase scrutiny.
+An IRS audit-risk profile based on a taxpayer's return characteristics. Use this when the user wants to identify potential audit red flags, gauge relative risk, and review factors that may increase scrutiny.
 
 ---
 

@@ -1,7 +1,7 @@
 ## us-regulations-mcp_get_evidence_requirements
 
 ### What this tool is for
-Extracts audit evidence requirements from a specific regulation section. Use this after identifying the relevant section, when the user needs to understand what artifacts or records may be required for compliance or audit support.
+Audit evidence requirements from a specific regulation section. Use this after identifying the relevant section, when the user needs to understand what artifacts or records may be required for compliance or audit support.
 
 ---
 

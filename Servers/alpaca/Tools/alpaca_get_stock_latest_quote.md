@@ -1,7 +1,7 @@
 ## alpaca_get_stock_latest_quote
 
 ### What this tool is for
-Retrieves the latest level 1 bid/ask quote for one or more stocks, including bid price, ask price, sizes, and timestamp. Use this when the user needs the current spread or most recent quote snapshot without historical context.
+The latest level 1 bid/ask quote for one or more stocks, including bid price, ask price, sizes, and timestamp. Use this when the user needs the current spread or most recent quote snapshot without historical context.
 
 ---
 

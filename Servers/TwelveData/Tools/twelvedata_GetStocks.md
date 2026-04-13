@@ -1,7 +1,7 @@
 ## twelvedata_GetStocks
 
 ### What this tool is for
-GetStocks returns an array of stock symbols available at Twelve Data API. This list is updated daily and is used when the user needs to discover available instruments or filter them by exchange, country, type, or identifier before performing further analysis.
+Returns an array of stock symbols available at Twelve Data API. This list is updated daily and is used when the user needs to discover available instruments or filter them by exchange, country, type, or identifier before performing further analysis.
 
 ---
 

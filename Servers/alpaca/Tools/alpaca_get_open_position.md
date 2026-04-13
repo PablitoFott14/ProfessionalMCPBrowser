@@ -1,7 +1,7 @@
 ## alpaca_get_open_position
 
 ### What this tool is for
-Retrieves details for a specific open position in the Alpaca portfolio by symbol. Use this when the user wants to inspect a single holding's quantity, market value, entry price, current price, and P/L without pulling the full portfolio.
+Details for a specific open position in the Alpaca portfolio by symbol. Use this when the user wants to inspect a single holding's quantity, market value, entry price, current price, and P/L without pulling the full portfolio.
 
 ---
 

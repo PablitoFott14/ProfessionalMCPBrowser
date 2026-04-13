@@ -1,7 +1,7 @@
 ## alpaca_place_stock_order
 
 ### What this tool is for
-Places a stock order on Alpaca with full control over order type, timing, and advanced order classes such as bracket and OCO. Use this when the user wants to buy or sell a stock with a specific execution strategy.
+A stock order on Alpaca with full control over order type, timing, and advanced order classes such as bracket and OCO. Use this when the user wants to buy or sell a stock with a specific execution strategy.
 
 ---
 

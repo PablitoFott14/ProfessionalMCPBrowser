@@ -1,7 +1,7 @@
 ## twelvedata_GetCommodities
 
 ### What this tool is for
-GetCommodities returns the list of available commodity instruments, including their symbols, categories, and descriptions. It is used when the user needs to discover tradable commodities or filter them by type, before performing pricing or indicator analysis.
+Returns the list of available commodity instruments, including their symbols, categories, and descriptions. It is used when the user needs to discover tradable commodities or filter them by type, before performing pricing or indicator analysis.
 
 ---
 

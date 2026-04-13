@@ -1,7 +1,7 @@
 ## twelvedata_GetMarketState
 
 ### What this tool is for
-GetMarketState returns the current status of stock exchanges, including whether they are open or closed and the time remaining until opening or closing. It is used when the user needs to understand market availability or trading windows, either globally or for a specific exchange.
+Returns the current status of stock exchanges, including whether they are open or closed and the time remaining until opening or closing. It is used when the user needs to understand market availability or trading windows, either globally or for a specific exchange.
 
 ---
 

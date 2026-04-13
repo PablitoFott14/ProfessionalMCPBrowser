@@ -1,7 +1,7 @@
 ## financial-datasets_get_current_stock_price
 
 ### What this tool is for
-Returns the current or most recent price for a given stock. Use this when the user needs a quick snapshot of where a stock is trading right now, without historical context.
+The current or most recent price for a given stock. Use this when the user needs a quick snapshot of where a stock is trading right now, without historical context.
 
 ---
 

@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_latest_quote
 
 ### What this tool is for
-Returns the latest bid/ask quote for one or more cryptocurrency symbols. Use this when the user needs the current spread or most recent quote snapshot for a crypto pair without pulling historical data.
+The latest bid/ask quote for one or more cryptocurrency symbols. Use this when the user needs the current spread or most recent quote snapshot for a crypto pair without pulling historical data.
 
 ---
 

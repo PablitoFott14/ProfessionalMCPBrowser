@@ -1,7 +1,7 @@
 ## alpaca_get_option_chain
 
 ### What this tool is for
-Retrieves the full option chain for an underlying symbol, including latest quote, trade, implied volatility, and Greeks for each contract. Use this when the user wants to browse all available contracts for a given stock or ETF and evaluate them across strikes and expirations in one call.
+The full option chain for an underlying symbol, including latest quote, trade, implied volatility, and Greeks for each contract. Use this when the user wants to browse all available contracts for a given stock or ETF and evaluate them across strikes and expirations in one call.
 
 ---
 

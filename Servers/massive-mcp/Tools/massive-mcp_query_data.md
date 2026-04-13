@@ -1,7 +1,7 @@
 ## massive-mcp_query_data
 
 ### What this tool is for
-Queries stored financial data tables using SQL and can optionally post-process the query results. Use this after data has been stored through `call_api`, when the user needs analysis, filtering, aggregation, or table inspection.
+Stored financial data tables using SQL and can optionally post-process the query results. Use this after data has been stored through `call_api`, when the user needs analysis, filtering, aggregation, or table inspection.
 
 ---
 

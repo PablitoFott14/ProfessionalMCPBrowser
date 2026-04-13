@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_latest_bar
 
 ### What this tool is for
-Returns the latest minute bar for one or more cryptocurrency symbols. Use this when the user needs the most recent OHLCV snapshot for a crypto pair without pulling historical data.
+The latest minute bar for one or more cryptocurrency symbols. Use this when the user needs the most recent OHLCV snapshot for a crypto pair without pulling historical data.
 
 ---
 

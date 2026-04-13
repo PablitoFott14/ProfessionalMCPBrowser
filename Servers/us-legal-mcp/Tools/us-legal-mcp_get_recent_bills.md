@@ -1,7 +1,7 @@
 ## us-legal-mcp_get_recent_bills
 
 ### What this tool is for
-Gets the most recently introduced bills in Congress. Use this when the user needs a current view of recently introduced congressional legislation rather than a keyword search.
+The most recently introduced bills in Congress. Use this when the user needs a current view of recently introduced congressional legislation rather than a keyword search.
 
 ---
 

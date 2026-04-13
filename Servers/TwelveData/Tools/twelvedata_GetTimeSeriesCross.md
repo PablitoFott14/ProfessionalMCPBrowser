@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesCross
 
 ### What this tool is for
-GetTimeSeriesCross returns time series data for a cross between two instruments, including OHLC values. It is used when the user needs to analyze price relationships between two assets, such as forex pairs, crypto crosses, or synthetic comparisons across markets.
+Returns time series data for a cross between two instruments, including OHLC values. It is used when the user needs to analyze price relationships between two assets, such as forex pairs, crypto crosses, or synthetic comparisons across markets.
 
 ---
 

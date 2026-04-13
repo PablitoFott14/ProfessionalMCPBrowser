@@ -1,7 +1,7 @@
 ## goldrush-mcp_pool_spot_prices
 
 ### What this tool is used for
-Pool_spot_prices returns the current spot token pair prices for a specified liquidity pool contract address. It supports pools on Uniswap V2, V3, and their forks. It is used when the user needs the live exchange rate between a token pair in a specific DEX pool.
+Returns the current spot token pair prices for a specified liquidity pool contract address. It supports pools on Uniswap V2, V3, and their forks. It is used when the user needs the live exchange rate between a token pair in a specific DEX pool.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_native_token_balance
 
 ### What this tool is used for
-Native_token_balance is a lightweight endpoint that returns only the native token balance for a single EVM address on a given chain. It is used when the user needs a fast, minimal check of an address's native asset holdings (e.g. ETH, MATIC, BNB) without the overhead of a full token balance response.
+Is a lightweight endpoint that returns only the native token balance for a single EVM address on a given chain. It is used when the user needs a fast, minimal check of an address's native asset holdings (e.g. ETH, MATIC, BNB) without the overhead of a full token balance response.
 
 ---
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_multichain_transactions
 
 ### What this tool is used for
-Multichain_transactions fetches paginated transactions for up to 10 EVM addresses across up to 10 chains in a single call. It is used when the user needs a unified activity feed across multiple wallets or chains, rather than querying each chain individually.
+Fetches paginated transactions for up to 10 EVM addresses across up to 10 chains in a single call. It is used when the user needs a unified activity feed across multiple wallets or chains, rather than querying each chain individually.
 
 ---
 

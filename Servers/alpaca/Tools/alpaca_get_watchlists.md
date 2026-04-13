@@ -1,7 +1,7 @@
 ## alpaca_get_watchlists
 
 ### What this tool is for
-Retrieves all watchlists associated with the Alpaca account, including their names, IDs, and timestamps. Use this when the user wants to see what watchlists exist before adding, modifying, or referencing one.
+All watchlists associated with the Alpaca account, including their names, IDs, and timestamps. Use this when the user wants to see what watchlists exist before adding, modifying, or referencing one.
 
 ---
 

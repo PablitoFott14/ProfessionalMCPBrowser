@@ -1,7 +1,7 @@
 ## twelvedata_GetApiUsage
 
 ### What this tool is for
-GetApiUsage returns real-time information about API usage, including current request rate and plan limits. It is used to monitor consumption, avoid rate limits, and manage API usage efficiently in production or testing environments.
+Returns real-time information about API usage, including current request rate and plan limits. It is used to monitor consumption, avoid rate limits, and manage API usage efficiently in production or testing environments.
 
 ---
 

@@ -1,7 +1,7 @@
 ## alpaca_get_stock_trades
 
 ### What this tool is for
-Retrieves historical trade-level data for one or more stocks, including individual executions with price, size, and timestamp. Use this when the user needs tick-level trade activity rather than aggregated bars or quotes.
+Historical trade-level data for one or more stocks, including individual executions with price, size, and timestamp. Use this when the user needs tick-level trade activity rather than aggregated bars or quotes.
 
 ---
 

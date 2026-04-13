@@ -1,7 +1,7 @@
 ## financial-datasets_get_balance_sheets
 
 ### What this tool is for
-Retrieves balance sheets for a company, covering assets, liabilities, and shareholders' equity. Use this when the user needs to evaluate a company's financial position, solvency, or capital structure at a point in time.
+Balance sheets for a company, covering assets, liabilities, and shareholders' equity. Use this when the user needs to evaluate a company's financial position, solvency, or capital structure at a point in time.
 
 ---
 

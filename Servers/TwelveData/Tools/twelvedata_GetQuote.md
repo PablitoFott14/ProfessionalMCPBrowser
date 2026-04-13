@@ -1,7 +1,7 @@
 ## twelvedata_GetQuote
 
 ### What this tool is for
-GetQuote retrieves the latest available market data for a single instrument. It provides a real time snapshot including price, change, volume, and market status, making it the go to option when the user needs current conditions, not historical trends.
+Retrieves the latest available market data for a single instrument. It provides a real time snapshot including price, change, volume, and market status, making it the go to option when the user needs current conditions, not historical trends.
 
 ---
 

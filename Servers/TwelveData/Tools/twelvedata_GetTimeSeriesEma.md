@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesEma
 
 ### What this tool is for
-GetTimeSeriesEma retrieves the Exponential Moving Average over time for a given instrument. It is used to track trend direction with higher sensitivity to recent price changes, making it useful for identifying momentum shifts and potential entry or exit points.
+Retrieves the Exponential Moving Average over time for a given instrument. It is used to track trend direction with higher sensitivity to recent price changes, making it useful for identifying momentum shifts and potential entry or exit points.
 
 ---
 

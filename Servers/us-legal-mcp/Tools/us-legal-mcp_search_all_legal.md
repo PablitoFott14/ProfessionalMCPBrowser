@@ -1,7 +1,7 @@
 ## us-legal-mcp_search_all_legal
 
 ### What this tool is for
-Searches across multiple US legal sources, including Congress, the Federal Register, and court opinions. Use this when the user needs a broader legal search rather than searching a single source in isolation.
+Across multiple US legal sources, including Congress, the Federal Register, and court opinions. Use this when the user needs a broader legal search rather than searching a single source in isolation.
 
 ---
 

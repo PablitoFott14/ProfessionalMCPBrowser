@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_estimate_quarterly_tax
 
 ### What this tool is for
-Estimates quarterly federal tax payments for taxpayers who need to make estimated payments. Use this when the user needs a projected quarterly payment schedule based on expected annual income, self-employment income, withholding, and credits.
+Quarterly federal tax payments for taxpayers who need to make estimated payments. Use this when the user needs a projected quarterly payment schedule based on expected annual income, self-employment income, withholding, and credits.
 
 ---
 

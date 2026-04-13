@@ -1,7 +1,7 @@
 ## goldrush-mcp_block_heights
 
 ### What this tool is used for
-Block_heights retrieves all block heights within a given date range for a specific chain. It is used when the user needs to map blocks to calendar dates, such as for sorting or displaying blocks by day in a block explorer or analytics view.
+Retrieves all block heights within a given date range for a specific chain. It is used when the user needs to map blocks to calendar dates, such as for sorting or displaying blocks by day in a block explorer or analytics view.
 
 ---
 

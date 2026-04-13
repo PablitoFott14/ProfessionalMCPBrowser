@@ -1,7 +1,7 @@
 ## alpaca_get_option_latest_quote
 
 ### What this tool is for
-Retrieves the latest real-time bid/ask quote for one or more option contracts, including prices, sizes, exchange information, and timestamp. Use this when the user needs current market pricing for a specific options position or wants to evaluate spread before trading.
+The latest real-time bid/ask quote for one or more option contracts, including prices, sizes, exchange information, and timestamp. Use this when the user needs current market pricing for a specific options position or wants to evaluate spread before trading.
 
 Option contract symbols follow the OCC format (e.g., AAPL230616C00150000). Use `get_option_contracts` first to discover available contract symbols.
 

@@ -1,7 +1,7 @@
 ## goldrush-mcp_bitcoin_hd_wallet_balances
 
 ### What this tool is used for
-Bitcoin_hd_wallet_balances fetches balances for each active child address derived from a Bitcoin HD wallet. It is used when the user has an extended public key and needs a consolidated view of balances across all derived addresses without querying each one individually.
+Fetches balances for each active child address derived from a Bitcoin HD wallet. It is used when the user has an extended public key and needs a consolidated view of balances across all derived addresses without querying each one individually.
 
 ---
 

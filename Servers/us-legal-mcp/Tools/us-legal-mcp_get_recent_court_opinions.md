@@ -1,7 +1,7 @@
 ## us-legal-mcp_get_recent_court_opinions
 
 ### What this tool is for
-Gets the most recently published court opinions from CourtListener. Use this when the user needs a current view of new court opinions rather than a keyword-based case law search.
+The most recently published court opinions from CourtListener. Use this when the user needs a current view of new court opinions rather than a keyword-based case law search.
 
 ---
 

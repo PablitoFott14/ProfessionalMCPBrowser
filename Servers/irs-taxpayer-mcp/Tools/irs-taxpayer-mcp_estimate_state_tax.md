@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_estimate_state_tax
 
 ### What this tool is for
-Estimates state income tax for a given state and taxable income using simplified state brackets. Use this when the user needs a state-only estimate rather than combined federal and state tax results.
+State income tax for a given state and taxable income using simplified state brackets. Use this when the user needs a state-only estimate rather than combined federal and state tax results.
 
 ---
 

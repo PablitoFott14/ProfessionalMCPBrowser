@@ -1,7 +1,7 @@
 ## financial-datasets_get_sec_filings
 
 ### What this tool is for
-Retrieves SEC filings submitted by a company to the U.S. Securities and Exchange Commission. Useful when the user needs to review regulatory disclosures, financial reports, or material event announcements for a given company.
+SEC filings submitted by a company to the U.S. Securities and Exchange Commission. Useful when the user needs to review regulatory disclosures, financial reports, or material event announcements for a given company.
 
 ---
 

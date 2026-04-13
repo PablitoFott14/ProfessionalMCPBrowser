@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesBBands
 
 ### What this tool is for
-GetTimeSeriesBBands retrieves Bollinger Bands over time for a given instrument. It is used to assess volatility and potential overbought or oversold conditions by comparing price against dynamic upper and lower bands.
+Retrieves Bollinger Bands over time for a given instrument. It is used to assess volatility and potential overbought or oversold conditions by comparing price against dynamic upper and lower bands.
 
 ---
 

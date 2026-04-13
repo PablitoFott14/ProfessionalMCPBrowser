@@ -1,7 +1,7 @@
 ## financial-datasets_get_historical_stock_prices
 
 ### What this tool is for
-Retrieves historical OHLC price data for a stock over a specified date range. Use this when the user needs to analyze past price movements, build charts, or feed equity data into a strategy or indicator.
+Historical OHLC price data for a stock over a specified date range. Use this when the user needs to analyze past price movements, build charts, or feed equity data into a strategy or indicator.
 
 ---
 

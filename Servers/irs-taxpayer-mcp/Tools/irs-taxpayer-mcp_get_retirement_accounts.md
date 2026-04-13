@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_retirement_accounts
 
 ### What this tool is for
-Returns details on retirement account types, including contribution limits, tax treatment, income limits, and related guidance. Use this when the user needs account-type reference information rather than a tax calculation.
+Details on retirement account types, including contribution limits, tax treatment, income limits, and related guidance. Use this when the user needs account-type reference information rather than a tax calculation.
 
 ---
 

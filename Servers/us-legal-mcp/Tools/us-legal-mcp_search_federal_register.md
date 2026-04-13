@@ -1,7 +1,7 @@
 ## us-legal-mcp_search_federal_register
 
 ### What this tool is for
-Searches for documents in the Federal Register, including regulations, executive orders, and related federal publications. Use this when the user needs to find federal register documents by topic or keyword.
+For documents in the Federal Register, including regulations, executive orders, and related federal publications. Use this when the user needs to find federal register documents by topic or keyword.
 
 ---
 

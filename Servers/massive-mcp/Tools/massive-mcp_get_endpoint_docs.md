@@ -1,7 +1,7 @@
 ## massive-mcp_get_endpoint_docs
 
 ### What this tool is for
-Retrieves parameter documentation for a financial data API endpoint from its documentation URL. Use this after endpoint discovery, when the user needs the endpoint pattern and available query parameters before making a request.
+Parameter documentation for a financial data API endpoint from its documentation URL. Use this after endpoint discovery, when the user needs the endpoint pattern and available query parameters before making a request.
 
 ---
 

@@ -1,7 +1,7 @@
 ## massive-mcp_call_api
 
 ### What this tool is for
-Fetches financial market data from a selected API endpoint path and optionally stores or post-processes the results. Use this after discovering an endpoint and reviewing its documentation, when the user is ready to make the actual data request.
+Financial market data from a selected API endpoint path and optionally stores or post-processes the results. Use this after discovering an endpoint and reviewing its documentation, when the user is ready to make the actual data request.
 
 ---
 

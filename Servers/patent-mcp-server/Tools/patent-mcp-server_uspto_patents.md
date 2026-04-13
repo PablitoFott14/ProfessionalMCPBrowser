@@ -1,7 +1,7 @@
 ## patent-mcp-server_uspto_patents
 
 ### What this tool is used for
-Uspto_patents is a unified tool for all USPTO patent operations. It routes to different underlying endpoints through the `method` parameter, covering full-text patent search, application lookup, document retrieval, PDF download, assignment and continuity data, transaction history, and bulk dataset access. It is used whenever the goal involves finding, reading, or downloading US patent or application data from USPTO databases.
+Is a unified tool for all USPTO patent operations. It routes to different underlying endpoints through the `method` parameter, covering full-text patent search, application lookup, document retrieval, PDF download, assignment and continuity data, transaction history, and bulk dataset access. It is used whenever the goal involves finding, reading, or downloading US patent or application data from USPTO databases.
 
 Available methods:
 - `ppubs_search_patents` — Search granted patents in USPTO Public Search

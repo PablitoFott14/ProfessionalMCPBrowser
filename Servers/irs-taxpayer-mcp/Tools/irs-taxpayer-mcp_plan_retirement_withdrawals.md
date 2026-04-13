@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_plan_retirement_withdrawals
 
 ### What this tool is for
-Plans tax-efficient retirement withdrawals across traditional, Roth, and taxable accounts. Use this when the user wants to compare withdrawal order, spending coverage, and whether Roth conversions may fit the plan.
+Tax-efficient retirement withdrawals across traditional, Roth, and taxable accounts. Use this when the user wants to compare withdrawal order, spending coverage, and whether Roth conversions may fit the plan.
 
 ---
 

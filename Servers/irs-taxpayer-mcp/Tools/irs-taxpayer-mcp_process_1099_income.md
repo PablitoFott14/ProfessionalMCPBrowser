@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_process_1099_income
 
 ### What this tool is for
-Processes multiple 1099 forms and estimates the tax impact of each income type. Use this when the user needs a consolidated view of mixed 1099 income rather than handling each form type separately.
+Multiple 1099 forms and estimates the tax impact of each income type. Use this when the user needs a consolidated view of mixed 1099 income rather than handling each form type separately.
 
 ---
 

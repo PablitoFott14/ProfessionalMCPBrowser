@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_tax_document_checklist
 
 ### What this tool is for
-Generates a personalized checklist of tax documents to gather before filing. Use this when the user wants a filing-prep checklist based on income sources, deductions, credits, and major life events.
+A personalized checklist of tax documents to gather before filing. Use this when the user wants a filing-prep checklist based on income sources, deductions, credits, and major life events.
 
 ---
 

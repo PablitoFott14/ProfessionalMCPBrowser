@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_analyze_relocation_taxes
 
 ### What this tool is for
-Compares the tax impact of relocating from one state to another. Use this when the user wants a deeper state-to-state comparison that includes projected savings rather than a single-state estimate.
+The tax impact of relocating from one state to another. Use this when the user wants a deeper state-to-state comparison that includes projected savings rather than a single-state estimate.
 
 ---
 

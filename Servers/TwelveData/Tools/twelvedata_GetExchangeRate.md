@@ -1,7 +1,7 @@
 ## twelvedata_GetExchangeRate
 
 ### What this tool is for
-GetExchangeRate retrieves the real-time exchange rate for a currency pair, including both forex and cryptocurrencies. It is used when the user needs a direct conversion rate at a given moment, rather than time series or indicator data.
+Retrieves the real-time exchange rate for a currency pair, including both forex and cryptocurrencies. It is used when the user needs a direct conversion rate at a given moment, rather than time series or indicator data.
 
 ---
 

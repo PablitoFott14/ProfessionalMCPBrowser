@@ -1,7 +1,7 @@
 ## twelvedata_GetDividends
 
 ### What this tool is for
-GetDividends returns historical dividend payments for an instrument, covering multiple years. It is used when the user needs to analyze income generation, dividend history, or payout consistency of a stock or similar asset.
+Returns historical dividend payments for an instrument, covering multiple years. It is used when the user needs to analyze income generation, dividend history, or payout consistency of a stock or similar asset.
 
 ---
 

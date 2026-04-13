@@ -1,7 +1,7 @@
 ## twelvedata_GetTimeSeriesMacd
 
 ### What this tool is for
-GetTimeSeriesMacd retrieves the MACD indicator over time for a given instrument. It is used when the user wants to analyze momentum and potential trend reversals, rather than raw price data.
+Retrieves the MACD indicator over time for a given instrument. It is used when the user wants to analyze momentum and potential trend reversals, rather than raw price data.
 
 ---
 

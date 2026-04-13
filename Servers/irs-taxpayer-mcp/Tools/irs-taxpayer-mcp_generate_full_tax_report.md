@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_generate_full_tax_report
 
 ### What this tool is for
-Generates a full tax estimate report that combines federal tax, state tax, FICA, credits, deductions, withholding, and payment information into one summary. Use this when the user wants a broad end-to-end estimate rather than a focused calculation on a single tax area.
+A full tax estimate report that combines federal tax, state tax, FICA, credits, deductions, withholding, and payment information into one summary. Use this when the user wants a broad end-to-end estimate rather than a focused calculation on a single tax area.
 
 ---
 

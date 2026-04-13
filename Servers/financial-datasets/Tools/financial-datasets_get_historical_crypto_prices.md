@@ -1,7 +1,7 @@
 ## financial-datasets_get_historical_crypto_prices
 
 ### What this tool is for
-Retrieves historical OHLC price data for a cryptocurrency over a specified date range. Use this when the user needs to analyze past price movements, build charts, or feed crypto data into a strategy or indicator.
+Historical OHLC price data for a cryptocurrency over a specified date range. Use this when the user needs to analyze past price movements, build charts, or feed crypto data into a strategy or indicator.
 
 The available tickers can be discovered via the `get_available_crypto_tickers` tool.
 

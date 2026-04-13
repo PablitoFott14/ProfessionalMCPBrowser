@@ -1,7 +1,7 @@
 ## twelvedata_GetExchanges
 
 ### What this tool is for
-GetExchanges returns the list of available stock and ETF exchanges, including metadata such as country, MIC code, and timezone. It is used when the user needs to discover or validate exchanges before querying instruments or market data.
+Returns the list of available stock and ETF exchanges, including metadata such as country, MIC code, and timezone. It is used when the user needs to discover or validate exchanges before querying instruments or market data.
 
 ---
 

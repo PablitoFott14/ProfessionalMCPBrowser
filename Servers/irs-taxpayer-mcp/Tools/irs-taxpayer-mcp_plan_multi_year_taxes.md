@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_plan_multi_year_taxes
 
 ### What this tool is for
-Creates a multi-year tax projection across a three- to five-year planning horizon. Use this when the user wants to compare bracket management, Roth conversions, retirement contributions, and income changes over multiple tax years rather than evaluating a single year in isolation.
+A multi-year tax projection across a three- to five-year planning horizon. Use this when the user wants to compare bracket management, Roth conversions, retirement contributions, and income changes over multiple tax years rather than evaluating a single year in isolation.
 
 ---
 

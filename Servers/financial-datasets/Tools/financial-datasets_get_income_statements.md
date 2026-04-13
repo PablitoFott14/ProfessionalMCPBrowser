@@ -1,7 +1,7 @@
 ## financial-datasets_get_income_statements
 
 ### What this tool is for
-Retrieves income statements for a company, covering revenue, expenses, and profitability metrics. Use this when the user needs to analyze a company's earnings performance, margins, or growth trends over time.
+Income statements for a company, covering revenue, expenses, and profitability metrics. Use this when the user needs to analyze a company's earnings performance, margins, or growth trends over time.
 
 ---
 

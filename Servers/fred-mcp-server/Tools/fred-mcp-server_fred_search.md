@@ -1,7 +1,7 @@
 ## fred-mcp-server_fred_search
 
 ### What this tool is for
-Searches for FRED economic data series by keywords, tags, identifiers, or filters. Use this when the user needs to locate relevant economic series before requesting observations or working with a specific series ID.
+For FRED economic data series by keywords, tags, identifiers, or filters. Use this when the user needs to locate relevant economic series before requesting observations or working with a specific series ID.
 
 ---
 

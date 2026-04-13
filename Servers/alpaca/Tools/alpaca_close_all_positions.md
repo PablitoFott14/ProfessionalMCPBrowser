@@ -1,7 +1,7 @@
 ## alpaca_close_all_positions
 
 ### What this tool is for
-Closes all open positions on the Alpaca account in a single call. Optionally cancels all open orders first to prevent conflicts during liquidation. Use this when the user wants to fully exit the market or reset the portfolio.
+All open positions on the Alpaca account in a single call. Optionally cancels all open orders first to prevent conflicts during liquidation. Use this when the user wants to fully exit the market or reset the portfolio.
 
 ---
 

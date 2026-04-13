@@ -1,7 +1,7 @@
 ## alpaca_get_crypto_bars
 
 ### What this tool is for
-Retrieves historical OHLCV price bars for one or more cryptocurrencies over a configurable timeframe and time range. Supports relative lookback via days/hours/minutes or explicit ISO date ranges. Use this when the user needs crypto bar data for trend analysis, charting, or strategy backtesting.
+Historical OHLCV price bars for one or more cryptocurrencies over a configurable timeframe and time range. Supports relative lookback via days/hours/minutes or explicit ISO date ranges. Use this when the user needs crypto bar data for trend analysis, charting, or strategy backtesting.
 
 ---
 

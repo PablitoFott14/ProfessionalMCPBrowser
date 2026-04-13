@@ -1,7 +1,7 @@
 ## goldrush-mcp_token_approvals
 
 ### What this tool is used for
-Token_approvals retrieves a list of all token approvals granted by a wallet address across all token contracts, categorized by spender. It is used when the user needs to audit which contracts have been approved to spend their tokens, typically as part of a security or risk review.
+Retrieves a list of all token approvals granted by a wallet address across all token contracts, categorized by spender. It is used when the user needs to audit which contracts have been approved to spend their tokens, typically as part of a security or risk review.
 
 ---
 

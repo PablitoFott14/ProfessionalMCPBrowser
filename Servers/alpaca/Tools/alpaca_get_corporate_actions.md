@@ -1,7 +1,7 @@
 ## alpaca_get_corporate_actions
 
 ### What this tool is for
-Retrieves corporate action announcements from Alpaca, such as splits, dividends, mergers, and spin-offs. Use this when the user needs to track events that affect share structure or value for one or more stocks.
+Corporate action announcements from Alpaca, such as splits, dividends, mergers, and spin-offs. Use this when the user needs to track events that affect share structure or value for one or more stocks.
 
 ---
 

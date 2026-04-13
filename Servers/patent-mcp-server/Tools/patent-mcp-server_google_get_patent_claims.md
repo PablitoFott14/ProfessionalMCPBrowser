@@ -1,7 +1,7 @@
 ## patent-mcp-server_google_get_patent_claims
 
 ### What this tool is used for
-Google_get_patent_claims retrieves all claims for a specific patent from Google Patents by publication number. It returns each claim with its claim number and full claim text. It is used when the user needs to read, analyze, or compare the legal claim language of a known patent.
+Retrieves all claims for a specific patent from Google Patents by publication number. It returns each claim with its claim number and full claim text. It is used when the user needs to read, analyze, or compare the legal claim language of a known patent.
 
 ---
 

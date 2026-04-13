@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_get_tax_brackets
 
 ### What this tool is for
-Returns federal income tax brackets and the standard deduction for a given tax year and filing status. Use this when the user needs the baseline tax schedule inputs without running a full tax calculation.
+Federal income tax brackets and the standard deduction for a given tax year and filing status. Use this when the user needs the baseline tax schedule inputs without running a full tax calculation.
 
 ---
 

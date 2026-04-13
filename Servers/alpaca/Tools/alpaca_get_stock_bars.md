@@ -1,7 +1,7 @@
 ## alpaca_get_stock_bars
 
 ### What this tool is for
-Retrieves historical OHLCV price bars for one or more stocks over a configurable timeframe and time range. Supports flexible lookback via relative offsets (days, hours, minutes) or explicit ISO date ranges. Use this when the user needs bar data to analyze price history, build charts, or run strategies.
+Historical OHLCV price bars for one or more stocks over a configurable timeframe and time range. Supports flexible lookback via relative offsets (days, hours, minutes) or explicit ISO date ranges. Use this when the user needs bar data to analyze price history, build charts, or run strategies.
 
 ---
 

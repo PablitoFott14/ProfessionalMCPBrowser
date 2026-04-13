@@ -1,7 +1,7 @@
 ## goldrush-mcp_transaction_summary
 
 ### What this tool is used for
-Transaction_summary fetches a high-level activity overview for a wallet address on a given chain, including the earliest and latest transactions, total transaction count, ERC-20 token transfer count, and optionally a gas expenditure breakdown. It is used when the user needs a quick wallet activity profile rather than a full paginated transaction history.
+Fetches a high-level activity overview for a wallet address on a given chain, including the earliest and latest transactions, total transaction count, ERC-20 token transfer count, and optionally a gas expenditure breakdown. It is used when the user needs a quick wallet activity profile rather than a full paginated transaction history.
 
 ---
 

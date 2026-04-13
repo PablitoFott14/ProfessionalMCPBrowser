@@ -1,7 +1,7 @@
 ## alpaca_place_option_market_order
 
 ### What this tool is for
-Places a market order for one or more option legs, supporting both single-leg and multi-leg strategies (spreads, straddles, strangles, etc.) with atomic execution. Use this when the user wants to enter an options position at market price.
+A market order for one or more option legs, supporting both single-leg and multi-leg strategies (spreads, straddles, strangles, etc.) with atomic execution. Use this when the user wants to enter an options position at market price.
 
 Key constraints:
 - Only `day` is a valid time_in_force for options orders.

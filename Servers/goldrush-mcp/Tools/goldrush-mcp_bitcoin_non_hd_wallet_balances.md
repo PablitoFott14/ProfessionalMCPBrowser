@@ -1,7 +1,7 @@
 ## goldrush-mcp_bitcoin_non_hd_wallet_balances
 
 ### What this tool is used for
-Bitcoin_non_hd_wallet_balances fetches the Bitcoin balance for a single non-HD address, including spot prices and token metadata. It is used when the user needs a lightweight balance check for a standard Bitcoin address rather than an HD wallet derived from an extended public key.
+Fetches the Bitcoin balance for a single non-HD address, including spot prices and token metadata. It is used when the user needs a lightweight balance check for a standard Bitcoin address rather than an HD wallet derived from an extended public key.
 
 ---
 

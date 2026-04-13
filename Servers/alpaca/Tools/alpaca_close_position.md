@@ -1,7 +1,7 @@
 ## alpaca_close_position
 
 ### What this tool is for
-Closes an open position for a specific symbol, either fully or partially by quantity or percentage. Use this when the user wants to exit or reduce a holding. Will return an error if no position exists for the given symbol.
+An open position for a specific symbol, either fully or partially by quantity or percentage. Use this when the user wants to exit or reduce a holding. Will return an error if no position exists for the given symbol.
 
 ---
 

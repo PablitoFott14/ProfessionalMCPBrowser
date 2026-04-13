@@ -1,7 +1,7 @@
 ## goldrush-mcp_historical_token_prices
 
 ### What this tool is used for
-Historical_token_prices retrieves daily historical prices for one or more large-cap ERC-20 or native tokens within a specified date range on a given chain. It is used when the user needs price history for valuation, charting, or portfolio analysis across a defined time window.
+Retrieves daily historical prices for one or more large-cap ERC-20 or native tokens within a specified date range on a given chain. It is used when the user needs price history for valuation, charting, or portfolio analysis across a defined time window.
 
 ---
 

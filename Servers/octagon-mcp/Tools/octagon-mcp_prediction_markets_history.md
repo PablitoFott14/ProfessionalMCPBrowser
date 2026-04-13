@@ -1,7 +1,7 @@
 ## octagon-mcp_prediction_markets_history
 
 ### What this tool is for
-Retrieves historical data for a prediction market event by its event ticker. Use this when the user needs historical records for a specific prediction market, optionally with pagination, a bounded time window, or analysis fields included.
+Historical data for a prediction market event by its event ticker. Use this when the user needs historical records for a specific prediction market, optionally with pagination, a bounded time window, or analysis fields included.
 
 ---
 

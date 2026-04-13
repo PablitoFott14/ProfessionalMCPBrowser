@@ -1,7 +1,7 @@
 ## goldrush-mcp_transactions_for_address
 
 ### What this tool is used for
-Transactions_for_address retrieves paginated transactions involving a wallet address on a given chain, optionally including decoded log events. It is used when the user needs to browse or display a wallet's full on-chain transaction history in a paginated format, with control over sort order and log inclusion.
+Retrieves paginated transactions involving a wallet address on a given chain, optionally including decoded log events. It is used when the user needs to browse or display a wallet's full on-chain transaction history in a paginated format, with control over sort order and log inclusion.
 
 ---
 

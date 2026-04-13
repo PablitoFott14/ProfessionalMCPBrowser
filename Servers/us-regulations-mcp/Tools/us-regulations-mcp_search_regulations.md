@@ -1,7 +1,7 @@
 ## us-regulations-mcp_search_regulations
 
 ### What this tool is for
-Searches across supported US federal and state regulations to find relevant regulation text on a topic. Use this as the primary discovery tool when the user needs to locate regulation sections before moving to a specific provision.
+Across supported US federal and state regulations to find relevant regulation text on a topic. Use this as the primary discovery tool when the user needs to locate regulation sections before moving to a specific provision.
 
 ---
 

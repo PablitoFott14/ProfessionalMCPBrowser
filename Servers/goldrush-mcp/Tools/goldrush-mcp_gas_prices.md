@@ -1,7 +1,7 @@
 ## goldrush-mcp_gas_prices
 
 ### What this tool is used for
-Gas_prices returns real-time gas estimates for different transaction speeds on a specific network. It is used when the user needs to understand current network fees before submitting a transaction, or wants to compare costs across transaction types such as token transfers, native sends, or Uniswap swaps.
+Returns real-time gas estimates for different transaction speeds on a specific network. It is used when the user needs to understand current network fees before submitting a transaction, or wants to compare costs across transaction types such as token transfers, native sends, or Uniswap swaps.
 
 ---
 

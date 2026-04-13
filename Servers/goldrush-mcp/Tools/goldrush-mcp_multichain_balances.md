@@ -1,7 +1,7 @@
 ## goldrush-mcp_multichain_balances
 
 ### What this tool is used for
-Multichain_balances fetches paginated spot and historical native and token balances for a single wallet address across up to 10 EVM chains in one call. It is used when the user needs a consolidated portfolio view or a historical balance snapshot across multiple chains without querying each one separately.
+Fetches paginated spot and historical native and token balances for a single wallet address across up to 10 EVM chains in one call. It is used when the user needs a consolidated portfolio view or a historical balance snapshot across multiple chains without querying each one separately.
 
 ---
 

@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_calculate_total_tax
 
 ### What this tool is for
-Calculates combined federal and state tax liability in one call. Use this when the user needs a more complete tax picture that includes both the federal breakdown and the tax impact of a specific state.
+Combined federal and state tax liability in one call. Use this when the user needs a more complete tax picture that includes both the federal breakdown and the tax impact of a specific state.
 
 ---
 

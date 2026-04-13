@@ -1,7 +1,7 @@
 ## alpaca_get_watchlist_by_id
 
 ### What this tool is for
-Retrieves the details of a specific Alpaca watchlist by its UUID, including its name, ID, timestamps, and the symbols it contains. Use this when the user wants to inspect a particular watchlist after retrieving its ID from `get_watchlists`.
+The details of a specific Alpaca watchlist by its UUID, including its name, ID, timestamps, and the symbols it contains. Use this when the user wants to inspect a particular watchlist after retrieving its ID from `get_watchlists`.
 
 ---
 

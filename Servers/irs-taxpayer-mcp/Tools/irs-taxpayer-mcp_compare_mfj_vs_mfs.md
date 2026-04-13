@@ -1,7 +1,7 @@
 ## irs-taxpayer-mcp_compare_mfj_vs_mfs
 
 ### What this tool is for
-Compares Married Filing Jointly against Married Filing Separately and highlights the tax difference along with MFS restrictions that may matter. Use this when the user needs a filing-status decision specifically for married taxpayers.
+Married Filing Jointly against Married Filing Separately and highlights the tax difference along with MFS restrictions that may matter. Use this when the user needs a filing-status decision specifically for married taxpayers.
 
 ---
 
