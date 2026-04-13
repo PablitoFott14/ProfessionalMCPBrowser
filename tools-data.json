@@ -7648,6 +7648,113 @@
       ]
     },
     {
+      "name": "coingecko-mcp",
+      "intro": "The coingecko-mcp server provides access to the full CoinGecko API through a code execution model. Rather than exposing individual endpoints as separate tools, it gives access to the entire API surface through a single execution tool backed by a documentation search tool. It is the right server when the goal is to query any CoinGecko data — prices, market caps, historical charts, trending assets, coin metadata, exchanges, or token details — with full control over what is retrieved and how results are shaped.\n\n### How it works\n\n- All API interaction goes through `coingecko-mcp_execute`, which runs a TypeScript async function against an initialized SDK client. The function must be named `run`, accept the client as its single argument, and return or log whatever data is needed.\n- `coingecko-mcp_search_docs` is a companion discovery tool that searches the SDK documentation for methods, parameters, and usage examples before code is written. It supports multiple languages but TypeScript is the relevant choice for this server.\n- Because the server exposes the full CoinGecko API rather than a fixed set of endpoints, the range of queries is broad — but each call requires knowing the correct SDK method and parameter structure.\n\n### Potential resolution paths\n\n- **Look up a method, then execute it:** Use `coingecko-mcp_search_docs` to find the right SDK method and its parameter shape for a given topic (e.g., coin market chart, trending, exchanges), then pass the corresponding code to `coingecko-mcp_execute`.\n- **Query current market data for one or more assets:** Call `coingecko-mcp_execute` directly with `client.simple.price.get` when the method is already known, passing the target coin IDs and currency.\n- **Retrieve historical price or volume data for a coin:** Use `coingecko-mcp_search_docs` to confirm the correct chart endpoint, then call `coingecko-mcp_execute` with the appropriate coin ID, currency, and date range parameters.\n- **Explore trending or top-ranked coins:** Call `coingecko-mcp_execute` with a markets or trending endpoint to retrieve ranked lists, optionally filtering by category, order, or page.\n\n### Best practices\n\n- **Search the documentation before executing when the SDK method is not known:** `coingecko-mcp_search_docs` eliminates guesswork about method names and parameter shapes — using it first avoids failed or malformed execute calls.\n- **Return data explicitly from the `run` function:** The execute tool captures both return values and console output, but returning structured data directly produces cleaner results than relying on logging alone.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "coingecko-mcp_execute",
+          "purpose": "Execute runs TypeScript code against an initialized CoinGecko SDK client. It is used when the user needs to query any part of the CoinGecko API — prices, market data, coin metadata, exchanges, trending assets, or historical data — by writing a short async function that calls the relevant SDK method and returns or logs the result.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "TypeScript async function named `run` that accepts the initialized SDK client and interacts with the CoinGecko API. Anything returned or logged by the function is included in the response."
+            },
+            {
+              "number": 2,
+              "name": "intent",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Natural language description of the task being performed. Used for improving the service."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the current USD price of Bitcoin and Ethereum",
+              "params": {
+                "code": "async function run(client) { return await client.simple.price.get({ ids: 'bitcoin,ethereum', vs_currencies: 'usd' }); }"
+              }
+            },
+            {
+              "intent": "Retrieve the top 10 coins ranked by market cap",
+              "params": {
+                "code": "async function run(client) { return await client.coins.markets.get({ vs_currency: 'usd', order: 'market_cap_desc', per_page: 10, page: 1 }); }"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "coingecko-mcp_search_docs",
+          "purpose": "Search_docs searches the CoinGecko SDK documentation to discover methods, parameters, and usage examples for a given topic. It is used before writing code when the right SDK method or its exact parameter structure is not already known.",
+          "parameters": [
+            {
+              "number": 3,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The query to search for in the SDK documentation."
+            },
+            {
+              "number": 4,
+              "name": "language",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "http",
+                "python",
+                "go",
+                "typescript",
+                "javascript",
+                "terraform",
+                "ruby",
+                "java",
+                "kotlin"
+              ],
+              "description": "The SDK language to search documentation for."
+            },
+            {
+              "number": 5,
+              "name": "detail",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "default",
+                "verbose"
+              ],
+              "description": "The amount of detail to return in the documentation results."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find the SDK method for retrieving historical market chart data for a coin",
+              "params": {
+                "query": "coin market chart history",
+                "language": "typescript"
+              }
+            },
+            {
+              "intent": "Explore trending coins endpoint with full parameter detail",
+              "params": {
+                "query": "trending coins",
+                "language": "typescript",
+                "detail": "verbose"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
       "name": "financial-datasets",
       "intro": "The financial-datasets server is designed for research-heavy workflows. It brings together company financial statements, SEC filings, market prices, company news, and crypto price history so users can move from a quick market question into a more complete fundamental or event-driven analysis without leaving the same server context.\n\n### How it works\n- The server covers both fundamentals and market behavior, making it useful for linking financial performance, disclosures, headlines, and price movement.\n- It supports equity research workflows especially well, since statements, filings, news, and historical prices can be combined around the same company.\n- Inputs are generally simple, but the real strength is in combining several tools to answer broader investment or research questions.\n\n### Potential resolution paths\n- **Run a full company research pass:** Combine `get_income_statements`, `get_balance_sheets`, and `get_cash_flow_statements` to understand profitability, financial position, and cash generation together.\n- **Link narrative to numbers:** Use `get_company_news` and `get_sec_filings` to identify important developments, then review the related statements or price history to see how those events connect to fundamentals and market reaction.\n- **Move between current view and historical context:** Start with `get_current_stock_price` for a quick check, then expand into `get_historical_stock_prices` or crypto price tools when the user needs trend, volatility, or event-window analysis.\n\n### Best practices\n- **Treat the server as a research bundle, not a set of isolated endpoints:** Its value increases when filings, news, statements, and prices are read together.\n- **Match the tool to the depth of the question:** Use current price tools for quick checks, historical series for trend analysis, and statement or filing tools when the user is really asking about business quality or disclosure.",
       "paramsWrapped": false,
@@ -8506,6 +8613,3599 @@
                 "order_by": "popularity",
                 "sort_order": "desc",
                 "limit": 20
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "goldrush-mcp",
+      "intro": "The goldrush-mcp server is a comprehensive on-chain data layer for EVM chains, Bitcoin, and NFTs. It covers wallet balances, transaction history, token transfers, event logs, block data, NFT ownership, DeFi pool prices, gas estimates, and historical snapshots — all accessible through a consistent set of address- and chain-scoped tools. It is the right server when the goal is to retrieve, inspect, or analyze blockchain state across one or many chains without writing direct RPC calls.\n\n### How it works\n\n- Most tools are scoped to a `chainName` plus a wallet address, contract address, or block identifier. Multi-chain tools accept arrays of up to 10 chains and addresses in a single call; single-chain tools take one chain and one address.\n- Domain name resolution (ENS, RNS, Lens Handle, Unstoppable Domains) is supported natively in most wallet and contract address fields, but not in all tools — `multichain_balances` explicitly requires a raw address.\n- Bitcoin is covered through dedicated tools that accept either an extended public key (HD wallets) or a standard non-HD address, separate from the EVM tool set.\n- Pagination varies by tool: some use `page`/`pageNumber`/`pageSize`, others use cursor-based `before`/`after` parameters.\n\n### Potential resolution paths\n\n- **Build a cross-chain wallet dashboard:** Use `multichain_address_activity` to discover which chains a wallet is active on, then call `multichain_balances` or `multichain_transactions` scoped to only those chains.\n- **Inspect a single-chain wallet in depth:** Start with `token_balances` or `native_token_balance` for the current holdings, then use `erc20_token_transfers` for token-level history, `transaction_summary` for a quick activity overview, and `transactions_for_address` for full paginated transaction history.\n- **Audit wallet exposure and security:** Use `token_approvals` to surface which contracts have spending permissions, then cross-reference with `erc20_token_transfers` to understand what activity those approvals have generated.\n- **Explore blocks and transactions:** Use `block_heights` to map a date range to block numbers, `block` or `transactions_for_block` to inspect block contents, and `transaction` to drill into a specific hash with decoded logs, internal transfers, and state changes.\n- **Analyze contract-level on-chain activity:** Use `log_events_by_address` to retrieve all events from a specific contract, or `log_events_by_topic` to find all instances of a given event type across the entire chain.\n- **Work with NFTs:** Use `nft_for_address` to retrieve a wallet's full NFT holdings, `nft_check_ownership` to verify collection-level ownership, and `nft_check_ownership_token_id` to confirm ownership of a specific token.\n- **Reconstruct historical portfolio state:** Use `historical_token_balances` or `historical_portfolio_value` to snapshot a wallet at a past date or block, and `historical_token_prices` to retrieve the price series for the relevant tokens over that window.\n- **Query Bitcoin wallets:** Use `bitcoin_hd_wallet_balances` for HD wallets via an extended public key, or `bitcoin_non_hd_wallet_balances` and `bitcoin_transactions` for standard non-HD addresses.\n\n### Best practices\n\n- **Use `multichain_address_activity` before multi-chain queries when the active chains are unknown:** Scoping `multichain_balances` or `multichain_transactions` to only the chains where a wallet has activity avoids unnecessary calls and reduces response size.\n- **Use `resolve_address` before tools that do not support automatic domain resolution:** Tools such as `multichain_balances` require a raw address — passing an ENS name directly will fail, so resolving it first with `resolve_address` is necessary when starting from a human-readable name.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "goldrush-mcp_bitcoin_hd_wallet_balances",
+          "purpose": "Bitcoin_hd_wallet_balances fetches balances for each active child address derived from a Bitcoin HD wallet. It is used when the user has an extended public key and needs a consolidated view of balances across all derived addresses without querying each one individually.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The extended public key of the Bitcoin HD wallet. Accepts xPub, yPub, or zPub formats."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for balance value conversions in the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get BTC balances for all active addresses derived from an HD wallet in USD",
+              "params": {
+                "walletAddress": "xpub6CUGRUonZSQ4TWtTMmzXdrXDtypWKiKrhko4egpiMZbpiaQL2jkwSB1icqYh2cfDfVxdx4df189oLKnC5fSwqPfgyP3hooxujYzAu3fDVmz",
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_bitcoin_non_hd_wallet_balances",
+          "purpose": "Bitcoin_non_hd_wallet_balances fetches the Bitcoin balance for a single non-HD address, including spot prices and token metadata. It is used when the user needs a lightweight balance check for a standard Bitcoin address rather than an HD wallet derived from an extended public key.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The Bitcoin non-HD address to retrieve the balance for."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for spot price conversions in the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the current Bitcoin balance for a non-HD address in USD",
+              "params": {
+                "walletAddress": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_bitcoin_transactions",
+          "purpose": "Bitcoin_transactions fetches the full paginated transaction history for a single Bitcoin non-HD wallet address. It is used when the user needs to review or analyze the on-chain activity of a specific Bitcoin address.",
+          "parameters": [
+            {
+              "number": 37,
+              "name": "address",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The Bitcoin address to retrieve transactions for."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of transactions to return per page. Defaults to 100 if omitted without an explicit value."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch the first page of transactions for a Bitcoin address",
+              "params": {
+                "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+              }
+            },
+            {
+              "intent": "Paginate through Bitcoin transaction history with a larger page size",
+              "params": {
+                "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                "pageSize": 50,
+                "pageNumber": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_block",
+          "purpose": "Block fetches a single block by height for a given chain. It is used when the user needs to inspect or render the details of a specific block, such as for a block explorer view, or to check the state of the latest block on a network.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 14,
+              "name": "blockHeight",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The block height to retrieve. Pass \"latest\" to fetch the most recent block available."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch a specific block by height on Ethereum mainnet",
+              "params": {
+                "chainName": "eth-mainnet",
+                "blockHeight": "19000000"
+              }
+            },
+            {
+              "intent": "Retrieve the latest block on Base",
+              "params": {
+                "chainName": "base-mainnet",
+                "blockHeight": "latest"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_block_heights",
+          "purpose": "Block_heights retrieves all block heights within a given date range for a specific chain. It is used when the user needs to map blocks to calendar dates, such as for sorting or displaying blocks by day in a block explorer or analytics view.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 15,
+              "name": "startDate",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The start of the date range in YYYY-MM-DD format."
+            },
+            {
+              "number": 16,
+              "name": "endDate",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The end of the date range in YYYY-MM-DD format, or \"latest\" to extend to the most recent block available."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of block heights to return per page."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get all block heights on Ethereum mainnet for a specific week",
+              "params": {
+                "chainName": "eth-mainnet",
+                "startDate": "2024-01-01",
+                "endDate": "2024-01-07"
+              }
+            },
+            {
+              "intent": "Paginate through block heights on Base from a start date up to the latest block",
+              "params": {
+                "chainName": "base-mainnet",
+                "startDate": "2024-06-01",
+                "endDate": "latest",
+                "pageSize": 50,
+                "pageNumber": 1
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_erc20_token_transfers",
+          "purpose": "Erc20_token_transfers retrieves the inbound and outbound ERC-20 token transfer history for a wallet address on a specific chain, including historical prices at the time of each transfer. It is used when the user needs a token-level transaction history for a wallet, optionally scoped to a specific token contract.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve token transfers for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 19,
+              "name": "contractAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The token contract address to filter transfers by. Pass null to retrieve transfers across all ERC-20 tokens. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for historical price conversions in the response."
+            },
+            {
+              "number": 20,
+              "name": "startingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The block height to start from. Defaults to block 0 if omitted."
+            },
+            {
+              "number": 21,
+              "name": "endingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The block height to end at. Defaults to the current block height if omitted."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Number of transfer records to return per page. Defaults to 100 if omitted."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the full USDC transfer history for a wallet on Ethereum",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "contractAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Retrieve all ERC-20 transfers for a wallet on Arbitrum within a specific block range",
+              "params": {
+                "chainName": "arbitrum-mainnet",
+                "walletAddress": "vitalik.eth",
+                "contractAddress": null,
+                "startingBlock": 180000000,
+                "endingBlock": 185000000,
+                "quoteCurrency": "USD",
+                "pageSize": 50
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_gas_prices",
+          "purpose": "Gas_prices returns real-time gas estimates for different transaction speeds on a specific network. It is used when the user needs to understand current network fees before submitting a transaction, or wants to compare costs across transaction types such as token transfers, native sends, or Uniswap swaps.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to retrieve gas prices for."
+            },
+            {
+              "number": 13,
+              "name": "eventType",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "erc20",
+                "nativetokens",
+                "uniswapv3"
+              ],
+              "description": "The transaction event type to retrieve gas estimates for. Use erc20 for token transfers, nativetokens for native asset sends, and uniswapv3 for Uniswap swap events."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for gas cost conversions in the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get current gas prices for ERC-20 token transfers on Ethereum mainnet in USD",
+              "params": {
+                "chainName": "eth-mainnet",
+                "eventType": "erc20",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Check gas estimates for a Uniswap v3 swap on Base",
+              "params": {
+                "chainName": "base-mainnet",
+                "eventType": "uniswapv3",
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_historical_portfolio_value",
+          "purpose": "Historical_portfolio_value renders a daily portfolio balance broken down by token for a wallet address over a configurable time window. It is used when the user needs to visualize or analyze how a portfolio's value has changed over time on a specific chain, with per-token granularity.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve portfolio history for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for portfolio value conversions in the response."
+            },
+            {
+              "number": 26,
+              "name": "days",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The number of days to return daily portfolio data for. Defaults to 30 days if omitted."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Render a 30-day daily portfolio breakdown for a wallet on Ethereum in USD",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Get a 90-day portfolio value history for an ENS address on Base",
+              "params": {
+                "chainName": "base-mainnet",
+                "walletAddress": "vitalik.eth",
+                "quoteCurrency": "USD",
+                "days": 90
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_historical_token_balances",
+          "purpose": "Historical_token_balances fetches the native and ERC-20 token holdings for a wallet address at a specific historical point in time, defined by either a block height or a date. It is used when the user needs to reconstruct a past portfolio snapshot rather than the current state, including daily prices and token metadata at that point.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve historical balances for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for price conversions in the response."
+            },
+            {
+              "number": 24,
+              "name": "noSpam",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, suspected spam tokens are removed from the response. Supported on all Foundational Chains."
+            },
+            {
+              "number": 14,
+              "name": "blockHeight",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Ending block height to define the historical snapshot. Defaults to the latest block if omitted."
+            },
+            {
+              "number": 25,
+              "name": "date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Ending date in YYYY-MM-DD format to define the historical snapshot. Defaults to the current date if omitted."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve a wallet's token holdings on Ethereum as of a specific past date",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "date": "2024-01-01",
+                "quoteCurrency": "USD",
+                "noSpam": true
+              }
+            },
+            {
+              "intent": "Reconstruct a portfolio snapshot at a specific block height on Arbitrum",
+              "params": {
+                "chainName": "arbitrum-mainnet",
+                "walletAddress": "vitalik.eth",
+                "blockHeight": 180000000,
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_historical_token_prices",
+          "purpose": "Historical_token_prices retrieves daily historical prices for one or more large-cap ERC-20 or native tokens within a specified date range on a given chain. It is used when the user needs price history for valuation, charting, or portfolio analysis across a defined time window.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for historical price values in the response."
+            },
+            {
+              "number": 19,
+              "name": "contractAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The token contract address to retrieve price history for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically. Supports multiple addresses separated by commas."
+            },
+            {
+              "number": 43,
+              "name": "from",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The start date of the historical price range in YYYY-MM-DD format."
+            },
+            {
+              "number": 44,
+              "name": "to",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The end date of the historical price range in YYYY-MM-DD format."
+            },
+            {
+              "number": 45,
+              "name": "pricesAtAsc",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, returns prices in ascending chronological order. Defaults to descending order if omitted."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get daily USDC price history on Ethereum for Q1 2024",
+              "params": {
+                "chainName": "eth-mainnet",
+                "quoteCurrency": "USD",
+                "contractAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                "from": "2024-01-01",
+                "to": "2024-03-31",
+                "pricesAtAsc": true
+              }
+            },
+            {
+              "intent": "Retrieve historical prices for two tokens on Base over a 30-day window",
+              "params": {
+                "chainName": "base-mainnet",
+                "quoteCurrency": "USD",
+                "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913,0x4200000000000000000000000000000000000006",
+                "from": "2024-06-01",
+                "to": "2024-06-30"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_log_events_by_address",
+          "purpose": "Log_events_by_address retrieves all event logs emitted from a specific contract address on a given chain. It is used when the user needs to examine on-chain interactions for a contract, such as tracking transfers, swaps, mints, or other contract-level activity within a block range.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 19,
+              "name": "contractAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The contract address to retrieve event logs for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 20,
+              "name": "startingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The first block to retrieve log events from. Accepts a decimal, hexadecimal, or the strings \"earliest\" or \"latest\"."
+            },
+            {
+              "number": 21,
+              "name": "endingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The last block to retrieve log events from. Accepts a decimal, hexadecimal, or the strings \"earliest\" or \"latest\"."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of log events to return per page."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch recent event logs from a Uniswap v3 pool contract on Ethereum",
+              "params": {
+                "chainName": "eth-mainnet",
+                "contractAddress": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+                "startingBlock": 19000000,
+                "endingBlock": "latest"
+              }
+            },
+            {
+              "intent": "Paginate through all historical event logs for an NFT contract on Polygon",
+              "params": {
+                "chainName": "matic-mainnet",
+                "contractAddress": "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+                "startingBlock": "earliest",
+                "endingBlock": "latest",
+                "pageSize": 50,
+                "pageNumber": 2
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_log_events_by_topic",
+          "purpose": "Log_events_by_topic retrieves all event logs matching a given topic hash across all contracts on a chain. It is used when the user needs cross-sectional analysis of a specific event type — such as all ERC-20 Transfer events or all Uniswap Swap events — regardless of which contract emitted them.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 22,
+              "name": "topicHash",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The topic hash to filter event logs by. Returns all logs across all contracts that contain this topic hash."
+            },
+            {
+              "number": 20,
+              "name": "startingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The first block to retrieve log events from. Accepts a decimal, hexadecimal, or the strings \"earliest\" or \"latest\"."
+            },
+            {
+              "number": 21,
+              "name": "endingBlock",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "The last block to retrieve log events from. Accepts a decimal, hexadecimal, or the strings \"earliest\" or \"latest\"."
+            },
+            {
+              "number": 23,
+              "name": "secondaryTopics",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Additional topic hash(es) to narrow results. Padded and unpadded address fields are supported. Separate multiple topics with a comma."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of log events to return per page."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch all ERC-20 Transfer events across Ethereum mainnet within a block range",
+              "params": {
+                "chainName": "eth-mainnet",
+                "topicHash": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "startingBlock": 19000000,
+                "endingBlock": 19001000
+              }
+            },
+            {
+              "intent": "Find all Transfer events for a specific token by filtering on a secondary topic address",
+              "params": {
+                "chainName": "eth-mainnet",
+                "topicHash": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "startingBlock": 19000000,
+                "endingBlock": "latest",
+                "secondaryTopics": "0x000000000000000000000000d8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "pageSize": 50
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_multichain_address_activity",
+          "purpose": "Multichain_address_activity identifies which chains a given address has been active on, using a single API call. It is used when the starting point is an address and the goal is to discover which networks to query further, before pulling balances or transactions.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to check for activity. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 11,
+              "name": "testnets",
+              "required": false,
+              "default": "false",
+              "allowed": [],
+              "description": "Set to true to include testnet chains with activity in the response. By default only mainnet activity is returned."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find which mainnet chains a wallet has been active on",
+              "params": {
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+              }
+            },
+            {
+              "intent": "Check active chains for an ENS name including testnets",
+              "params": {
+                "walletAddress": "vitalik.eth",
+                "testnets": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_multichain_balances",
+          "purpose": "Multichain_balances fetches paginated spot and historical native and token balances for a single wallet address across up to 10 EVM chains in one call. It is used when the user needs a consolidated portfolio view or a historical balance snapshot across multiple chains without querying each one separately.",
+          "parameters": [
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve balances for. Domain names (e.g. demo.eth) are not supported."
+            },
+            {
+              "number": 1,
+              "name": "chains",
+              "required": false,
+              "default": "all foundational chains",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet",
+                "or any numeric chain ID"
+              ],
+              "description": "List of chains to retrieve balances from. Accepts up to 10 entries."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of token balances to return per page, up to a maximum of 100."
+            },
+            {
+              "number": 4,
+              "name": "before",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Pagination cursor for fetching balances before a certain point."
+            },
+            {
+              "number": 10,
+              "name": "cutoffTimestamp",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "UNIX timestamp used to retrieve a balance snapshot from the nearest block before the specified time."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get current token balances for a wallet across Ethereum, Optimism, and Base in USD",
+              "params": {
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "chains": [
+                  "eth-mainnet",
+                  "optimism-mainnet",
+                  "base-mainnet"
+                ],
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Retrieve a historical balance snapshot for a wallet at a specific point in time",
+              "params": {
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "chains": [
+                  "eth-mainnet",
+                  "matic-mainnet"
+                ],
+                "cutoffTimestamp": 1704067200,
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_multichain_transactions",
+          "purpose": "Multichain_transactions fetches paginated transactions for up to 10 EVM addresses across up to 10 chains in a single call. It is used when the user needs a unified activity feed across multiple wallets or chains, rather than querying each chain individually.",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "chains",
+              "required": false,
+              "default": "all foundational chains",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet",
+                "or any numeric chain ID"
+              ],
+              "description": "List of chains to retrieve transactions from. Accepts up to 10 entries."
+            },
+            {
+              "number": 2,
+              "name": "addresses",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of wallet addresses to retrieve transactions for. Accepts up to 10 entries."
+            },
+            {
+              "number": 3,
+              "name": "limit",
+              "required": false,
+              "default": "10",
+              "allowed": [],
+              "description": "Number of transactions to return per page, up to a maximum of 100."
+            },
+            {
+              "number": 4,
+              "name": "before",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Pagination cursor for fetching transactions before a certain point."
+            },
+            {
+              "number": 5,
+              "name": "after",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Pagination cursor for fetching transactions after a certain point."
+            },
+            {
+              "number": 6,
+              "name": "withLogs",
+              "required": false,
+              "default": "false",
+              "allowed": [],
+              "description": "Whether to include raw logs in the response."
+            },
+            {
+              "number": 7,
+              "name": "withDecodedLogs",
+              "required": false,
+              "default": "false",
+              "allowed": [],
+              "description": "Whether to include decoded logs in the response."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Build a cross-chain activity feed for a single wallet across Ethereum, Base, and Arbitrum",
+              "params": {
+                "addresses": [
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+                ],
+                "chains": [
+                  "eth-mainnet",
+                  "base-mainnet",
+                  "arbitrum-mainnet"
+                ],
+                "quoteCurrency": "USD",
+                "limit": 25
+              }
+            },
+            {
+              "intent": "Fetch the next page of transactions for two wallets on Polygon and BSC with decoded logs",
+              "params": {
+                "addresses": [
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                  "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B"
+                ],
+                "chains": [
+                  "matic-mainnet",
+                  "bsc-mainnet"
+                ],
+                "withDecodedLogs": true,
+                "after": "cursor_abc123"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_native_token_balance",
+          "purpose": "Native_token_balance is a lightweight endpoint that returns only the native token balance for a single EVM address on a given chain. It is used when the user needs a fast, minimal check of an address's native asset holdings (e.g. ETH, MATIC, BNB) without the overhead of a full token balance response.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve the native token balance for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for native token value conversion in the response."
+            },
+            {
+              "number": 14,
+              "name": "blockHeight",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Block height to use as the upper bound for the balance lookup. Defaults to the latest block if omitted. Accepts a block number or string."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check the current ETH balance for a wallet on Ethereum mainnet",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Get the MATIC balance of an ENS address on Polygon at a specific block",
+              "params": {
+                "chainName": "matic-mainnet",
+                "walletAddress": "vitalik.eth",
+                "blockHeight": 55000000,
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_nft_check_ownership",
+          "purpose": "Nft_check_ownership verifies whether a wallet address owns any NFTs within a specific collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a collection, optionally filtered down to NFTs with a particular trait and value.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to verify ownership for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 38,
+              "name": "collectionContract",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The NFT collection contract address to check ownership against."
+            },
+            {
+              "number": 39,
+              "name": "traitsFilter",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results to NFTs with a specific trait name. Must be used together with valuesFilter. Case-sensitive."
+            },
+            {
+              "number": 40,
+              "name": "valuesFilter",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filters results to NFTs with a specific trait value. Must be used together with traitsFilter. Case-sensitive."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check whether a wallet owns any NFTs in the Bored Ape Yacht Club collection",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "collectionContract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+              }
+            },
+            {
+              "intent": "Verify ownership of NFTs with a specific trait in a collection on Polygon",
+              "params": {
+                "chainName": "matic-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "collectionContract": "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+                "traitsFilter": "Background",
+                "valuesFilter": "Blue"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_nft_check_ownership_token_id",
+          "purpose": "Nft_check_ownership_token_id verifies whether a wallet address owns a specific token ID within an NFT collection, supporting both ERC-721 and ERC-1155 standards. It is used when the user needs to confirm ownership of a precise token rather than any NFT within a collection.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to verify ownership for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 38,
+              "name": "collectionContract",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The NFT collection contract address. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 42,
+              "name": "tokenId",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The specific token ID to verify ownership of within the collection."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Check whether a wallet owns a specific Bored Ape token by ID",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "collectionContract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+                "tokenId": "1234"
+              }
+            },
+            {
+              "intent": "Verify ERC-1155 token ownership for an ENS address on Polygon",
+              "params": {
+                "chainName": "matic-mainnet",
+                "walletAddress": "vitalik.eth",
+                "collectionContract": "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+                "tokenId": "42"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_nft_for_address",
+          "purpose": "Nft_for_address retrieves the ERC-721 and ERC-1155 NFTs held by a wallet address on a given chain. It is used when the user needs to render or inspect an NFT portfolio, with options to strip spam tokens and control the level of metadata detail returned.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve NFTs for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 24,
+              "name": "noSpam",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, suspected spam NFTs are removed from the response. Supported on all Foundational Chains."
+            },
+            {
+              "number": 41,
+              "name": "noNftAssetMetadata",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, limits the response to a list of collections and token IDs only, omitting metadata and asset information. Set to false to include full NFT metadata. Recommended to keep true for wallets holding a large number of NFTs."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch a full NFT portfolio with metadata for a wallet on Ethereum",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "noNftAssetMetadata": false
+              }
+            },
+            {
+              "intent": "Get a lightweight NFT holdings list for an ENS address on Base, spam filtered",
+              "params": {
+                "chainName": "base-mainnet",
+                "walletAddress": "vitalik.eth",
+                "noSpam": true,
+                "noNftAssetMetadata": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_pool_spot_prices",
+          "purpose": "Pool_spot_prices returns the current spot token pair prices for a specified liquidity pool contract address. It supports pools on Uniswap V2, V3, and their forks. It is used when the user needs the live exchange rate between a token pair in a specific DEX pool.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 19,
+              "name": "contractAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The liquidity pool contract address to retrieve spot prices for."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for price conversions in the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the current spot price for the USDC/ETH Uniswap V3 pool on Ethereum",
+              "params": {
+                "chainName": "eth-mainnet",
+                "contractAddress": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Fetch spot prices for a Uniswap V2 pool on Base",
+              "params": {
+                "chainName": "base-mainnet",
+                "contractAddress": "0x4C36388bE6F416A29C8d8Eee81C771cE6bE14B18",
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_resolve_address",
+          "purpose": "Resolve_address resolves a registered domain name — ENS, RNS, or Unstoppable Domain — to its underlying wallet address on a given chain. It is used when the user has a human-readable domain and needs the corresponding on-chain address before querying balances, transactions, or other address-specific data.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to resolve the domain on."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The domain name to resolve. Supports ENS, RNS, Lens Handle, and Unstoppable Domain formats."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Resolve an ENS name to its Ethereum mainnet address",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "vitalik.eth"
+              }
+            },
+            {
+              "intent": "Resolve an Unstoppable Domain to an address on Polygon",
+              "params": {
+                "chainName": "matic-mainnet",
+                "walletAddress": "mydomain.crypto"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_token_approvals",
+          "purpose": "Token_approvals retrieves a list of all token approvals granted by a wallet address across all token contracts, categorized by spender. It is used when the user needs to audit which contracts have been approved to spend their tokens, typically as part of a security or risk review.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve token approvals for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Audit all token approvals for a wallet on Ethereum mainnet",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+              }
+            },
+            {
+              "intent": "Check token approvals for an ENS address on Arbitrum",
+              "params": {
+                "chainName": "arbitrum-mainnet",
+                "walletAddress": "vitalik.eth"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_token_balances",
+          "purpose": "Token_balances fetches the native and ERC-20 token holdings for a wallet address on a specific chain, including spot prices and token metadata. It is used when the user needs a single-chain portfolio snapshot with enriched token data rather than a cross-chain view.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve token balances for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for spot price conversions in the response."
+            },
+            {
+              "number": 24,
+              "name": "noSpam",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, suspected spam tokens are removed from the response. Supported on all Foundational Chains."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get all token balances for a wallet on Ethereum with spam tokens filtered out",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "quoteCurrency": "USD",
+                "noSpam": true
+              }
+            },
+            {
+              "intent": "Fetch token holdings for an ENS name on Arbitrum",
+              "params": {
+                "chainName": "arbitrum-mainnet",
+                "walletAddress": "vitalik.eth",
+                "quoteCurrency": "EUR"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_token_holders",
+          "purpose": "Token_holders returns a paginated list of current or historical holders for a specified ERC-20 or ERC-721 token. It is used when the user needs to analyze token ownership distribution, track holder counts over time, or retrieve a snapshot of holders at a specific block or date.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 27,
+              "name": "tokenAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The token contract address to retrieve holders for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 28,
+              "name": "noSnapshot",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, bypasses the last snapshot and returns the latest token holders list in real time."
+            },
+            {
+              "number": 14,
+              "name": "blockHeight",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Block height to use as the upper bound for the holders snapshot. Defaults to the latest block if omitted. Accepts a block number or string."
+            },
+            {
+              "number": 25,
+              "name": "date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Date in YYYY-MM-DD format to use as the upper bound for the holders snapshot. Defaults to the current date if omitted."
+            },
+            {
+              "number": 17,
+              "name": "pageSize",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Number of holders to return per page. Only values of 100 and 1000 are supported. Defaults to 100 if omitted."
+            },
+            {
+              "number": 18,
+              "name": "pageNumber",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "0-indexed page number to begin pagination."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get the current top holders of USDC on Ethereum mainnet",
+              "params": {
+                "chainName": "eth-mainnet",
+                "tokenAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                "noSnapshot": true
+              }
+            },
+            {
+              "intent": "Retrieve historical token holders for an ERC-721 NFT collection at a specific past date",
+              "params": {
+                "chainName": "eth-mainnet",
+                "tokenAddress": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+                "date": "2024-01-01",
+                "pageSize": 1000,
+                "pageNumber": 0
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_transaction",
+          "purpose": "Transaction fetches and renders a single transaction by hash on a given chain, including its decoded event logs. For foundational chains it can also return internal transactions, state changes, and the method ID where available. It is used when the user needs to inspect or display the full details of a specific on-chain transaction.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 29,
+              "name": "txHash",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The transaction hash to retrieve."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            },
+            {
+              "number": 30,
+              "name": "noLogs",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, omits log events from the response. Set to false to include decoded event logs."
+            },
+            {
+              "number": 31,
+              "name": "withInternal",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Whether to include internal transfers and transactions. Available on foundational chains."
+            },
+            {
+              "number": 32,
+              "name": "withState",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Whether to include all transaction state changes with before and after values. Available on foundational chains."
+            },
+            {
+              "number": 33,
+              "name": "withInputData",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Whether to include the transaction's input data such as the Method ID. Available on foundational chains."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch a transaction on Ethereum with decoded event logs included",
+              "params": {
+                "chainName": "eth-mainnet",
+                "txHash": "0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060",
+                "noLogs": false,
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Retrieve a transaction on Base with internal transfers and input data for debugging",
+              "params": {
+                "chainName": "base-mainnet",
+                "txHash": "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1",
+                "noLogs": false,
+                "withInternal": true,
+                "withInputData": true,
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_transaction_summary",
+          "purpose": "Transaction_summary fetches a high-level activity overview for a wallet address on a given chain, including the earliest and latest transactions, total transaction count, ERC-20 token transfer count, and optionally a gas expenditure breakdown. It is used when the user needs a quick wallet activity profile rather than a full paginated transaction history.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to summarize. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            },
+            {
+              "number": 34,
+              "name": "withGas",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, includes a gas expenditure summary. Note: may increase response time for wallets with a large number of transactions."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get a transaction activity overview for a wallet on Ethereum",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Summarize wallet activity on Arbitrum including total gas spent",
+              "params": {
+                "chainName": "arbitrum-mainnet",
+                "walletAddress": "vitalik.eth",
+                "quoteCurrency": "USD",
+                "withGas": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_transactions_for_address",
+          "purpose": "Transactions_for_address retrieves paginated transactions involving a wallet address on a given chain, optionally including decoded log events. It is used when the user needs to browse or display a wallet's full on-chain transaction history in a paginated format, with control over sort order and log inclusion.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 9,
+              "name": "walletAddress",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The wallet address to retrieve transactions for. ENS, RNS, Lens Handle, and Unstoppable Domain names resolve automatically."
+            },
+            {
+              "number": 35,
+              "name": "page",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The page number to retrieve, 0-indexed."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            },
+            {
+              "number": 30,
+              "name": "noLogs",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, omits log events from the response. Set to false to include decoded event logs."
+            },
+            {
+              "number": 36,
+              "name": "blockSignedAtAsc",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, returns transactions in ascending chronological order. Defaults to descending order if omitted."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch the first page of transactions for a wallet on Ethereum in descending order",
+              "params": {
+                "chainName": "eth-mainnet",
+                "walletAddress": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "page": 0,
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Retrieve the second page of transactions for an ENS address on Base with logs, in chronological order",
+              "params": {
+                "chainName": "base-mainnet",
+                "walletAddress": "vitalik.eth",
+                "page": 1,
+                "noLogs": false,
+                "blockSignedAtAsc": true,
+                "quoteCurrency": "USD"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "goldrush-mcp_transactions_for_block",
+          "purpose": "Transactions_for_block fetches all transactions in a given block on a specific chain, including their decoded log events. It is used when the user needs to inspect the full contents of a block — for example, to flag interesting wallets or transactions, analyze block-level activity, or build a block explorer view.",
+          "parameters": [
+            {
+              "number": 12,
+              "name": "chainName",
+              "required": true,
+              "default": "No default",
+              "allowed": [
+                "eth-mainnet",
+                "eth-sepolia",
+                "eth-holesky",
+                "matic-mainnet",
+                "avalanche-mainnet",
+                "avalanche-testnet",
+                "bsc-mainnet",
+                "bsc-testnet",
+                "moonbeam-mainnet",
+                "moonbeam-moonriver",
+                "arbitrum-mainnet",
+                "arbitrum-nova-mainnet",
+                "arbitrum-sepolia",
+                "fantom-mainnet",
+                "fantom-testnet",
+                "btc-mainnet",
+                "solana-mainnet",
+                "axie-mainnet",
+                "optimism-mainnet",
+                "optimism-sepolia",
+                "cronos-zkevm-mainnet",
+                "emerald-paratime-mainnet",
+                "monad-testnet",
+                "monad-mainnet",
+                "megaeth-mainnet",
+                "berachain-mainnet",
+                "berachain-testnet",
+                "hypercore-mainnet",
+                "plasma-mainnet",
+                "unichain-mainnet",
+                "plasma-testnet",
+                "arc-testnet",
+                "adi-testnet",
+                "canto-mainnet",
+                "linea-mainnet",
+                "linea-sepolia-testnet",
+                "polygon-amoy-testnet",
+                "mantle-mainnet",
+                "base-mainnet",
+                "base-sepolia-testnet",
+                "oasis-sapphire-mainnet",
+                "celo-mainnet",
+                "hyperevm-mainnet",
+                "adi-mainnet",
+                "redstone-mainnet",
+                "sei-mainnet",
+                "apechain-mainnet",
+                "unichain-sepolia-testnet",
+                "sonic-mainnet",
+                "world-mainnet",
+                "world-sepolia-testnet",
+                "manta-sepolia-testnet",
+                "ink-sepolia-testnet",
+                "ink-mainnet",
+                "zksync-mainnet",
+                "bnb-opbnb-mainnet",
+                "zetachain-mainnet",
+                "gnosis-mainnet",
+                "gnosis-testnet",
+                "viction-mainnet",
+                "taiko-mainnet",
+                "blast-mainnet",
+                "scroll-mainnet"
+              ],
+              "description": "The name of the chain to query."
+            },
+            {
+              "number": 14,
+              "name": "blockHeight",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The block height to retrieve transactions for. Accepts a block number, hexadecimal string, or \"latest\"."
+            },
+            {
+              "number": 8,
+              "name": "quoteCurrency",
+              "required": false,
+              "default": "null",
+              "allowed": [
+                "USD",
+                "CAD",
+                "EUR",
+                "SGD",
+                "INR",
+                "JPY",
+                "VND",
+                "CNY",
+                "KRW",
+                "RUB",
+                "TRY",
+                "NGN",
+                "ARS",
+                "AUD",
+                "CHF",
+                "GBP"
+              ],
+              "description": "Currency used for value conversions in the response."
+            },
+            {
+              "number": 30,
+              "name": "noLogs",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "If true, omits decoded log events from the response."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Fetch all transactions in a specific Ethereum block with decoded logs",
+              "params": {
+                "chainName": "eth-mainnet",
+                "blockHeight": 19000000,
+                "noLogs": false,
+                "quoteCurrency": "USD"
+              }
+            },
+            {
+              "intent": "Retrieve all transactions in the latest Base block",
+              "params": {
+                "chainName": "base-mainnet",
+                "blockHeight": "latest",
+                "quoteCurrency": "USD"
               }
             }
           ],
@@ -12865,7 +16565,7 @@
     },
     {
       "name": "octagon-mcp",
-      "intro": "The octagon-mcp server is a market intelligence and research server designed for broader, synthesis-heavy analysis across multiple financial and market information sources. It is useful when the user needs an aggregated research view, a multi-source market intelligence answer, or focused analysis on prediction market events.\n\n### How it works\n- The server centers on agent-style tools driven by a natural language `prompt`, with different tools oriented toward broader market intelligence, deep research, or prediction-market-specific analysis.\n- It also includes a historical prediction market data tool keyed by `event_ticker`, with optional pagination, time-window filtering, and analysis-column controls.\n- The server is oriented more toward synthesis and interpreted research workflows than toward direct low-level dataset retrieval.\n\n### Potential resolution paths\n- **Run broad market intelligence research:** Use `octagon-agent` when the user needs a wide market intelligence view that combines multiple research domains into one answer.\n- **Go deeper on a focused investment research question:** Use `octagon-deep-research-agent` when the request is narrower but still requires aggregated, up-to-date research from multiple sources.\n- **Analyze a prediction market with both data and research context:** Pull historical event data with `prediction_markets_history`, then use `octagon-prediction-markets-agent` when the user wants a more interpretive report on drivers, model versus market probabilities, or potential mispricings.\n\n### Best practices\n- **Choose the agent by research depth and scope:** Use the broader agent for holistic market intelligence, the deep research agent for focused investment research, and the prediction-markets agent when the question is specifically about Kalshi-style event markets.\n- **Use historical event data before interpretive prediction-market analysis when specific event context matters:** `prediction_markets_history` helps ground the later research step in a concrete event and time window.",
+      "intro": "The octagon-mcp server is a market intelligence and research server designed for broader, synthesis-heavy analysis across multiple financial and market information sources. It is useful when the user needs an aggregated research view, a multi-source market intelligence answer, or focused analysis on prediction market events.\n\n### How it works\n- The server centers on agent-style tools driven by a natural language `prompt`, with different tools oriented toward broader market intelligence, deep research, or prediction-market-specific analysis.\n- It also includes a historical prediction market data tool keyed by `event_ticker`, with optional pagination, time-window filtering, and analysis-column controls.\n- The server is oriented more toward synthesis and interpreted research workflows than toward direct low-level dataset retrieval.\n\n### Potential resolution paths\n- **Run broad market intelligence research:** Use `octagon-agent` when the user needs a wide market intelligence view that combines multiple research domains into one answer.\n- **Go deeper on a focused investment research question:** Use `octagon-deep-research-agent` when the request is narrower but still requires aggregated, up-to-date research from multiple sources.\n- **Analyze a prediction market with both data and research context:** Pull historical event data with `prediction_markets_history`, then use `octagon-prediction-markets-agent` when the user wants a more interpretive report on drivers, model versus market probabilities, or potential mispricings.\n\n### Best practices\n- **Choose the agent by research depth and scope:** Use the broader agent for holistic market intelligence, the deep research agent for focused investment research, and the prediction-markets agent when the question is specifically about Kalshi-style event markets.\n- **Retrieve historical market data for a specific event before running prediction-market analysis:** Call `prediction_markets_history` with the `event_ticker` and relevant time window first, then pass that concrete market context into `octagon-prediction-markets-agent` — the analysis is more grounded when actual pricing and event history are part of the prompt.",
       "paramsWrapped": false,
       "tools": [
         {
@@ -13043,6 +16743,777 @@
                 "captured_to": "2025-01-31T23:59:59Z",
                 "limit": 100,
                 "include_analysis": true
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        }
+      ]
+    },
+    {
+      "name": "patent-mcp-server",
+      "intro": "The patent-mcp-server provides access to two distinct patent data sources: the USPTO database via a unified method-routing tool, and Google Patents Public Datasets via a set of targeted search and retrieval tools. Together they cover patent discovery by keyword, inventor, assignee, or classification code; full document retrieval including claims and descriptions; application-level data such as continuity, assignments, and transaction history; and bulk dataset access — all scoped to US or international patents depending on the source.\n\n### How it works\n\n- **USPTO data** is accessed through a single tool, `uspto_patents`, which routes to 23 different endpoints via the `method` parameter. Methods span full-text patent and application search using USPTO Public Search syntax, application lookup by number, PDF download, and administrative data (continuity, assignments, attorney, transactions, documents).\n- **Google Patents data** is split across seven tools. The four search tools (`google_search_patents`, `google_search_by_inventor`, `google_search_by_assignee`, `google_search_by_cpc`) return discovery results including publication numbers. The three retrieval tools (`google_get_patent`, `google_get_patent_claims`, `google_get_patent_description`) each take a publication number and return a specific section of the full patent document.\n- All Google search tools accept `country`, `limit`, `offset`, `start_date`, and `end_date` for scoping and pagination. Allowed country codes are: US, EP, WO, JP, CN, KR, GB, DE, FR, CA, AU.\n- USPTO `ppubs_search_*` methods use USPTO Public Search field-code syntax and boolean operators; Google search tools accept natural language or keyword queries.\n\n### Potential resolution paths\n\n- **Discover patents by topic across multiple countries:** Use `google_search_patents` with a natural language or keyword query scoped to the relevant country and date range.\n- **Research a company's full patent portfolio:** Use `google_search_by_assignee` to retrieve all patents assigned to a company, optionally filtered by country and date range.\n- **Track an inventor's filing history:** Use `google_search_by_inventor` to find all patents listing a specific inventor across one or more countries.\n- **Explore a technology area by classification:** Use `google_search_by_cpc` with the relevant CPC code to find patents in a defined technology domain without relying on keyword matching.\n- **Read a full patent document once the publication number is known:** Call `google_get_patent` for the complete record, `google_get_patent_claims` for the legal claims, and `google_get_patent_description` for the detailed description — each returns a distinct section.\n- **Search and retrieve US patents using USPTO syntax:** Use `uspto_patents` with `ppubs_search_patents` or `ppubs_search_applications` for field-level queries, then `ppubs_get_patent_by_number` or `ppubs_get_full_document` to retrieve the full text.\n- **Look up application-level administrative data:** Use `uspto_patents` with `get_app_continuity`, `get_app_assignment`, `get_app_transactions`, or related `get_app_*` methods when the application number is known.\n- **Download a patent as PDF:** Use `uspto_patents` with `ppubs_download_patent_pdf` and the patent number.\n\n### Best practices\n\n- **Use Google search tools to get publication numbers before calling the retrieval tools:** `google_get_patent`, `google_get_patent_claims`, and `google_get_patent_description` all require a publication number. If the user doesn't already have one, run a search first to obtain it.\n- **Choose the right search tool based on query type:** USPTO `ppubs_search_*` methods require structured field-code syntax (e.g., `TTL/battery AND ISD/20220101->20251231`); Google search tools accept plain keywords or natural language. Using Google syntax against USPTO or vice versa will produce poor results.\n- **Retrieve claims and description as separate calls when both are needed:** `google_get_patent_claims` and `google_get_patent_description` are distinct endpoints — neither is a subset of `google_get_patent`. If the full document content is required, all three tools may need to be called.",
+      "paramsWrapped": false,
+      "tools": [
+        {
+          "name": "patent-mcp-server_google_get_patent",
+          "purpose": "Google_get_patent retrieves complete patent details from Google Patents by publication number. It returns the full record including title, abstract, publication and filing dates, inventors, assignees, and classification codes. It is used when the user already has a specific patent publication number and needs the full structured data for that patent from Google's dataset.",
+          "parameters": [
+            {
+              "number": 40,
+              "name": "publication_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent publication number (e.g., US-9876543-B2)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Get full details for a specific US patent by publication number",
+              "params": {
+                "publication_number": "US-9876543-B2"
+              }
+            },
+            {
+              "intent": "Retrieve complete patent record for an EP patent",
+              "params": {
+                "publication_number": "EP-3456789-A1"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_get_patent_claims",
+          "purpose": "Google_get_patent_claims retrieves all claims for a specific patent from Google Patents by publication number. It returns each claim with its claim number and full claim text. It is used when the user needs to read, analyze, or compare the legal claim language of a known patent.",
+          "parameters": [
+            {
+              "number": 40,
+              "name": "publication_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent publication number (e.g., US-9876543-B2)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve all claims for a specific US patent",
+              "params": {
+                "publication_number": "US-9876543-B2"
+              }
+            },
+            {
+              "intent": "Get the full claim text for an EP patent",
+              "params": {
+                "publication_number": "EP-3456789-A1"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_get_patent_description",
+          "purpose": "Google_get_patent_description retrieves the detailed description section of a patent document from Google Patents by publication number. It is used when the user needs the full technical disclosure narrative of a known patent, separate from its claims or abstract.",
+          "parameters": [
+            {
+              "number": 40,
+              "name": "publication_number",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Patent publication number (e.g., US-9876543-B2)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Retrieve the detailed description section of a US patent",
+              "params": {
+                "publication_number": "US-9876543-B2"
+              }
+            },
+            {
+              "intent": "Get the full description text of an EP patent",
+              "params": {
+                "publication_number": "EP-3456789-A1"
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_search_by_assignee",
+          "purpose": "Google_search_by_assignee searches Google Patents for patents assigned to a specific company or organization. It is used when the user wants to analyze a company's patent portfolio, track filings by a particular assignee, or research patent ownership within a country or date range.",
+          "parameters": [
+            {
+              "number": 42,
+              "name": "assignee_name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Assignee or company name to search for."
+            },
+            {
+              "number": 37,
+              "name": "country",
+              "required": false,
+              "default": "US",
+              "allowed": [
+                "US",
+                "EP",
+                "WO",
+                "JP",
+                "CN",
+                "KR",
+                "GB",
+                "DE",
+                "FR",
+                "CA",
+                "AU"
+              ],
+              "description": "Country code to scope the patent search."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 14,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Number of results to skip for pagination."
+            },
+            {
+              "number": 38,
+              "name": "start_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101)."
+            },
+            {
+              "number": 39,
+              "name": "end_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find all US patents assigned to a specific company",
+              "params": {
+                "assignee_name": "Acme Corporation",
+                "country": "US",
+                "limit": 100
+              }
+            },
+            {
+              "intent": "Search for PCT applications filed by a company in the last five years",
+              "params": {
+                "assignee_name": "OpenAI",
+                "country": "WO",
+                "start_date": 20200101,
+                "end_date": 20251231
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_search_by_cpc",
+          "purpose": "Google_search_by_cpc searches Google Patents for patents classified under a specific Cooperative Patent Classification (CPC) code. It is used when the user wants to explore a defined technology area by its classification code rather than by keyword, making it useful for structured prior art searches or technology landscape analysis.",
+          "parameters": [
+            {
+              "number": 43,
+              "name": "cpc_code",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Cooperative Patent Classification (CPC) code to search for (e.g., G06N3/08 for neural networks)."
+            },
+            {
+              "number": 37,
+              "name": "country",
+              "required": false,
+              "default": "US",
+              "allowed": [
+                "US",
+                "EP",
+                "WO",
+                "JP",
+                "CN",
+                "KR",
+                "GB",
+                "DE",
+                "FR",
+                "CA",
+                "AU"
+              ],
+              "description": "Country code to scope the patent search."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 14,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Number of results to skip for pagination."
+            },
+            {
+              "number": 38,
+              "name": "start_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101)."
+            },
+            {
+              "number": 39,
+              "name": "end_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find US patents classified under the neural network CPC code",
+              "params": {
+                "cpc_code": "G06N3/08",
+                "country": "US",
+                "limit": 50
+              }
+            },
+            {
+              "intent": "Search for international patents in battery technology published since 2020",
+              "params": {
+                "cpc_code": "H01M10/0525",
+                "country": "WO",
+                "start_date": 20200101
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_search_by_inventor",
+          "purpose": "Google_search_by_inventor searches Google Patents for patents where a specified inventor is listed. It is used when the user wants to find all patents associated with a particular inventor, track an inventor's portfolio, or research their patenting activity within a country or date range.",
+          "parameters": [
+            {
+              "number": 41,
+              "name": "inventor_name",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Inventor name to search for."
+            },
+            {
+              "number": 37,
+              "name": "country",
+              "required": false,
+              "default": "US",
+              "allowed": [
+                "US",
+                "EP",
+                "WO",
+                "JP",
+                "CN",
+                "KR",
+                "GB",
+                "DE",
+                "FR",
+                "CA",
+                "AU"
+              ],
+              "description": "Country code to scope the patent search."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 14,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Number of results to skip for pagination."
+            },
+            {
+              "number": 38,
+              "name": "start_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101)."
+            },
+            {
+              "number": 39,
+              "name": "end_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Find all US patents listed under a specific inventor",
+              "params": {
+                "inventor_name": "Jane Smith",
+                "country": "US",
+                "limit": 50
+              }
+            },
+            {
+              "intent": "Search for PCT applications by an inventor published between 2018 and 2023",
+              "params": {
+                "inventor_name": "John Doe",
+                "country": "WO",
+                "start_date": 20180101,
+                "end_date": 20231231
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_google_search_patents",
+          "purpose": "Google_search_patents searches patent titles and abstracts using Google Patents Public Datasets via BigQuery. It returns publication numbers, titles, abstracts, dates, inventors, assignees, and classification codes. It is used when the user needs broad patent discovery across multiple countries using natural language or keyword queries, rather than USPTO-specific search syntax.",
+          "parameters": [
+            {
+              "number": 2,
+              "name": "query",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "Search query string. Searches patent titles and abstracts."
+            },
+            {
+              "number": 37,
+              "name": "country",
+              "required": false,
+              "default": "US",
+              "allowed": [
+                "US",
+                "EP",
+                "WO",
+                "JP",
+                "CN",
+                "KR",
+                "GB",
+                "DE",
+                "FR",
+                "CA",
+                "AU"
+              ],
+              "description": "Country code to scope the patent search."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of results to return. Maximum allowed value is 500."
+            },
+            {
+              "number": 14,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Number of results to skip for pagination."
+            },
+            {
+              "number": 38,
+              "name": "start_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Start date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20220101)."
+            },
+            {
+              "number": 39,
+              "name": "end_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "End date for filtering by publication date. Integer in YYYYMMDD format (e.g., 20251231)."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search US patents about solid-state battery technology published since 2022",
+              "params": {
+                "query": "solid state battery electrolyte",
+                "country": "US",
+                "start_date": 20220101,
+                "limit": 50
+              }
+            },
+            {
+              "intent": "Find international PCT applications related to mRNA vaccine delivery mechanisms",
+              "params": {
+                "query": "mRNA lipid nanoparticle vaccine delivery",
+                "country": "WO",
+                "start_date": 20200101,
+                "end_date": 20251231,
+                "limit": 100
+              }
+            }
+          ],
+          "paths": "",
+          "active": true
+        },
+        {
+          "name": "patent-mcp-server_uspto_patents",
+          "purpose": "Uspto_patents is a unified tool for all USPTO patent operations. It routes to different underlying endpoints through the `method` parameter, covering full-text patent search, application lookup, document retrieval, PDF download, assignment and continuity data, transaction history, and bulk dataset access. It is used whenever the goal involves finding, reading, or downloading US patent or application data from USPTO databases.\n\nAvailable methods:\n- `ppubs_search_patents` — Search granted patents in USPTO Public Search\n- `ppubs_search_applications` — Search published patent applications\n- `ppubs_get_full_document` — Get full patent document by GUID\n- `ppubs_get_patent_by_number` — Get granted patent full text by number\n- `ppubs_download_patent_pdf` — Download granted patent as PDF\n- `get_app` — Get patent application data by number\n- `search_applications` — Search patent applications with query parameters\n- `search_applications_post` — Search patent applications with JSON payload\n- `download_applications` — Download patent applications with query parameters\n- `download_applications_post` — Download patent applications with JSON payload\n- `get_app_metadata` — Get application metadata\n- `get_app_adjustment` — Get patent term adjustment data\n- `get_app_assignment` — Get assignment data\n- `get_app_attorney` — Get attorney/agent information\n- `get_app_continuity` — Get continuity data\n- `get_app_foreign_priority` — Get foreign priority claims\n- `get_app_transactions` — Get transaction history\n- `get_app_documents` — Get document details\n- `get_app_associated_documents` — Get associated documents\n- `get_status_codes` — Search for status codes\n- `get_status_codes_post` — Search status codes with JSON payload\n- `search_datasets` — Search bulk dataset products\n- `get_dataset_product` — Get specific dataset product",
+          "parameters": [
+            {
+              "number": 1,
+              "name": "method",
+              "required": true,
+              "default": "No default",
+              "allowed": [],
+              "description": "The operation to perform. See available methods above."
+            },
+            {
+              "number": 2,
+              "name": "query",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Search query string using USPTO Public Search syntax. Used by `ppubs_search_*` methods."
+            },
+            {
+              "number": 3,
+              "name": "start",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for results. Used by `ppubs_search_*` methods."
+            },
+            {
+              "number": 4,
+              "name": "limit",
+              "required": false,
+              "default": "100",
+              "allowed": [],
+              "description": "Maximum number of results to return. Used by `ppubs_search_*` and `search_*` methods."
+            },
+            {
+              "number": 5,
+              "name": "sort",
+              "required": false,
+              "default": "date_publ desc",
+              "allowed": [],
+              "description": "Sort order for results."
+            },
+            {
+              "number": 6,
+              "name": "default_operator",
+              "required": false,
+              "default": "OR",
+              "allowed": [],
+              "description": "Default boolean operator between search terms. Used by `ppubs_search_*` methods."
+            },
+            {
+              "number": 7,
+              "name": "expand_plurals",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, includes plural forms of search terms. Used by `ppubs_search_*` methods."
+            },
+            {
+              "number": 8,
+              "name": "british_equivalents",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, includes British spelling equivalents. Used by `ppubs_search_*` methods."
+            },
+            {
+              "number": 9,
+              "name": "guid",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Document unique identifier. Used by `ppubs_get_full_document`."
+            },
+            {
+              "number": 10,
+              "name": "source_type",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Document type to retrieve. Used by `ppubs_get_full_document`. Accepts USPAT or US-PGPUB."
+            },
+            {
+              "number": 11,
+              "name": "patent_number",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Patent number to retrieve or download. Used by `ppubs_get_patent_by_number` and `ppubs_download_patent_pdf`."
+            },
+            {
+              "number": 12,
+              "name": "app_num",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "U.S. Patent Application Number (e.g., 14412875). Used by `get_app_*` methods."
+            },
+            {
+              "number": 13,
+              "name": "q",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Search query string. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 14,
+              "name": "offset",
+              "required": false,
+              "default": "0",
+              "allowed": [],
+              "description": "Starting position for results. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 15,
+              "name": "facets",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Comma-separated fields to facet upon. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 16,
+              "name": "fields",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Comma-separated fields to include in the response. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 17,
+              "name": "filters",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter conditions to apply. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 18,
+              "name": "range_filters",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Range filter conditions to apply. Used by `search_*` and `download_*` methods."
+            },
+            {
+              "number": 19,
+              "name": "format",
+              "required": false,
+              "default": "json",
+              "allowed": [],
+              "description": "Download format. Used by `download_*` methods. Accepts json or csv."
+            },
+            {
+              "number": 20,
+              "name": "filters_list",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of filter objects. Used by `*_post` methods."
+            },
+            {
+              "number": 21,
+              "name": "range_filters_list",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of range filter objects. Used by `*_post` methods."
+            },
+            {
+              "number": 22,
+              "name": "sort_list",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of sort objects. Used by `*_post` methods."
+            },
+            {
+              "number": 23,
+              "name": "fields_list",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of field names to include in the response. Used by `*_post` methods."
+            },
+            {
+              "number": 24,
+              "name": "facets_list",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "List of facet field names. Used by `*_post` methods."
+            },
+            {
+              "number": 25,
+              "name": "product_title",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Specific product title to filter by. Used by `search_datasets`."
+            },
+            {
+              "number": 26,
+              "name": "product_description",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Specific product description to filter by. Used by `search_datasets`."
+            },
+            {
+              "number": 27,
+              "name": "product_short_name",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Product identifier short name. Used by `search_datasets`."
+            },
+            {
+              "number": 28,
+              "name": "include_files",
+              "required": false,
+              "default": "true",
+              "allowed": [],
+              "description": "If true, includes file listings in the dataset response. Used by `search_datasets` and `get_dataset_product`."
+            },
+            {
+              "number": 29,
+              "name": "latest",
+              "required": false,
+              "default": "false",
+              "allowed": [],
+              "description": "If true, returns only the latest dataset product. Used by `search_datasets` and `get_dataset_product`."
+            },
+            {
+              "number": 30,
+              "name": "labels",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter datasets by labels. Used by `search_datasets`."
+            },
+            {
+              "number": 31,
+              "name": "categories",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter datasets by categories. Used by `search_datasets`."
+            },
+            {
+              "number": 32,
+              "name": "datasets",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter by dataset names. Used by `search_datasets`."
+            },
+            {
+              "number": 33,
+              "name": "file_types",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter datasets by file types. Used by `search_datasets`."
+            },
+            {
+              "number": 34,
+              "name": "product_id",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Product identifier. Used by `get_dataset_product`."
+            },
+            {
+              "number": 35,
+              "name": "file_data_from_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter dataset files from this date (YYYY-MM-DD). Used by `get_dataset_product`."
+            },
+            {
+              "number": 36,
+              "name": "file_data_to_date",
+              "required": false,
+              "default": "null",
+              "allowed": [],
+              "description": "Filter dataset files to this date (YYYY-MM-DD). Used by `get_dataset_product`."
+            }
+          ],
+          "examples": [
+            {
+              "intent": "Search granted patents related to transformer neural network architectures",
+              "params": {
+                "method": "ppubs_search_patents",
+                "query": "transformer neural network attention mechanism",
+                "limit": 25,
+                "sort": "date_publ desc",
+                "default_operator": "AND"
+              }
+            },
+            {
+              "intent": "Retrieve full application data including continuity and assignment for a known application number",
+              "params": {
+                "method": "get_app",
+                "app_num": "14412875"
+              }
+            },
+            {
+              "intent": "Search published patent applications for CRISPR gene editing filed after 2020",
+              "params": {
+                "method": "search_applications",
+                "q": "CRISPR gene editing",
+                "filters": "applicationFilingDate:[2020-01-01 TO *]",
+                "limit": 50,
+                "offset": 0
               }
             }
           ],

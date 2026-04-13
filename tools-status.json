@@ -200,5 +200,49 @@
     "irs-taxpayer-mcp_lookup_tax_rule": "active",
     "irs-taxpayer-mcp_run_tax_health_check": "active",
     "irs-taxpayer-mcp_get_form_filing_guide": "active"
+  },
+  "coingecko-mcp": {
+    "coingecko-mcp_execute": "active",
+    "coingecko-mcp_search_docs": "active"
+  },
+  "goldrush-mcp": {
+    "goldrush-mcp_bitcoin_hd_wallet_balances": "active",
+    "goldrush-mcp_bitcoin_non_hd_wallet_balances": "active",
+    "goldrush-mcp_bitcoin_transactions": "active",
+    "goldrush-mcp_block": "active",
+    "goldrush-mcp_block_heights": "active",
+    "goldrush-mcp_erc20_token_transfers": "active",
+    "goldrush-mcp_gas_prices": "active",
+    "goldrush-mcp_historical_portfolio_value": "active",
+    "goldrush-mcp_historical_token_balances": "active",
+    "goldrush-mcp_historical_token_prices": "active",
+    "goldrush-mcp_log_events_by_address": "active",
+    "goldrush-mcp_log_events_by_topic": "active",
+    "goldrush-mcp_multichain_address_activity": "active",
+    "goldrush-mcp_multichain_balances": "active",
+    "goldrush-mcp_multichain_transactions": "active",
+    "goldrush-mcp_native_token_balance": "active",
+    "goldrush-mcp_nft_check_ownership": "active",
+    "goldrush-mcp_nft_check_ownership_token_id": "active",
+    "goldrush-mcp_nft_for_address": "active",
+    "goldrush-mcp_pool_spot_prices": "active",
+    "goldrush-mcp_resolve_address": "active",
+    "goldrush-mcp_token_approvals": "active",
+    "goldrush-mcp_token_balances": "active",
+    "goldrush-mcp_token_holders": "active",
+    "goldrush-mcp_transaction": "active",
+    "goldrush-mcp_transaction_summary": "active",
+    "goldrush-mcp_transactions_for_address": "active",
+    "goldrush-mcp_transactions_for_block": "active"
+  },
+  "patent-mcp-server": {
+    "patent-mcp-server_google_get_patent": "active",
+    "patent-mcp-server_google_get_patent_claims": "active",
+    "patent-mcp-server_google_get_patent_description": "active",
+    "patent-mcp-server_google_search_by_assignee": "active",
+    "patent-mcp-server_google_search_by_cpc": "active",
+    "patent-mcp-server_google_search_by_inventor": "active",
+    "patent-mcp-server_google_search_patents": "active",
+    "patent-mcp-server_uspto_patents": "active"
   }
 }
